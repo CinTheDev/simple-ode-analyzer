@@ -44,24 +44,28 @@ void draw_graph(char* graph, uint16_t width, uint16_t height) {
     }
 }
 
-void plot_function(uint16_t width, uint16_t height, double step_x, double step_y, double (*function)(double)) {
-    int graph_length = (width * 2 + 1) * (height * 2 + 1);
-    char graph[graph_length];
-
-    draw_graph(graph, width, height);
-
+void draw_function(char* graph, uint16_t width, uint16_t height, double step_x, double step_y, double (*function)(double)) {
     for (uint16_t x = 0; x < width * 2 + 1; x++) {
         double coord_x = x * step_x;
 
         double func_val = function(coord_x);
 
         int index_y = round(func_val / -step_y + height);
-        
+
         if (index_y > 0 && index_y < height * 2) {
             int graph_index = (index_y * (width * 2 + 1)) + x;
             graph[graph_index] = '*';
         }
     }
+}
+
+void plot_function(uint16_t width, uint16_t height, double step_x, double step_y, double (*function)(double)) {
+    int graph_length = (width * 2 + 1) * (height * 2 + 1);
+    char graph[graph_length];
+
+    draw_graph(graph, width, height);
+
+    draw_function(graph, width, height, step_x, step_y, function);
 
     print_graph(graph, width, height);
 }
