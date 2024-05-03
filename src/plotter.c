@@ -16,25 +16,25 @@ void plot_function(uint16_t width, uint16_t height, double step, double (*functi
         for (uint16_t x = 0; x < width * 2 + 1; x++) {
 
             double coord_x = x * step;
-            double coord_y = (y - height - 1) * step;
+            double coord_y = (y - height - 1) * -step;
 
             double epsilon = step;
 
             double func_val = function(coord_x);
             if (compare_doubles(func_val, coord_y, epsilon)) {
                 printf("*");
-                goto CONTINUE_SKIP;
             } 
-
-            if (x == y_axis_index) {
+            else if (x == y_axis_index) {
                 printf("|");
+            }
+            else if (y == x_axis_index) {
+                printf("-");
+            }
+            else {
+                printf(" ");
             }
         }
 
-        if (y == x_axis_index) {
-            printf("-");
-        }
-
-        CONTINUE_SKIP:
+        printf("\n");
     }
 }
