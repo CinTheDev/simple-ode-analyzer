@@ -1,0 +1,16 @@
+# Differential Equations
+
+This project is a function plotter written in C to test approximation of differential equations.
+
+## Function plotter
+
+The project will run on the console, onto which the function will be plotted using ASCII symbols.
+
+If there's potential, we could move the project to wxWidgets for improved resolution and
+convinient features.
+
+## Approximation
+
+Various techniques for approximating ODEs will be implemented, we'll start with Discrete-Euler to get
+a better understanding of how the process works, later on we'll move to more advanced techniques
+like Midpoint, or Runge-Kutta-4
