@@ -1,13 +1,7 @@
 #include "plotter.h"
-#include <stdio.h>
 #include <stdbool.h>
-#include <stdlib.h>
+#include <stdio.h>
 #include <math.h>
-
-bool compare_doubles(double a, double b, double epsilon) {
-    double val = abs(a - b);
-    return val < epsilon;
-}
 
 void print_graph(char* graph, uint16_t width, uint16_t height) {
     for (int y = 0; y < height * 2 + 1; y++) {
