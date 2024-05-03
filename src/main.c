@@ -15,8 +15,8 @@ double* test_function() {
 }
 
 int main() {
-    double* func_values = get_function_array(80, 1.0, 1);
-    plot_function(80, 5, 0.25, 0.2, func_values);
+    double* func_values = get_function_array(80, 0.5, 1);
+    plot_function(80, 5, 0.5, 0.5, func_values);
     free(func_values);
 
     return 0;
