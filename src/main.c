@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include "plotter.h"
+#include "ode.h"
 
 double* test_function() {
     double* func_values = malloc(sizeof(double) * 80);
@@ -14,7 +15,7 @@ double* test_function() {
 }
 
 int main() {
-    double* func_values = test_function();
+    double* func_values = get_function_array(80, 1.0, 1);
     plot_function(80, 5, 0.25, 0.2, func_values);
     free(func_values);
 
