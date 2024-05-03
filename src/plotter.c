@@ -23,6 +23,9 @@ void plot_function(uint16_t width, uint16_t height, double step, double (*functi
             double func_val = function(coord_x);
             if (compare_doubles(func_val, coord_y, epsilon)) {
                 printf("*");
+            }
+            else if (x == y_axis_index && y == x_axis_index) {
+                printf("+");
             } 
             else if (x == y_axis_index) {
                 printf("|");
