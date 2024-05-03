@@ -8,17 +8,17 @@ bool compare_doubles(double a, double b, double epsilon) {
     return val < epsilon;
 }
 
-void plot_function(uint16_t width, uint16_t height, double step, double (*function)(double)) {
+void plot_function(uint16_t width, uint16_t height, double step_x, double step_y, double (*function)(double)) {
     uint16_t x_axis_index = height + 1;
     uint16_t y_axis_index = 0;
 
     for (uint16_t y = 0; y < height * 2 + 1; y++) {
         for (uint16_t x = 0; x < width * 2 + 1; x++) {
 
-            double coord_x = x * step;
-            double coord_y = (y - height - 1) * -step;
+            double coord_x = x * step_x;
+            double coord_y = (y - height - 1) * -step_y;
 
-            double epsilon = step;
+            double epsilon = step_y;
 
             double func_val = function(coord_x);
             if (compare_doubles(func_val, coord_y, epsilon)) {

@@ -2,11 +2,11 @@
 #include "plotter.h"
 
 double test_function(double val) {
-    return val * 2.0 + 1.0;
+    return val * 0.5;
 }
 
 int main() {
-    plot_function(10, 10, 0.5, test_function);
+    plot_function(40, 5, 0.25, 1.0, test_function);
 
     return 0;
 }
