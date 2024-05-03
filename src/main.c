@@ -7,7 +7,7 @@ double test_function(double val) {
 }
 
 int main() {
-    plot_function(80, 5, 0.25, 0.25, test_function);
+    plot_function(80, 5, 0.25, 0.2, test_function);
 
     return 0;
 }

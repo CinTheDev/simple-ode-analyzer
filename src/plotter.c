@@ -52,7 +52,7 @@ void draw_function(char* graph, uint16_t width, uint16_t height, double step_x, 
 
         int index_y = round(func_val / -step_y + height);
 
-        if (index_y > 0 && index_y < height * 2) {
+        if (index_y >= 0 && index_y <= height * 2) {
             int graph_index = (index_y * width) + x;
             graph[graph_index] = '*';
         }
