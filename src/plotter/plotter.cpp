@@ -33,7 +33,23 @@ void Plotter::render(wxDC& dc) {
 }
 
 void Plotter::render_axes(wxDC& dc) {
+    dc.SetPen(*wxWHITE_PEN);
 
+    const int border = 10;
+
+    wxCoord width, height;
+    dc.GetSize(&width, &height);
+    width -= border * 2;
+    height -= border * 2;
+
+    wxPoint upper_left = wxPoint(border, border);
+    wxPoint lower_left = wxPoint(border, border + height);
+
+    wxPoint middle_left = wxPoint(border, border + height / 2);
+    wxPoint middle_right = wxPoint(border + width, border + height / 2);
+
+    dc.DrawLine(lower_left, upper_left); // y-Axis
+    dc.DrawLine(middle_left, middle_right); // x-Axis
 }
 
 void Plotter::render_function(wxDC& dc) {
