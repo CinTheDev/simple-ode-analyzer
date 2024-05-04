@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cmake --build build
+./build.sh
 ./build/bin/diffeq
