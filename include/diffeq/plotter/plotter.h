@@ -9,9 +9,12 @@ public:
     ~Plotter();
 
 public:
-    wxButton* test_button;
+    void paintEvent(wxPaintEvent& evt);
+    void paintNow();
 
-    wxBoxSizer* sizer_main;
+    void render(wxDC& dc);
+
+    DECLARE_EVENT_TABLE()
 };
 
 #endif
