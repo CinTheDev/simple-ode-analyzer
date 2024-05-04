@@ -70,7 +70,7 @@ void Plotter::render_function(wxDC& dc) {
     wxPoint test_points[resolution];
     for (int i = 0; i < resolution; i++) {
         double x = (double)i / (double)(resolution - 1);
-        double y = x;
+        double y = x * x;
         test_points[i] = wxPoint(x * width + border, height - y * height + border);
     }
 
