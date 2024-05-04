@@ -7,6 +7,11 @@ class Plotter : public wxPanel {
 public:
     Plotter(wxWindow* parent);
     ~Plotter();
+
+public:
+    wxButton* test_button;
+
+    wxBoxSizer* sizer_main;
 };
 
 #endif
