@@ -1,8 +1,6 @@
 #include "plotter.h"
 
-Plotter::Plotter(wxWindow* parent) {
-    wxPanel(parent, wxID_ANY);
-
+Plotter::Plotter(wxWindow* parent) : wxPanel(parent, wxID_ANY) {
     test_button = new wxButton(this, wxID_ANY, "Plotter");
 
     sizer_main = new wxBoxSizer(wxHORIZONTAL);

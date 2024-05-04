@@ -1,8 +1,6 @@
 #include "controls.h"
 
-Controls::Controls(wxWindow* parent) {
-    wxPanel(parent, wxID_ANY);
-
+Controls::Controls(wxWindow* parent) : wxPanel(parent, wxID_ANY) {
     test_button = new wxButton(this, wxID_ANY, "Controls");
 
     sizer_main = new wxBoxSizer(wxHORIZONTAL);
