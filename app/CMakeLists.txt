@@ -10,7 +10,6 @@ target_include_directories(diffeq PUBLIC
 target_link_libraries(diffeq
     PUBLIC
     ${wxWidgets_LIBRARIES}
-    ode
+    controls
     plotter
-    m
 )
