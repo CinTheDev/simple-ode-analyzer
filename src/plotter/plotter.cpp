@@ -71,7 +71,7 @@ void Plotter::render_function(wxDC& dc) {
     for (int i = 0; i < resolution; i++) {
         double x = (double)i / (double)(resolution - 1);
         double y = x * x;
-        test_points[i] = wxPoint(x * width + border, height - y * height + border);
+        test_points[i] = wxPoint(x * width + border, (0.5 - y * 0.5) * height + border);
     }
 
     dc.DrawLines(resolution, test_points);
