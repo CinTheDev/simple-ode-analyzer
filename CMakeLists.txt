@@ -8,8 +8,5 @@ endif()
 
 project(diffeq)
 
-add_library(plotter src/plotter.c)
-target_include_directories(plotter PUBLIC ${CMAKE_SOURCE_DIR}/include/diffeq)
-
-add_library(ode src/ode.c)
-target_include_directories(ode PUBLIC ${CMAKE_SOURCE_DIR}/include/diffeq)
+add_subdirectory(src)
+add_subdirectory(app)
