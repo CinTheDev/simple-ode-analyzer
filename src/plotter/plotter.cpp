@@ -53,5 +53,26 @@ void Plotter::render_axes(wxDC& dc) {
 }
 
 void Plotter::render_function(wxDC& dc) {
+    dc.SetPen(*wxRED_PEN);
 
+    const int border = 10;
+
+    wxCoord width, height;
+    dc.GetSize(&width, &height);
+    width -= border * 2;
+    height -= border * 2;
+
+    wxPoint left = wxPoint(border, border + height / 2);
+    wxPoint right = wxPoint(border + width, border + height / 2);
+
+    int resolution = 5;
+
+    wxPoint test_points[resolution];
+    for (int i = 0; i < resolution; i++) {
+        double x = (double)i / (double)(resolution - 1);
+        double y = x;
+        test_points[i] = wxPoint(x * width + border, height - y * height + border);
+    }
+
+    dc.DrawLines(resolution, test_points);
 }
