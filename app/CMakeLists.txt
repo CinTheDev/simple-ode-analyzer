@@ -1,5 +1,6 @@
 add_executable(diffeq
     main.cpp
+    app.cpp
 )
 
 target_include_directories(diffeq PUBLIC
