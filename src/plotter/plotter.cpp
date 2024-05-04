@@ -27,4 +27,15 @@ void Plotter::paintNow() {
 void Plotter::render(wxDC& dc) {
     dc.SetBackground(*wxBLACK_BRUSH);
     dc.Clear();
+
+    render_axes(dc);
+    render_function(dc);
+}
+
+void Plotter::render_axes(wxDC& dc) {
+
+}
+
+void Plotter::render_function(wxDC& dc) {
+
 }
