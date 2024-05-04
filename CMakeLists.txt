@@ -6,6 +6,8 @@ if (wxWidgets_USE_FILE)
     include(${wxWidgets_USE_FILE})
 endif()
 
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
+
 project(diffeq)
 
 add_subdirectory(src)
