@@ -1,5 +1,9 @@
 add_executable(diffeq
-    main.c
+    main.cpp
+)
+
+target_include_directories(diffeq PUBLIC
+    ${CMAKE_SOURCE_DIR}/include/diffeq/app
 )
 
 target_link_libraries(diffeq
