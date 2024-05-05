@@ -68,7 +68,7 @@ void Plotter::render_function(wxDC& dc) {
 
     int resolution = 50;
 
-    double* values = test_function(resolution, 10, 1.0 / (double)resolution);
+    double* values = test_harmonic(resolution, 10, 1.0 / (double)resolution);
 
     wxPoint test_points[resolution];
     for (int i = 0; i < resolution; i++) {
