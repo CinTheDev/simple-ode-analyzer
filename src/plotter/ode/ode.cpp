@@ -1,4 +1,6 @@
 #include "ode.h"
+#include <stdlib.h>
+#include <math.h>
 
 double* test_function(int sample_num, int subdivision, double step) {
     double* func_array = malloc(sizeof(double) * sample_num);

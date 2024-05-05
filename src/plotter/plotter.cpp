@@ -1,4 +1,5 @@
 #include "plotter.h"
+#include "ode.h"
 
 BEGIN_EVENT_TABLE(Plotter, wxPanel)
 
