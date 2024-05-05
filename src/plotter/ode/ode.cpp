@@ -31,8 +31,8 @@ double* test_function(int sample_num, int subdivision, double step) {
 
     double dt = step / (double)subdivision;
 
-    double g = 300.0;
-    double angle = 30 * (3.141 / 180.0);
+    double g = 80.0;
+    double angle = 90 * (3.141 / 180.0);
 
     double current_s = 1.0;
     double current_ds = 0.0;
