@@ -66,12 +66,14 @@ void Plotter::render_function(wxDC& dc) {
     wxPoint left = wxPoint(border, border + height / 2);
     wxPoint right = wxPoint(border + width, border + height / 2);
 
-    int resolution = 5;
+    int resolution = 50;
+
+    double* values = test_function(resolution, 10, 1.0 / (double)resolution);
 
     wxPoint test_points[resolution];
     for (int i = 0; i < resolution; i++) {
         double x = (double)i / (double)(resolution - 1);
-        double y = x * x;
+        double y = values[i];
         test_points[i] = wxPoint(x * width + border, (0.5 - y * 0.5) * height + border);
     }
 
