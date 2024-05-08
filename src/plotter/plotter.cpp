@@ -4,7 +4,7 @@
 
 BEGIN_EVENT_TABLE(Plotter, wxPanel)
 
-EVT_PAINT(Plotter::paintEvent)
+    EVT_PAINT(Plotter::paintEvent)
 
 END_EVENT_TABLE()
 

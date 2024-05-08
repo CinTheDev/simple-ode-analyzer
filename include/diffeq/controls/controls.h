@@ -16,11 +16,14 @@ public:
 
     wxBoxSizer* sizer_main;
 
+    DECLARE_EVENT_TABLE();
+
 private:
     Settings_Plotter settings_plotter;
 
 private:
     void init_settings_plotter();
+    void on_button_test(wxCommandEvent& evt);
 };
 
 #endif
