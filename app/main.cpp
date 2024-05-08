@@ -12,6 +12,9 @@ void Diffeq_Main::instance_layout() {
     plotter = new Plotter(this);
     controls = new Controls(this);
 
+    // Bind events between both
+    controls->Bind(SETTINGS_PLOTTER_UPDATE, &Plotter::on_settings_update, plotter);
+
     sizer_main = new wxBoxSizer(wxVERTICAL);
 
     sizer_main->Add(plotter, 3, wxEXPAND);
