@@ -13,7 +13,8 @@ public:
 
 public:
     wxTextCtrl* input_step_x;
-    wxTextCtrl* input_step_y;
+    wxTextCtrl* input_view_x;
+    wxTextCtrl* input_view_y;
 
     wxBoxSizer* sizer_main;
 
