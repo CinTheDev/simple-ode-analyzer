@@ -1,4 +1,5 @@
 #include "controls.h"
+#include "event.h"
 
 Controls::Controls(wxWindow* parent) : wxPanel(parent, wxID_ANY) {
     test_button = new wxButton(this, wxID_ANY, "Controls");

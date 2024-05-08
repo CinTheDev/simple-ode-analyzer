@@ -8,3 +8,7 @@ target_include_directories(controls PUBLIC
 target_link_libraries(controls PUBLIC
     ${wxWidgets_LIBRARIES}
 )
+
+target_link_libraries(controls PRIVATE
+    custom_events
+)
