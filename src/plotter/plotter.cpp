@@ -79,9 +79,11 @@ void Plotter::render_function(wxDC& dc) {
 
     for (int i = 0; i < resolution; i++) {
         double x = (double)i / (settings.view_x / settings.step_x);
+        double y_harmonic = values_harmonic[i] / settings.view_y;
+        double y_triangle = values_triangle[i] / settings.view_y;
 
-        test_points_harmonic[i] = wxPoint(x * width + border, (0.5 - values_harmonic[i] * 0.5) * height + border);
-        test_points_triangle[i] = wxPoint(x * width + border, (0.5 - values_triangle[i] * 0.5) * height + border);
+        test_points_harmonic[i] = wxPoint(x * width + border, (0.5 - y_harmonic * 0.5) * height + border);
+        test_points_triangle[i] = wxPoint(x * width + border, (0.5 - y_triangle * 0.5) * height + border);
     }
 
     dc.SetPen(*wxBLUE_PEN);
