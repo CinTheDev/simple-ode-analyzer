@@ -89,4 +89,7 @@ void Plotter::render_function(wxDC& dc) {
     dc.DrawLines(resolution, test_points_harmonic);
     dc.SetPen(*wxRED_PEN);
     dc.DrawLines(resolution, test_points_triangle);
+
+    delete[] values_harmonic;
+    delete[] values_triangle;
 }
