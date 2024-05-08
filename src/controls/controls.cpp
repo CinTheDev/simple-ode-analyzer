@@ -23,11 +23,11 @@ void Controls::init_sizers() {
     sizer_main = new wxFlexGridSizer(2, 5, 5);
 
     sizer_main->Add(new wxStaticText(this, wxID_ANY, "Step x"));
-    sizer_main->Add(input_step_x, wxEXPAND);
+    sizer_main->Add(input_step_x);
     sizer_main->Add(new wxStaticText(this, wxID_ANY, "View x"));
-    sizer_main->Add(input_view_x, wxEXPAND);
+    sizer_main->Add(input_view_x);
     sizer_main->Add(new wxStaticText(this, wxID_ANY, "View y"));
-    sizer_main->Add(input_view_y, wxEXPAND);
+    sizer_main->Add(input_view_y);
 
     SetSizer(sizer_main);
 
