@@ -33,7 +33,7 @@ void Controls::init_settings_plotter() {
 
 void Controls::on_button_test(wxCommandEvent& evt) {
     // Test event
-    SettingsPlotterEvent settings_plotter_event = SettingsPlotterEvent(SETTINGS_PLOTTER_UPDATE, GetId());
+    SettingsPlotterEvent settings_plotter_event = SettingsPlotterEvent(SETTINGS_PLOTTER_UPDATE, GetId(), settings_plotter);
     settings_plotter_event.SetEventObject(this);
     ProcessEvent(settings_plotter_event);
 }
