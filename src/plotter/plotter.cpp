@@ -78,8 +78,7 @@ void Plotter::render_function(wxDC& dc) {
     wxPoint test_points_triangle[resolution];
 
     for (int i = 0; i < resolution; i++) {
-        double x = (double)i / (double)(resolution - 1);
-        //double y = values[i];
+        double x = (double)i / (settings.view_x / settings.step_x);
 
         test_points_harmonic[i] = wxPoint(x * width + border, (0.5 - values_harmonic[i] * 0.5) * height + border);
         test_points_triangle[i] = wxPoint(x * width + border, (0.5 - values_triangle[i] * 0.5) * height + border);
