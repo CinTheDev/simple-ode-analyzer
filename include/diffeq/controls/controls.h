@@ -16,7 +16,7 @@ public:
     wxTextCtrl* input_view_x;
     wxTextCtrl* input_view_y;
 
-    wxBoxSizer* sizer_main;
+    wxFlexGridSizer* sizer_main;
 
 private:
     Settings_Plotter settings_plotter;
