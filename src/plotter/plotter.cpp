@@ -1,5 +1,6 @@
 #include "plotter.h"
 #include "ode.h"
+#include <stdio.h>
 
 BEGIN_EVENT_TABLE(Plotter, wxPanel)
 
@@ -13,6 +14,10 @@ Plotter::Plotter(wxWindow* parent) : wxPanel(parent, wxID_ANY) {
 
 Plotter::~Plotter() {
 
+}
+
+void Plotter::on_settings_update(SettingsPlotterEvent& evt) {
+    printf("Event received\n");
 }
 
 void Plotter::paintEvent(wxPaintEvent& evt) {
