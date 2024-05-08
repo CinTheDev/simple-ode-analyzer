@@ -14,6 +14,10 @@ Controls::~Controls() {
 
 }
 
+Settings_Plotter Controls::get_settings_plotter() {
+    return settings_plotter;
+}
+
 void Controls::init_settings_plotter() {
     settings_plotter = Settings_Plotter();
     settings_plotter.step_x = 1.0;

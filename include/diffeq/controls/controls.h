@@ -14,6 +14,8 @@ public:
     Controls(wxWindow* parent);
     ~Controls();
 
+    Settings_Plotter get_settings_plotter();
+
 public:
     wxButton* test_button;
 
