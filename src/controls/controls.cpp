@@ -20,7 +20,7 @@ void Controls::init_elements() {
 }
 
 void Controls::init_sizers() {
-    sizer_main = new wxFlexGridSizer(2, 0, 0);
+    sizer_main = new wxFlexGridSizer(2, 5, 5);
 
     sizer_main->Add(new wxStaticText(this, wxID_ANY, "Step x"));
     sizer_main->Add(input_step_x, wxEXPAND);
