@@ -69,6 +69,7 @@ void Plotter::render_function(wxDC& dc) {
     wxPoint left = wxPoint(border, border + height / 2);
     wxPoint right = wxPoint(border + width, border + height / 2);
 
+    // TODO: Dynamically change resolution to fill whole width
     int resolution = 100;
 
     double* values_harmonic = test_harmonic(resolution, 10, settings.step_x);
