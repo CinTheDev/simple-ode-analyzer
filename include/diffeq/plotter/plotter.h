@@ -9,6 +9,9 @@ public:
     Plotter(wxWindow* parent);
     ~Plotter();
 
+private:
+    Settings_Plotter settings;
+
 public:
     void on_settings_update(SettingsPlotterEvent& evt);
 

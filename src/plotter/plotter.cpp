@@ -17,7 +17,9 @@ Plotter::~Plotter() {
 }
 
 void Plotter::on_settings_update(SettingsPlotterEvent& evt) {
-    printf("Event received\n");
+    printf("Settings Plotter Event received\n");
+    settings = evt.get_settings();
+    paintNow();
 }
 
 void Plotter::paintEvent(wxPaintEvent& evt) {
