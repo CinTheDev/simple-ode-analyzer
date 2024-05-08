@@ -71,8 +71,8 @@ void Plotter::render_function(wxDC& dc) {
 
     int resolution = 100;
 
-    double* values_harmonic = test_harmonic(resolution, 10, 1.0 / (double)resolution);
-    double* values_triangle = test_function(resolution, 10, 1.0 / (double)resolution);
+    double* values_harmonic = test_harmonic(resolution, 10, settings.step_x);
+    double* values_triangle = test_function(resolution, 10, settings.step_x);
 
     wxPoint test_points_harmonic[resolution];
     wxPoint test_points_triangle[resolution];
