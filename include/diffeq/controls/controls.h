@@ -26,7 +26,9 @@ private:
 private:
     void init_elements();
     void init_settings_plotter();
-    void on_button_test(wxCommandEvent& evt);
+    void update_settings_plotter();
+    //void on_button_test(wxCommandEvent& evt);
+    void on_controls_plotter_changed(wxEvent& evt);
 };
 
 #endif

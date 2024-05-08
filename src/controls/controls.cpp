@@ -24,8 +24,8 @@ Controls::~Controls() {
 }
 
 void Controls::init_elements() {
-    input_step_x = new wxTextCtrl(this, wxID_ANY);
-    input_step_y = new wxTextCtrl(this, wxID_ANY);
+    input_step_x = new wxTextCtrl(this, wxID_ANY, std::to_string(settings_plotter.step_x));
+    input_step_y = new wxTextCtrl(this, wxID_ANY, std::to_string(settings_plotter.step_y));
 }
 
 Settings_Plotter Controls::get_settings_plotter() {
@@ -36,8 +36,23 @@ void Controls::init_settings_plotter() {
     settings_plotter = Settings_Plotter();
 }
 
+/*
 void Controls::on_button_test(wxCommandEvent& evt) {
     // Test event
+    SettingsPlotterEvent settings_plotter_event = SettingsPlotterEvent(SETTINGS_PLOTTER_UPDATE, GetId(), settings_plotter);
+    settings_plotter_event.SetEventObject(this);
+    ProcessEvent(settings_plotter_event);
+}
+*/
+
+void Controls::update_settings_plotter() {
+    settings_plotter.step_x = std::stod(input_step_x->GetValue().ToStdString());
+    settings_plotter.step_y = std::stod(input_step_y->GetValue().ToStdString());
+}
+
+void Controls::on_controls_plotter_changed(wxEvent& evt) {
+    update_settings_plotter();
+
     SettingsPlotterEvent settings_plotter_event = SettingsPlotterEvent(SETTINGS_PLOTTER_UPDATE, GetId(), settings_plotter);
     settings_plotter_event.SetEventObject(this);
     ProcessEvent(settings_plotter_event);
