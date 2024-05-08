@@ -23,7 +23,7 @@ void Controls::init_sizers() {
 
     sizer_main->Add(input_step_x, wxEXPAND);
     sizer_main->Add(input_step_y, wxEXPAND);
-    
+
     SetSizer(sizer_main);
 }
 
@@ -34,7 +34,7 @@ Settings_Plotter Controls::get_settings_plotter() {
 void Controls::init_settings_plotter() {
     settings_plotter = Settings_Plotter();
 }
-    printf("Event generated\n");
+
 void Controls::update_settings_plotter() {
     try { settings_plotter.step_x = std::stod(input_step_x->GetValue().ToStdString()); }
     catch (...) {
