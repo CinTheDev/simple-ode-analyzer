@@ -29,12 +29,6 @@ void Controls::init_sizers() {
     sizer_main->Add(new wxStaticText(this, wxID_ANY, "View y"));
     sizer_main->Add(input_view_y, wxEXPAND);
 
-    // Just for testing
-    for (int i = 0; i < 10; i++) {
-        sizer_main->Add(new wxStaticText(this, wxID_ANY, "something"));
-        sizer_main->Add(new wxTextCtrl(this, wxID_ANY, std::to_string(i)), wxEXPAND);
-    }
-
     SetSizer(sizer_main);
 
     FitInside();
