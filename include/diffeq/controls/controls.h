@@ -12,7 +12,9 @@ public:
     Settings_Plotter get_settings_plotter();
 
 public:
-    wxButton* test_button;
+    //wxButton* test_button;
+    wxTextCtrl* input_step_x;
+    wxTextCtrl* input_step_y;
 
     wxBoxSizer* sizer_main;
 
@@ -22,6 +24,7 @@ private:
     Settings_Plotter settings_plotter;
 
 private:
+    void init_elements();
     void init_settings_plotter();
     void on_button_test(wxCommandEvent& evt);
 };
