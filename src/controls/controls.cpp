@@ -27,8 +27,6 @@ Settings_Plotter Controls::get_settings_plotter() {
 
 void Controls::init_settings_plotter() {
     settings_plotter = Settings_Plotter();
-    settings_plotter.step_x = 1.0;
-    settings_plotter.step_y = 1.0;
 }
 
 void Controls::on_button_test(wxCommandEvent& evt) {

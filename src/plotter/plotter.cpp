@@ -9,7 +9,7 @@ BEGIN_EVENT_TABLE(Plotter, wxPanel)
 END_EVENT_TABLE()
 
 Plotter::Plotter(wxWindow* parent) : wxPanel(parent, wxID_ANY) {
-    
+    settings = Settings_Plotter();
 }
 
 Plotter::~Plotter() {
