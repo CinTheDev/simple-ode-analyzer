@@ -22,6 +22,7 @@ private:
 
 private:
     void init_elements();
+    void init_sizers();
     void init_settings_plotter();
     void update_settings_plotter();
     void on_controls_plotter_changed(wxEvent& evt);

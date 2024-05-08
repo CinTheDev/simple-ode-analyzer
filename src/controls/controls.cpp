@@ -4,11 +4,7 @@
 Controls::Controls(wxWindow* parent) : wxPanel(parent, wxID_ANY) {
     init_settings_plotter();
     init_elements();
-
-    sizer_main = new wxBoxSizer(wxVERTICAL);
-    sizer_main->Add(input_step_x, wxEXPAND);
-    sizer_main->Add(input_step_y, wxEXPAND);
-    SetSizer(sizer_main);
+    init_sizers();
 
     Bind(wxEVT_TEXT, &Controls::on_controls_plotter_changed, this);
 }
@@ -20,6 +16,15 @@ Controls::~Controls() {
 void Controls::init_elements() {
     input_step_x = new wxTextCtrl(this, wxID_ANY, std::to_string(settings_plotter.step_x));
     input_step_y = new wxTextCtrl(this, wxID_ANY, std::to_string(settings_plotter.step_y));
+}
+
+void Controls::init_sizers() {
+    sizer_main = new wxBoxSizer(wxVERTICAL);
+
+    sizer_main->Add(input_step_x, wxEXPAND);
+    sizer_main->Add(input_step_y, wxEXPAND);
+    
+    SetSizer(sizer_main);
 }
 
 Settings_Plotter Controls::get_settings_plotter() {
