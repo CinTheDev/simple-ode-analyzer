@@ -1,6 +1,5 @@
 #include "plotter.h"
 #include "ode.h"
-#include <stdio.h>
 
 BEGIN_EVENT_TABLE(Plotter, wxPanel)
 
@@ -17,7 +16,6 @@ Plotter::~Plotter() {
 }
 
 void Plotter::on_settings_update(SettingsPlotterEvent& evt) {
-    printf("Settings Plotter Event received\n");
     settings = evt.get_settings();
     paintNow();
 }
