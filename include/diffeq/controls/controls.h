@@ -4,7 +4,7 @@
 #include <wx/wx.h>
 #include "settings.h"
 
-class Controls : public wxPanel {
+class Controls : public wxScrolledWindow {
 public:
     Controls(wxWindow* parent);
     ~Controls();

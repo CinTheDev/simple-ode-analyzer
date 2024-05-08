@@ -1,7 +1,7 @@
 #include "controls.h"
 #include "events.h"
 
-Controls::Controls(wxWindow* parent) : wxPanel(parent, wxID_ANY) {
+Controls::Controls(wxWindow* parent) : wxScrolledWindow(parent, wxID_ANY) {
     init_settings_plotter();
     init_elements();
     init_sizers();
@@ -26,7 +26,15 @@ void Controls::init_sizers() {
     sizer_main->Add(input_view_x, wxEXPAND);
     sizer_main->Add(input_view_y, wxEXPAND);
 
+    // Just for testing
+    for (int i = 0; i < 10; i++) {
+        sizer_main->Add(new wxTextCtrl(this, wxID_ANY, std::to_string(i)), wxEXPAND);
+    }
+
     SetSizer(sizer_main);
+
+    FitInside();
+    SetScrollRate(5, 5);
 }
 
 Settings_Plotter Controls::get_settings_plotter() {
