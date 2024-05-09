@@ -43,7 +43,7 @@ void Plotter::render(wxDC& dc) {
 void Plotter::render_axes(wxDC& dc) {
     dc.SetPen(*wxWHITE_PEN);
 
-    const int border = 10;
+    const int border = 50;
 
     wxCoord width, height;
     dc.GetSize(&width, &height);
@@ -62,7 +62,7 @@ void Plotter::render_axes(wxDC& dc) {
 
 void Plotter::render_markings(wxDC& dc) {
     dc.SetPen(*wxGREY_PEN);
-    const int border = 10;
+    const int border = 50;
 
     wxCoord width, height;
     dc.GetSize(&width, &height);
@@ -103,7 +103,7 @@ void Plotter::render_markings(wxDC& dc) {
 }
 
 void Plotter::render_function(wxDC& dc) {
-    const int border = 10;
+    const int border = 50;
 
     wxCoord width, height;
     dc.GetSize(&width, &height);
