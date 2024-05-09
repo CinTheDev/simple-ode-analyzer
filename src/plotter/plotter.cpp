@@ -32,6 +32,9 @@ void Plotter::paintNow() {
 }
 
 void Plotter::render(wxDC& dc) {
+    // TODO: Remove Borders
+    // TODO: Make constant values shared under the render functions
+    // TODO: Use shortcuts for zooming / navigating the graph
     dc.SetBackground(*wxBLACK_BRUSH);
     dc.Clear();
 
