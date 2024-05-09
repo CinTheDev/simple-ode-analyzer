@@ -74,7 +74,7 @@ void Plotter::render_markings(wxDC& dc) {
     double x_step = round_to_nice_number((double)settings.view_x / (double)n_lines_x);
 
     for (int i = 1; i <= n_lines_x; i++) {
-        double x_relative = x_step * i / (double) settings.view_x;
+        double x_relative = x_step * i / (double)settings.view_x;
         double x_pixel = x_relative * width + border;
 
         wxPoint upper = wxPoint(x_pixel, 0);
@@ -84,14 +84,11 @@ void Plotter::render_markings(wxDC& dc) {
     }
 
     // y-Axis
-    // TODO: Make this dynamically change with zoom
-    double y_step = 0.5;
-
-    int n_lines_y = settings.view_y / y_step;
-
+    int n_lines_y = 5;
+    double y_step = round_to_nice_number((double)settings.view_y / (double)n_lines_y);
 
     for (int i = 1; i <= n_lines_y; i++) {
-        double height_relative = (double)i / (double)n_lines_y;
+        double height_relative = y_step * i / (double)settings.view_y;
         double height_pixel_lower = (0.5 *  height_relative + 0.5) * height + border;
         double height_pixel_upper = (0.5 * -height_relative + 0.5) * height + border;
 
