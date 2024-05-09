@@ -70,7 +70,7 @@ void Plotter::render_markings(wxDC& dc) {
     height -= border * 2;
 
     // x-Axis
-    int n_lines_x = 5;
+    int n_lines_x = 15;
     double x_step = round_to_nice_number((double)settings.view_x / (double)n_lines_x);
 
     for (int i = 1; i <= n_lines_x; i++) {
@@ -146,7 +146,7 @@ void Plotter::render_function(wxDC& dc) {
 double Plotter::round_to_nice_number(double val) {
     // Round to closest power of 5
     double exponent = logf64(val) / logf64(5.0);
-    double exponent_integer = roundf64(exponent);
+    double exponent_integer = ceilf64(exponent);
     printf("Exponent: %lf\n", exponent_integer);
     return powf64(5.0, exponent_integer);
 }
