@@ -69,13 +69,14 @@ void Plotter::render_markings(wxDC& dc) {
     width -= border * 2;
     height -= border * 2;
 
+    // TODO: Make this dynamically change with zoom
     double y_step = 0.5;
 
     int n_lines_y = settings.view_y / y_step;
 
-    dc.SetPen(*wxWHITE_PEN);
+    dc.SetPen(*wxGREY_PEN);
 
-    for (int i = 0; i <= n_lines_y; i++) {
+    for (int i = 1; i <= n_lines_y; i++) {
         double height_relative = (double)i / (double)n_lines_y;
         double height_pixel_lower = (0.5 *  height_relative + 0.5) * height + border;
         double height_pixel_upper = (0.5 * -height_relative + 0.5) * height + border;
