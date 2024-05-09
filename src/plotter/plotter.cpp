@@ -68,12 +68,14 @@ void Plotter::render_markings(wxDC& dc) {
     dc.GetSize(&width, &height);
     width -= border * 2;
     height -= border * 2;
+    wxSize text_size = wxSize(border - 10, 30);
 
     // x-Axis
     int n_lines_x = 15;
     double x_step = round_to_nice_number((double)settings.view_x / (double)n_lines_x);
 
     for (int i = 1; i <= n_lines_x; i++) {
+        // Vertical lines
         double x_relative = x_step * i / (double)settings.view_x;
         double x_pixel = x_relative * width + border;
 
@@ -81,12 +83,19 @@ void Plotter::render_markings(wxDC& dc) {
         wxPoint lower = wxPoint(x_pixel, border * 2 + height);
 
         dc.DrawLine(upper, lower);
+
+        // Text below x-Axis
+        wxPoint text_pos = wxPoint(x_pixel - text_size.x / 2, height / 2 + border + 5);
+        wxRect text_rect = wxRect(text_pos, text_size);
+
+        double x_value = x_step * i;
+        wxString text_yeah = wxString(std::to_string(x_value)).Truncate(4);
+        dc.DrawLabel(text_yeah, text_rect, wxALIGN_CENTER_HORIZONTAL | wxALIGN_TOP);
     }
 
     // y-Axis
     int n_lines_y = 5;
     double y_step = round_to_nice_number((double)settings.view_y / (double)n_lines_y);
-    wxSize text_size = wxSize(border - 10, 30);
 
     for (int i = 1; i <= n_lines_y; i++) {
         // Horizontal lines
