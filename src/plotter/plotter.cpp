@@ -3,16 +3,21 @@
 
 BEGIN_EVENT_TABLE(Plotter, wxPanel)
 
-EVT_PAINT(Plotter::paintEvent)
+    EVT_PAINT(Plotter::paintEvent)
 
 END_EVENT_TABLE()
 
 Plotter::Plotter(wxWindow* parent) : wxPanel(parent, wxID_ANY) {
-    
+    settings = Settings_Plotter();
 }
 
 Plotter::~Plotter() {
 
+}
+
+void Plotter::on_settings_update(SettingsPlotterEvent& evt) {
+    settings = evt.get_settings();
+    paintNow();
 }
 
 void Plotter::paintEvent(wxPaintEvent& evt) {
@@ -64,24 +69,29 @@ void Plotter::render_function(wxDC& dc) {
     wxPoint left = wxPoint(border, border + height / 2);
     wxPoint right = wxPoint(border + width, border + height / 2);
 
+    // TODO: Dynamically change resolution to fill whole width
     int resolution = 100;
 
-    double* values_harmonic = test_harmonic(resolution, 10, 1.0 / (double)resolution);
-    double* values_triangle = test_function(resolution, 10, 1.0 / (double)resolution);
+    double* values_harmonic = test_harmonic(resolution, 10, settings.step_x);
+    double* values_triangle = test_function(resolution, 10, settings.step_x);
 
     wxPoint test_points_harmonic[resolution];
     wxPoint test_points_triangle[resolution];
 
     for (int i = 0; i < resolution; i++) {
-        double x = (double)i / (double)(resolution - 1);
-        //double y = values[i];
+        double x = (double)i / (settings.view_x / settings.step_x);
+        double y_harmonic = values_harmonic[i] / settings.view_y;
+        double y_triangle = values_triangle[i] / settings.view_y;
 
-        test_points_harmonic[i] = wxPoint(x * width + border, (0.5 - values_harmonic[i] * 0.5) * height + border);
-        test_points_triangle[i] = wxPoint(x * width + border, (0.5 - values_triangle[i] * 0.5) * height + border);
+        test_points_harmonic[i] = wxPoint(x * width + border, (0.5 - y_harmonic * 0.5) * height + border);
+        test_points_triangle[i] = wxPoint(x * width + border, (0.5 - y_triangle * 0.5) * height + border);
     }
 
     dc.SetPen(*wxBLUE_PEN);
     dc.DrawLines(resolution, test_points_harmonic);
     dc.SetPen(*wxRED_PEN);
     dc.DrawLines(resolution, test_points_triangle);
+
+    delete[] values_harmonic;
+    delete[] values_triangle;
 }
