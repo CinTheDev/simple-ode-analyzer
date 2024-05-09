@@ -60,8 +60,7 @@ void Plotter::render_axes(wxDC& dc) {
 }
 
 void Plotter::render_markings(wxDC& dc) {
-    // y-Axis
-
+    dc.SetPen(*wxGREY_PEN);
     const int border = 10;
 
     wxCoord width, height;
@@ -69,12 +68,27 @@ void Plotter::render_markings(wxDC& dc) {
     width -= border * 2;
     height -= border * 2;
 
+    // x-Axis
+    double x_step = 0.5;
+    
+    int n_lines_x = settings.view_x / x_step;
+
+    for (int i = 1; i <= n_lines_x; i++) {
+        double x_relative = (double)i / (double)n_lines_x;
+        double x_pixel = x_relative * width + border;
+
+        wxPoint upper = wxPoint(x_pixel, border);
+        wxPoint lower = wxPoint(x_pixel, border + height);
+
+        dc.DrawLine(upper, lower);
+    }
+
+    // y-Axis
     // TODO: Make this dynamically change with zoom
     double y_step = 0.5;
 
     int n_lines_y = settings.view_y / y_step;
 
-    dc.SetPen(*wxGREY_PEN);
 
     for (int i = 1; i <= n_lines_y; i++) {
         double height_relative = (double)i / (double)n_lines_y;
