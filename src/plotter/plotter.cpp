@@ -107,9 +107,13 @@ void Plotter::render_markings(wxDC& dc) {
         wxPoint text_pos_upper = wxPoint(5, height_pixel_upper - text_size.y / 2);
         wxRect text_rect_lower = wxRect(text_pos_lower, text_size);
         wxRect text_rect_upper = wxRect(text_pos_upper, text_size);
+        
+        double height = y_step * i;
+        wxString text_height_lower = wxString(std::to_string(-height)).Truncate(5);
+        wxString text_height_upper = wxString(std::to_string( height)).Truncate(4);
 
-        dc.DrawLabel("test", text_rect_lower, wxALIGN_RIGHT | wxALIGN_CENTER);
-        dc.DrawLabel("test", text_rect_upper, wxALIGN_RIGHT | wxALIGN_CENTER);
+        dc.DrawLabel(text_height_lower, text_rect_lower, wxALIGN_RIGHT | wxALIGN_CENTER);
+        dc.DrawLabel(text_height_upper, text_rect_upper, wxALIGN_RIGHT | wxALIGN_CENTER);
     }
 }
 
