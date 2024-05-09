@@ -49,11 +49,11 @@ void Plotter::render_axes(wxDC& dc) {
     width -= border * 2;
     height -= border * 2;
 
-    wxPoint upper_left = wxPoint(border, border);
-    wxPoint lower_left = wxPoint(border, border + height);
+    wxPoint upper_left = wxPoint(border, 0);
+    wxPoint lower_left = wxPoint(border, border * 2 + height);
 
     wxPoint middle_left = wxPoint(border, border + height / 2);
-    wxPoint middle_right = wxPoint(border + width, border + height / 2);
+    wxPoint middle_right = wxPoint(border * 2 + width, border + height / 2);
 
     dc.DrawLine(lower_left, upper_left); // y-Axis
     dc.DrawLine(middle_left, middle_right); // x-Axis
@@ -77,8 +77,8 @@ void Plotter::render_markings(wxDC& dc) {
         double x_relative = (double)i / (double)n_lines_x;
         double x_pixel = x_relative * width + border;
 
-        wxPoint upper = wxPoint(x_pixel, border);
-        wxPoint lower = wxPoint(x_pixel, border + height);
+        wxPoint upper = wxPoint(x_pixel, 0);
+        wxPoint lower = wxPoint(x_pixel, border * 2 + height);
 
         dc.DrawLine(upper, lower);
     }
@@ -96,9 +96,9 @@ void Plotter::render_markings(wxDC& dc) {
         double height_pixel_upper = (0.5 * -height_relative + 0.5) * height + border;
 
         wxPoint left_lower = wxPoint(border, height_pixel_lower);
-        wxPoint right_lower = wxPoint(border + width, height_pixel_lower);
+        wxPoint right_lower = wxPoint(border * 2 + width, height_pixel_lower);
         wxPoint left_upper = wxPoint(border, height_pixel_upper);
-        wxPoint right_upper = wxPoint(border + width, height_pixel_upper);
+        wxPoint right_upper = wxPoint(border * 2 + width, height_pixel_upper);
 
         dc.DrawLine(left_lower, right_lower);
         dc.DrawLine(left_upper, right_upper);
