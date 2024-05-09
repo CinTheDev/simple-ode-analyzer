@@ -35,6 +35,7 @@ void Plotter::render(wxDC& dc) {
     dc.Clear();
 
     render_axes(dc);
+    render_markings(dc);
     render_function(dc);
 }
 
@@ -56,6 +57,37 @@ void Plotter::render_axes(wxDC& dc) {
 
     dc.DrawLine(lower_left, upper_left); // y-Axis
     dc.DrawLine(middle_left, middle_right); // x-Axis
+}
+
+void Plotter::render_markings(wxDC& dc) {
+    // y-Axis
+
+    const int border = 10;
+
+    wxCoord width, height;
+    dc.GetSize(&width, &height);
+    width -= border * 2;
+    height -= border * 2;
+
+    double y_step = 0.5;
+
+    int n_lines_y = settings.view_y / y_step;
+
+    dc.SetPen(*wxWHITE_PEN);
+
+    for (int i = 0; i <= n_lines_y; i++) {
+        double height_relative = (double)i / (double)n_lines_y;
+        double height_pixel_lower = (0.5 *  height_relative + 0.5) * height + border;
+        double height_pixel_upper = (0.5 * -height_relative + 0.5) * height + border;
+
+        wxPoint left_lower = wxPoint(border, height_pixel_lower);
+        wxPoint right_lower = wxPoint(border + width, height_pixel_lower);
+        wxPoint left_upper = wxPoint(border, height_pixel_upper);
+        wxPoint right_upper = wxPoint(border + width, height_pixel_upper);
+
+        dc.DrawLine(left_lower, right_lower);
+        dc.DrawLine(left_upper, right_upper);
+    }
 }
 
 void Plotter::render_function(wxDC& dc) {
