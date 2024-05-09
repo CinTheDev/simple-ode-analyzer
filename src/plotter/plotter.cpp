@@ -1,5 +1,6 @@
 #include "plotter.h"
 #include "ode.h"
+#include <math.h>
 
 BEGIN_EVENT_TABLE(Plotter, wxPanel)
 
@@ -69,12 +70,11 @@ void Plotter::render_markings(wxDC& dc) {
     height -= border * 2;
 
     // x-Axis
-    double x_step = 0.5;
-    
-    int n_lines_x = settings.view_x / x_step;
+    int n_lines_x = 5;
+    double x_step = round_to_nice_number((double)settings.view_x / (double)n_lines_x);
 
     for (int i = 1; i <= n_lines_x; i++) {
-        double x_relative = (double)i / (double)n_lines_x;
+        double x_relative = x_step * i / (double) settings.view_x;
         double x_pixel = x_relative * width + border;
 
         wxPoint upper = wxPoint(x_pixel, 0);
@@ -141,4 +141,12 @@ void Plotter::render_function(wxDC& dc) {
 
     delete[] values_harmonic;
     delete[] values_triangle;
+}
+
+double Plotter::round_to_nice_number(double val) {
+    // Round to closest power of 5
+    double exponent = logf64(val) / logf64(5.0);
+    double exponent_integer = roundf64(exponent);
+    printf("Exponent: %lf\n", exponent_integer);
+    return powf64(5.0, exponent_integer);
 }

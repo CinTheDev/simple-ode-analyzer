@@ -26,6 +26,7 @@ private:
     void render_axes(wxDC& dc);
     void render_markings(wxDC& dc);
     void render_function(wxDC& dc);
+    double round_to_nice_number(double val);
 };
 
 #endif
