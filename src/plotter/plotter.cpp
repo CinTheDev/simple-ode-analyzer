@@ -29,7 +29,7 @@ void Plotter::on_key_pressed(wxKeyEvent& evt) {
 }
 
 void Plotter::on_mouse_click(wxMouseEvent& evt) {
-    
+    shortcut_state = ShortcutState::FREE;
 }
 
 void Plotter::on_mouse_moved(wxMouseEvent& evt) {
