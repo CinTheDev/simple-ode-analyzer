@@ -51,7 +51,7 @@ private:
 
     double round_to_nice_number(double val);
 
-    void handle_input();
+    void handle_input(wxMouseEvent& evt);
 };
 
 #endif

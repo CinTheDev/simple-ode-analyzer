@@ -26,24 +26,24 @@ void Plotter::on_settings_update(SettingsPlotterEvent& evt) {
 
 void Plotter::on_key_pressed(wxKeyEvent& evt) {
     switch (evt.GetUnicodeKey()) {
-        case 's':
+        case 'S':
             if (shortcut_state.active_shortcut != ActiveShortcut::FREE) break;
             shortcut_state.active_shortcut = ActiveShortcut::ZOOM_UNSPECIFIED;
             shortcut_state.mouse_initial = evt.GetPosition();
             shortcut_state.settings_initial = settings;
             break;
 
-        case 'x':
+        case 'X':
             if (shortcut_state.active_shortcut != ActiveShortcut::ZOOM_UNSPECIFIED) break;
             shortcut_state.active_shortcut = ActiveShortcut::ZOOM_X;
             break;
 
-        case 'y':
+        case 'Y':
             if (shortcut_state.active_shortcut != ActiveShortcut::ZOOM_UNSPECIFIED) break;
             shortcut_state.active_shortcut = ActiveShortcut::ZOOM_Y;
             break;
 
-        case 'g':
+        case 'G':
             if (shortcut_state.active_shortcut != ActiveShortcut::FREE) break;
             shortcut_state.active_shortcut = ActiveShortcut::MOVE_X;
             shortcut_state.mouse_initial = evt.GetPosition();
@@ -57,7 +57,7 @@ void Plotter::on_mouse_click(wxMouseEvent& evt) {
 }
 
 void Plotter::on_mouse_moved(wxMouseEvent& evt) {
-    handle_input();
+    handle_input(evt);
 }
 
 void Plotter::paintEvent(wxPaintEvent& evt) {
@@ -207,18 +207,25 @@ double Plotter::round_to_nice_number(double val) {
     return powf64(5.0, exponent_integer);
 }
 
-void Plotter::handle_input() {
+void Plotter::handle_input(wxMouseEvent& evt) {
+    int mouse_delta_x = evt.GetPosition().x - shortcut_state.mouse_initial.x;
+    double zoom_factor_x = (double)mouse_delta_x / 50.0;
     switch (shortcut_state.active_shortcut) {
         case ActiveShortcut::ZOOM_UNSPECIFIED:
             break;
 
         case ActiveShortcut::ZOOM_X:
+            settings.view_x = shortcut_state.settings_initial.view_x + zoom_factor_x;
+            settings.view_x = std::max(0.0, settings.view_x);
+            paintNow();
             break;
 
         case ActiveShortcut::ZOOM_Y:
+            paintNow();
             break;
 
         case ActiveShortcut::MOVE_X:
+            paintNow();
             break;
 
         case ActiveShortcut::FREE:
