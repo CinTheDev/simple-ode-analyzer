@@ -76,7 +76,7 @@ void Plotter::paintNow() {
 }
 
 void Plotter::render(wxDC& dc) {
-    // TODO: Use shortcuts for zooming / navigating the graph
+    // TODO: Implement offset (shortcut g)
     dc.SetBackground(*wxBLACK_BRUSH);
     dc.Clear();
 
