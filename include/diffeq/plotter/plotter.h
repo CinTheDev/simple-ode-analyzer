@@ -4,7 +4,7 @@
 #include <wx/wx.h>
 #include "events.h"
 
-enum ShortcutState {
+enum ActiveShortcut {
     FREE,
 
     ZOOM_UNSPECIFIED,
@@ -14,6 +14,10 @@ enum ShortcutState {
     MOVE_X,
 };
 
+struct ShortcutState {
+    ActiveShortcut active_shortcut = ActiveShortcut::FREE;
+};
+
 class Plotter : public wxPanel {
 public:
     Plotter(wxWindow* parent);
@@ -21,7 +25,7 @@ public:
 
 private:
     Settings_Plotter settings;
-    ShortcutState shortcut_state = ShortcutState::FREE;
+    ShortcutState shortcut_state;
 
 public:
     void on_settings_update(SettingsPlotterEvent& evt);

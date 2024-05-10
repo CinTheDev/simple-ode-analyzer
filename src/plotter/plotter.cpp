@@ -27,29 +27,29 @@ void Plotter::on_settings_update(SettingsPlotterEvent& evt) {
 void Plotter::on_key_pressed(wxKeyEvent& evt) {
     switch (evt.GetUnicodeKey()) {
         case 's':
-            if (shortcut_state != ShortcutState::FREE) break;
-            shortcut_state = ShortcutState::ZOOM_UNSPECIFIED;
+            if (shortcut_state.active_shortcut != ActiveShortcut::FREE) break;
+            shortcut_state.active_shortcut = ActiveShortcut::ZOOM_UNSPECIFIED;
             break;
 
         case 'x':
-            if (shortcut_state != ShortcutState::ZOOM_UNSPECIFIED) break;
-            shortcut_state = ShortcutState::ZOOM_X;
+            if (shortcut_state.active_shortcut != ActiveShortcut::ZOOM_UNSPECIFIED) break;
+            shortcut_state.active_shortcut = ActiveShortcut::ZOOM_X;
             break;
 
         case 'y':
-            if (shortcut_state != ShortcutState::ZOOM_UNSPECIFIED) break;
-            shortcut_state = ShortcutState::ZOOM_Y;
+            if (shortcut_state.active_shortcut != ActiveShortcut::ZOOM_UNSPECIFIED) break;
+            shortcut_state.active_shortcut = ActiveShortcut::ZOOM_Y;
             break;
 
         case 'g':
-            if (shortcut_state != ShortcutState::FREE) break;
-            shortcut_state = ShortcutState::MOVE_X;
+            if (shortcut_state.active_shortcut != ActiveShortcut::FREE) break;
+            shortcut_state.active_shortcut = ActiveShortcut::MOVE_X;
             break;
     }
 }
 
 void Plotter::on_mouse_click(wxMouseEvent& evt) {
-    shortcut_state = ShortcutState::FREE;
+    shortcut_state.active_shortcut = ActiveShortcut::FREE;
 }
 
 void Plotter::on_mouse_moved(wxMouseEvent& evt) {
@@ -204,20 +204,20 @@ double Plotter::round_to_nice_number(double val) {
 }
 
 void Plotter::handle_input() {
-    switch (shortcut_state) {
-        case ZOOM_UNSPECIFIED:
+    switch (shortcut_state.active_shortcut) {
+        case ActiveShortcut::ZOOM_UNSPECIFIED:
             break;
 
-        case ZOOM_X:
+        case ActiveShortcut::ZOOM_X:
             break;
 
-        case ZOOM_Y:
+        case ActiveShortcut::ZOOM_Y:
             break;
 
-        case MOVE_X:
+        case ActiveShortcut::MOVE_X:
             break;
 
-        case FREE:
+        case ActiveShortcut::FREE:
             // Do nothing
             break;
 
