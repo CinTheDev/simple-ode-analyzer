@@ -66,13 +66,14 @@ void Plotter::render_axes(wxDC& dc) {
 
 void Plotter::render_markings(wxDC& dc) {
     dc.SetPen(*wxGREY_PEN);
-    const int border = 50;
+    //const int border = 50;
+    int axis_offset = settings.axis_offset;
 
     wxCoord width, height;
     dc.GetSize(&width, &height);
-    width -= border * 2;
-    height -= border * 2;
-    wxSize text_size = wxSize(border - 10, 30);
+    //width -= border * 2;
+    //height -= border * 2;
+    wxSize text_size = wxSize(axis_offset, 30);
 
     // x-Axis
     int n_lines_x = 15;
@@ -81,15 +82,15 @@ void Plotter::render_markings(wxDC& dc) {
     for (int i = 1; i <= n_lines_x; i++) {
         // Vertical lines
         double x_relative = x_step * i / (double)settings.view_x;
-        double x_pixel = x_relative * width + border;
+        double x_pixel = x_relative * (width - axis_offset) + axis_offset;
 
         wxPoint upper = wxPoint(x_pixel, 0);
-        wxPoint lower = wxPoint(x_pixel, border * 2 + height);
+        wxPoint lower = wxPoint(x_pixel, height);
 
         dc.DrawLine(upper, lower);
 
         // Text below x-Axis
-        wxPoint text_pos = wxPoint(x_pixel - text_size.x / 2, height / 2 + border + 5);
+        wxPoint text_pos = wxPoint(x_pixel - text_size.x / 2, height / 2 + 5);
         wxRect text_rect = wxRect(text_pos, text_size);
 
         double x_value = x_step * i;
@@ -104,13 +105,13 @@ void Plotter::render_markings(wxDC& dc) {
     for (int i = 1; i <= n_lines_y; i++) {
         // Horizontal lines
         double height_relative = y_step * i / (double)settings.view_y;
-        double height_pixel_lower = (0.5 *  height_relative + 0.5) * height + border;
-        double height_pixel_upper = (0.5 * -height_relative + 0.5) * height + border;
+        double height_pixel_lower = (0.5 *  height_relative + 0.5) * height;
+        double height_pixel_upper = (0.5 * -height_relative + 0.5) * height;
 
-        wxPoint left_lower = wxPoint(border, height_pixel_lower);
-        wxPoint right_lower = wxPoint(border * 2 + width, height_pixel_lower);
-        wxPoint left_upper = wxPoint(border, height_pixel_upper);
-        wxPoint right_upper = wxPoint(border * 2 + width, height_pixel_upper);
+        wxPoint left_lower = wxPoint(axis_offset, height_pixel_lower);
+        wxPoint right_lower = wxPoint(width, height_pixel_lower);
+        wxPoint left_upper = wxPoint(axis_offset, height_pixel_upper);
+        wxPoint right_upper = wxPoint(width, height_pixel_upper);
 
         dc.DrawLine(left_lower, right_lower);
         dc.DrawLine(left_upper, right_upper);
