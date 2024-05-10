@@ -4,6 +4,16 @@
 #include <wx/wx.h>
 #include "events.h"
 
+enum ShortcutState {
+    FREE,
+    
+    ZOOM_UNSPECIFIED,
+    ZOOM_X,
+    ZOOM_Y,
+
+    MOVE_X,
+};
+
 class Plotter : public wxPanel {
 public:
     Plotter(wxWindow* parent);
@@ -11,6 +21,7 @@ public:
 
 private:
     Settings_Plotter settings;
+    ShortcutState shortcut_state = ShortcutState::FREE;
 
 public:
     void on_settings_update(SettingsPlotterEvent& evt);
