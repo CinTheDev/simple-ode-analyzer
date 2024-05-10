@@ -25,15 +25,15 @@ void Plotter::on_settings_update(SettingsPlotterEvent& evt) {
 }
 
 void Plotter::on_key_pressed(wxKeyEvent& evt) {
-
+    
 }
 
 void Plotter::on_mouse_click(wxMouseEvent& evt) {
-
+    
 }
 
 void Plotter::on_mouse_moved(wxMouseEvent& evt) {
-
+    handle_input();
 }
 
 void Plotter::paintEvent(wxPaintEvent& evt) {
@@ -48,8 +48,6 @@ void Plotter::paintNow() {
 
 void Plotter::render(wxDC& dc) {
     // TODO: Use shortcuts for zooming / navigating the graph
-    handle_input();
-
     dc.SetBackground(*wxBLACK_BRUSH);
     dc.Clear();
 
