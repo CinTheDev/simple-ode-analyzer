@@ -132,15 +132,16 @@ void Plotter::render_markings(wxDC& dc) {
 }
 
 void Plotter::render_function(wxDC& dc) {
-    const int border = 50;
+    //const int border = 50;
+    int axis_offset = settings.axis_offset;
 
     wxCoord width, height;
     dc.GetSize(&width, &height);
-    width -= border * 2;
-    height -= border * 2;
+    //width -= border * 2;
+    //height -= border * 2;
 
-    wxPoint left = wxPoint(border, border + height / 2);
-    wxPoint right = wxPoint(border + width, border + height / 2);
+    wxPoint left = wxPoint(axis_offset, height / 2);
+    wxPoint right = wxPoint(width, height / 2);
 
     // TODO: Dynamically change resolution to fill whole width
     int resolution = 100;
@@ -153,11 +154,12 @@ void Plotter::render_function(wxDC& dc) {
 
     for (int i = 0; i < resolution; i++) {
         double x = (double)i / (settings.view_x / settings.step_x);
+        double x_pixel = x * (width - axis_offset) + axis_offset;
         double y_harmonic = values_harmonic[i] / settings.view_y;
         double y_triangle = values_triangle[i] / settings.view_y;
 
-        test_points_harmonic[i] = wxPoint(x * width + border, (0.5 - y_harmonic * 0.5) * height + border);
-        test_points_triangle[i] = wxPoint(x * width + border, (0.5 - y_triangle * 0.5) * height + border);
+        test_points_harmonic[i] = wxPoint(x_pixel, (0.5 - y_harmonic * 0.5) * height);
+        test_points_triangle[i] = wxPoint(x_pixel, (0.5 - y_triangle * 0.5) * height);
     }
 
     dc.SetPen(*wxBLUE_PEN);
