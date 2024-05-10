@@ -29,18 +29,20 @@ void Plotter::on_key_pressed(wxKeyEvent& evt) {
         case 'S':
             if (shortcut_state.active_shortcut != ActiveShortcut::FREE) break;
             shortcut_state.active_shortcut = ActiveShortcut::ZOOM_UNSPECIFIED;
-            shortcut_state.mouse_initial = evt.GetPosition();
-            shortcut_state.settings_initial = settings;
             break;
 
         case 'X':
             if (shortcut_state.active_shortcut != ActiveShortcut::ZOOM_UNSPECIFIED) break;
             shortcut_state.active_shortcut = ActiveShortcut::ZOOM_X;
+            shortcut_state.mouse_initial = evt.GetPosition();
+            shortcut_state.settings_initial = settings;
             break;
 
         case 'Y':
             if (shortcut_state.active_shortcut != ActiveShortcut::ZOOM_UNSPECIFIED) break;
             shortcut_state.active_shortcut = ActiveShortcut::ZOOM_Y;
+            shortcut_state.mouse_initial = evt.GetPosition();
+            shortcut_state.settings_initial = settings;
             break;
 
         case 'G':
