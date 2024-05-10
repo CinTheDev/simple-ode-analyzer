@@ -17,6 +17,7 @@ enum ActiveShortcut {
 struct ShortcutState {
     ActiveShortcut active_shortcut = ActiveShortcut::FREE;
     wxPoint mouse_initial;
+    Settings_Plotter settings_initial;
 };
 
 class Plotter : public wxPanel {
