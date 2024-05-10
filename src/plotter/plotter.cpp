@@ -46,18 +46,19 @@ void Plotter::render(wxDC& dc) {
 void Plotter::render_axes(wxDC& dc) {
     dc.SetPen(*wxWHITE_PEN);
 
-    const int border = 50;
+    //const int border = 50;
+    int axis_offset = settings.axis_offset;
 
     wxCoord width, height;
     dc.GetSize(&width, &height);
-    width -= border * 2;
-    height -= border * 2;
+    //width -= border * 2;
+    //height -= border * 2;
 
-    wxPoint upper_left = wxPoint(border, 0);
-    wxPoint lower_left = wxPoint(border, border * 2 + height);
+    wxPoint upper_left = wxPoint(axis_offset, 0);
+    wxPoint lower_left = wxPoint(axis_offset, height);
 
-    wxPoint middle_left = wxPoint(border, border + height / 2);
-    wxPoint middle_right = wxPoint(border * 2 + width, border + height / 2);
+    wxPoint middle_left = wxPoint(axis_offset, height / 2);
+    wxPoint middle_right = wxPoint(width, height / 2);
 
     dc.DrawLine(lower_left, upper_left); // y-Axis
     dc.DrawLine(middle_left, middle_right); // x-Axis
