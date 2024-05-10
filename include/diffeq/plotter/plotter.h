@@ -26,6 +26,11 @@ private:
 public:
     void on_settings_update(SettingsPlotterEvent& evt);
 
+    void on_key_pressed(wxKeyEvent& evt);
+
+    void on_mouse_click(wxMouseEvent& evt);
+    void on_mouse_moved(wxMouseEvent& evt);
+
     void paintEvent(wxPaintEvent& evt);
     void paintNow();
 

@@ -4,6 +4,9 @@
 
 BEGIN_EVENT_TABLE(Plotter, wxPanel)
 
+    EVT_KEY_DOWN(Plotter::on_key_pressed)
+    EVT_LEFT_DOWN(Plotter::on_mouse_click)
+    EVT_MOTION(Plotter::on_mouse_moved)
     EVT_PAINT(Plotter::paintEvent)
 
 END_EVENT_TABLE()
@@ -19,6 +22,18 @@ Plotter::~Plotter() {
 void Plotter::on_settings_update(SettingsPlotterEvent& evt) {
     settings = evt.get_settings();
     paintNow();
+}
+
+void Plotter::on_key_pressed(wxKeyEvent& evt) {
+
+}
+
+void Plotter::on_mouse_click(wxMouseEvent& evt) {
+
+}
+
+void Plotter::on_mouse_moved(wxMouseEvent& evt) {
+
 }
 
 void Plotter::paintEvent(wxPaintEvent& evt) {
