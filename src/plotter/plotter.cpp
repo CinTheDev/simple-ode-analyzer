@@ -110,8 +110,8 @@ void Plotter::render_markings(wxDC& dc) {
         dc.DrawLine(left_upper, right_upper);
 
         // Text on the left
-        wxPoint text_pos_lower = wxPoint(5, height_pixel_lower - text_size.y / 2);
-        wxPoint text_pos_upper = wxPoint(5, height_pixel_upper - text_size.y / 2);
+        wxPoint text_pos_lower = wxPoint(0, height_pixel_lower - text_size.y / 2);
+        wxPoint text_pos_upper = wxPoint(0, height_pixel_upper - text_size.y / 2);
         wxRect text_rect_lower = wxRect(text_pos_lower, text_size);
         wxRect text_rect_upper = wxRect(text_pos_upper, text_size);
         
