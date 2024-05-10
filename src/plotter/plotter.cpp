@@ -33,6 +33,8 @@ void Plotter::paintNow() {
 
 void Plotter::render(wxDC& dc) {
     // TODO: Use shortcuts for zooming / navigating the graph
+    handle_input();
+
     dc.SetBackground(*wxBLACK_BRUSH);
     dc.Clear();
 
@@ -166,4 +168,27 @@ double Plotter::round_to_nice_number(double val) {
     double exponent = logf64(val) / logf64(5.0);
     double exponent_integer = ceilf64(exponent);
     return powf64(5.0, exponent_integer);
+}
+
+void Plotter::handle_input() {
+    switch (shortcut_state) {
+        case ZOOM_UNSPECIFIED:
+            break;
+
+        case ZOOM_X:
+            break;
+
+        case ZOOM_Y:
+            break;
+
+        case MOVE_X:
+            break;
+
+        case FREE:
+            // Do nothing
+            break;
+
+        default:
+            printf("Warning: unhandled input\n");
+    }
 }
