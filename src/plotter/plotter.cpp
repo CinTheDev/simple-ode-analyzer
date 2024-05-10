@@ -52,10 +52,13 @@ void Plotter::on_key_pressed(wxKeyEvent& evt) {
             shortcut_state.settings_initial = settings;
             break;
     }
+
+    paintNow();
 }
 
 void Plotter::on_mouse_click(wxMouseEvent& evt) {
     shortcut_state.active_shortcut = ActiveShortcut::FREE;
+    paintNow();
 }
 
 void Plotter::on_mouse_moved(wxMouseEvent& evt) {
@@ -83,8 +86,6 @@ void Plotter::render(wxDC& dc) {
 }
 
 void Plotter::render_axes(wxDC& dc) {
-    dc.SetPen(*wxWHITE_PEN);
-
     int axis_offset = settings.axis_offset;
 
     wxCoord width, height;
@@ -96,7 +97,20 @@ void Plotter::render_axes(wxDC& dc) {
     wxPoint middle_left = wxPoint(axis_offset, height / 2);
     wxPoint middle_right = wxPoint(width, height / 2);
 
+    dc.SetPen(*wxWHITE_PEN);
+    if (shortcut_state.active_shortcut == ActiveShortcut::ZOOM_Y)
+        dc.SetPen(*wxGREEN_PEN);
+    if (shortcut_state.active_shortcut == ActiveShortcut::ZOOM_UNSPECIFIED)
+        dc.SetPen(*wxLIGHT_GREY_PEN);
+    
     dc.DrawLine(lower_left, upper_left); // y-Axis
+
+    dc.SetPen(*wxWHITE_PEN);
+    if (shortcut_state.active_shortcut == ActiveShortcut::ZOOM_X)
+        dc.SetPen(*wxGREEN_PEN);
+    if (shortcut_state.active_shortcut == ActiveShortcut::ZOOM_UNSPECIFIED)
+        dc.SetPen(*wxLIGHT_GREY_PEN);
+
     dc.DrawLine(middle_left, middle_right); // x-Axis
 }
 
