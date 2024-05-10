@@ -32,8 +32,6 @@ void Plotter::paintNow() {
 }
 
 void Plotter::render(wxDC& dc) {
-    // TODO: Remove Borders
-    // TODO: Make constant values shared under the render functions
     // TODO: Use shortcuts for zooming / navigating the graph
     dc.SetBackground(*wxBLACK_BRUSH);
     dc.Clear();
@@ -46,13 +44,10 @@ void Plotter::render(wxDC& dc) {
 void Plotter::render_axes(wxDC& dc) {
     dc.SetPen(*wxWHITE_PEN);
 
-    //const int border = 50;
     int axis_offset = settings.axis_offset;
 
     wxCoord width, height;
     dc.GetSize(&width, &height);
-    //width -= border * 2;
-    //height -= border * 2;
 
     wxPoint upper_left = wxPoint(axis_offset, 0);
     wxPoint lower_left = wxPoint(axis_offset, height);
@@ -66,13 +61,11 @@ void Plotter::render_axes(wxDC& dc) {
 
 void Plotter::render_markings(wxDC& dc) {
     dc.SetPen(*wxGREY_PEN);
-    //const int border = 50;
     int axis_offset = settings.axis_offset;
 
     wxCoord width, height;
     dc.GetSize(&width, &height);
-    //width -= border * 2;
-    //height -= border * 2;
+
     wxSize text_size = wxSize(axis_offset, 30);
 
     // x-Axis
@@ -132,13 +125,10 @@ void Plotter::render_markings(wxDC& dc) {
 }
 
 void Plotter::render_function(wxDC& dc) {
-    //const int border = 50;
     int axis_offset = settings.axis_offset;
 
     wxCoord width, height;
     dc.GetSize(&width, &height);
-    //width -= border * 2;
-    //height -= border * 2;
 
     wxPoint left = wxPoint(axis_offset, height / 2);
     wxPoint right = wxPoint(width, height / 2);
