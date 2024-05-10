@@ -25,7 +25,27 @@ void Plotter::on_settings_update(SettingsPlotterEvent& evt) {
 }
 
 void Plotter::on_key_pressed(wxKeyEvent& evt) {
-    
+    switch (evt.GetUnicodeKey()) {
+        case 's':
+            if (shortcut_state != ShortcutState::FREE) break;
+            shortcut_state = ShortcutState::ZOOM_UNSPECIFIED;
+            break;
+
+        case 'x':
+            if (shortcut_state != ShortcutState::ZOOM_UNSPECIFIED) break;
+            shortcut_state = ShortcutState::ZOOM_X;
+            break;
+
+        case 'y':
+            if (shortcut_state != ShortcutState::ZOOM_UNSPECIFIED) break;
+            shortcut_state = ShortcutState::ZOOM_Y;
+            break;
+
+        case 'g':
+            if (shortcut_state != ShortcutState::FREE) break;
+            shortcut_state = ShortcutState::MOVE_X;
+            break;
+    }
 }
 
 void Plotter::on_mouse_click(wxMouseEvent& evt) {
