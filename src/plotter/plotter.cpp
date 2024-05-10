@@ -210,6 +210,10 @@ double Plotter::round_to_nice_number(double val) {
 void Plotter::handle_input(wxMouseEvent& evt) {
     int mouse_delta_x = evt.GetPosition().x - shortcut_state.mouse_initial.x;
     double zoom_factor_x = (double)mouse_delta_x / 50.0;
+
+    int mouse_delta_y = evt.GetPosition().y - shortcut_state.mouse_initial.y;
+    double zoom_factor_y = (double)mouse_delta_y / 50.0;
+
     switch (shortcut_state.active_shortcut) {
         case ActiveShortcut::ZOOM_UNSPECIFIED:
             break;
@@ -221,6 +225,8 @@ void Plotter::handle_input(wxMouseEvent& evt) {
             break;
 
         case ActiveShortcut::ZOOM_Y:
+            settings.view_y = shortcut_state.settings_initial.view_y + zoom_factor_y;
+            settings.view_y = std::max(0.0, settings.view_y);
             paintNow();
             break;
 
