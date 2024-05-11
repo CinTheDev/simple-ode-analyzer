@@ -267,6 +267,7 @@ void Plotter::handle_zoom_x(wxMouseEvent& evt) {
     double mouse_factor = (double)mouse_delta_x / 50.0;
 
     settings.view_x_exp = shortcut_state.settings_initial.view_x_exp + mouse_factor;
+    settings.view_x = expf64(settings.view_x_exp);
     paintNow();
 }
 
@@ -275,6 +276,7 @@ void Plotter::handle_zoom_y(wxMouseEvent& evt) {
     double mouse_factor = (double)mouse_delta_y / 50.0;
 
     settings.view_y_exp = shortcut_state.settings_initial.view_y_exp + mouse_factor;
+    settings.view_y = expf64(settings.view_y_exp);
     paintNow();
 }
 
