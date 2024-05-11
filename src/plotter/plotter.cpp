@@ -257,6 +257,7 @@ void Plotter::handle_input(wxMouseEvent& evt) {
             break;
 
         case ActiveShortcut::MOVE_X:
+            settings.view_start_x = shortcut_state.settings_initial.view_start_x + zoom_factor_x;
             paintNow();
             break;
 
