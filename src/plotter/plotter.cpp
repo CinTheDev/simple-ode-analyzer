@@ -209,7 +209,7 @@ void Plotter::render_function(wxDC& dc) {
     wxPoint test_points_triangle[resolution];
 
     for (int i = 0; i < resolution; i++) {
-        double x = (double)i / (settings.view_x / settings.step_x) + settings.view_start_x;
+        double x = ((double)i * settings.step_x + settings.view_start_x) / settings.view_x;
         double x_pixel = x * (width - axis_offset) + axis_offset;
         double y_harmonic = values_harmonic[i] / settings.view_y;
         double y_triangle = values_triangle[i] / settings.view_y;
