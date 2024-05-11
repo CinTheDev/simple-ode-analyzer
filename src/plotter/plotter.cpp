@@ -80,6 +80,7 @@ void Plotter::paintEvent(wxPaintEvent& evt) {
 }
 
 void Plotter::paintNow() {
+    this->Refresh();
     wxClientDC dc = wxClientDC(this);
     render(dc);
 }
