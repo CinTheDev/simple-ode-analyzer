@@ -139,7 +139,8 @@ void Plotter::render_markings(wxDC& dc) {
 
     for (int i = 1; i <= n_lines_x; i++) {
         // Vertical lines
-        double x_relative = (x_step * i + settings.view_start_x) / settings.view_x;
+        int index = i - (int)ceil(settings.view_start_x / x_step);
+        double x_relative = (x_step * index + settings.view_start_x) / settings.view_x;
         double x_pixel = x_relative * (width - axis_offset) + axis_offset;
 
         wxPoint upper = wxPoint(x_pixel, 0);
@@ -151,7 +152,7 @@ void Plotter::render_markings(wxDC& dc) {
         wxPoint text_pos = wxPoint(x_pixel - text_size.x / 2, height / 2 + 5);
         wxRect text_rect = wxRect(text_pos, text_size);
 
-        double x_value = x_step * i;
+        double x_value = x_step * index;
         wxString text_yeah = wxString(std::to_string(x_value)).Truncate(4);
         dc.DrawLabel(text_yeah, text_rect, wxALIGN_CENTER_HORIZONTAL | wxALIGN_TOP);
     }
