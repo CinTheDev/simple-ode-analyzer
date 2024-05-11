@@ -4,6 +4,22 @@
 #include <wx/wx.h>
 #include "events.h"
 
+enum ActiveShortcut {
+    FREE,
+
+    ZOOM_UNSPECIFIED,
+    ZOOM_X,
+    ZOOM_Y,
+
+    MOVE_X,
+};
+
+struct ShortcutState {
+    ActiveShortcut active_shortcut = ActiveShortcut::FREE;
+    wxPoint mouse_initial;
+    Settings_Plotter settings_initial;
+};
+
 class Plotter : public wxPanel {
 public:
     Plotter(wxWindow* parent);
@@ -11,9 +27,16 @@ public:
 
 private:
     Settings_Plotter settings;
+    ShortcutState shortcut_state;
 
 public:
     void on_settings_update(SettingsPlotterEvent& evt);
+
+    void on_key_pressed(wxKeyEvent& evt);
+
+    void on_mouse_leftclick(wxMouseEvent& evt);
+    void on_mouse_rightclick(wxMouseEvent& evt);
+    void on_mouse_moved(wxMouseEvent& evt);
 
     void paintEvent(wxPaintEvent& evt);
     void paintNow();
@@ -26,7 +49,13 @@ private:
     void render_axes(wxDC& dc);
     void render_markings(wxDC& dc);
     void render_function(wxDC& dc);
+
     double round_to_nice_number(double val);
+
+    void handle_input(wxMouseEvent& evt);
+    void handle_zoom_x(wxMouseEvent& evt);
+    void handle_zoom_y(wxMouseEvent& evt);
+    void handle_move_x(wxMouseEvent& evt);
 };
 
 #endif
