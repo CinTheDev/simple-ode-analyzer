@@ -264,7 +264,7 @@ void Plotter::handle_input(wxMouseEvent& evt) {
 
 void Plotter::handle_zoom_x(wxMouseEvent& evt) {
     int mouse_delta_x = evt.GetPosition().x - shortcut_state.mouse_initial.x;
-    double mouse_factor = (double)mouse_delta_x / 50.0;
+    double mouse_factor = (double)mouse_delta_x / 150.0;
 
     settings.view_x_exp = shortcut_state.settings_initial.view_x_exp + mouse_factor;
     settings.view_x = expf64(settings.view_x_exp);
@@ -273,7 +273,7 @@ void Plotter::handle_zoom_x(wxMouseEvent& evt) {
 
 void Plotter::handle_zoom_y(wxMouseEvent& evt) {
     int mouse_delta_y = evt.GetPosition().y - shortcut_state.mouse_initial.y;
-    double mouse_factor = (double)mouse_delta_y / 50.0;
+    double mouse_factor = (double)mouse_delta_y / 150.0;
 
     settings.view_y_exp = shortcut_state.settings_initial.view_y_exp + mouse_factor;
     settings.view_y = expf64(settings.view_y_exp);
