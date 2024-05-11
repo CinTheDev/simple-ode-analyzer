@@ -9,6 +9,8 @@ public:
     
     double view_x = 1.0;
     double view_y = 1.0;
+
+    double view_start_x = 0.0;
 };
 
 #endif

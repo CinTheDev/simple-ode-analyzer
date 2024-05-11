@@ -135,11 +135,11 @@ void Plotter::render_markings(wxDC& dc) {
 
     // x-Axis
     int n_lines_x = 15;
-    double x_step = round_to_nice_number((double)settings.view_x / (double)n_lines_x);
+    double x_step = round_to_nice_number(settings.view_x / (double)n_lines_x);
 
     for (int i = 1; i <= n_lines_x; i++) {
         // Vertical lines
-        double x_relative = x_step * i / (double)settings.view_x;
+        double x_relative = (x_step * i + settings.view_start_x) / settings.view_x;
         double x_pixel = x_relative * (width - axis_offset) + axis_offset;
 
         wxPoint upper = wxPoint(x_pixel, 0);
@@ -158,11 +158,11 @@ void Plotter::render_markings(wxDC& dc) {
 
     // y-Axis
     int n_lines_y = 5;
-    double y_step = round_to_nice_number((double)settings.view_y / (double)n_lines_y);
+    double y_step = round_to_nice_number(settings.view_y / (double)n_lines_y);
 
     for (int i = 1; i <= n_lines_y; i++) {
         // Horizontal lines
-        double height_relative = y_step * i / (double)settings.view_y;
+        double height_relative = y_step * i / settings.view_y;
         double height_pixel_lower = (0.5 *  height_relative + 0.5) * height;
         double height_pixel_upper = (0.5 * -height_relative + 0.5) * height;
 
