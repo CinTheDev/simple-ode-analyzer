@@ -279,8 +279,11 @@ void Plotter::handle_zoom_y(wxMouseEvent& evt) {
 }
 
 void Plotter::handle_move_x(wxMouseEvent& evt) {
+    int width, height;
+    GetClientSize(&width, &height);
     int mouse_delta_x = evt.GetPosition().x - shortcut_state.mouse_initial.x;
+    double mouse_relative_x = ((double)mouse_delta_x / (double)width) * settings.view_x;
 
-    settings.view_start_x = shortcut_state.settings_initial.view_start_x + (double)mouse_delta_x / 250.0;
+    settings.view_start_x = shortcut_state.settings_initial.view_start_x + mouse_relative_x;
     paintNow();
 }
