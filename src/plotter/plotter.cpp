@@ -265,16 +265,16 @@ void Plotter::handle_input(wxMouseEvent& evt) {
 void Plotter::handle_zoom_x(wxMouseEvent& evt) {
     int mouse_delta_x = evt.GetPosition().x - shortcut_state.mouse_initial.x;
 
-    settings.view_x = shortcut_state.settings_initial.view_x + (double)mouse_delta_x / 50.0;
-    settings.view_x = std::max(0.0, settings.view_x);
+    settings.view_x_exp = shortcut_state.settings_initial.view_x_exp + (double)mouse_delta_x / 50.0;
+    settings.view_x_exp = std::max(0.0, settings.view_x_exp);
     paintNow();
 }
 
 void Plotter::handle_zoom_y(wxMouseEvent& evt) {
     int mouse_delta_y = evt.GetPosition().y - shortcut_state.mouse_initial.y;
 
-    settings.view_y = shortcut_state.settings_initial.view_y + (double)mouse_delta_y / 50.0;
-    settings.view_y = std::max(0.0, settings.view_y);
+    settings.view_y_exp = shortcut_state.settings_initial.view_y_exp + (double)mouse_delta_y / 50.0;
+    settings.view_y_exp = std::max(0.0, settings.view_y_exp);
     paintNow();
 }
 

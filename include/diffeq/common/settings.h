@@ -6,6 +6,9 @@ public:
     int axis_offset = 50;
 
     double step_x = 0.01;
+
+    double view_x_exp = 0.0;
+    double view_y_exp = 0.0;
     
     double view_x = 1.0;
     double view_y = 1.0;
