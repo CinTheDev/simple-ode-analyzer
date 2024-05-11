@@ -34,7 +34,8 @@ public:
 
     void on_key_pressed(wxKeyEvent& evt);
 
-    void on_mouse_click(wxMouseEvent& evt);
+    void on_mouse_leftclick(wxMouseEvent& evt);
+    void on_mouse_rightclick(wxMouseEvent& evt);
     void on_mouse_moved(wxMouseEvent& evt);
 
     void paintEvent(wxPaintEvent& evt);

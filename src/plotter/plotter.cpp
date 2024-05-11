@@ -5,7 +5,8 @@
 BEGIN_EVENT_TABLE(Plotter, wxPanel)
 
     EVT_KEY_DOWN(Plotter::on_key_pressed)
-    EVT_LEFT_DOWN(Plotter::on_mouse_click)
+    EVT_LEFT_DOWN(Plotter::on_mouse_leftclick)
+    EVT_RIGHT_DOWN(Plotter::on_mouse_rightclick)
     EVT_MOTION(Plotter::on_mouse_moved)
     EVT_PAINT(Plotter::paintEvent)
 
@@ -56,7 +57,15 @@ void Plotter::on_key_pressed(wxKeyEvent& evt) {
     paintNow();
 }
 
-void Plotter::on_mouse_click(wxMouseEvent& evt) {
+void Plotter::on_mouse_leftclick(wxMouseEvent& evt) {
+    shortcut_state.active_shortcut = ActiveShortcut::FREE;
+    paintNow();
+}
+
+void Plotter::on_mouse_rightclick(wxMouseEvent& evt) {
+    if (shortcut_state.active_shortcut == ActiveShortcut::FREE) return;
+
+    settings = shortcut_state.settings_initial;
     shortcut_state.active_shortcut = ActiveShortcut::FREE;
     paintNow();
 }
