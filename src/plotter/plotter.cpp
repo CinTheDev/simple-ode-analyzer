@@ -86,7 +86,6 @@ void Plotter::paintNow() {
 }
 
 void Plotter::render(wxDC& dc) {
-    // TODO: Implement offset (shortcut g)
     dc.SetBackground(*wxBLACK_BRUSH);
     dc.Clear();
 
