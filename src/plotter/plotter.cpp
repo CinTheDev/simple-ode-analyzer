@@ -235,28 +235,20 @@ double Plotter::round_to_nice_number(double val) {
 }
 
 void Plotter::handle_input(wxMouseEvent& evt) {
-    int mouse_delta_x = evt.GetPosition().x - shortcut_state.mouse_initial.x;
-    int mouse_delta_y = evt.GetPosition().y - shortcut_state.mouse_initial.y;
-
     switch (shortcut_state.active_shortcut) {
         case ActiveShortcut::ZOOM_UNSPECIFIED:
             break;
 
         case ActiveShortcut::ZOOM_X:
-            settings.view_x = shortcut_state.settings_initial.view_x + (double)mouse_delta_x / 50.0;
-            settings.view_x = std::max(0.0, settings.view_x);
-            paintNow();
+            handle_zoom_x(evt);
             break;
 
         case ActiveShortcut::ZOOM_Y:
-            settings.view_y = shortcut_state.settings_initial.view_y + (double)mouse_delta_y / 50.0;
-            settings.view_y = std::max(0.0, settings.view_y);
-            paintNow();
+            handle_zoom_y(evt);
             break;
 
         case ActiveShortcut::MOVE_X:
-            settings.view_start_x = shortcut_state.settings_initial.view_start_x + (double)mouse_delta_x / 250.0;
-            paintNow();
+            handle_move_x(evt);
             break;
 
         case ActiveShortcut::FREE:
@@ -266,4 +258,27 @@ void Plotter::handle_input(wxMouseEvent& evt) {
         default:
             printf("Warning: unhandled input\n");
     }
+}
+
+void Plotter::handle_zoom_x(wxMouseEvent& evt) {
+    int mouse_delta_x = evt.GetPosition().x - shortcut_state.mouse_initial.x;
+
+    settings.view_x = shortcut_state.settings_initial.view_x + (double)mouse_delta_x / 50.0;
+    settings.view_x = std::max(0.0, settings.view_x);
+    paintNow();
+}
+
+void Plotter::handle_zoom_y(wxMouseEvent& evt) {
+    int mouse_delta_y = evt.GetPosition().y - shortcut_state.mouse_initial.y;
+    
+    settings.view_y = shortcut_state.settings_initial.view_y + (double)mouse_delta_y / 50.0;
+    settings.view_y = std::max(0.0, settings.view_y);
+    paintNow();
+}
+
+void Plotter::handle_move_x(wxMouseEvent& evt) {
+    int mouse_delta_x = evt.GetPosition().x - shortcut_state.mouse_initial.x;
+
+    settings.view_start_x = shortcut_state.settings_initial.view_start_x + (double)mouse_delta_x / 250.0;
+    paintNow();
 }

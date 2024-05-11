@@ -53,6 +53,9 @@ private:
     double round_to_nice_number(double val);
 
     void handle_input(wxMouseEvent& evt);
+    void handle_zoom_x(wxMouseEvent& evt);
+    void handle_zoom_y(wxMouseEvent& evt);
+    void handle_move_x(wxMouseEvent& evt);
 };
 
 #endif
