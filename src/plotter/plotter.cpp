@@ -120,6 +120,8 @@ void Plotter::render_axes(wxDC& dc) {
         dc.SetPen(*wxGREEN_PEN);
     if (shortcut_state.active_shortcut == ActiveShortcut::ZOOM_UNSPECIFIED)
         dc.SetPen(*wxLIGHT_GREY_PEN);
+    if (shortcut_state.active_shortcut == ActiveShortcut::MOVE_X)
+        dc.SetPen(*wxRED_PEN);
 
     dc.DrawLine(middle_left, middle_right); // x-Axis
 }
@@ -270,7 +272,7 @@ void Plotter::handle_zoom_x(wxMouseEvent& evt) {
 
 void Plotter::handle_zoom_y(wxMouseEvent& evt) {
     int mouse_delta_y = evt.GetPosition().y - shortcut_state.mouse_initial.y;
-    
+
     settings.view_y = shortcut_state.settings_initial.view_y + (double)mouse_delta_y / 50.0;
     settings.view_y = std::max(0.0, settings.view_y);
     paintNow();
