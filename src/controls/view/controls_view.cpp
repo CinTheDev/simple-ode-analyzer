@@ -10,6 +10,8 @@ ControlsView::ControlsView(wxWindow* parent) : wxScrolledWindow(parent) {
 ControlsView::~ControlsView() { }
 
 void ControlsView::init_elements() {
+    Settings_Plotter default_settings = Settings_Plotter();
+
     input_view_x = new wxTextCtrl(this, wxID_ANY, "view x");
     input_view_y = new wxTextCtrl(this, wxID_ANY, "view y");
 }
@@ -34,6 +36,6 @@ void ControlsView::init_sizers() {
     SetScrollRate(5, 5);
 }
 
-Settings_Plotter ControlsView::get_settings_plotter() {
-    return settings_plotter;
+void ControlsView::get_settings_plotter(Settings_Plotter& settings_plotter) {
+    
 }

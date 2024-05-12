@@ -14,9 +14,6 @@ public:
 
     wxFlexGridSizer* sizer_main;
 
-private:
-    Settings_Plotter settings_plotter;
-
 public:
     Settings_Plotter get_settings_plotter();
 
