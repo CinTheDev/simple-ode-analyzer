@@ -53,8 +53,8 @@ void ControlsView::construct_plotter_settings(Settings_Plotter* settings_plotter
 }
 
 void ControlsView::update_values(Settings_Plotter settings_plotter) {
-    input_view_x->SetValue(std::to_string(settings_plotter.view_x));
-    input_view_y->SetValue(std::to_string(settings_plotter.view_y));
+    input_view_x->ChangeValue(std::to_string(settings_plotter.view_x));
+    input_view_y->ChangeValue(std::to_string(settings_plotter.view_y));
 
     // TODO: update other fields as well
 }
