@@ -58,7 +58,10 @@ void Plotter::on_key_pressed(wxKeyEvent& evt) {
 }
 
 void Plotter::on_mouse_leftclick(wxMouseEvent& evt) {
+    if (shortcut_state.active_shortcut == ActiveShortcut::FREE) return;
+
     shortcut_state.active_shortcut = ActiveShortcut::FREE;
+    update_control_settings();
     paintNow();
 }
 
