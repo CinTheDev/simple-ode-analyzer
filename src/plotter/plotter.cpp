@@ -58,6 +58,8 @@ void Plotter::on_key_pressed(wxKeyEvent& evt) {
 }
 
 void Plotter::on_mouse_leftclick(wxMouseEvent& evt) {
+    SetFocus();
+    
     if (shortcut_state.active_shortcut == ActiveShortcut::FREE) return;
 
     shortcut_state.active_shortcut = ActiveShortcut::FREE;
