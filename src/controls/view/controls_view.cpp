@@ -1,4 +1,5 @@
 #include "controls_view.h"
+#include "events.h"
 
 ControlsView::ControlsView(wxWindow* parent) : wxScrolledWindow(parent) {
     init_elements();
@@ -59,5 +60,10 @@ void ControlsView::update_values(Settings_Plotter settings_plotter) {
 }
 
 void ControlsView::on_text_input(wxEvent& evt) {
-    printf("Yeah what's up\n");
+    Settings_Plotter settings_plotter;
+    construct_plotter_settings(&settings_plotter);
+
+    SettingsPlotterEvent settings_plotter_event = SettingsPlotterEvent(SETTINGS_PLOTTER_UPDATE, GetId(), settings_plotter);
+    settings_plotter_event.SetEventObject(this);
+    ProcessEvent(settings_plotter_event);
 }
