@@ -3,13 +3,19 @@
 
 #include <wx/wx.h>
 
-class ControlsView : public wxPanel {
+class ControlsView : public wxScrolledWindow {
 public:
     ControlsView(wxWindow* parent);
     ~ControlsView();
 
-    wxButton* test_button;
-    wxBoxSizer* sizer_main;
+    wxTextCtrl* input_view_x;
+    wxTextCtrl* input_view_y;
+
+    wxFlexGridSizer* sizer_main;
+
+private:
+    void init_elements();
+    void init_sizers();
 };
 
 #endif
