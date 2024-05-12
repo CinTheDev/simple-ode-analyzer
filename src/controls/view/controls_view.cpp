@@ -21,28 +21,28 @@ void ControlsView::init_elements() {
 }
 
 void ControlsView::init_sizers() {
-    sizer_main = new wxFlexGridSizer(2, 5, 5);
-    sizer_main->AddGrowableCol(0, 1);
+    sizer_grid = new wxFlexGridSizer(2, 5, 5);
+    sizer_grid->AddGrowableCol(0, 1);
 
     wxStaticText* temp_ptr_label;
 
     temp_ptr_label = new wxStaticText(this, wxID_ANY, "Visible X space");
-    sizer_main->Add(temp_ptr_label);
-    sizer_main->Add(input_view_x);
+    sizer_grid->Add(temp_ptr_label);
+    sizer_grid->Add(input_view_x);
 
     temp_ptr_label = new wxStaticText(this, wxID_ANY, "Visible Y space");
-    sizer_main->Add(temp_ptr_label);
-    sizer_main->Add(input_view_y);
+    sizer_grid->Add(temp_ptr_label);
+    sizer_grid->Add(input_view_y);
 
     temp_ptr_label = new wxStaticText(this, wxID_ANY, "X start value");
-    sizer_main->Add(temp_ptr_label);
-    sizer_main->Add(input_offset_x);
+    sizer_grid->Add(temp_ptr_label);
+    sizer_grid->Add(input_offset_x);
 
     temp_ptr_label = new wxStaticText(this, wxID_ANY, "Axis offset");
-    sizer_main->Add(temp_ptr_label);
-    sizer_main->Add(input_axis_offset);
+    sizer_grid->Add(temp_ptr_label);
+    sizer_grid->Add(input_axis_offset);
 
-    SetSizer(sizer_main);
+    SetSizer(sizer_grid);
 
     FitInside();
     SetScrollRate(5, 5);
@@ -68,7 +68,7 @@ void ControlsView::construct_plotter_settings(Settings_Plotter* settings_plotter
 
     try { settings_plotter->axis_offset = std::stoi(input_axis_offset->GetValue().ToStdString()); }
     catch (...) {
-        
+
     }
 }
 

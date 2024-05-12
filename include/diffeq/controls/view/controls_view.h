@@ -13,10 +13,10 @@ public:
     wxTextCtrl* input_view_y;
 
     wxTextCtrl* input_offset_x;
-    
+
     wxTextCtrl* input_axis_offset;
 
-    wxFlexGridSizer* sizer_main;
+    wxFlexGridSizer* sizer_grid;
 
 public:
     void construct_plotter_settings(Settings_Plotter* settings_plotter);
