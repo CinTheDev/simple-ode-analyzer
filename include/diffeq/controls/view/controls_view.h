@@ -11,10 +11,13 @@ public:
 
     wxTextCtrl* input_view_x;
     wxTextCtrl* input_view_y;
-
     wxTextCtrl* input_offset_x;
-
     wxTextCtrl* input_axis_offset;
+
+    wxStaticText* label_view_x;
+    wxStaticText* label_view_y;
+    wxStaticText* label_offset_x;
+    wxStaticText* label_axis_offset;
 
     wxStaticBoxSizer* sizer_main;
     wxFlexGridSizer* sizer_grid;

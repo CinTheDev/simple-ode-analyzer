@@ -26,20 +26,20 @@ void ControlsView::init_sizers() {
 
     wxStaticText* temp_ptr_label;
 
-    temp_ptr_label = new wxStaticText(this, wxID_ANY, "Visible X space");
-    sizer_grid->Add(temp_ptr_label);
+    label_view_x = new wxStaticText(this, wxID_ANY, "Visible X space");
+    sizer_grid->Add(label_view_x);
     sizer_grid->Add(input_view_x);
 
-    temp_ptr_label = new wxStaticText(this, wxID_ANY, "Visible Y space");
-    sizer_grid->Add(temp_ptr_label);
+    label_view_y = new wxStaticText(this, wxID_ANY, "Visible Y space");
+    sizer_grid->Add(label_view_y);
     sizer_grid->Add(input_view_y);
 
-    temp_ptr_label = new wxStaticText(this, wxID_ANY, "X start value");
-    sizer_grid->Add(temp_ptr_label);
+    label_offset_x = new wxStaticText(this, wxID_ANY, "X start value");
+    sizer_grid->Add(label_offset_x);
     sizer_grid->Add(input_offset_x);
 
-    temp_ptr_label = new wxStaticText(this, wxID_ANY, "Axis offset");
-    sizer_grid->Add(temp_ptr_label);
+    label_axis_offset = new wxStaticText(this, wxID_ANY, "Axis offset");
+    sizer_grid->Add(label_axis_offset);
     sizer_grid->Add(input_axis_offset);
 
     sizer_main = new wxStaticBoxSizer(wxVERTICAL, this, "View");
