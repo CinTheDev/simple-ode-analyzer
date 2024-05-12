@@ -91,3 +91,11 @@ void ControlsView::on_text_input(wxEvent& evt) {
     settings_plotter_event.ResumePropagation(__INT_MAX__);
     ProcessEvent(settings_plotter_event);
 }
+
+double ControlsView::get_input_double(wxTextCtrl* input_field, wxStaticText* label) {
+
+}
+
+int ControlsView::get_input_int(wxTextCtrl* input_field, wxStaticText* label) {
+    
+}

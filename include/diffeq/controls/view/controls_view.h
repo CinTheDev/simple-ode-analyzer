@@ -29,6 +29,9 @@ public:
     void on_text_input(wxEvent& evt);
 
 private:
+    double get_input_double(wxTextCtrl* input_field, wxStaticText* label);
+    int get_input_int(wxTextCtrl* input_field, wxStaticText* label);
+
     void init_elements();
     void init_sizers();
 };
