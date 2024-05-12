@@ -1,6 +1,8 @@
 #include "controls_view.h"
 
 ControlsView::ControlsView(wxWindow* parent) : wxScrolledWindow(parent) {
+    settings_plotter = Settings_Plotter();
+
     init_elements();
     init_sizers();
 }
@@ -17,7 +19,7 @@ void ControlsView::init_sizers() {
     sizer_main->AddGrowableCol(0, 1);
 
     wxStaticText* temp_ptr_label;
-    
+
     temp_ptr_label = new wxStaticText(this, wxID_ANY, "Visible X space");
     sizer_main->Add(temp_ptr_label);
     sizer_main->Add(input_view_x);
@@ -30,4 +32,8 @@ void ControlsView::init_sizers() {
 
     FitInside();
     SetScrollRate(5, 5);
+}
+
+Settings_Plotter ControlsView::get_settings_plotter() {
+    return settings_plotter;
 }

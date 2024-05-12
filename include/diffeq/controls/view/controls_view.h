@@ -2,6 +2,7 @@
 #define CONTROLS_VIEW
 
 #include <wx/wx.h>
+#include "settings.h"
 
 class ControlsView : public wxScrolledWindow {
 public:
@@ -12,6 +13,12 @@ public:
     wxTextCtrl* input_view_y;
 
     wxFlexGridSizer* sizer_main;
+
+private:
+    Settings_Plotter settings_plotter;
+
+public:
+    Settings_Plotter get_settings_plotter();
 
 private:
     void init_elements();
