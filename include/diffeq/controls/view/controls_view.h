@@ -15,7 +15,7 @@ public:
     wxFlexGridSizer* sizer_main;
 
 public:
-    void construct_plotter_settings(Settings_Plotter& settings_plotter);
+    void construct_plotter_settings(Settings_Plotter* settings_plotter);
     void update_values(Settings_Plotter settings_plotter);
 
 private:

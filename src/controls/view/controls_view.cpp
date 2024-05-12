@@ -35,8 +35,18 @@ void ControlsView::init_sizers() {
     SetScrollRate(5, 5);
 }
 
-void ControlsView::construct_plotter_settings(Settings_Plotter& settings_plotter) {
+void ControlsView::construct_plotter_settings(Settings_Plotter* settings_plotter) {
+    *settings_plotter = Settings_Plotter();
 
+    try { settings_plotter->view_x = std::stod(input_view_x->GetValue().ToStdString()); }
+    catch (...) {
+        // TODO Outline textctrl red or similar
+    }
+
+    try { settings_plotter->view_y = std::stod(input_view_y->GetValue().ToStdString()); }
+    catch (...) {
+        // TODO Outline textctrl red or similar
+    }
 }
 
 void ControlsView::update_values(Settings_Plotter settings_plotter) {
