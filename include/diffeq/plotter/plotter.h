@@ -56,6 +56,8 @@ private:
     void handle_zoom_x(wxMouseEvent& evt);
     void handle_zoom_y(wxMouseEvent& evt);
     void handle_move_x(wxMouseEvent& evt);
+
+    void update_control_settings();
 };
 
 #endif

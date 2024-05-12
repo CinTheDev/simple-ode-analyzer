@@ -58,7 +58,12 @@ void Plotter::on_key_pressed(wxKeyEvent& evt) {
 }
 
 void Plotter::on_mouse_leftclick(wxMouseEvent& evt) {
+    SetFocus();
+    
+    if (shortcut_state.active_shortcut == ActiveShortcut::FREE) return;
+
     shortcut_state.active_shortcut = ActiveShortcut::FREE;
+    update_control_settings();
     paintNow();
 }
 
@@ -138,10 +143,10 @@ void Plotter::render_markings(wxDC& dc) {
     int n_lines_x = 15;
     double x_step = round_to_nice_number(settings.view_x / (double)n_lines_x);
 
-    for (int i = 1; i <= n_lines_x; i++) {
+    for (int i = 0; i < n_lines_x; i++) {
         // Vertical lines
-        int index = i - (int)ceil(settings.view_start_x / x_step);
-        double x_relative = (x_step * index + settings.view_start_x) / settings.view_x;
+        int index = i + (int)ceil(settings.view_start_x / x_step);
+        double x_relative = (x_step * index - settings.view_start_x) / settings.view_x;
         double x_pixel = x_relative * (width - axis_offset) + axis_offset;
 
         wxPoint upper = wxPoint(x_pixel, 0);
@@ -210,7 +215,7 @@ void Plotter::render_function(wxDC& dc) {
     wxPoint test_points_triangle[resolution];
 
     for (int i = 0; i < resolution; i++) {
-        double x = ((double)i * settings.step_x + settings.view_start_x) / settings.view_x;
+        double x = ((double)i * settings.step_x - settings.view_start_x) / settings.view_x;
         double x_pixel = x * (width - axis_offset) + axis_offset;
         double y_harmonic = values_harmonic[i] / settings.view_y;
         double y_triangle = values_triangle[i] / settings.view_y;
@@ -282,9 +287,16 @@ void Plotter::handle_zoom_y(wxMouseEvent& evt) {
 void Plotter::handle_move_x(wxMouseEvent& evt) {
     int width, height;
     GetClientSize(&width, &height);
-    int mouse_delta_x = evt.GetPosition().x - shortcut_state.mouse_initial.x;
+    int mouse_delta_x = shortcut_state.mouse_initial.x - evt.GetPosition().x;
     double mouse_relative_x = ((double)mouse_delta_x / (double)width) * settings.view_x;
 
     settings.view_start_x = shortcut_state.settings_initial.view_start_x + mouse_relative_x;
     paintNow();
+}
+
+void Plotter::update_control_settings() {
+    SettingsPlotterEvent settings_event = SettingsPlotterEvent(PLOTTER_GRAPHICS_UPDATE, GetId(), settings);
+    settings_event.SetEventObject(this);
+    settings_event.ResumePropagation(__INT_MAX__);
+    ProcessEvent(settings_event);
 }
