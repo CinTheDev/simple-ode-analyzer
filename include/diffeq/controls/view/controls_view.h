@@ -12,6 +12,8 @@ public:
     wxTextCtrl* input_view_x;
     wxTextCtrl* input_view_y;
 
+    wxTextCtrl* input_offset_x;
+
     wxFlexGridSizer* sizer_main;
 
 public:

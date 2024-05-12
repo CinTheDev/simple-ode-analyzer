@@ -13,6 +13,7 @@ ControlsView::~ControlsView() { }
 void ControlsView::init_elements() {
     input_view_x = new wxTextCtrl(this, wxID_ANY, "view x");
     input_view_y = new wxTextCtrl(this, wxID_ANY, "view y");
+    input_offset_x = new wxTextCtrl(this, wxID_ANY, "offset x");
 
     Settings_Plotter default_settings = Settings_Plotter();
     update_values(default_settings);
@@ -32,6 +33,10 @@ void ControlsView::init_sizers() {
     sizer_main->Add(temp_ptr_label);
     sizer_main->Add(input_view_y);
 
+    temp_ptr_label = new wxStaticText(this, wxID_ANY, "X start value");
+    sizer_main->Add(temp_ptr_label);
+    sizer_main->Add(input_offset_x);
+
     SetSizer(sizer_main);
 
     FitInside();
@@ -50,13 +55,17 @@ void ControlsView::construct_plotter_settings(Settings_Plotter* settings_plotter
     catch (...) {
         // TODO Outline textctrl red or similar
     }
+
+    try { settings_plotter->view_start_x = std::stod(input_offset_x->GetValue().ToStdString()); }
+    catch (...) {
+
+    }
 }
 
 void ControlsView::update_values(Settings_Plotter settings_plotter) {
     input_view_x->ChangeValue(std::to_string(settings_plotter.view_x));
     input_view_y->ChangeValue(std::to_string(settings_plotter.view_y));
-
-    // TODO: update other fields as well
+    input_offset_x->ChangeValue(std::to_string(settings_plotter.view_start_x));
 }
 
 void ControlsView::on_text_input(wxEvent& evt) {
