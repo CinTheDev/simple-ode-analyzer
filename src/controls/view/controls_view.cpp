@@ -61,9 +61,9 @@ void ControlsView::construct_plotter_settings(Settings_Plotter* settings_plotter
 }
 
 void ControlsView::update_values(Settings_Plotter settings_plotter) {
-    input_view_x->ChangeValue(std::to_string(settings_plotter.view_x));
-    input_view_y->ChangeValue(std::to_string(settings_plotter.view_y));
-    input_offset_x->ChangeValue(std::to_string(settings_plotter.view_start_x));
+    input_view_x->ChangeValue(double_to_string(settings_plotter.view_x));
+    input_view_y->ChangeValue(double_to_string(settings_plotter.view_y));
+    input_offset_x->ChangeValue(double_to_string(settings_plotter.view_start_x));
     input_axis_offset->ChangeValue(std::to_string(settings_plotter.axis_offset));
 }
 
@@ -104,4 +104,12 @@ int ControlsView::get_input_int(wxTextCtrl* input_field, wxStaticText* label) {
     }
 
     return val;
+}
+
+wxString ControlsView::double_to_string(double val) {
+    std::string string_val = std::to_string(val);
+    string_val.erase(string_val.find_last_not_of('0') + 1, std::string::npos);
+    string_val.erase(string_val.find_last_not_of('.') + 1, std::string::npos);
+
+    return wxString(string_val);
 }

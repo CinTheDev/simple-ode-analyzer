@@ -32,6 +32,8 @@ private:
     double get_input_double(wxTextCtrl* input_field, wxStaticText* label);
     int get_input_int(wxTextCtrl* input_field, wxStaticText* label);
 
+    wxString double_to_string(double val);
+
     void init_elements();
     void init_sizers();
 };
