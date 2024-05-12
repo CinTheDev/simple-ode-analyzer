@@ -3,8 +3,10 @@
 
 #include <wx/wx.h>
 #include "settings.h"
+#include "controls_view.h"
+#include "controls_ode.h"
 
-class Controls : public wxScrolledWindow {
+class Controls : public wxPanel {
 public:
     Controls(wxWindow* parent);
     ~Controls();
@@ -12,10 +14,13 @@ public:
     Settings_Plotter get_settings_plotter();
 
 public:
-    wxTextCtrl* input_view_x;
-    wxTextCtrl* input_view_y;
+    //wxTextCtrl* input_view_x;
+    //wxTextCtrl* input_view_y;
+    ControlsODE* controls_ode;
+    ControlsView* controls_view;
 
-    wxFlexGridSizer* sizer_main;
+    //wxFlexGridSizer* sizer_main;
+    wxBoxSizer* sizer_main;
 
 private:
     Settings_Plotter settings_plotter;
@@ -24,8 +29,8 @@ private:
     void init_elements();
     void init_sizers();
     void init_settings_plotter();
-    void update_settings_plotter();
-    void on_controls_plotter_changed(wxEvent& evt);
+    //void update_settings_plotter();
+    //void on_controls_plotter_changed(wxEvent& evt);
 };
 
 #endif
