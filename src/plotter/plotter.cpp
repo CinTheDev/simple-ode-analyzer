@@ -300,3 +300,11 @@ void Plotter::update_control_settings() {
     settings_event.ResumePropagation(__INT_MAX__);
     ProcessEvent(settings_event);
 }
+
+wxString Plotter::double_truncate(double val) {
+    std::string string_val = std::to_string(val);
+    string_val.erase(string_val.find_last_not_of('0') + 1, std::string::npos);
+    string_val.erase(string_val.find_last_not_of('.') + 1, std::string::npos);
+
+    return wxString(string_val);
+}

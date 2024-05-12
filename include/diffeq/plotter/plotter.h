@@ -58,6 +58,7 @@ private:
     void handle_move_x(wxMouseEvent& evt);
 
     void update_control_settings();
+    wxString double_truncate(double val);
 };
 
 #endif
