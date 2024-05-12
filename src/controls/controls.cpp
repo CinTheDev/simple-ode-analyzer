@@ -36,8 +36,8 @@ void Controls::init_sizers() {
     */
    sizer_main = new wxBoxSizer(wxHORIZONTAL);
 
-   sizer_main->Add(controls_ode, wxEXPAND);
-   sizer_main->Add(controls_view, wxEXPAND);
+   sizer_main->Add(controls_ode, 2, wxEXPAND);
+   sizer_main->Add(controls_view, 1, wxEXPAND);
 
    SetSizer(sizer_main);
 }
