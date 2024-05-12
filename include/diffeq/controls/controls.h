@@ -14,12 +14,9 @@ public:
     Settings_Plotter get_settings_plotter();
 
 public:
-    //wxTextCtrl* input_view_x;
-    //wxTextCtrl* input_view_y;
     ControlsODE* controls_ode;
     ControlsView* controls_view;
 
-    //wxFlexGridSizer* sizer_main;
     wxBoxSizer* sizer_main;
 
 private:
@@ -29,8 +26,6 @@ private:
     void init_elements();
     void init_sizers();
     void init_settings_plotter();
-    //void update_settings_plotter();
-    //void on_controls_plotter_changed(wxEvent& evt);
 };
 
 #endif
