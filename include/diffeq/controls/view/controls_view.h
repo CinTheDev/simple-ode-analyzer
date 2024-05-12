@@ -13,6 +13,8 @@ public:
     wxTextCtrl* input_view_y;
 
     wxTextCtrl* input_offset_x;
+    
+    wxTextCtrl* input_axis_offset;
 
     wxFlexGridSizer* sizer_main;
 

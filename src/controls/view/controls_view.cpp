@@ -14,6 +14,7 @@ void ControlsView::init_elements() {
     input_view_x = new wxTextCtrl(this, wxID_ANY, "view x");
     input_view_y = new wxTextCtrl(this, wxID_ANY, "view y");
     input_offset_x = new wxTextCtrl(this, wxID_ANY, "offset x");
+    input_axis_offset = new wxTextCtrl(this, wxID_ANY, "offset axis");
 
     Settings_Plotter default_settings = Settings_Plotter();
     update_values(default_settings);
@@ -36,6 +37,10 @@ void ControlsView::init_sizers() {
     temp_ptr_label = new wxStaticText(this, wxID_ANY, "X start value");
     sizer_main->Add(temp_ptr_label);
     sizer_main->Add(input_offset_x);
+
+    temp_ptr_label = new wxStaticText(this, wxID_ANY, "Axis offset");
+    sizer_main->Add(temp_ptr_label);
+    sizer_main->Add(input_axis_offset);
 
     SetSizer(sizer_main);
 
@@ -60,12 +65,18 @@ void ControlsView::construct_plotter_settings(Settings_Plotter* settings_plotter
     catch (...) {
 
     }
+
+    try { settings_plotter->axis_offset = std::stoi(input_axis_offset->GetValue().ToStdString()); }
+    catch (...) {
+        
+    }
 }
 
 void ControlsView::update_values(Settings_Plotter settings_plotter) {
     input_view_x->ChangeValue(std::to_string(settings_plotter.view_x));
     input_view_y->ChangeValue(std::to_string(settings_plotter.view_y));
     input_offset_x->ChangeValue(std::to_string(settings_plotter.view_start_x));
+    input_axis_offset->ChangeValue(std::to_string(settings_plotter.axis_offset));
 }
 
 void ControlsView::on_text_input(wxEvent& evt) {
