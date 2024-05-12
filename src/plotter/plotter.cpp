@@ -140,7 +140,7 @@ void Plotter::render_markings(wxDC& dc) {
     wxSize text_size = wxSize(axis_offset, 30);
 
     // x-Axis
-    int n_lines_x = 15;
+    int n_lines_x = 17;
     double x_step = round_to_nice_number(settings.view_x / (double)n_lines_x);
 
     for (int i = 0; i < n_lines_x; i++) {
@@ -164,7 +164,7 @@ void Plotter::render_markings(wxDC& dc) {
     }
 
     // y-Axis
-    int n_lines_y = 5;
+    int n_lines_y = 8;
     double y_step = round_to_nice_number(settings.view_y / (double)n_lines_y);
 
     for (int i = 1; i <= n_lines_y; i++) {
