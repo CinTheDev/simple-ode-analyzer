@@ -36,6 +36,6 @@ void ControlsView::init_sizers() {
     SetScrollRate(5, 5);
 }
 
-void ControlsView::get_settings_plotter(Settings_Plotter& settings_plotter) {
-    
+void ControlsView::construct_plotter_settings(Settings_Plotter& settings_plotter) {
+
 }
