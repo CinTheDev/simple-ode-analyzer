@@ -24,5 +24,5 @@ void Controls::init_sizers() {
 }
 
 void Controls::on_plotter_update(SettingsPlotterEvent& evt) {
-    printf("Plotter event received.\n");
+    controls_view->update_values(evt.get_settings());
 }
