@@ -2,7 +2,6 @@
 #define DIFFEQ_CONTROLS
 
 #include <wx/wx.h>
-#include "settings.h"
 #include "controls_view.h"
 #include "controls_ode.h"
 
@@ -11,8 +10,6 @@ public:
     Controls(wxWindow* parent);
     ~Controls();
 
-    Settings_Plotter get_settings_plotter();
-
 public:
     ControlsODE* controls_ode;
     ControlsView* controls_view;
@@ -20,12 +17,8 @@ public:
     wxBoxSizer* sizer_main;
 
 private:
-    Settings_Plotter settings_plotter;
-
-private:
     void init_elements();
     void init_sizers();
-    void init_settings_plotter();
 };
 
 #endif

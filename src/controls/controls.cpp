@@ -2,7 +2,6 @@
 #include "events.h"
 
 Controls::Controls(wxWindow* parent) : wxPanel(parent) {
-    init_settings_plotter();
     init_elements();
     init_sizers();
 }
@@ -23,12 +22,4 @@ void Controls::init_sizers() {
    sizer_main->Add(controls_view, 1, wxEXPAND);
 
    SetSizer(sizer_main);
-}
-
-Settings_Plotter Controls::get_settings_plotter() {
-    return settings_plotter;
-}
-
-void Controls::init_settings_plotter() {
-    settings_plotter = Settings_Plotter();
 }
