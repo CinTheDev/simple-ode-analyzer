@@ -65,5 +65,6 @@ void ControlsView::on_text_input(wxEvent& evt) {
 
     SettingsPlotterEvent settings_plotter_event = SettingsPlotterEvent(SETTINGS_PLOTTER_UPDATE, GetId(), settings_plotter);
     settings_plotter_event.SetEventObject(this);
+    settings_plotter_event.ResumePropagation(__INT_MAX__);
     ProcessEvent(settings_plotter_event);
 }
