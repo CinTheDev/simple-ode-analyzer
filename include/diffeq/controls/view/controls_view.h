@@ -18,6 +18,8 @@ public:
     void construct_plotter_settings(Settings_Plotter* settings_plotter);
     void update_values(Settings_Plotter settings_plotter);
 
+    void on_text_input(wxEvent& evt);
+
 private:
     void init_elements();
     void init_sizers();

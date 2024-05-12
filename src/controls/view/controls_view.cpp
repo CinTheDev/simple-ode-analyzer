@@ -3,6 +3,8 @@
 ControlsView::ControlsView(wxWindow* parent) : wxScrolledWindow(parent) {
     init_elements();
     init_sizers();
+
+    Bind(wxEVT_TEXT, &ControlsView::on_text_input, this);
 }
 
 ControlsView::~ControlsView() { }
@@ -54,4 +56,8 @@ void ControlsView::update_values(Settings_Plotter settings_plotter) {
     input_view_y->SetValue(std::to_string(settings_plotter.view_y));
 
     // TODO: update other fields as well
+}
+
+void ControlsView::on_text_input(wxEvent& evt) {
+    printf("Yeah what's up\n");
 }
