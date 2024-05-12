@@ -14,6 +14,7 @@ void ControlsView::init_elements() {
 
 void ControlsView::init_sizers() {
     sizer_main = new wxFlexGridSizer(2, 5, 5);
+    sizer_main->AddGrowableCol(0, 1);
 
     sizer_main->Add(new wxStaticText(this, wxID_ANY, "Visible X space"));
     sizer_main->Add(input_view_x);
