@@ -16,6 +16,7 @@ public:
 
 public:
     void construct_plotter_settings(Settings_Plotter& settings_plotter);
+    void update_values(Settings_Plotter settings_plotter);
 
 private:
     void init_elements();
