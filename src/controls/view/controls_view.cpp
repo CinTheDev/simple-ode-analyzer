@@ -81,10 +81,11 @@ double ControlsView::get_input_double(wxTextCtrl* input_field, wxStaticText* lab
     double val;
     try {
         val = std::stod(input_field->GetValue().ToStdString());
+        label->SetForegroundColour(*wxWHITE);
     }
     catch (...) {
         val = 1.0;
-        // TODO Outline textctrl red or similar
+        label->SetForegroundColour(*wxRED);
     }
 
     return val;
@@ -95,10 +96,11 @@ int ControlsView::get_input_int(wxTextCtrl* input_field, wxStaticText* label) {
 
     try {
         val = std::stoi(input_field->GetValue().ToStdString());
+        label->SetForegroundColour(*wxWHITE);
     }
     catch (...) {
         val = 0;
-        // TODO Outline textctrl red or similar
+        label->SetForegroundColour(*wxRED);
     }
 
     return val;
