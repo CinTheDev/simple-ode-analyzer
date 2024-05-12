@@ -16,6 +16,7 @@ public:
 
     wxTextCtrl* input_axis_offset;
 
+    wxStaticBoxSizer* sizer_main;
     wxFlexGridSizer* sizer_grid;
 
 public:

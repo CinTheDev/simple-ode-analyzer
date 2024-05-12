@@ -42,7 +42,10 @@ void ControlsView::init_sizers() {
     sizer_grid->Add(temp_ptr_label);
     sizer_grid->Add(input_axis_offset);
 
-    SetSizer(sizer_grid);
+    sizer_main = new wxStaticBoxSizer(wxVERTICAL, this, "View");
+    sizer_main->Add(sizer_grid, 1, wxEXPAND);
+
+    SetSizer(sizer_main);
 
     FitInside();
     SetScrollRate(5, 5);
