@@ -43,7 +43,7 @@ void ControlsView::init_sizers() {
     sizer_grid->Add(input_axis_offset);
 
     sizer_main = new wxStaticBoxSizer(wxVERTICAL, this, "View");
-    sizer_main->Add(sizer_grid, 1, wxEXPAND);
+    sizer_main->Add(sizer_grid, 1, wxEXPAND | wxALL, 10);
 
     SetSizer(sizer_main);
 
