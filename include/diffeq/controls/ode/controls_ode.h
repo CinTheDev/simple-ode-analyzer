@@ -3,4 +3,10 @@
 
 #include <wx/wx.h>
 
+class ControlsODE : public wxPanel {
+public:
+    ControlsODE(wxWindow* parent);
+    ~ControlsODE();
+};
+
 #endif
