@@ -1,5 +1,4 @@
 #include "controls.h"
-#include "events.h"
 
 Controls::Controls(wxWindow* parent) : wxPanel(parent) {
     init_elements();
@@ -22,4 +21,8 @@ void Controls::init_sizers() {
    sizer_main->Add(controls_view, 1, wxEXPAND);
 
    SetSizer(sizer_main);
+}
+
+void Controls::on_plotter_update(SettingsPlotterEvent& evt) {
+    printf("Plotter event received.\n");
 }

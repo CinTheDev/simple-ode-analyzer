@@ -12,8 +12,5 @@ target_link_libraries(controls PUBLIC
     ${wxWidgets_LIBRARIES}
     controls_view
     controls_ode
-)
-
-target_link_libraries(controls PRIVATE
     custom_events
 )
