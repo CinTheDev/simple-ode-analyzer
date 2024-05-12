@@ -1,3 +1,6 @@
+add_subdirectory(view)
+add_subdirectory(ode)
+
 add_library(controls STATIC controls.cpp)
 
 target_include_directories(controls PUBLIC
@@ -7,6 +10,8 @@ target_include_directories(controls PUBLIC
 
 target_link_libraries(controls PUBLIC
     ${wxWidgets_LIBRARIES}
+    controls_view
+    controls_ode
 )
 
 target_link_libraries(controls PRIVATE
