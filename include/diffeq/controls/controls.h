@@ -12,7 +12,6 @@ public:
     Settings_Plotter get_settings_plotter();
 
 public:
-    wxTextCtrl* input_step_x;
     wxTextCtrl* input_view_x;
     wxTextCtrl* input_view_y;
 
