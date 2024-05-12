@@ -54,25 +54,10 @@ void ControlsView::init_sizers() {
 void ControlsView::construct_plotter_settings(Settings_Plotter* settings_plotter) {
     *settings_plotter = Settings_Plotter();
 
-    try { settings_plotter->view_x = std::stod(input_view_x->GetValue().ToStdString()); }
-    catch (...) {
-        // TODO Outline textctrl red or similar
-    }
-
-    try { settings_plotter->view_y = std::stod(input_view_y->GetValue().ToStdString()); }
-    catch (...) {
-        // TODO Outline textctrl red or similar
-    }
-
-    try { settings_plotter->view_start_x = std::stod(input_offset_x->GetValue().ToStdString()); }
-    catch (...) {
-
-    }
-
-    try { settings_plotter->axis_offset = std::stoi(input_axis_offset->GetValue().ToStdString()); }
-    catch (...) {
-
-    }
+    settings_plotter->view_x = get_input_double(input_view_x, label_view_x);
+    settings_plotter->view_y = get_input_double(input_view_y, label_view_y);
+    settings_plotter->view_start_x = get_input_double(input_offset_x, label_offset_x);
+    settings_plotter->axis_offset = get_input_int(input_axis_offset, label_axis_offset);
 }
 
 void ControlsView::update_values(Settings_Plotter settings_plotter) {
@@ -93,9 +78,28 @@ void ControlsView::on_text_input(wxEvent& evt) {
 }
 
 double ControlsView::get_input_double(wxTextCtrl* input_field, wxStaticText* label) {
+    double val;
+    try {
+        val = std::stod(input_field->GetValue().ToStdString());
+    }
+    catch (...) {
+        val = 1.0;
+        // TODO Outline textctrl red or similar
+    }
 
+    return val;
 }
 
 int ControlsView::get_input_int(wxTextCtrl* input_field, wxStaticText* label) {
-    
+    int val;
+
+    try {
+        val = std::stoi(input_field->GetValue().ToStdString());
+    }
+    catch (...) {
+        val = 0;
+        // TODO Outline textctrl red or similar
+    }
+
+    return val;
 }
