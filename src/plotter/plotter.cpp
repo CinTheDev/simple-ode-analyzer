@@ -288,3 +288,10 @@ void Plotter::handle_move_x(wxMouseEvent& evt) {
     settings.view_start_x = shortcut_state.settings_initial.view_start_x + mouse_relative_x;
     paintNow();
 }
+
+void Plotter::update_control_settings() {
+    SettingsPlotterEvent settings_event = SettingsPlotterEvent(PLOTTER_GRAPHICS_UPDATE, GetId(), settings);
+    settings_event.SetEventObject(this);
+    settings_event.ResumePropagation(__INT_MAX__);
+    ProcessEvent(settings_event);
+}

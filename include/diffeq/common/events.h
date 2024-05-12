@@ -18,9 +18,11 @@ private:
 };
 
 wxDECLARE_EVENT(SETTINGS_PLOTTER_UPDATE, SettingsPlotterEvent);
+wxDECLARE_EVENT(PLOTTER_GRAPHICS_UPDATE, SettingsPlotterEvent);
 
 #define SettingsPlotterEventHandler(func) (&func)
 
 #define EVT_SETTINGS_PLOTTER(id, func) wx__DECLARE_EVT1(SETTINGS_PLOTTER_UPDATE, id, &func)
+#define EVT_PLOTTER_GRAPHICS(id, func) wx__DECLARE_EVT1(PLOTTER_GRAPHICS_UPDATE, id, &func)
 
 #endif
