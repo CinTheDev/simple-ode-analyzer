@@ -2,6 +2,7 @@
 #define CONTROLS_ODE
 
 #include <wx/wx.h>
+#include "ode.h"
 
 class ControlsODE : public wxPanel {
 public:
@@ -10,6 +11,9 @@ public:
 
     wxButton* test_button;
     wxBoxSizer* sizer_main;
+
+private:
+    ODE ode = ODE(1);
 };
 
 #endif
