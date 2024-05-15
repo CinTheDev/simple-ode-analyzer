@@ -22,7 +22,21 @@ wxDECLARE_EVENT(PLOTTER_GRAPHICS_UPDATE, SettingsPlotterEvent);
 
 #define SettingsPlotterEventHandler(func) (&func)
 
-#define EVT_SETTINGS_PLOTTER(id, func) wx__DECLARE_EVT1(SETTINGS_PLOTTER_UPDATE, id, &func)
-#define EVT_PLOTTER_GRAPHICS(id, func) wx__DECLARE_EVT1(PLOTTER_GRAPHICS_UPDATE, id, &func)
+class OdePointerEvent: public wxEvent {
+public:
+    OdePointerEvent(wxEventType event_type, int id, double* result_pointer);
+    ~OdePointerEvent();
+
+    virtual wxEvent* Clone() const;
+
+    double* get_result_pointer();
+
+private:
+    double* result_pointer;
+};
+
+wxDECLARE_EVENT(EVT_ODE_POINTER, OdePointerEvent);
+
+#define OdePointerEventHandler(func) (&func)
 
 #endif

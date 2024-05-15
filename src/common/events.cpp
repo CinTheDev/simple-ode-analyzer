@@ -16,3 +16,19 @@ wxEvent* SettingsPlotterEvent::Clone() const {
 Settings_Plotter SettingsPlotterEvent::get_settings() {
     return settings_plotter;
 }
+
+wxDEFINE_EVENT(EVT_ODE_POINTER, OdePointerEvent);
+
+OdePointerEvent::OdePointerEvent(wxEventType event_type, int id, double* result_pointer) : wxEvent(id, event_type) {
+    this->result_pointer = result_pointer;
+}
+
+OdePointerEvent::~OdePointerEvent() { }
+
+wxEvent* OdePointerEvent::Clone() const {
+    return new OdePointerEvent(*this);
+}
+
+double* OdePointerEvent::get_result_pointer() {
+    return result_pointer;
+}
