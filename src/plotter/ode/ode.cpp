@@ -1,6 +1,30 @@
 #include "ode.h"
 #include <math.h>
 
+ODE::ODE(size_t length) {
+    set_length(length);
+}
+
+ODE::~ODE() {
+    delete[] result;
+}
+
+size_t ODE::get_length() {
+    return result_length;
+}
+
+void ODE::set_length(size_t length) {
+    delete[] result;
+    result = new double[length];
+    result_length = length;
+}
+
+void ODE::clear_result() {
+    for (int i = 0; i < result_length; i++) {
+        result[i] = 0.0;
+    }
+}
+
 double* test_harmonic(int sample_num, int subdivision, double step) {
     double* func_array = new double[sample_num];
 
