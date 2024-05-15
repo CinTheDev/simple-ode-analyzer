@@ -12,6 +12,8 @@ public:
     wxButton* test_button;
     wxBoxSizer* sizer_main;
 
+    void SendResults();
+
 private:
     ODE ode = ODE(1);
 };
