@@ -3,7 +3,7 @@
 add_library(ode ode.cpp)
 
 target_include_directories(ode PUBLIC
-    ${CMAKE_SOURCE_DIR}/include/diffeq/plotter/ode
+    ${CMAKE_SOURCE_DIR}/include/diffeq/controls/ode
 )
 
 target_link_libraries(ode PRIVATE
