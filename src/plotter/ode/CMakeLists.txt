@@ -7,3 +7,5 @@ target_include_directories(ode PUBLIC
 target_link_libraries(ode PRIVATE
     m
 )
+
+add_subdirectory(ode_variants)
