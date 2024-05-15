@@ -1,5 +1,3 @@
-add_subdirectory(ode)
-
 add_library(plotter STATIC plotter.cpp)
 
 target_include_directories(plotter PUBLIC
