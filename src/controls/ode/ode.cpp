@@ -2,8 +2,7 @@
 #include <math.h>
 
 ODE::ODE(size_t length) {
-    result = new double[length];
-    result_length = length;
+    create_array(length);
 }
 
 ODE::~ODE() {
@@ -16,8 +15,7 @@ size_t ODE::get_length() {
 
 void ODE::set_length(size_t length) {
     delete[] result;
-    result = new double[length];
-    result_length = length;
+    create_array(length);
 }
 
 void ODE::clear_result() {
@@ -28,6 +26,11 @@ void ODE::clear_result() {
 
 double* ODE::get_result() {
     return result;
+}
+
+void ODE::create_array(size_t length) {
+    result = new double[length];
+    result_length = length;
 }
 
 void ODE::calculate() { }

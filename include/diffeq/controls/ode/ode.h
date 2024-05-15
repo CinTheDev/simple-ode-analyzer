@@ -19,6 +19,9 @@ public:
 protected:
     double* result;
     size_t result_length;
+
+private:
+    void create_array(size_t length);
 };
 
 double* test_harmonic(int sample_num, int subdivision, double step);
