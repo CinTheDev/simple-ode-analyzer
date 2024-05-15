@@ -26,6 +26,8 @@ void ODE::clear_result() {
     }
 }
 
+void ODE::calculate() { }
+
 double* test_harmonic(int sample_num, int subdivision, double step) {
     double* func_array = new double[sample_num];
 
