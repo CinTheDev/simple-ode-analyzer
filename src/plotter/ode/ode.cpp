@@ -6,6 +6,7 @@ ODE::ODE(size_t length) {
 }
 
 ODE::~ODE() {
+    printf("Destruction yeah\n.");
     delete[] result;
 }
 
