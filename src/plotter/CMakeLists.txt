@@ -13,4 +13,5 @@ target_link_libraries(plotter PUBLIC
 
 target_link_libraries(plotter PRIVATE
     ode
+    ode_harmonic
 )

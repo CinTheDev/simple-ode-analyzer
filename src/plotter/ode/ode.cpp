@@ -1,5 +1,6 @@
 #include "ode.h"
 #include <math.h>
+#include "stdio.h"
 
 ODE::ODE(size_t length) {
     set_length(length);
