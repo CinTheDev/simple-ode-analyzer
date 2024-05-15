@@ -3,7 +3,8 @@
 #include "stdio.h"
 
 ODE::ODE(size_t length) {
-    set_length(length);
+    result = new double[length];
+    result_length = length;
 }
 
 ODE::~ODE() {
