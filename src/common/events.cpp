@@ -19,8 +19,9 @@ Settings_Plotter SettingsPlotterEvent::get_settings() {
 
 wxDEFINE_EVENT(EVT_ODE_POINTER, OdePointerEvent);
 
-OdePointerEvent::OdePointerEvent(wxEventType event_type, int id, double* result_pointer) : wxEvent(id, event_type) {
+OdePointerEvent::OdePointerEvent(wxEventType event_type, int id, double* result_pointer, size_t result_length) : wxEvent(id, event_type) {
     this->result_pointer = result_pointer;
+    this->result_length = result_length;
 }
 
 OdePointerEvent::~OdePointerEvent() { }
@@ -31,4 +32,8 @@ wxEvent* OdePointerEvent::Clone() const {
 
 double* OdePointerEvent::get_result_pointer() {
     return result_pointer;
+}
+
+size_t OdePointerEvent::get_result_length() {
+    return result_length;
 }

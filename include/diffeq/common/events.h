@@ -3,6 +3,7 @@
 
 #include <wx/wx.h>
 #include "settings.h"
+#include <cstddef>
 
 class SettingsPlotterEvent : public wxEvent {
 public:
@@ -24,15 +25,17 @@ wxDECLARE_EVENT(PLOTTER_GRAPHICS_UPDATE, SettingsPlotterEvent);
 
 class OdePointerEvent: public wxEvent {
 public:
-    OdePointerEvent(wxEventType event_type, int id, double* result_pointer);
+    OdePointerEvent(wxEventType event_type, int id, double* result_pointer, size_t result_length);
     ~OdePointerEvent();
 
     virtual wxEvent* Clone() const;
 
     double* get_result_pointer();
+    size_t get_result_length();
 
 private:
     double* result_pointer;
+    size_t result_length;
 };
 
 wxDECLARE_EVENT(EVT_ODE_POINTER, OdePointerEvent);
