@@ -7,6 +7,8 @@ class ODE_Harmonic : public ODE {
 public:
     ODE_Harmonic(size_t length);
     ~ODE_Harmonic();
+
+    void calculate();
 };
 
 #endif

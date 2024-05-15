@@ -13,7 +13,9 @@ public:
 
     void clear_result();
 
-private:
+    virtual void calculate();
+
+protected:
     double* result;
     size_t result_length;
 };
