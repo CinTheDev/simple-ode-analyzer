@@ -26,6 +26,10 @@ void ODE::clear_result() {
     }
 }
 
+double* ODE::get_result() {
+    return result;
+}
+
 void ODE::calculate() { }
 
 double* test_harmonic(int sample_num, int subdivision, double step) {

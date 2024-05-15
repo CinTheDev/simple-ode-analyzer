@@ -12,6 +12,7 @@ public:
     void set_length(size_t length);
 
     void clear_result();
+    double* get_result();
 
     virtual void calculate();
 
