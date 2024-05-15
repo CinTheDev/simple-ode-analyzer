@@ -15,9 +15,6 @@ END_EVENT_TABLE()
 
 Plotter::Plotter(wxWindow* parent) : wxPanel(parent, wxID_ANY) {
     settings = Settings_Plotter();
-
-    // Test
-    ODE_Harmonic yey(1);
 }
 
 Plotter::~Plotter() {

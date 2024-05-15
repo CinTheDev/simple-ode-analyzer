@@ -1,6 +1,5 @@
 #include "ode.h"
 #include <math.h>
-#include "stdio.h"
 
 ODE::ODE(size_t length) {
     result = new double[length];
@@ -8,7 +7,6 @@ ODE::ODE(size_t length) {
 }
 
 ODE::~ODE() {
-    printf("Destruction yeah\n.");
     delete[] result;
 }
 
