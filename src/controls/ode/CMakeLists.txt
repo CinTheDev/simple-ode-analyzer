@@ -22,4 +22,9 @@ target_include_directories(controls_ode PUBLIC
 
 target_link_libraries(controls_ode PUBLIC
     ${wxWidgets_LIBRARIES}
+    ode
+)
+
+target_link_libraries(controls_ode PRIVATE
+    ode_harmonic
 )
