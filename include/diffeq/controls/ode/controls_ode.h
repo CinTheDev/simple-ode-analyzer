@@ -15,7 +15,7 @@ public:
     void SendResults();
 
 private:
-    ODE ode = ODE(1);
+    ODE* ode;
 
     void on_test_button(wxCommandEvent& evt);
 };

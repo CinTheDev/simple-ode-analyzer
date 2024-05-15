@@ -6,6 +6,6 @@ ODE_Harmonic::~ODE_Harmonic() { }
 
 void ODE_Harmonic::calculate() {
     for (int i = 0; i < result_length; i++) {
-        result[i] = result_length / (i + 1);
+        result[i] = (double)i / (double)result_length;
     }
 }

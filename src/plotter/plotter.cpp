@@ -202,6 +202,8 @@ void Plotter::render_markings(wxDC& dc) {
 }
 
 void Plotter::render_function(wxDC& dc) {
+    if (function_values == nullptr) return;
+
     int axis_offset = settings.axis_offset;
 
     wxCoord width, height;
@@ -211,34 +213,32 @@ void Plotter::render_function(wxDC& dc) {
     wxPoint right = wxPoint(width, height / 2);
 
     // TODO: Dynamically change resolution to fill whole width
-    int resolution = 100;
+    //int resolution = 100;
 
-    /*
+    //double* values_harmonic = test_harmonic(resolution, 10, settings.step_x);
+    //double* values_triangle = test_function(resolution, 10, settings.step_x);
 
-    double* values_harmonic = test_harmonic(resolution, 10, settings.step_x);
-    double* values_triangle = test_function(resolution, 10, settings.step_x);
+    //wxPoint test_points_harmonic[resolution];
+    //wxPoint test_points_triangle[resolution];
+    wxPoint function_points[function_length];
 
-    wxPoint test_points_harmonic[resolution];
-    wxPoint test_points_triangle[resolution];
-
-    for (int i = 0; i < resolution; i++) {
+    for (int i = 0; i < function_length; i++) {
         double x = ((double)i * settings.step_x - settings.view_start_x) / settings.view_x;
         double x_pixel = x * (width - axis_offset) + axis_offset;
-        double y_harmonic = values_harmonic[i] / settings.view_y;
-        double y_triangle = values_triangle[i] / settings.view_y;
+        //double y_harmonic = values_harmonic[i] / settings.view_y;
+        //double y_triangle = values_triangle[i] / settings.view_y;
+        double y = function_values[i] / settings.view_y;
 
-        test_points_harmonic[i] = wxPoint(x_pixel, (0.5 - y_harmonic * 0.5) * height);
-        test_points_triangle[i] = wxPoint(x_pixel, (0.5 - y_triangle * 0.5) * height);
+        //test_points_harmonic[i] = wxPoint(x_pixel, (0.5 - y_harmonic * 0.5) * height);
+        //test_points_triangle[i] = wxPoint(x_pixel, (0.5 - y_triangle * 0.5) * height);
+        function_points[i] = wxPoint(x_pixel, (0.5 - y * 0.5) * height);
     }
 
-    dc.SetPen(*wxBLUE_PEN);
-    dc.DrawLines(resolution, test_points_harmonic);
+    //dc.SetPen(*wxBLUE_PEN);
+    //dc.DrawLines(resolution, test_points_harmonic);
     dc.SetPen(*wxRED_PEN);
-    dc.DrawLines(resolution, test_points_triangle);
-
-    delete[] values_harmonic;
-    delete[] values_triangle;
-    */
+    //dc.DrawLines(resolution, test_points_triangle);
+    dc.DrawLines(function_length, function_points);
 }
 
 double Plotter::round_to_nice_number(double val) {

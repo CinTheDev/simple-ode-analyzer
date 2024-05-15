@@ -10,18 +10,20 @@ ControlsODE::ControlsODE(wxWindow* parent) : wxPanel(parent) {
 
     SetSizer(sizer_main);
 
-    ode = ODE_Harmonic(10);
-    ode.calculate();
+    ode = new ODE_Harmonic(10);
+    ode->calculate();
 
     SendResults();
 
     Bind(wxEVT_BUTTON, &ControlsODE::on_test_button, this);
 }
 
-ControlsODE::~ControlsODE() { }
+ControlsODE::~ControlsODE() {
+    delete ode;
+}
 
 void ControlsODE::SendResults() {
-    OdePointerEvent event(EVT_ODE_POINTER, GetId(), ode.get_result(), ode.get_length());
+    OdePointerEvent event(EVT_ODE_POINTER, GetId(), ode->get_result(), ode->get_length());
     event.SetEventObject(this);
     event.ResumePropagation(__INT_MAX__);
     ProcessEvent(event);
