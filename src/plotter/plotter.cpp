@@ -1,7 +1,5 @@
 #include "plotter.h"
-#include "ode.h"
 #include <math.h>
-#include "ode_harmonic.h"
 
 BEGIN_EVENT_TABLE(Plotter, wxPanel)
 
@@ -209,6 +207,8 @@ void Plotter::render_function(wxDC& dc) {
     // TODO: Dynamically change resolution to fill whole width
     int resolution = 100;
 
+    /*
+
     double* values_harmonic = test_harmonic(resolution, 10, settings.step_x);
     double* values_triangle = test_function(resolution, 10, settings.step_x);
 
@@ -232,6 +232,7 @@ void Plotter::render_function(wxDC& dc) {
 
     delete[] values_harmonic;
     delete[] values_triangle;
+    */
 }
 
 double Plotter::round_to_nice_number(double val) {

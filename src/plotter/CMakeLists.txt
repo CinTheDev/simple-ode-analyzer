@@ -10,8 +10,3 @@ target_link_libraries(plotter PUBLIC
     ${wxWidgets_LIBRARIES}
     custom_events
 )
-
-target_link_libraries(plotter PRIVATE
-    ode
-    ode_harmonic
-)
