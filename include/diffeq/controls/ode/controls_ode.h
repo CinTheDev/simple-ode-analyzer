@@ -16,6 +16,8 @@ public:
 
 private:
     ODE ode = ODE(1);
+
+    void on_test_button(wxCommandEvent& evt);
 };
 
 #endif

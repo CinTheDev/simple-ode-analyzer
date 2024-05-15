@@ -1,5 +1,6 @@
 #include "plotter.h"
 #include <math.h>
+#include "stdio.h"
 
 BEGIN_EVENT_TABLE(Plotter, wxPanel)
 
@@ -25,6 +26,7 @@ void Plotter::on_settings_update(SettingsPlotterEvent& evt) {
 }
 
 void Plotter::on_function_update(OdePointerEvent& evt) {
+    printf("Event received\n");
     function_values = evt.get_result_pointer();
     function_length = evt.get_result_length();
     paintNow();
