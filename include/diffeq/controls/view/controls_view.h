@@ -23,7 +23,7 @@ public:
     wxFlexGridSizer* sizer_grid;
 
 public:
-    void construct_plotter_settings(Settings_Plotter* settings_plotter);
+    Settings_Plotter construct_plotter_settings();
     void update_values(Settings_Plotter settings_plotter);
 
     void on_text_input(wxEvent& evt);
