@@ -29,6 +29,11 @@ void ControlsODE::SendResults() {
     ProcessEvent(event);
 }
 
+void ControlsODE::construct_common_settings(Settings_Common* settings) {
+    // TODO: Implement custom values
+    settings->step_x = 0.01;
+}
+
 void ControlsODE::on_test_button(wxCommandEvent& evt) {
     SendResults();
 }

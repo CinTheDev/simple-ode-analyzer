@@ -3,6 +3,7 @@
 
 #include <wx/wx.h>
 #include "ode.h"
+#include "settings.h"
 
 class ControlsODE : public wxPanel {
 public:
@@ -13,6 +14,8 @@ public:
     wxBoxSizer* sizer_main;
 
     void SendResults();
+
+    void construct_common_settings(Settings_Common* settings);
 
 private:
     ODE* ode;
