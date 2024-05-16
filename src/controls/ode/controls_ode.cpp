@@ -10,7 +10,7 @@ ControlsODE::ControlsODE(wxWindow* parent) : wxPanel(parent) {
 
     SetSizer(sizer_main);
 
-    ode = new ODE_Harmonic(10, Settings_Common());
+    ode = new ODE_Harmonic(100, Settings_Common());
     ode->calculate();
 
     SendResults();
@@ -40,7 +40,7 @@ Settings_Common ControlsODE::construct_common_settings() {
     Settings_Common settings_common;
 
     // TODO: Implement custom values
-    settings_common.step_x = 0.1;
+    settings_common.step_x = 0.01;
 
     return settings_common;
 }
