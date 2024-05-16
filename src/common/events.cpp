@@ -1,5 +1,21 @@
 #include <events.h>
 
+wxDEFINE_EVENT(SETTINGS_COMMON_UPDATE, SettingsCommonEvent);
+
+SettingsCommonEvent::SettingsCommonEvent(wxEventType event_type, int id, Settings_Common settings_common) : wxEvent(id, event_type) {
+    this->settings_common = settings_common;
+}
+
+SettingsCommonEvent::~SettingsCommonEvent() { }
+
+wxEvent* SettingsCommonEvent::Clone() const {
+    return new SettingsCommonEvent(*this);
+}
+
+Settings_Common SettingsCommonEvent::get_settings() {
+    return settings_common;
+}
+
 wxDEFINE_EVENT(SETTINGS_PLOTTER_UPDATE, SettingsPlotterEvent);
 wxDEFINE_EVENT(PLOTTER_GRAPHICS_UPDATE, SettingsPlotterEvent);
 

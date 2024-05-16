@@ -5,6 +5,23 @@
 #include "settings.h"
 #include <cstddef>
 
+class SettingsCommonEvent: public wxEvent {
+public:
+    SettingsCommonEvent(wxEventType event_type, int id, Settings_Common settings_common);
+    ~SettingsCommonEvent();
+
+    virtual wxEvent* Clone() const;
+
+    Settings_Common get_settings();
+
+private:
+    Settings_Common settings_common;
+};
+
+wxDECLARE_EVENT(SETTINGS_COMMON_UPDATE, SettingsCommonEvent);
+
+#define SettingsCommonEventHandler(func) (&func)
+
 class SettingsPlotterEvent : public wxEvent {
 public:
     SettingsPlotterEvent(wxEventType event_type, int id, Settings_Plotter settings_plotter);
