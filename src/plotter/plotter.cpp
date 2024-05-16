@@ -220,7 +220,7 @@ void Plotter::render_function(wxDC& dc) {
     wxPoint function_points[function_length];
 
     for (int i = 0; i < function_length; i++) {
-        double x = ((double)i * settings.step_x - settings.view_start_x) / settings.view_x;
+        double x = ((double)i * settings_common.step_x - settings.view_start_x) / settings.view_x;
         double x_pixel = x * (width - axis_offset) + axis_offset;
         double y = function_values[i] / settings.view_y;
 
