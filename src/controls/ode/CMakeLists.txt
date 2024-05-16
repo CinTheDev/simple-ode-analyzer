@@ -4,8 +4,10 @@ add_library(ode ode.cpp)
 
 target_include_directories(ode PUBLIC
     ${CMAKE_SOURCE_DIR}/include/diffeq/controls/ode
+    ${CMAKE_SOURCE_DIR}/include/diffeq/common
 )
 
+# TODO: Remove this
 target_link_libraries(ode PRIVATE
     m
 )

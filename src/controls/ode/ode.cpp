@@ -1,8 +1,9 @@
 #include "ode.h"
 #include <math.h>
 
-ODE::ODE(size_t length) {
+ODE::ODE(size_t length, Settings_Common settings_common) {
     create_array(length);
+    this->settings_common = settings_common;
 }
 
 ODE::~ODE() {

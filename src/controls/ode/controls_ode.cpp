@@ -10,7 +10,7 @@ ControlsODE::ControlsODE(wxWindow* parent) : wxPanel(parent) {
 
     SetSizer(sizer_main);
 
-    ode = new ODE_Harmonic(10);
+    ode = new ODE_Harmonic(10, Settings_Common());
     ode->calculate();
 
     SendResults();
