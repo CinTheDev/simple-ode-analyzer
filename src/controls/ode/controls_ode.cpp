@@ -1,5 +1,6 @@
 #include "controls_ode.h"
 #include "ode_harmonic.h"
+#include "ode_v_oscillation.h"
 #include "events.h"
 
 ControlsODE::ControlsODE(wxWindow* parent) : wxPanel(parent) {
@@ -10,7 +11,7 @@ ControlsODE::ControlsODE(wxWindow* parent) : wxPanel(parent) {
 
     SetSizer(sizer_main);
 
-    ode = new ODE_Harmonic(100, Settings_Common());
+    ode = new ODE_V_Oscillation(100, Settings_Common());
     ode->calculate();
 
     SendResults();
