@@ -27,7 +27,4 @@ private:
     void create_array(size_t length);
 };
 
-double* test_harmonic(int sample_num, int subdivision, double step);
-double* test_function(int sample_num, int subdivision, double step);
-
 #endif

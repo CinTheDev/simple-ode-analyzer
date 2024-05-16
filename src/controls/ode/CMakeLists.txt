@@ -7,11 +7,6 @@ target_include_directories(ode PUBLIC
     ${CMAKE_SOURCE_DIR}/include/diffeq/common
 )
 
-# TODO: Remove this
-target_link_libraries(ode PRIVATE
-    m
-)
-
 add_subdirectory(ode_variants)
 
 # ODE CONTROLS
