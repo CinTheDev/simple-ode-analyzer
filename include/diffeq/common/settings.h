@@ -4,7 +4,7 @@
 struct Settings_Common {
 public:
     double step_x = 0.01;
-}
+};
 
 struct Settings_Plotter {
 public:
