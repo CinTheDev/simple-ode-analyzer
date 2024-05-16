@@ -30,18 +30,19 @@ void ControlsODE::SendResults() {
     ProcessEvent(evt_ode_pointer);
 
     // Step x
-    Settings_Common settings_common;
-    construct_common_settings(&settings_common);
-
-    SettingsCommonEvent evt_settings_common(SETTINGS_COMMON_UPDATE, GetId(), settings_common);
+    SettingsCommonEvent evt_settings_common(SETTINGS_COMMON_UPDATE, GetId(), construct_common_settings());
     evt_settings_common.SetEventObject(this);
     evt_settings_common.ResumePropagation(__INT_MAX__);
     ProcessEvent(evt_settings_common);
 }
 
-void ControlsODE::construct_common_settings(Settings_Common* settings) {
+Settings_Common ControlsODE::construct_common_settings() {
+    Settings_Common settings_common;
+
     // TODO: Implement custom values
-    settings->step_x = 0.1;
+    settings_common.step_x = 0.1;
+
+    return settings_common;
 }
 
 void ControlsODE::on_test_button(wxCommandEvent& evt) {

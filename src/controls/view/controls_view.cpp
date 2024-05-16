@@ -51,13 +51,15 @@ void ControlsView::init_sizers() {
     SetScrollRate(5, 5);
 }
 
-void ControlsView::construct_plotter_settings(Settings_Plotter* settings_plotter) {
-    *settings_plotter = Settings_Plotter();
+Settings_Plotter ControlsView::construct_plotter_settings() {
+    Settings_Plotter settings_plotter;
 
-    settings_plotter->view_x = get_input_double(input_view_x, label_view_x);
-    settings_plotter->view_y = get_input_double(input_view_y, label_view_y);
-    settings_plotter->view_start_x = get_input_double(input_offset_x, label_offset_x);
-    settings_plotter->axis_offset = get_input_int(input_axis_offset, label_axis_offset);
+    settings_plotter.view_x = get_input_double(input_view_x, label_view_x);
+    settings_plotter.view_y = get_input_double(input_view_y, label_view_y);
+    settings_plotter.view_start_x = get_input_double(input_offset_x, label_offset_x);
+    settings_plotter.axis_offset = get_input_int(input_axis_offset, label_axis_offset);
+
+    return settings_plotter;
 }
 
 void ControlsView::update_values(Settings_Plotter settings_plotter) {
@@ -68,10 +70,7 @@ void ControlsView::update_values(Settings_Plotter settings_plotter) {
 }
 
 void ControlsView::on_text_input(wxEvent& evt) {
-    Settings_Plotter settings_plotter;
-    construct_plotter_settings(&settings_plotter);
-
-    SettingsPlotterEvent settings_plotter_event = SettingsPlotterEvent(SETTINGS_PLOTTER_UPDATE, GetId(), settings_plotter);
+    SettingsPlotterEvent settings_plotter_event = SettingsPlotterEvent(SETTINGS_PLOTTER_UPDATE, GetId(), construct_plotter_settings());
     settings_plotter_event.SetEventObject(this);
     settings_plotter_event.ResumePropagation(__INT_MAX__);
     ProcessEvent(settings_plotter_event);

@@ -15,7 +15,7 @@ public:
 
     void SendResults();
 
-    void construct_common_settings(Settings_Common* settings);
+    Settings_Common construct_common_settings();
 
 private:
     ODE* ode;
