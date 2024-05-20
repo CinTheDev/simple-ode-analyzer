@@ -9,12 +9,28 @@ ControlsSpecialized::ControlsSpecialized(wxWindow* parent) : wxPanel(parent) {
     sizer_main->Add(sizer_grid);
 
     SetSizer(sizer_main);
+
+    wxString test_labels[] = { "First option", "Second option", "Third option" };
+    create_options(3, test_labels);
 }
 
-ControlsSpecialized::~ControlsSpecialized() { }
+ControlsSpecialized::~ControlsSpecialized() {
+    purge();
+}
 
-void ControlsSpecialized::create_options(size_t options, wxString* labels) {
+void ControlsSpecialized::create_options(size_t number, wxString* labels) {
+    purge();
 
+    this->labels = new wxStaticText*[number];
+    this->inputs = new wxTextCtrl*[number];
+
+    for (int i = 0; i < number; i++) {
+        this->labels[i] = new wxStaticText(this, wxID_ANY, labels[i]);
+        this->inputs[i] = new wxTextCtrl(this, wxID_ANY, labels[i]);
+
+        sizer_grid->Add(this->labels[i]);
+        sizer_grid->Add(this->inputs[i]);
+    }
 }
 
 void ControlsSpecialized::purge() {
