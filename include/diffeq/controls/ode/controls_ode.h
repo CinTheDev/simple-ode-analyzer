@@ -30,6 +30,9 @@ private:
     ODE* ode;
 
     void on_test_button(wxCommandEvent& evt);
+
+    void init_elements();
+    void init_sizers();
 };
 
 #endif

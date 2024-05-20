@@ -4,6 +4,8 @@
 #include "events.h"
 
 ControlsODE::ControlsODE(wxWindow* parent) : wxPanel(parent) {
+    init_elements();
+    init_sizers();
     //sizer_main = new wxBoxSizer(wxVERTICAL);
 
     //test_button = new wxButton(this, 12000, "Controls ODE");
@@ -48,4 +50,12 @@ Settings_Common ControlsODE::construct_common_settings() {
 
 void ControlsODE::on_test_button(wxCommandEvent& evt) {
     SendResults();
+}
+
+void ControlsODE::init_elements() {
+
+}
+
+void ControlsODE::init_sizers() {
+
 }
