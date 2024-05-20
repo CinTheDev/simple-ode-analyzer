@@ -5,7 +5,6 @@
 
 ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation controls") {
     init_elements();
-    init_sizers();
 
     ode = new ODE_V_Oscillation(100, Settings_Common());
     ode->calculate();
@@ -14,20 +13,19 @@ ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation con
 }
 
 void ControlsODE::init_elements() {
+    label_step_x = new wxStaticText(this, wxID_ANY, "Step along x");
+    label_subdivision = new wxStaticText(this, wxID_ANY, "Subdivisions between every point");
+
     input_step_x = new wxTextCtrl(this, wxID_ANY, "step x");
     input_subdivision = new wxTextCtrl(this, wxID_ANY, "subdivision");
 
-    // TODO: Put default values inside text fields
-}
-
-void ControlsODE::init_sizers() {
-    label_step_x = new wxStaticText(this, wxID_ANY, "Step along x");
     sizer_grid->Add(label_step_x);
     sizer_grid->Add(input_step_x);
 
-    label_subdivision = new wxStaticText(this, wxID_ANY, "Subdivisions between every point");
     sizer_grid->Add(label_subdivision);
     sizer_grid->Add(input_subdivision);
+
+    // TODO: Put default values inside text fields
 }
 
 ControlsODE::~ControlsODE() {

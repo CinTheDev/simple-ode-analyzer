@@ -25,7 +25,6 @@ private:
     ODE* ode;
 
     void init_elements();
-    void init_sizers();
 };
 
 #endif
