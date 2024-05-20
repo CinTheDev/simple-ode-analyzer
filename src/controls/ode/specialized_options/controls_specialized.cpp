@@ -25,5 +25,5 @@ void ControlsSpecialized::create_options(size_t number, wxString* labels) {
 }
 
 void ControlsSpecialized::purge() {
-
+    // TODO
 }
