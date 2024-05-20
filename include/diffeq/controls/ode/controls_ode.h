@@ -13,9 +13,11 @@ public:
 
     wxButton* button_calculate;
 
+    wxTextCtrl* input_amount;
     wxTextCtrl* input_step_x;
     wxTextCtrl* input_subdivision;
 
+    wxStaticText* label_amount;
     wxStaticText* label_step_x;
     wxStaticText* label_subdivision;
 

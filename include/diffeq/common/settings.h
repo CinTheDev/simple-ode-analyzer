@@ -8,6 +8,7 @@ public:
 
 struct Settings_Approximation {
 public:
+    int amount = 100;
     int subdivision = 1;
 };
 

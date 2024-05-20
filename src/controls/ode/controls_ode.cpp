@@ -18,11 +18,16 @@ void ControlsODE::init_elements() {
     button_calculate = new wxButton(this, wxID_ANY, "Calculate");
     sizer_main->Insert(0, button_calculate, 0, wxEXPAND | wxALL & ~wxBOTTOM, 10);
 
+    label_amount = new wxStaticText(this, wxID_ANY, "Amount of calculated values");
     label_step_x = new wxStaticText(this, wxID_ANY, "Step along x");
     label_subdivision = new wxStaticText(this, wxID_ANY, "Subdivisions between every point");
 
+    input_amount = new wxTextCtrl(this, wxID_ANY, "amount");
     input_step_x = new wxTextCtrl(this, wxID_ANY, "step x");
     input_subdivision = new wxTextCtrl(this, wxID_ANY, "subdivision");
+
+    sizer_grid->Add(label_amount);
+    sizer_grid->Add(input_amount);
 
     sizer_grid->Add(label_step_x);
     sizer_grid->Add(input_step_x);
@@ -65,6 +70,7 @@ Settings_Common ControlsODE::construct_common_settings() {
 Settings_Approximation ControlsODE::construct_approx_settings() {
     Settings_Approximation settings_approx;
 
+    settings_approx.amount = get_input_int(input_amount, label_amount);
     settings_approx.subdivision = get_input_int(input_subdivision, label_subdivision);
 
     return settings_approx;
@@ -75,6 +81,7 @@ void ControlsODE::update_values(Settings_Common settings_common) {
 }
 
 void ControlsODE::update_values(Settings_Approximation settings_approx) {
+    input_amount->ChangeCalue(std::to_string(settings_approx.amount));
     input_subdivision->ChangeValue(std::to_string(settings_approx.subdivision));
 }
 
