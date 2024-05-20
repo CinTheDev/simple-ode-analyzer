@@ -8,7 +8,8 @@ public:
     ControlsSpecialized(wxWindow* parent);
     ~ControlsSpecialized();
 
-    wxFlexGridSizer* sizer_main;
+    wxStaticBoxSizer* sizer_main;
+    wxFlexGridSizer* sizer_grid;
 
     wxStaticText** labels;
     wxTextCtrl** inputs;

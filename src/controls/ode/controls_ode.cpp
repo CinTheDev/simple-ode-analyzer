@@ -37,7 +37,7 @@ void ControlsODE::init_elements() {
     sizer_grid->Add(label_subdivision);
     sizer_grid->Add(input_subdivision);
 
-    sizer_main->Add(controls_specialized, 0, wxEXPAND);
+    sizer_main->Add(controls_specialized, 0, wxEXPAND | wxALL & ~wxTOP, 10);
 
     Settings_Common default_common_settings = Settings_Common();
     Settings_Approximation default_approx_settings = Settings_Approximation();
