@@ -54,3 +54,11 @@ Settings_Common ControlsODE::construct_common_settings() {
 
     return settings_common;
 }
+
+void ControlsODE::update_values(Settings_Common settings_common) {
+    input_step_x->ChangeValue(double_to_string(settings_common.step_x));
+}
+
+void ControlsODE::on_text_input(wxEvent& evt) {
+
+}

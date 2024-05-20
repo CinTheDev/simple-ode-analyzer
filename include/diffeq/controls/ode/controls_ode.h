@@ -3,8 +3,8 @@
 
 #include <wx/wx.h>
 #include "controls.h"
-#include "ode.h"
 #include "settings.h"
+#include "ode.h"
 
 class ControlsODE : public Controls {
 public:
@@ -20,6 +20,9 @@ public:
     void SendResults();
 
     Settings_Common construct_common_settings();
+    void update_values(Settings_Common settings_common);
+
+    void on_text_input(wxEvent& evt);
 
 private:
     ODE* ode;
