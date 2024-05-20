@@ -11,6 +11,8 @@ public:
     ControlsODE(wxWindow* parent);
     ~ControlsODE();
 
+    wxButton* button_calculate;
+
     wxTextCtrl* input_step_x;
     wxTextCtrl* input_subdivision;
 
