@@ -6,6 +6,11 @@ public:
     double step_x = 0.01;
 };
 
+struct Settings_Approximation {
+public:
+    int subdivision = 1;
+};
+
 struct Settings_Plotter {
 public:
     int axis_offset = 50;
