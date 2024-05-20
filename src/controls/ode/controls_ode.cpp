@@ -6,19 +6,11 @@
 ControlsODE::ControlsODE(wxWindow* parent) : wxScrolledWindow(parent) {
     init_elements();
     init_sizers();
-    //sizer_main = new wxBoxSizer(wxVERTICAL);
-
-    //test_button = new wxButton(this, 12000, "Controls ODE");
-    //sizer_main->Add(test_button, 1, wxEXPAND);
-
-    //SetSizer(sizer_main);
 
     ode = new ODE_V_Oscillation(100, Settings_Common());
     ode->calculate();
 
     SendResults();
-
-    //Bind(wxEVT_BUTTON, &ControlsODE::on_test_button, this);
 }
 
 void ControlsODE::init_elements() {

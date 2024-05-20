@@ -10,9 +10,6 @@ public:
     ControlsODE(wxWindow* parent);
     ~ControlsODE();
 
-    //wxButton* test_button;
-    //wxBoxSizer* sizer_main;
-
     wxTextCtrl* input_step_x;
     wxTextCtrl* input_subdivision;
 
