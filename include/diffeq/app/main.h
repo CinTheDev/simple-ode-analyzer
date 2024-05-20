@@ -3,7 +3,7 @@
 
 #include <wx/wx.h>
 #include "plotter.h"
-#include "controls.h"
+#include "controls_panel.h"
 
 class Diffeq_Main : public wxFrame {
 public:

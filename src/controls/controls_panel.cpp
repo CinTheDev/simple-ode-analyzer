@@ -1,4 +1,4 @@
-#include "controls.h"
+#include "controls_panel.h"
 
 ControlsPanel::ControlsPanel(wxWindow* parent) : wxPanel(parent) {
     init_elements();
