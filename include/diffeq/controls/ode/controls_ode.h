@@ -27,6 +27,7 @@ public:
     void update_values(Settings_Approximation settings_approx);
 
     void on_text_input(wxEvent& evt);
+    void on_button_calculate(wxCommandEvent& evt);
 
 private:
     ODE* ode;

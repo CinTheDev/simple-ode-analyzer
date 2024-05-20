@@ -10,6 +10,8 @@ ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation con
     ode->calculate();
 
     SendResults();
+
+    Bind(wxEVT_BUTTON, &ControlsODE::on_button_calculate, this);
 }
 
 void ControlsODE::init_elements() {
@@ -86,4 +88,9 @@ void ControlsODE::update_ode() {
 
     ode->apply_settings(settings_common);
     ode->apply_settings(settings_ode);
+}
+
+void ControlsODE::on_button_calculate(wxCommandEvent& evt) {
+    ode->calculate();
+    SendResults();
 }
