@@ -24,8 +24,6 @@ void ControlsView::init_sizers() {
     sizer_grid = new wxFlexGridSizer(2, 5, 5);
     sizer_grid->AddGrowableCol(0, 1);
 
-    wxStaticText* temp_ptr_label;
-
     label_view_x = new wxStaticText(this, wxID_ANY, "Visible X space");
     sizer_grid->Add(label_view_x);
     sizer_grid->Add(input_view_x);
