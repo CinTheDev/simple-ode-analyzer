@@ -49,8 +49,7 @@ void ControlsODE::SendResults() {
 Settings_Common ControlsODE::construct_common_settings() {
     Settings_Common settings_common;
 
-    // TODO: Implement custom values
-    settings_common.step_x = 0.01;
+    settings_common.step_x = get_input_double(input_step_x, label_step_x);
 
     return settings_common;
 }
@@ -60,5 +59,5 @@ void ControlsODE::update_values(Settings_Common settings_common) {
 }
 
 void ControlsODE::on_text_input(wxEvent& evt) {
-
+    SendResults();
 }
