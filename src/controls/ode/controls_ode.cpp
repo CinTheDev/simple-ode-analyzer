@@ -25,7 +25,8 @@ void ControlsODE::init_elements() {
     sizer_grid->Add(label_subdivision);
     sizer_grid->Add(input_subdivision);
 
-    // TODO: Put default values inside text fields
+    Settings_Common default_common_settings = Settings_Common();
+    update_values(default_common_settings);
 }
 
 ControlsODE::~ControlsODE() {
