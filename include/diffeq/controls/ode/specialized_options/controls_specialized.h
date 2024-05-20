@@ -12,6 +12,11 @@ public:
 
     wxStaticText** labels;
     wxTextCtrl** inputs;
+
+    void create_options(size_t number, wxString* labels);
+
+private:
+    void purge();
 };
 
 #endif

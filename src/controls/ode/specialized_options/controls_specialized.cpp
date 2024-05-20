@@ -8,3 +8,11 @@ ControlsSpecialized::ControlsSpecialized(wxWindow* parent) : wxPanel(parent) {
 }
 
 ControlsSpecialized::~ControlsSpecialized() { }
+
+void ControlsSpecialized::create_options(size_t options, wxString* labels) {
+
+}
+
+void ControlsSpecialized::purge() {
+    
+}

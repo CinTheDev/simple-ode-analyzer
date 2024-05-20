@@ -4,6 +4,6 @@ target_include_directories(controls_specialized PUBLIC
     ${CMAKE_SOURCE_DIR}/include/diffeq/controls/ode/specialized_options
 )
 
-target_link_libraries(controls PUBLIC
+target_link_libraries(controls_specialized PUBLIC
     ${wxWidgets_LIBRARIES}
 )
