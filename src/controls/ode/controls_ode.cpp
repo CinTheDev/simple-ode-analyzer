@@ -21,6 +21,34 @@ ControlsODE::ControlsODE(wxWindow* parent) : wxPanel(parent) {
     //Bind(wxEVT_BUTTON, &ControlsODE::on_test_button, this);
 }
 
+void ControlsODE::init_elements() {
+    input_step_x = new wxTextCtrl(this, wxID_ANY, "step x");
+    input_subdivision = new wxTextCtrl(this, wxID_ANY, "subdivision");
+
+    // TODO: Put default values inside text fields
+}
+
+void ControlsODE::init_sizers() {
+    sizer_grid = new wxFlexGridSizer(2, 5, 5);
+    sizer_grid->AddGrowableCol(0, 1);
+
+    label_step_x = new wxStaticText(this, wxID_ANY, "Step along x");
+    sizer_grid->Add(label_step_x);
+    sizer_grid->Add(input_step_x);
+
+    label_subdivision = new wxStaticText(this, wxID_ANY, "Subdivisions between every point");
+    sizer_grid->Add(label_subdivision);
+    sizer_grid->Add(input_subdivision);
+
+    sizer_main = new wxStaticBoxSizer(wxVERTICAL, this, "Approximation controls");
+    sizer_main->Add(sizer_grid, 1, wxEXPAND | wxALL, 10);
+
+    SetSizer(sizer_main);
+
+    FitInside();
+    SetScrollRate(5, 5);
+}
+
 ControlsODE::~ControlsODE() {
     delete ode;
 }
@@ -50,12 +78,4 @@ Settings_Common ControlsODE::construct_common_settings() {
 
 void ControlsODE::on_test_button(wxCommandEvent& evt) {
     SendResults();
-}
-
-void ControlsODE::init_elements() {
-
-}
-
-void ControlsODE::init_sizers() {
-
 }
