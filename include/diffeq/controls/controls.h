@@ -12,7 +12,7 @@ public:
     wxFlexGridSizer* sizer_grid;
 
 public:
-    void on_text_input(wxEvent& evt);
+    virtual void on_text_input(wxEvent& evt);
 
 protected:
     double get_input_double(wxTextCtrl* input_field, wxStaticText* label);
