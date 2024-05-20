@@ -4,8 +4,6 @@
 ControlsView::ControlsView(wxWindow* parent) : Controls(parent, "View") {
     init_elements();
     init_sizers();
-
-    //Bind(wxEVT_TEXT, &ControlsView::on_text_input, this);
 }
 
 ControlsView::~ControlsView() { }
@@ -21,9 +19,6 @@ void ControlsView::init_elements() {
 }
 
 void ControlsView::init_sizers() {
-    //sizer_grid = new wxFlexGridSizer(2, 5, 5);
-    //sizer_grid->AddGrowableCol(0, 1);
-
     label_view_x = new wxStaticText(this, wxID_ANY, "Visible X space");
     sizer_grid->Add(label_view_x);
     sizer_grid->Add(input_view_x);
@@ -39,14 +34,6 @@ void ControlsView::init_sizers() {
     label_axis_offset = new wxStaticText(this, wxID_ANY, "Axis offset");
     sizer_grid->Add(label_axis_offset);
     sizer_grid->Add(input_axis_offset);
-
-    //sizer_main = new wxStaticBoxSizer(wxVERTICAL, this, "View");
-    //sizer_main->Add(sizer_grid, 1, wxEXPAND | wxALL, 10);
-
-    //SetSizer(sizer_main);
-
-    //FitInside();
-    //SetScrollRate(5, 5);
 }
 
 Settings_Plotter ControlsView::construct_plotter_settings() {
@@ -73,42 +60,3 @@ void ControlsView::on_text_input(wxEvent& evt) {
     settings_plotter_event.ResumePropagation(__INT_MAX__);
     ProcessEvent(settings_plotter_event);
 }
-
-/*
-double ControlsView::get_input_double(wxTextCtrl* input_field, wxStaticText* label) {
-    double val;
-    try {
-        val = std::stod(input_field->GetValue().ToStdString());
-        label->SetForegroundColour(*wxWHITE);
-    }
-    catch (...) {
-        val = 1.0;
-        label->SetForegroundColour(*wxRED);
-    }
-
-    return val;
-}
-
-int ControlsView::get_input_int(wxTextCtrl* input_field, wxStaticText* label) {
-    int val;
-
-    try {
-        val = std::stoi(input_field->GetValue().ToStdString());
-        label->SetForegroundColour(*wxWHITE);
-    }
-    catch (...) {
-        val = 0;
-        label->SetForegroundColour(*wxRED);
-    }
-
-    return val;
-}
-
-wxString ControlsView::double_to_string(double val) {
-    std::string string_val = std::to_string(val);
-    string_val.erase(string_val.find_last_not_of('0') + 1, std::string::npos);
-    string_val.erase(string_val.find_last_not_of('.') + 1, std::string::npos);
-
-    return wxString(string_val);
-}
-*/
