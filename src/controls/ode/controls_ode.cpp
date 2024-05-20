@@ -6,7 +6,7 @@
 ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation controls") {
     init_elements();
 
-    ode = new ODE_V_Oscillation(100, Settings_Common(), Settings_Approximation());
+    ode = new ODE_V_Oscillation(Settings_Common(), Settings_Approximation());
     ode->calculate();
 
     SendResults();
@@ -81,7 +81,7 @@ void ControlsODE::update_values(Settings_Common settings_common) {
 }
 
 void ControlsODE::update_values(Settings_Approximation settings_approx) {
-    input_amount->ChangeCalue(std::to_string(settings_approx.amount));
+    input_amount->ChangeValue(std::to_string(settings_approx.amount));
     input_subdivision->ChangeValue(std::to_string(settings_approx.subdivision));
 }
 

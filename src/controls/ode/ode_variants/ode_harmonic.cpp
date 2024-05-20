@@ -1,7 +1,7 @@
 #include "ode_harmonic.h"
 
-ODE_Harmonic::ODE_Harmonic(size_t length, Settings_Common settings_common, Settings_Approximation settings_approx)
- : ODE(length, settings_common, settings_approx) { }
+ODE_Harmonic::ODE_Harmonic(Settings_Common settings_common, Settings_Approximation settings_approx)
+ : ODE(settings_common, settings_approx) { }
 
 ODE_Harmonic::~ODE_Harmonic() { }
 

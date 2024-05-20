@@ -5,7 +5,7 @@
 
 class ODE_V_Oscillation : public ODE {
 public:
-    ODE_V_Oscillation(size_t length, Settings_Common settings_common, Settings_Approximation settings_approx);
+    ODE_V_Oscillation(Settings_Common settings_common, Settings_Approximation settings_approx);
     ~ODE_V_Oscillation();
 
     void calculate();
