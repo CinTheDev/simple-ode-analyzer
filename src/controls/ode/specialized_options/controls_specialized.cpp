@@ -6,7 +6,7 @@ ControlsSpecialized::ControlsSpecialized(wxWindow* parent) : wxPanel(parent) {
     sizer_grid = new wxFlexGridSizer(2, 5, 5);
     sizer_grid->AddGrowableCol(0, 1);
 
-    sizer_main->Add(sizer_grid);
+    sizer_main->Add(sizer_grid, 1, wxEXPAND | wxALL, 10);
 
     SetSizer(sizer_main);
 
