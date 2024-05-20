@@ -14,7 +14,7 @@ public:
     wxBoxSizer* sizer_main;
 
     Plotter* plotter;
-    Controls* controls;
+    ControlsPanel* controls;
 
 private:
     void instance_layout();

@@ -1,15 +1,15 @@
-#ifndef DIFFEQ_CONTROLS
-#define DIFFEQ_CONTROLS
+#ifndef DIFFEQ_CONTROLS_PANEL
+#define DIFFEQ_CONTROLS_PANEL
 
 #include <wx/wx.h>
 #include "events.h"
 #include "controls_view.h"
 #include "controls_ode.h"
 
-class Controls : public wxPanel {
+class ControlsPanel : public wxPanel {
 public:
-    Controls(wxWindow* parent);
-    ~Controls();
+    ControlsPanel(wxWindow* parent);
+    ~ControlsPanel();
 
 public:
     ControlsODE* controls_ode;

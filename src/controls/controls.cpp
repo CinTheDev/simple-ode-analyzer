@@ -1,20 +1,20 @@
 #include "controls.h"
 
-Controls::Controls(wxWindow* parent) : wxPanel(parent) {
+ControlsPanel::ControlsPanel(wxWindow* parent) : wxPanel(parent) {
     init_elements();
     init_sizers();
 }
 
-Controls::~Controls() {
+ControlsPanel::~ControlsPanel() {
 
 }
 
-void Controls::init_elements() {
+void ControlsPanel::init_elements() {
     controls_ode = new ControlsODE(this);
     controls_view = new ControlsView(this);
 }
 
-void Controls::init_sizers() {
+void ControlsPanel::init_sizers() {
    sizer_main = new wxBoxSizer(wxHORIZONTAL);
 
    sizer_main->Add(controls_ode, 2, wxEXPAND | wxALL, 5);
@@ -23,6 +23,6 @@ void Controls::init_sizers() {
    SetSizer(sizer_main);
 }
 
-void Controls::on_plotter_update(SettingsPlotterEvent& evt) {
+void ControlsPanel::on_plotter_update(SettingsPlotterEvent& evt) {
     controls_view->update_values(evt.get_settings());
 }
