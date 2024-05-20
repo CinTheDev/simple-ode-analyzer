@@ -6,7 +6,7 @@
 ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation controls") {
     init_elements();
 
-    ode = new ODE_V_Oscillation(100, Settings_Common());
+    ode = new ODE_V_Oscillation(100, Settings_Common(), Settings_Approximation());
     ode->calculate();
 
     SendResults();
