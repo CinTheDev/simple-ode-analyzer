@@ -16,7 +16,7 @@ ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation con
 
 void ControlsODE::init_elements() {
     button_calculate = new wxButton(this, wxID_ANY, "Calculate");
-    sizer_main->Insert(0, button_calculate);
+    sizer_main->Insert(0, button_calculate, 0, wxEXPAND);
 
     label_step_x = new wxStaticText(this, wxID_ANY, "Step along x");
     label_subdivision = new wxStaticText(this, wxID_ANY, "Subdivisions between every point");
