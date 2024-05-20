@@ -3,37 +3,35 @@
 
 ControlsView::ControlsView(wxWindow* parent) : Controls(parent, "View") {
     init_elements();
-    init_sizers();
 }
 
 ControlsView::~ControlsView() { }
 
 void ControlsView::init_elements() {
+    label_view_x = new wxStaticText(this, wxID_ANY, "Visible X space");
+    label_view_y = new wxStaticText(this, wxID_ANY, "Visible Y space");
+    label_offset_x = new wxStaticText(this, wxID_ANY, "X start value");
+    label_axis_offset = new wxStaticText(this, wxID_ANY, "Axis offset");
+
     input_view_x = new wxTextCtrl(this, wxID_ANY, "view x");
     input_view_y = new wxTextCtrl(this, wxID_ANY, "view y");
     input_offset_x = new wxTextCtrl(this, wxID_ANY, "offset x");
     input_axis_offset = new wxTextCtrl(this, wxID_ANY, "offset axis");
 
-    Settings_Plotter default_settings = Settings_Plotter();
-    update_values(default_settings);
-}
-
-void ControlsView::init_sizers() {
-    label_view_x = new wxStaticText(this, wxID_ANY, "Visible X space");
     sizer_grid->Add(label_view_x);
     sizer_grid->Add(input_view_x);
-
-    label_view_y = new wxStaticText(this, wxID_ANY, "Visible Y space");
+    
     sizer_grid->Add(label_view_y);
     sizer_grid->Add(input_view_y);
-
-    label_offset_x = new wxStaticText(this, wxID_ANY, "X start value");
+    
     sizer_grid->Add(label_offset_x);
     sizer_grid->Add(input_offset_x);
 
-    label_axis_offset = new wxStaticText(this, wxID_ANY, "Axis offset");
     sizer_grid->Add(label_axis_offset);
     sizer_grid->Add(input_axis_offset);
+
+    Settings_Plotter default_settings = Settings_Plotter();
+    update_values(default_settings);
 }
 
 Settings_Plotter ControlsView::construct_plotter_settings() {
