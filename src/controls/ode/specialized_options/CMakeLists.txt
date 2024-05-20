@@ -6,4 +6,5 @@ target_include_directories(controls_specialized PUBLIC
 
 target_link_libraries(controls_specialized PUBLIC
     ${wxWidgets_LIBRARIES}
+    controls
 )

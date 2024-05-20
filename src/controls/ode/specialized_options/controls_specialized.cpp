@@ -1,15 +1,6 @@
 #include "controls_specialized.h"
 
-ControlsSpecialized::ControlsSpecialized(wxWindow* parent) : wxPanel(parent) {
-    sizer_main = new wxStaticBoxSizer(wxVERTICAL, this, "ODE specific values");
-
-    sizer_grid = new wxFlexGridSizer(2, 5, 5);
-    sizer_grid->AddGrowableCol(0, 1);
-
-    sizer_main->Add(sizer_grid, 1, wxEXPAND | wxALL, 10);
-
-    SetSizer(sizer_main);
-
+ControlsSpecialized::ControlsSpecialized(wxWindow* parent) : Controls(parent, "ODE specific values") {
     wxString test_labels[] = { "First option", "Second option", "Third option" };
     create_options(3, test_labels);
 }
