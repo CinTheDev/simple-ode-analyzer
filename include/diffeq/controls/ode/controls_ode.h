@@ -2,10 +2,11 @@
 #define CONTROLS_ODE
 
 #include <wx/wx.h>
+#include "controls.h"
 #include "ode.h"
 #include "settings.h"
 
-class ControlsODE : public wxScrolledWindow {
+class ControlsODE : public Controls {
 public:
     ControlsODE(wxWindow* parent);
     ~ControlsODE();
@@ -15,9 +16,6 @@ public:
 
     wxStaticText* label_step_x;
     wxStaticText* label_subdivision;
-
-    wxStaticBoxSizer* sizer_main;
-    wxFlexGridSizer* sizer_grid;
 
     void SendResults();
 

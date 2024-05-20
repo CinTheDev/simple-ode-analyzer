@@ -3,7 +3,7 @@
 #include "ode_v_oscillation.h"
 #include "events.h"
 
-ControlsODE::ControlsODE(wxWindow* parent) : wxScrolledWindow(parent) {
+ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation controls") {
     init_elements();
     init_sizers();
 
@@ -21,9 +21,6 @@ void ControlsODE::init_elements() {
 }
 
 void ControlsODE::init_sizers() {
-    sizer_grid = new wxFlexGridSizer(2, 5, 5);
-    sizer_grid->AddGrowableCol(0, 1);
-
     label_step_x = new wxStaticText(this, wxID_ANY, "Step along x");
     sizer_grid->Add(label_step_x);
     sizer_grid->Add(input_step_x);
@@ -31,14 +28,6 @@ void ControlsODE::init_sizers() {
     label_subdivision = new wxStaticText(this, wxID_ANY, "Subdivisions between every point");
     sizer_grid->Add(label_subdivision);
     sizer_grid->Add(input_subdivision);
-
-    sizer_main = new wxStaticBoxSizer(wxVERTICAL, this, "Approximation controls");
-    sizer_main->Add(sizer_grid, 1, wxEXPAND | wxALL, 10);
-
-    SetSizer(sizer_main);
-
-    FitInside();
-    SetScrollRate(5, 5);
 }
 
 ControlsODE::~ControlsODE() {
