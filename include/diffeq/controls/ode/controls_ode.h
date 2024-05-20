@@ -3,6 +3,7 @@
 
 #include <wx/wx.h>
 #include "controls.h"
+#include "controls_specialized.h"
 #include "settings.h"
 #include "ode.h"
 
@@ -12,6 +13,7 @@ public:
     ~ControlsODE();
 
     wxButton* button_calculate;
+    ControlsSpecialized* controls_specialized;
 
     wxTextCtrl* input_amount;
     wxTextCtrl* input_step_x;
