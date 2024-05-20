@@ -23,5 +23,6 @@ target_link_libraries(controls_panel PUBLIC
     controls_view
     controls_ode
     controls_specialized
+    controls_choose
     custom_events
 )

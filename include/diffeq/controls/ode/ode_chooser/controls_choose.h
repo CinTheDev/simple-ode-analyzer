@@ -8,6 +8,8 @@ class ControlsChoose : public Controls {
 public:
     ControlsChoose(wxWindow* parent);
     ~ControlsChoose();
+
+    wxButton* test_button;
 };
 
 #endif
