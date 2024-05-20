@@ -5,7 +5,7 @@
 #include "ode.h"
 #include "settings.h"
 
-class ControlsODE : public wxPanel {
+class ControlsODE : public wxScrolledWindow {
 public:
     ControlsODE(wxWindow* parent);
     ~ControlsODE();

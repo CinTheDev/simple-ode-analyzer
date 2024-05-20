@@ -3,7 +3,7 @@
 #include "ode_v_oscillation.h"
 #include "events.h"
 
-ControlsODE::ControlsODE(wxWindow* parent) : wxPanel(parent) {
+ControlsODE::ControlsODE(wxWindow* parent) : wxScrolledWindow(parent) {
     init_elements();
     init_sizers();
     //sizer_main = new wxBoxSizer(wxVERTICAL);
