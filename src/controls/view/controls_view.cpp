@@ -1,11 +1,11 @@
 #include "controls_view.h"
 #include "events.h"
 
-ControlsView::ControlsView(wxWindow* parent) : wxScrolledWindow(parent) {
+ControlsView::ControlsView(wxWindow* parent) : Controls(parent, "View") {
     init_elements();
     init_sizers();
 
-    Bind(wxEVT_TEXT, &ControlsView::on_text_input, this);
+    //Bind(wxEVT_TEXT, &ControlsView::on_text_input, this);
 }
 
 ControlsView::~ControlsView() { }
@@ -21,8 +21,8 @@ void ControlsView::init_elements() {
 }
 
 void ControlsView::init_sizers() {
-    sizer_grid = new wxFlexGridSizer(2, 5, 5);
-    sizer_grid->AddGrowableCol(0, 1);
+    //sizer_grid = new wxFlexGridSizer(2, 5, 5);
+    //sizer_grid->AddGrowableCol(0, 1);
 
     label_view_x = new wxStaticText(this, wxID_ANY, "Visible X space");
     sizer_grid->Add(label_view_x);
@@ -40,13 +40,13 @@ void ControlsView::init_sizers() {
     sizer_grid->Add(label_axis_offset);
     sizer_grid->Add(input_axis_offset);
 
-    sizer_main = new wxStaticBoxSizer(wxVERTICAL, this, "View");
-    sizer_main->Add(sizer_grid, 1, wxEXPAND | wxALL, 10);
+    //sizer_main = new wxStaticBoxSizer(wxVERTICAL, this, "View");
+    //sizer_main->Add(sizer_grid, 1, wxEXPAND | wxALL, 10);
 
-    SetSizer(sizer_main);
+    //SetSizer(sizer_main);
 
-    FitInside();
-    SetScrollRate(5, 5);
+    //FitInside();
+    //SetScrollRate(5, 5);
 }
 
 Settings_Plotter ControlsView::construct_plotter_settings() {
@@ -74,6 +74,7 @@ void ControlsView::on_text_input(wxEvent& evt) {
     ProcessEvent(settings_plotter_event);
 }
 
+/*
 double ControlsView::get_input_double(wxTextCtrl* input_field, wxStaticText* label) {
     double val;
     try {
@@ -110,3 +111,4 @@ wxString ControlsView::double_to_string(double val) {
 
     return wxString(string_val);
 }
+*/
