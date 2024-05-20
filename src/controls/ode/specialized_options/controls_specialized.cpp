@@ -2,6 +2,10 @@
 
 ControlsSpecialized::ControlsSpecialized(wxWindow* parent) : Controls(parent, "ODE specific values") {
     wxString test_labels[] = { "First option", "Second option", "Third option" };
+
+    labels = new wxStaticText*[1];
+    inputs = new wxTextCtrl*[1];
+
     create_options(3, test_labels);
 }
 
@@ -25,5 +29,8 @@ void ControlsSpecialized::create_options(size_t number, wxString* labels) {
 }
 
 void ControlsSpecialized::purge() {
-    // TODO
+    sizer_grid->Clear(true);
+
+    delete[] labels;
+    delete[] inputs;
 }
