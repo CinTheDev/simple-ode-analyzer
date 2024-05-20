@@ -1,3 +1,13 @@
+add_library(controls controls.cpp)
+
+target_include_directories(controls PUBLIC
+    ${CMAKE_SOURCE_DIR}/include/diffeq/controls
+)
+
+target_link_libraries(controls PUBLIC
+    ${wxWidgets_LIBRARIES}
+)
+
 add_subdirectory(view)
 add_subdirectory(ode)
 
