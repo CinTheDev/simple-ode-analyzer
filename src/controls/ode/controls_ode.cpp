@@ -16,7 +16,6 @@ ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation con
 
 void ControlsODE::init_elements() {
     button_calculate = new wxButton(this, wxID_ANY, "Calculate");
-    controls_specialized = new ControlsSpecialized(this);
 
     label_amount = new wxStaticText(this, wxID_ANY, "Amount of calculated values");
     label_step_x = new wxStaticText(this, wxID_ANY, "Step along x");
@@ -36,8 +35,6 @@ void ControlsODE::init_elements() {
 
     sizer_grid->Add(label_subdivision);
     sizer_grid->Add(input_subdivision);
-
-    sizer_main->Add(controls_specialized, 0, wxEXPAND | wxALL & ~wxTOP, 10);
 
     Settings_Common default_common_settings = Settings_Common();
     Settings_Approximation default_approx_settings = Settings_Approximation();

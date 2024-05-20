@@ -22,7 +22,6 @@ target_include_directories(controls_ode PUBLIC
 target_link_libraries(controls_ode PUBLIC
     ${wxWidgets_LIBRARIES}
     controls
-    controls_specialized
     ode
 )
 

@@ -5,6 +5,7 @@
 #include "events.h"
 #include "controls_view.h"
 #include "controls_ode.h"
+#include "controls_specialized.h"
 
 class ControlsPanel : public wxPanel {
 public:
@@ -13,6 +14,7 @@ public:
 
 public:
     ControlsODE* controls_ode;
+    ControlsSpecialized* controls_special;
     ControlsView* controls_view;
 
     wxBoxSizer* sizer_main;

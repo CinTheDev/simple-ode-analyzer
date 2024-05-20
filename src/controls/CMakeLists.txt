@@ -22,5 +22,6 @@ target_link_libraries(controls_panel PUBLIC
     ${wxWidgets_LIBRARIES}
     controls_view
     controls_ode
+    controls_specialized
     custom_events
 )
