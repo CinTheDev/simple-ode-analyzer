@@ -67,7 +67,3 @@ Settings_Common ControlsODE::construct_common_settings() {
 
     return settings_common;
 }
-
-void ControlsODE::on_test_button(wxCommandEvent& evt) {
-    SendResults();
-}
