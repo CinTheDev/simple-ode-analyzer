@@ -30,6 +30,7 @@ private:
     ODE* ode;
 
     void init_elements();
+    void update_ode();
 };
 
 #endif

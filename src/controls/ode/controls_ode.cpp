@@ -75,4 +75,11 @@ void ControlsODE::update_values(Settings_Approximation settings_approx) {
 
 void ControlsODE::on_text_input(wxEvent& evt) {
     SendResults();
+    update_ode();
+}
+
+void ControlsODE::update_ode() {
+    Settings_Approximation settings_ode = construct_approx_settings();
+
+    ode->apply_settings(settings_ode);
 }
