@@ -7,6 +7,11 @@ class ControlsSpecialized : public wxPanel {
 public:
     ControlsSpecialized(wxWindow* parent);
     ~ControlsSpecialized();
+
+    wxFlexGridSizer* sizer_main;
+
+    wxStaticText** labels;
+    wxTextCtrl** inputs;
 };
 
 #endif
