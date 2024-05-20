@@ -10,8 +10,8 @@ public:
     ControlsODE(wxWindow* parent);
     ~ControlsODE();
 
-    wxButton* test_button;
-    wxBoxSizer* sizer_main;
+    //wxButton* test_button;
+    //wxBoxSizer* sizer_main;
 
     void SendResults();
 
