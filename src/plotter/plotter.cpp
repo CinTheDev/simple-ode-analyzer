@@ -13,6 +13,9 @@ END_EVENT_TABLE()
 
 Plotter::Plotter(wxWindow* parent) : wxPanel(parent, wxID_ANY) {
     settings = Settings_Plotter();
+
+    // Dummy array which gets deleted once real values come via Event
+    functions = new double*[1];
 }
 
 Plotter::~Plotter() {
@@ -30,7 +33,10 @@ void Plotter::on_settings_common_update(SettingsCommonEvent& evt) {
 }
 
 void Plotter::on_function_update(OdePointerEvent& evt) {
-    function_values = evt.get_result_pointer();
+    delete[] functions;
+
+    functions = evt.get_result_pointer();
+    function_amount = evt.get_amount_results();
     function_length = evt.get_result_length();
     paintNow();
 }
@@ -207,7 +213,7 @@ void Plotter::render_markings(wxDC& dc) {
 }
 
 void Plotter::render_function(wxDC& dc) {
-    if (functions == nullptr) return;
+    if (functions[0] == nullptr) return;
 
     int axis_offset = settings.axis_offset;
 
