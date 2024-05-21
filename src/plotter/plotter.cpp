@@ -207,8 +207,6 @@ void Plotter::render_markings(wxDC& dc) {
 }
 
 void Plotter::render_function(wxDC& dc) {
-    if (function_values == nullptr) return;
-
     int axis_offset = settings.axis_offset;
 
     wxCoord width, height;
@@ -217,18 +215,21 @@ void Plotter::render_function(wxDC& dc) {
     wxPoint left = wxPoint(axis_offset, height / 2);
     wxPoint right = wxPoint(width, height / 2);
 
-    wxPoint function_points[function_length];
+    for (auto function_values = functions.begin(); function_values != functions.end(); function_values++) {
+        wxPoint function_points[function_length];
 
-    for (int i = 0; i < function_length; i++) {
-        double x = ((double)i * settings_common.step_x - settings.view_start_x) / settings.view_x;
-        double x_pixel = x * (width - axis_offset) + axis_offset;
-        double y = function_values[i] / settings.view_y;
+        for (int i = 0; i < function_length; i++) {
+            double x = ((double)i * settings_common.step_x - settings.view_start_x) / settings.view_x;
+            double x_pixel = x * (width - axis_offset) + axis_offset;
+            double y = function_values[i] / settings.view_y;
 
-        function_points[i] = wxPoint(x_pixel, (0.5 - y * 0.5) * height);
+            function_points[i] = wxPoint(x_pixel, (0.5 - y * 0.5) * height);
+        }
+
+        // TODO: Use custom color
+        dc.SetPen(*wxRED_PEN);
+        dc.DrawLines(function_length, function_points);
     }
-
-    dc.SetPen(*wxRED_PEN);
-    dc.DrawLines(function_length, function_points);
 }
 
 double Plotter::round_to_nice_number(double val) {
