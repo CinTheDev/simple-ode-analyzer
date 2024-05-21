@@ -2,7 +2,6 @@
 #define DIFFEQ_PLOTTER
 
 #include <wx/wx.h>
-#include <vector>
 #include "events.h"
 
 enum ActiveShortcut {
@@ -31,8 +30,9 @@ private:
     Settings_Common settings_common;
     ShortcutState shortcut_state;
 
-    std::vector<double*> functions;
+    double** functions;
     uint32_t* function_colors;
+    size_t function_amount;
     size_t function_length;
 
 public:
