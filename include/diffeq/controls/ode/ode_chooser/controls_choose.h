@@ -17,6 +17,8 @@ public:
     std::vector<OdeEntry*> entries;
 
     void add_entry();
+
+    void on_button_create(wxCommandEvent& evt);
 };
 
 #endif

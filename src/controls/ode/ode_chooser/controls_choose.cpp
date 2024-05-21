@@ -8,6 +8,8 @@ ControlsChoose::ControlsChoose(wxWindow* parent) : wxPanel(parent) {
     button_create_entry = new wxButton(this, wxID_ANY, "Add ODE");
     sizer_main->Add(button_create_entry, 0, wxEXPAND);
 
+    button_create_entry->Bind(wxEVT_BUTTON, &ControlsChoose::on_button_create, this);
+
     SetSizer(sizer_main);
 
     add_entry();
@@ -21,4 +23,8 @@ void ControlsChoose::add_entry() {
     entries.push_back(new_entry);
 
     sizer_main->Add(new_entry, 0, wxEXPAND);
+}
+
+void ControlsChoose::on_button_create(wxCommandEvent& evt) {
+    
 }
