@@ -18,6 +18,9 @@ OdeEntry::OdeEntry(wxWindow* parent) : wxPanel(parent) {
 OdeEntry::~OdeEntry() { }
 
 void OdeEntry::init_elements() {
+    size_t amount_ode_options = sizeof(ode_options) / sizeof(wxString);
+    size_t amount_approx_options = sizeof(approx_options) / sizeof(wxString);
+
     dropdown_ode = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, amount_ode_options, ode_options);
     dropdown_approx = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, amount_approx_options, approx_options);
 
