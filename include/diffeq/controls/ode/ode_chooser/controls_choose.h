@@ -6,7 +6,7 @@
 #include "ode_entry.h"
 #include <vector>
 
-class ControlsChoose : public wxPanel {
+class ControlsChoose : public wxScrolledWindow {
 public:
     ControlsChoose(wxWindow* parent);
     ~ControlsChoose();

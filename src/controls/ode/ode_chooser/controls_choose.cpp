@@ -1,6 +1,6 @@
 #include "controls_choose.h"
 
-ControlsChoose::ControlsChoose(wxWindow* parent) : wxPanel(parent) {
+ControlsChoose::ControlsChoose(wxWindow* parent) : wxScrolledWindow(parent) {
     entries = std::vector<OdeEntry*>();
 
     sizer_main = new wxStaticBoxSizer(wxVERTICAL, this, "Select ODEs");
@@ -11,6 +11,8 @@ ControlsChoose::ControlsChoose(wxWindow* parent) : wxPanel(parent) {
     button_create_entry->Bind(wxEVT_BUTTON, &ControlsChoose::on_button_create, this);
 
     SetSizer(sizer_main);
+
+    SetScrollRate(0, 5);
 }
 
 ControlsChoose::~ControlsChoose() { }
@@ -22,6 +24,7 @@ void ControlsChoose::add_entry() {
 
     sizer_main->Add(new_entry, 0, wxEXPAND);
 
+    FitInside();
     Layout();
 }
 
