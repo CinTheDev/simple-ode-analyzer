@@ -1,9 +1,14 @@
 #include "ode_entry.h"
 
-const wxString test_options[] = {
+const wxString ode_options[] = {
     "Option A",
     "Option B",
     "idk more options",
+};
+
+const wxString approx_options[] = {
+    "Euler",
+    "Test",
 };
 
 OdeEntry::OdeEntry(wxWindow* parent) : wxPanel(parent) {
