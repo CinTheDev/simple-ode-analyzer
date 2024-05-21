@@ -8,8 +8,11 @@ ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation con
 
     odes = std::vector<ODE*>();
 
-    odes.push_back(new ODE_V_Oscillation(Settings_Common(), Settings_Approximation()));
+    odes.push_back(new ODE_Harmonic(Settings_Common(), Settings_Approximation()));
     odes[0]->calculate();
+
+    odes.push_back(new ODE_V_Oscillation(Settings_Common(), Settings_Approximation()));
+    odes[1]->calculate();
 
     SendResults();
 
