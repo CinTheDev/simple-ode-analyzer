@@ -6,13 +6,16 @@
 #include "ode_entry.h"
 #include <vector>
 
+// TODO: No longer derive from Controls
 class ControlsChoose : public Controls {
 public:
     ControlsChoose(wxWindow* parent);
     ~ControlsChoose();
 
     wxButton* button_create_entry;
-    std::vector<OdeEntry> entries;
+    std::vector<OdeEntry*> entries;
+
+    void add_entry();
 };
 
 #endif
