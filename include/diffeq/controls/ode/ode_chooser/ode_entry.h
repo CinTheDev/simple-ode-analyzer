@@ -2,6 +2,7 @@
 #define DIFFEQ_ODE_ENTRY
 
 #include <wx/wx.h>
+#include <wx/clrpicker.h>
 
 class OdeEntry : public wxPanel {
 public:
@@ -12,7 +13,7 @@ public:
 
     wxChoice* dropdown_ode;
     wxChoice* dropdown_approx;
-    wxButton* placeholder_colorpicker;
+    wxColourPickerCtrl* colour_picker;
     wxButton* button_remove;
 
 private:

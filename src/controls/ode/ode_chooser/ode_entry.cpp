@@ -25,7 +25,7 @@ void OdeEntry::init_elements() {
     dropdown_ode = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, amount_ode_options, ode_options);
     dropdown_approx = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, amount_approx_options, approx_options);
 
-    placeholder_colorpicker = new wxButton(this, wxID_ANY, "Placeholder Color picker");
+    colour_picker = new wxColourPickerCtrl(this, wxID_ANY, *wxRED);
     button_remove = new wxButton(this, wxID_ANY, "Remove");
 }
 
@@ -34,7 +34,7 @@ void OdeEntry::init_sizers() {
 
     sizer_main->Add(dropdown_ode, 0);
     sizer_main->Add(dropdown_approx, 0);
-    sizer_main->Add(placeholder_colorpicker, 0);
+    sizer_main->Add(colour_picker, 0);
     sizer_main->Add(button_remove, 0);
 
     SetSizer(sizer_main);
