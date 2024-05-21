@@ -12,7 +12,7 @@ Controls::Controls(wxWindow* parent, wxString label) : wxScrolledWindow(parent) 
     SetSizer(sizer_main);
 
     FitInside();
-    SetScrollRate(5, 5);
+    SetScrollRate(0, 5);
 }
 
 Controls::~Controls() { }
