@@ -1,4 +1,5 @@
 #include "controls_choose.h"
+#include "events.h"
 
 ControlsChoose::ControlsChoose(wxWindow* parent) : wxScrolledWindow(parent) {
     sizer_main = new wxStaticBoxSizer(wxVERTICAL, this, "Select ODEs");
@@ -30,12 +31,32 @@ void ControlsChoose::add_entry() {
     GetParent()->Layout();
 }
 
+OdeListValues* ControlsChoose::construct_list_values(size_t& list_length) {
+    list_length = sizer_main->GetItemCount() - 1;
+
+    if (list_length < 1) return nullptr;
+
+    OdeListValues* list_values = new OdeListValues[list_length];
+
+    for (size_t i = 0; i < list_length; i++) {
+        OdeEntry* entry = static_cast<OdeEntry*>(sizer_main->GetItem(i + 1)->GetWindow());
+        list_values[i] = entry->construct_values();
+    }
+
+    return list_values;
+}
+
 void ControlsChoose::on_button_create(wxCommandEvent& evt) {
     add_entry();
 }
 
 void ControlsChoose::on_list_changed(wxEvent& evt) {
-    
+    size_t list_length;
+    OdeListValues* list_values = construct_list_values(list_length);
+
+    OdeListUpdateEvent list_update_event(EVT_ODE_LIST, GetId(), list_values, list_length);
+    list_update_event.SetEventObject(this);
+    ProcessEvent(list_update_event);
 }
 
 void ControlsChoose::on_child_remove(wxCommandEvent& evt) {
