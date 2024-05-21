@@ -2,6 +2,7 @@
 #define CONTROLS_ODE
 
 #include <wx/wx.h>
+#include <vector>
 #include "controls.h"
 #include "settings.h"
 #include "ode.h"
@@ -32,7 +33,7 @@ public:
     void on_button_calculate(wxCommandEvent& evt);
 
 private:
-    ODE* ode;
+    std::vector<ODE*> odes;
 
     void init_elements();
     void update_ode();

@@ -6,8 +6,10 @@
 ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation controls") {
     init_elements();
 
-    ode = new ODE_V_Oscillation(Settings_Common(), Settings_Approximation());
-    ode->calculate();
+    odes = std::vector<ODE*>();
+
+    odes.push_back(new ODE_V_Oscillation(Settings_Common(), Settings_Approximation()));
+    odes[0]->calculate();
 
     SendResults();
 
@@ -43,7 +45,9 @@ void ControlsODE::init_elements() {
 }
 
 ControlsODE::~ControlsODE() {
-    delete ode;
+    for (int i = 0; i < odes.size(); i++) {
+        delete odes[i];
+    }
 }
 
 void ControlsODE::SendResults() {
