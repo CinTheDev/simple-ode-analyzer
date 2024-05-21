@@ -1,5 +1,7 @@
 #include <events.h>
 
+// SettingsCommonEvent
+
 wxDEFINE_EVENT(SETTINGS_COMMON_UPDATE, SettingsCommonEvent);
 
 SettingsCommonEvent::SettingsCommonEvent(wxEventType event_type, int id, Settings_Common settings_common) : wxEvent(id, event_type) {
@@ -15,6 +17,8 @@ wxEvent* SettingsCommonEvent::Clone() const {
 Settings_Common SettingsCommonEvent::get_settings() {
     return settings_common;
 }
+
+// SettingsPlotterEvent
 
 wxDEFINE_EVENT(SETTINGS_PLOTTER_UPDATE, SettingsPlotterEvent);
 wxDEFINE_EVENT(PLOTTER_GRAPHICS_UPDATE, SettingsPlotterEvent);
@@ -33,9 +37,12 @@ Settings_Plotter SettingsPlotterEvent::get_settings() {
     return settings_plotter;
 }
 
+// OdePointerEvent
+
 wxDEFINE_EVENT(EVT_ODE_POINTER, OdePointerEvent);
 
-OdePointerEvent::OdePointerEvent(wxEventType event_type, int id, double** result_pointer, size_t amount_results, size_t result_length) : wxEvent(id, event_type) {
+OdePointerEvent::OdePointerEvent(wxEventType event_type, int id, double** result_pointer, size_t amount_results, size_t result_length)
+ : wxEvent(id, event_type) {
     this->result_pointer = result_pointer;
     this->amount_results = amount_results;
     this->result_length = result_length;
@@ -63,8 +70,10 @@ size_t OdePointerEvent::get_result_length() {
 
 wxDEFINE_EVENT(EVT_ODE_LIST, OdeListUpdateEvent);
 
-OdeListUpdateEvent::OdeListUpdateEvent(wxEventType event_type, int id, OdeListValues ode_list_values) : wxCommandEvent(id, event_type) {
+OdeListUpdateEvent::OdeListUpdateEvent(wxEventType event_type, int id, OdeListValues* ode_list_values, size_t amount)
+ : wxCommandEvent(id, event_type) {
     this->ode_list_values = ode_list_values;
+    this->amount = amount;
 }
 
 OdeListUpdateEvent::~OdeListUpdateEvent() { }
@@ -73,6 +82,10 @@ wxCommandEvent* OdeListUpdateEvent::Clone() const {
     return new OdeListUpdateEvent(*this);
 }
 
-OdeListValues OdeListUpdateEvent::get_values() {
+OdeListValues* OdeListUpdateEvent::get_values() {
     return ode_list_values;
+}
+
+size_t OdeListUpdateEvent::get_amount() {
+    return amount;
 }

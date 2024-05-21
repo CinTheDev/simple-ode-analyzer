@@ -17,7 +17,7 @@ ControlsChoose::~ControlsChoose() { }
 
 void ControlsChoose::add_entry() {
     OdeEntry* new_entry = new OdeEntry(this);
-    
+
     new_entry->dropdown_ode->Bind(wxEVT_CHOICE, &ControlsChoose::on_list_changed, this);
     new_entry->dropdown_approx->Bind(wxEVT_CHOICE, &ControlsChoose::on_list_changed, this);
     new_entry->colour_picker->Bind(wxEVT_COLOURPICKER_CHANGED, &ControlsChoose::on_list_changed, this);
@@ -34,9 +34,8 @@ void ControlsChoose::on_button_create(wxCommandEvent& evt) {
     add_entry();
 }
 
-#include <iostream>
 void ControlsChoose::on_list_changed(wxEvent& evt) {
-    std::cout << "List changed" << std::endl;
+    
 }
 
 void ControlsChoose::on_child_remove(wxCommandEvent& evt) {
