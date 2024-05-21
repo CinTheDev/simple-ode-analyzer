@@ -1,4 +1,5 @@
 #include "controls_panel.h"
+#include "events.h"
 
 ControlsPanel::ControlsPanel(wxWindow* parent) : wxPanel(parent) {
     init_elements();
@@ -14,6 +15,8 @@ void ControlsPanel::init_elements() {
     controls_choose = new ControlsChoose(this);
     controls_special = new ControlsSpecialized(this);
     controls_view = new ControlsView(this);
+
+    controls_choose->Bind(EVT_ODE_LIST, &ControlsODE::on_ode_list, controls_ode);
 }
 
 void ControlsPanel::init_sizers() {

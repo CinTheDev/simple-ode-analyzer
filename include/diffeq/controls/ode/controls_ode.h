@@ -3,6 +3,7 @@
 
 #include <wx/wx.h>
 #include <vector>
+#include "events.h"
 #include "controls.h"
 #include "settings.h"
 #include "ode.h"
@@ -31,6 +32,7 @@ public:
 
     void on_text_input(wxEvent& evt);
     void on_button_calculate(wxCommandEvent& evt);
+    void on_ode_list(OdeListUpdateEvent& evt);
 
 private:
     std::vector<ODE*> odes;

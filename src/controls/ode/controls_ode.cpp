@@ -1,7 +1,6 @@
 #include "controls_ode.h"
 #include "ode_harmonic.h"
 #include "ode_v_oscillation.h"
-#include "events.h"
 
 ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation controls") {
     init_elements();
@@ -132,4 +131,9 @@ void ControlsODE::on_button_calculate(wxCommandEvent& evt) {
     }
 
     SendResults();
+}
+
+#include <iostream>
+void ControlsODE::on_ode_list(OdeListUpdateEvent& evt) {
+    std::cout << "Ode list event in ControlsODE" << std::endl;
 }
