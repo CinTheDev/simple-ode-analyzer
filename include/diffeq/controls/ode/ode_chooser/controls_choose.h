@@ -4,7 +4,6 @@
 #include <wx/wx.h>
 #include "controls.h"
 #include "ode_entry.h"
-#include <vector>
 
 class ControlsChoose : public wxScrolledWindow {
 public:
@@ -14,7 +13,6 @@ public:
     wxStaticBoxSizer* sizer_main;
 
     wxButton* button_create_entry;
-    std::vector<OdeEntry*> entries;
 
     void add_entry();
 
