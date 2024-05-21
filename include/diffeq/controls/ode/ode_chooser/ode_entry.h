@@ -16,6 +16,8 @@ public:
     wxColourPickerCtrl* colour_picker;
     wxButton* button_remove;
 
+    void on_button_remove(wxCommandEvent& evt);
+
 private:
     void init_elements();
     void init_sizers();
