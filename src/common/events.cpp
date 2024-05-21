@@ -71,14 +71,14 @@ size_t OdePointerEvent::get_result_length() {
 wxDEFINE_EVENT(EVT_ODE_LIST, OdeListUpdateEvent);
 
 OdeListUpdateEvent::OdeListUpdateEvent(wxEventType event_type, int id, OdeListValues* ode_list_values, size_t amount)
- : wxCommandEvent(id, event_type) {
+ : wxEvent(id, event_type) {
     this->ode_list_values = ode_list_values;
     this->amount = amount;
 }
 
 OdeListUpdateEvent::~OdeListUpdateEvent() { }
 
-wxCommandEvent* OdeListUpdateEvent::Clone() const {
+wxEvent* OdeListUpdateEvent::Clone() const {
     return new OdeListUpdateEvent(*this);
 }
 

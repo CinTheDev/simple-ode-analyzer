@@ -56,6 +56,7 @@ void ControlsChoose::on_list_changed(wxEvent& evt) {
 
     OdeListUpdateEvent list_update_event(EVT_ODE_LIST, GetId(), list_values, list_length);
     list_update_event.SetEventObject(this);
+    list_update_event.ResumePropagation(__INT_MAX__);
     ProcessEvent(list_update_event);
 }
 

@@ -136,4 +136,6 @@ void ControlsODE::on_button_calculate(wxCommandEvent& evt) {
 #include <iostream>
 void ControlsODE::on_ode_list(OdeListUpdateEvent& evt) {
     std::cout << "Ode list event in ControlsODE" << std::endl;
+
+    // TODO: Implement dynamic ODE handling
 }
