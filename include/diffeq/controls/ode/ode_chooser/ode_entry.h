@@ -13,7 +13,14 @@ public:
 
     wxBoxSizer* sizer_main;
 
-    wxChoice* dropdown_test;
+    wxChoice* dropdown_ode;
+    wxChoice* dropdown_approx;
+    wxButton* placeholder_colorpicker;
+    wxButton* button_remove;
+
+private:
+    void init_elements();
+    void init_sizers();
 };
 
 #endif
