@@ -1,6 +1,8 @@
 #ifndef DIFFEQ_SETTINGS
 #define DIFFEQ_SETTINGS
 
+#include <cstdint>
+
 struct Settings_Common {
 public:
     double step_x = 0.01;
@@ -33,13 +35,13 @@ enum class OdeTypes {
 enum class ApproxTypes {
     Euler,
     Test,
-}
+};
 
 struct OdeListValues {
 public:
     OdeTypes ode_type;
     ApproxTypes approx_type;
     uint32_t color;
-}
+};
 
 #endif

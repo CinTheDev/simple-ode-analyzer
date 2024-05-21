@@ -58,8 +58,16 @@ size_t OdePointerEvent::get_result_length() {
 
 wxDEFINE_EVENT(EVT_ODE_LIST, OdeListUpdateEvent);
 
-OdeListUpdateEvent::OdeListUpdateEvent(wxEventType event_type, int id) : wxCommandEvent(id, event_type) {
-
+OdeListUpdateEvent::OdeListUpdateEvent(wxEventType event_type, int id, OdeListValues ode_list_values) : wxCommandEvent(id, event_type) {
+    this->ode_list_values = ode_list_values;
 }
 
 OdeListUpdateEvent::~OdeListUpdateEvent() { }
+
+wxCommandEvent* OdeListUpdateEvent::Clone() const {
+    return new OdeListUpdateEvent(*this);
+}
+
+OdeListValues OdeListUpdateEvent::get_values() {
+    return ode_list_values;
+}

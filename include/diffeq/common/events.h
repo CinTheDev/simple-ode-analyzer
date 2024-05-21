@@ -61,10 +61,15 @@ wxDECLARE_EVENT(EVT_ODE_POINTER, OdePointerEvent);
 
 class OdeListUpdateEvent : public wxCommandEvent {
 public:
-    OdeListUpdateEvent(wxEventType event_type, int id);
+    OdeListUpdateEvent(wxEventType event_type, int id, OdeListValues ode_list_values);
     ~OdeListUpdateEvent();
 
-    virtual wxEvent* Clone() const;
+    virtual wxCommandEvent* Clone() const;
+
+    OdeListValues get_values();
+
+private:
+    OdeListValues ode_list_values;
 };
 
 wxDECLARE_EVENT(EVT_ODE_LIST, OdeListUpdateEvent);
