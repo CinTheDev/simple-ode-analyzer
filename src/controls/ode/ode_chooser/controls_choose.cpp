@@ -23,8 +23,10 @@ void ControlsChoose::add_entry() {
     entries.push_back(new_entry);
 
     sizer_main->Add(new_entry, 0, wxEXPAND);
+
+    Layout();
 }
 
 void ControlsChoose::on_button_create(wxCommandEvent& evt) {
-    
+    add_entry();
 }
