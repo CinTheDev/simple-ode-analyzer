@@ -59,4 +59,16 @@ wxDECLARE_EVENT(EVT_ODE_POINTER, OdePointerEvent);
 
 #define OdePointerEventHandler(func) (&func)
 
+class OdeListUpdateEvent : public wxCommandEvent {
+public:
+    OdeListUpdateEvent(wxEventType event_type, int id);
+    ~OdeListUpdateEvent();
+
+    virtual wxEvent* Clone() const;
+};
+
+wxDECLARE_EVENT(EVT_ODE_LIST, OdeListUpdateEvent);
+
+#define OdeListUpdateEventHandler(func) (&func)
+
 #endif

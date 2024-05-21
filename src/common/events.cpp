@@ -53,3 +53,13 @@ double* OdePointerEvent::get_result_pointer() {
 size_t OdePointerEvent::get_result_length() {
     return result_length;
 }
+
+// OdeListUpdateEvent
+
+wxDEFINE_EVENT(EVT_ODE_LIST, OdeListUpdateEvent);
+
+OdeListUpdateEvent::OdeListUpdateEvent(wxEventType event_type, int id) : wxCommandEvent(id, event_type) {
+
+}
+
+OdeListUpdateEvent::~OdeListUpdateEvent() { }
