@@ -47,7 +47,7 @@ public:
 
     virtual wxEvent* Clone() const;
 
-    double* get_result_pointer();
+    double** get_result_pointer();
     size_t get_amount_results();
     size_t get_result_length();
 
