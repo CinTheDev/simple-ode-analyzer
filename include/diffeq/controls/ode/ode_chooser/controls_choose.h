@@ -17,7 +17,7 @@ public:
     void add_entry();
 
     void on_button_create(wxCommandEvent& evt);
-
+    void on_list_changed(wxEvent& evt);
     void on_child_remove(wxCommandEvent& evt);
 };
 

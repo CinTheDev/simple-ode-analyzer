@@ -17,8 +17,6 @@ public:
     wxColourPickerCtrl* colour_picker;
     wxButton* button_remove;
 
-    void on_interaction(wxEvent& evt);
-
     OdeListValues construct_values();
 
 private:

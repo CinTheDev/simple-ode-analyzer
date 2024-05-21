@@ -27,11 +27,6 @@ void OdeEntry::init_elements() {
 
     colour_picker = new wxColourPickerCtrl(this, wxID_ANY, *wxRED);
     button_remove = new wxButton(this, wxID_ANY, "Remove");
-
-    dropdown_ode->Bind(wxEVT_CHOICE, &OdeEntry::on_interaction, this);
-    dropdown_approx->Bind(wxEVT_CHOICE, &OdeEntry::on_interaction, this);
-    colour_picker->Bind(wxEVT_COLOURPICKER_CHANGED, &OdeEntry::on_interaction, this);
-    button_remove->Bind(wxEVT_BUTTON, &OdeEntry::on_interaction, this);
 }
 
 void OdeEntry::init_sizers() {
@@ -43,12 +38,6 @@ void OdeEntry::init_sizers() {
     sizer_main->Add(button_remove, 0);
 
     SetSizer(sizer_main);
-}
-
-void OdeEntry::on_interaction(wxEvent& evt) {
-    OdeListUpdateEvent update_event(EVT_ODE_LIST, GetId(), construct_values());
-    update_event.SetEventObject(this);
-    ProcessEvent(update_event);
 }
 
 OdeListValues OdeEntry::construct_values() {
