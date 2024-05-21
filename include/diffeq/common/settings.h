@@ -25,4 +25,21 @@ public:
     double view_start_x = 0.0;
 };
 
+enum class OdeTypes {
+    HarmonicOscillation,
+    GravitationalOscillation,
+};
+
+enum class ApproxTypes {
+    Euler,
+    Test,
+}
+
+struct OdeListValues {
+public:
+    OdeTypes ode_type;
+    ApproxTypes approx_type;
+    uint32_t color;
+}
+
 #endif
