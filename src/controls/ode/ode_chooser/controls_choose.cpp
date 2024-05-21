@@ -34,7 +34,18 @@ void ControlsChoose::on_button_create(wxCommandEvent& evt) {
     add_entry();
 }
 
-#include <iostream>
 void ControlsChoose::on_child_remove(wxCommandEvent& evt) {
-    std::cout << "Remove child" << std::endl;
+    wxButton* evt_button = reinterpret_cast<wxButton*>(evt.GetEventObject());
+    wxWindow* entry = evt_button->GetParent();
+
+    for (size_t i = 0; i < sizer_main->GetItemCount(); i++) {
+        if ( (wxWindow*) sizer_main->GetItem(i)->GetWindow() == entry) {
+            sizer_main->Remove(i);
+            delete entry;
+        }
+    }
+    
+    FitInside();
+    Layout();
+    GetParent()->Layout();
 }
