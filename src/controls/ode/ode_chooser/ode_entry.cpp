@@ -38,3 +38,14 @@ void OdeEntry::init_sizers() {
 
     SetSizer(sizer_main);
 }
+
+OdeListValues OdeEntry::construct_values() {
+    OdeListValues values = OdeListValues();
+
+    // TODO: Implement this
+    values.ode_type = OdeTypes::HarmonicOscillation;
+    values.approx_type = ApproxTypes::Euler;
+    values.color = 0xff000000; // Red
+
+    return values;
+}

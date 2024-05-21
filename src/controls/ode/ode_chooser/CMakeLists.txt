@@ -4,6 +4,7 @@ add_library(ode_entry ode_entry.cpp)
 
 target_include_directories(ode_entry PUBLIC
     ${CMAKE_SOURCE_DIR}/include/diffeq/controls/ode/ode_chooser
+    ${CMAKE_SOURCE_DIR}/include/diffeq/common
 )
 
 target_link_libraries(ode_entry PUBLIC
