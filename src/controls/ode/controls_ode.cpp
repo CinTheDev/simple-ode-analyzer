@@ -98,11 +98,16 @@ void ControlsODE::update_ode() {
     Settings_Common settings_common = construct_common_settings();
     Settings_Approximation settings_ode = construct_approx_settings();
 
-    ode->apply_settings(settings_common);
-    ode->apply_settings(settings_ode);
+    for(int i = 0; i < odes.size(); i++) {
+        odes[i]->apply_settings(settings_common);
+        odes[i]->apply_settings(settings_ode);
+    }
 }
 
 void ControlsODE::on_button_calculate(wxCommandEvent& evt) {
-    ode->calculate();
+    for (int i = 0; i < odes.size(); i++) {
+        odes[i]->calculate();
+    }
+    
     SendResults();
 }
