@@ -19,6 +19,7 @@ ControlsChoose::~ControlsChoose() { }
 
 void ControlsChoose::add_entry() {
     OdeEntry* new_entry = new OdeEntry(this);
+    new_entry->button_remove->Bind(wxEVT_BUTTON, &ControlsChoose::on_child_remove, this);
 
     entries.push_back(new_entry);
 
@@ -31,4 +32,9 @@ void ControlsChoose::add_entry() {
 
 void ControlsChoose::on_button_create(wxCommandEvent& evt) {
     add_entry();
+}
+
+#include <iostream>
+void ControlsChoose::on_child_remove(wxCommandEvent& evt) {
+    std::cout << "Remove child" << std::endl;
 }

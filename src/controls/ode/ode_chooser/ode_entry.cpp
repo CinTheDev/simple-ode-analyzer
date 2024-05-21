@@ -27,8 +27,6 @@ void OdeEntry::init_elements() {
 
     colour_picker = new wxColourPickerCtrl(this, wxID_ANY, *wxRED);
     button_remove = new wxButton(this, wxID_ANY, "Remove");
-
-    button_remove->Bind(wxEVT_BUTTON, &OdeEntry::on_button_remove, this);
 }
 
 void OdeEntry::init_sizers() {
@@ -40,8 +38,4 @@ void OdeEntry::init_sizers() {
     sizer_main->Add(button_remove, 0);
 
     SetSizer(sizer_main);
-}
-
-void OdeEntry::on_button_remove(wxCommandEvent& evt) {
-    
 }
