@@ -7,6 +7,9 @@ class OdeEntry : public wxPanel {
 public:
     OdeEntry(wxWindow* parent);
     ~OdeEntry();
+
+    wxButton* test_button;
+    wxBoxSizer* sizer_main;
 };
 
 #endif
