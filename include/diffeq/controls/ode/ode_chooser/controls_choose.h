@@ -3,13 +3,16 @@
 
 #include <wx/wx.h>
 #include "controls.h"
+#include "ode_entry.h"
+#include <vector>
 
 class ControlsChoose : public Controls {
 public:
     ControlsChoose(wxWindow* parent);
     ~ControlsChoose();
 
-    wxButton* test_button;
+    wxButton* button_create_entry;
+    std::vector<OdeEntry> entries;
 };
 
 #endif
