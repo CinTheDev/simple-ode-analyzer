@@ -40,18 +40,20 @@ wxDECLARE_EVENT(PLOTTER_GRAPHICS_UPDATE, SettingsPlotterEvent);
 
 #define SettingsPlotterEventHandler(func) (&func)
 
-class OdePointerEvent: public wxEvent {
+class OdePointerEvent : public wxEvent {
 public:
-    OdePointerEvent(wxEventType event_type, int id, double* result_pointer, size_t result_length);
+    OdePointerEvent(wxEventType event_type, int id, double** result_pointer, size_t amount_results, size_t result_length);
     ~OdePointerEvent();
 
     virtual wxEvent* Clone() const;
 
     double* get_result_pointer();
+    size_t get_amount_results();
     size_t get_result_length();
 
 private:
-    double* result_pointer;
+    double** result_pointer;
+    size_t amount_results;
     size_t result_length;
 };
 
