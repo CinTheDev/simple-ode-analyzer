@@ -11,8 +11,6 @@ ControlsChoose::ControlsChoose(wxWindow* parent) : wxPanel(parent) {
     button_create_entry->Bind(wxEVT_BUTTON, &ControlsChoose::on_button_create, this);
 
     SetSizer(sizer_main);
-
-    add_entry();
 }
 
 ControlsChoose::~ControlsChoose() { }
