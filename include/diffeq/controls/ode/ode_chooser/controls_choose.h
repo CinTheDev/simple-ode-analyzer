@@ -6,11 +6,12 @@
 #include "ode_entry.h"
 #include <vector>
 
-// TODO: No longer derive from Controls
-class ControlsChoose : public Controls {
+class ControlsChoose : public wxPanel {
 public:
     ControlsChoose(wxWindow* parent);
     ~ControlsChoose();
+
+    wxStaticBoxSizer* sizer_main;
 
     wxButton* button_create_entry;
     std::vector<OdeEntry*> entries;

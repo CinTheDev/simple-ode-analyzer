@@ -1,11 +1,14 @@
 #include "controls_choose.h"
 
-ControlsChoose::ControlsChoose(wxWindow* parent) : Controls(parent, "Select ODEs") {
-    button_create_entry = new wxButton(this, wxID_ANY, "Add ODE");
-
+ControlsChoose::ControlsChoose(wxWindow* parent) : wxPanel(parent) {
     entries = std::vector<OdeEntry*>();
 
+    sizer_main = new wxStaticBoxSizer(wxVERTICAL, this, "Select ODEs");
+
+    button_create_entry = new wxButton(this, wxID_ANY, "Add ODE");
     sizer_main->Add(button_create_entry, 0, wxEXPAND);
+
+    SetSizer(sizer_main);
 
     add_entry();
 }
