@@ -11,6 +11,10 @@ target_link_libraries(ode_entry PUBLIC
     ${wxWidgets_LIBRARIES}
 )
 
+target_link_libraries(ode_entry PRIVATE
+    custom_events
+)
+
 # CHOOSER FOR ENTRIES
 
 add_library(controls_choose controls_choose.cpp)

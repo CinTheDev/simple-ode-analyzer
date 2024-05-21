@@ -1,4 +1,5 @@
 #include "ode_entry.h"
+#include "events.h"
 
 const wxString ode_options[] = {
     "Harmonic Oscillation",
@@ -45,7 +46,9 @@ void OdeEntry::init_sizers() {
 }
 
 void OdeEntry::on_interaction(wxEvent& evt) {
-    
+    OdeListUpdateEvent update_event(EVT_ODE_LIST, GetId(), construct_values());
+    update_event.SetEventObject(this);
+    ProcessEvent(update_event);
 }
 
 OdeListValues OdeEntry::construct_values() {
