@@ -32,9 +32,9 @@ void OdeEntry::init_elements() {
 void OdeEntry::init_sizers() {
     sizer_main = new wxBoxSizer(wxHORIZONTAL);
 
-    sizer_main->Add(dropdown_ode, 1);
-    sizer_main->Add(dropdown_approx, 1);
-    sizer_main->Add(placeholder_colorpicker, 1);
+    sizer_main->Add(dropdown_ode, 0);
+    sizer_main->Add(dropdown_approx, 0);
+    sizer_main->Add(placeholder_colorpicker, 0);
     sizer_main->Add(button_remove, 0);
 
     SetSizer(sizer_main);

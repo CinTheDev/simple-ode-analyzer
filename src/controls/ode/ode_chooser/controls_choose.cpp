@@ -26,6 +26,7 @@ void ControlsChoose::add_entry() {
 
     FitInside();
     Layout();
+    GetParent()->Layout();
 }
 
 void ControlsChoose::on_button_create(wxCommandEvent& evt) {
