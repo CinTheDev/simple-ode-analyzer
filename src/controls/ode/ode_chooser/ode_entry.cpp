@@ -14,10 +14,6 @@ const wxString approx_options[] = {
 OdeEntry::OdeEntry(wxWindow* parent) : wxPanel(parent) {
     init_elements();
     init_sizers();
-    //size_t amount_test_options = sizeof(test_options) / sizeof(wxString);
-
-    //dropdown_test = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, amount_test_options, test_options);
-    //sizer_main->Add(dropdown_test, 1);
 }
 
 OdeEntry::~OdeEntry() { }
