@@ -94,6 +94,22 @@ void ControlsODE::on_text_input(wxEvent& evt) {
     update_ode();
 }
 
+double** ControlsODE::get_all_results(size_t& amount_results, size_t& result_length) {
+    amount_results = odes.size();
+
+    if (amount_results < 1) return nullptr;
+
+    result_length = odes[0]->get_length();
+
+    double** results = new double*[amount_results];
+
+    for (size_t i = 0; i < amount_results; i++) {
+        results[i] = odes[i]->get_result();
+    }
+
+    return results;
+}
+
 void ControlsODE::update_ode() {
     Settings_Common settings_common = construct_common_settings();
     Settings_Approximation settings_ode = construct_approx_settings();
@@ -108,6 +124,6 @@ void ControlsODE::on_button_calculate(wxCommandEvent& evt) {
     for (int i = 0; i < odes.size(); i++) {
         odes[i]->calculate();
     }
-    
+
     SendResults();
 }
