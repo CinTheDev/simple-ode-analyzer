@@ -37,6 +37,10 @@ void OdeEntry::init_elements() {
 
     colour_picker = new wxColourPickerCtrl(this, wxID_ANY, *wxRED);
     button_remove = new wxButton(this, wxID_ANY, "Remove");
+
+    // Default selection
+    dropdown_ode->SetSelection(0);
+    dropdown_approx->SetSelection(0);
 }
 
 void OdeEntry::init_sizers() {
@@ -53,9 +57,12 @@ void OdeEntry::init_sizers() {
 OdeListValues OdeEntry::construct_values() {
     OdeListValues values = OdeListValues();
 
+    int ode_type_selection = dropdown_ode->GetSelection();
+    int approx_type_selection = dropdown_approx->GetSelection();
+
+    values.ode_type = ode_types[ode_type_selection];
+    values.approx_type = approx_types[approx_type_selection];
     // TODO: Implement this
-    values.ode_type = OdeTypes::HarmonicOscillation;
-    values.approx_type = ApproxTypes::Euler;
     values.color = 0xff000000; // Red
 
     return values;
