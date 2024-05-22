@@ -18,6 +18,9 @@ ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation con
     amount_odes = 0;
     odes = new ODE*[1];
 
+    amount_new_odes = 0;
+    new_ode_structure = new OdeListValues[1];
+
     SendResults();
 
     Bind(wxEVT_BUTTON, &ControlsODE::on_button_calculate, this);
@@ -119,6 +122,10 @@ double** ControlsODE::get_all_results(size_t& amount_results, size_t& result_len
 }
 
 void ControlsODE::on_button_calculate(wxCommandEvent& evt) {
+    if (odes_changed) regenerate_odes();
+
+    update_ode_settings();
+
     for (int i = 0; i < amount_odes; i++) {
         odes[i]->calculate();
     }
@@ -127,7 +134,11 @@ void ControlsODE::on_button_calculate(wxCommandEvent& evt) {
 }
 
 void ControlsODE::on_ode_list(OdeListUpdateEvent& evt) {
-    
+    delete[] new_ode_structure;
+
+    odes_changed = true;
+    amount_new_odes = evt.get_amount();
+    new_ode_structure = evt.get_values();
 }
 
 void ControlsODE::update_ode_settings() {
