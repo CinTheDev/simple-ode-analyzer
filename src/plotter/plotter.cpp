@@ -214,8 +214,6 @@ void Plotter::render_markings(wxDC& dc) {
 }
 
 void Plotter::render_function(wxDC& dc) {
-    if (functions[0] == nullptr) return;
-
     int axis_offset = settings.axis_offset;
 
     wxCoord width, height;
