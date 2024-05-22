@@ -67,6 +67,7 @@ void ControlsODE::update_values(Settings_Approximation settings_approx) {
     input_subdivision->ChangeValue(std::to_string(settings_approx.subdivision));
 }
 
+/*
 void ControlsODE::on_button_calculate(wxCommandEvent& evt) {
     if (odes_changed) regenerate_odes();
 
@@ -78,6 +79,7 @@ void ControlsODE::on_button_calculate(wxCommandEvent& evt) {
 
     SendResults();
 }
+*/
 
 /*
 void ControlsODE::on_ode_list(OdeListUpdateEvent& evt) {

@@ -91,6 +91,18 @@ void ControlsChoose::on_child_remove(wxCommandEvent& evt) {
     GetParent()->Layout();
 }
 
+void ControlsChoose::on_calculate(wxCommandEvent& evt) {
+    if (odes_changed) regenerate_odes();
+
+    update_ode_settings();
+
+    for (int i = 0; i < amount_odes; i++) {
+        odes[i]->calculate();
+    }
+
+    SendResults();
+}
+
 void ControlsChoose::SendResults() {
     // ODE pointer
     size_t amount_results, result_length;

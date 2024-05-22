@@ -23,6 +23,8 @@ public:
     void on_list_changed(wxEvent& evt);
     void on_child_remove(wxCommandEvent& evt);
 
+    void on_calculate(wxCommandEvent& evt);
+
     void SendResults();
 
 private:
