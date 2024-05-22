@@ -5,23 +5,11 @@
 ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation controls") {
     init_elements();
 
-    /*
-    odes = std::vector<ODE*>();
-
-    odes.push_back(new ODE_Harmonic(Settings_Common(), Settings_Approximation()));
-    odes[0]->calculate();
-
-    odes.push_back(new ODE_V_Oscillation(Settings_Common(), Settings_Approximation()));
-    odes[1]->calculate();
-    */
-
     amount_odes = 0;
     odes = new ODE*[1];
 
     amount_new_odes = 0;
     new_ode_structure = new OdeListValues[1];
-
-    //SendResults();
 
     Bind(wxEVT_BUTTON, &ControlsODE::on_button_calculate, this);
 }
