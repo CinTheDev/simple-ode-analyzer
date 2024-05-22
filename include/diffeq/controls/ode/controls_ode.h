@@ -22,8 +22,6 @@ public:
     wxStaticText* label_step_x;
     wxStaticText* label_subdivision;
 
-    void SendResults();
-
     Settings_Common construct_common_settings();
     Settings_Approximation construct_approx_settings();
     void update_values(Settings_Common settings_common);
@@ -34,21 +32,7 @@ public:
 
 private:
     // TODO: Move ODES to controls_choose
-    ODE** odes;
-    uint32_t* ode_colours;
-    size_t amount_odes;
-
-    bool odes_changed = false;
-    size_t amount_new_odes;
-    OdeListValues* new_ode_structure;
-
     void init_elements();
-    double** get_all_results(size_t& amount_results, size_t& result_length);
-
-    ODE* instance_ode(OdeTypes ode_type);
-    void update_ode_settings();
-    void regenerate_odes();
-    void purge_odes();
 };
 
 #endif
