@@ -12,6 +12,14 @@ ControlsChoose::ControlsChoose(wxWindow* parent) : wxScrolledWindow(parent) {
     SetSizer(sizer_main);
 
     SetScrollRate(0, 5);
+
+    // ODE stuff
+    amount_odes = 0;
+    odes = new ODE*[1];
+    ode_colours = new uint32_t[1];
+
+    amount_new_odes = 0;
+    new_ode_structure = new OdeListValues[1];
 }
 
 ControlsChoose::~ControlsChoose() { }
