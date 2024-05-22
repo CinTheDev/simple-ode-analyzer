@@ -11,7 +11,8 @@ public:
     OdeEntry(wxWindow* parent);
     ~OdeEntry();
 
-    wxBoxSizer* sizer_options;
+    wxBoxSizer* sizer_options_vertical;
+    wxBoxSizer* sizer_options_horizontal;
 
     wxChoice* dropdown_ode;
     wxChoice* dropdown_approx;

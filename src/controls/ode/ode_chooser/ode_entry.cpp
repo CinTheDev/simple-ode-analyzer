@@ -55,14 +55,18 @@ void OdeEntry::init_elements() {
 }
 
 void OdeEntry::init_sizers() {
-    sizer_options = new wxBoxSizer(wxHORIZONTAL);
+    sizer_options_vertical = new wxBoxSizer(wxVERTICAL);
+    sizer_options_horizontal = new wxBoxSizer(wxHORIZONTAL);
 
-    sizer_options->Add(dropdown_ode, 0);
-    sizer_options->Add(dropdown_approx, 0);
-    sizer_options->Add(colour_picker, 1);
-    sizer_options->Add(button_remove, 0);
+    //sizer_options->Add(dropdown_ode, 0);
+    sizer_options_horizontal->Add(dropdown_approx, 1);
+    sizer_options_horizontal->Add(colour_picker, 1);
+    sizer_options_horizontal->Add(button_remove, 1);
 
-    sizer_main->Prepend(sizer_options, 0, wxEXPAND | wxALL & ~wxBOTTOM, 10);
+    sizer_options_vertical->Add(dropdown_ode, 0, wxEXPAND);
+    sizer_options_vertical->Add(sizer_options_horizontal, 0, wxEXPAND);
+
+    sizer_main->Prepend(sizer_options_vertical, 0, wxEXPAND | wxALL & ~wxBOTTOM, 10);
 
     SetSizer(sizer_main);
 }
