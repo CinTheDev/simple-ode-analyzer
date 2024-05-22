@@ -37,7 +37,7 @@ private:
     uint32_t* ode_colors;
     size_t amount_odes;
 
-    bool odes_changed;
+    bool odes_changed = false;
     size_t amount_new_odes;
     OdeListValues* new_ode_structure;
 

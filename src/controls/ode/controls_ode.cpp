@@ -155,7 +155,9 @@ void ControlsODE::regenerate_odes() {
 
     for (size_t i = 0; i < amount_odes; i++) {
         OdeListValues values = new_ode_structure[i];
-        // TODO: Fill ODEs
+
+        // TODO: Fill ODEs properly
+        odes[i] = new ODE_V_Oscillation(Settings_Common(), Settings_Approximation());
     }
 }
 
