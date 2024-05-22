@@ -24,7 +24,9 @@ ControlsChoose::ControlsChoose(wxWindow* parent) : wxScrolledWindow(parent) {
     new_ode_structure = new OdeListValues[1];
 }
 
-ControlsChoose::~ControlsChoose() { }
+ControlsChoose::~ControlsChoose() {
+    purge_odes();
+}
 
 void ControlsChoose::add_entry() {
     OdeEntry* new_entry = new OdeEntry(this);

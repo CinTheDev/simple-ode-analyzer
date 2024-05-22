@@ -35,9 +35,7 @@ void ControlsODE::init_elements() {
     update_values(default_approx_settings);
 }
 
-ControlsODE::~ControlsODE() {
-    purge_odes();
-}
+ControlsODE::~ControlsODE() { }
 
 Settings_Common ControlsODE::construct_common_settings() {
     Settings_Common settings_common;
