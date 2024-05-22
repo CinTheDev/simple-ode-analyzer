@@ -24,6 +24,8 @@ public:
     void create_options(size_t number, wxString* labels);
     OdeListValues construct_values();
 
+    void on_dropdown_ode(wxCommandEvent& evt);
+
 private:
     void init_elements();
     void init_sizers();

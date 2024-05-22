@@ -2,6 +2,7 @@
 #define DIFFEQ_ODE
 
 #include <cstddef>
+#include <string>
 #include "settings.h"
 
 class ODE {
@@ -16,7 +17,7 @@ public:
     double* get_result();
 
     double* get_variable_values();
-    std::string get_variable_names();
+    std::string* get_variable_names();
     size_t get_amount_variables();
 
     void apply_settings(Settings_Common settings_common);

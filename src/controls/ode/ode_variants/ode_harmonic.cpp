@@ -7,7 +7,7 @@ ODE_Harmonic::ODE_Harmonic(Settings_Common settings_common, Settings_Approximati
     variable_names = new std::string[amount_variables];
 
     variable_names[0] = "D";
-    variable_names[1] = m;
+    variable_names[1] = "m";
 
     variable_values[0] = 100.0;
     variable_values[1] = 1.0;

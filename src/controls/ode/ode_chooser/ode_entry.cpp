@@ -50,6 +50,8 @@ void OdeEntry::init_elements() {
     // Default selection
     dropdown_ode->SetSelection(0);
     dropdown_approx->SetSelection(0);
+
+    dropdown_ode->Bind(wxEVT_CHOICE, &OdeEntry::on_dropdown_ode, this);
 }
 
 void OdeEntry::init_sizers() {
@@ -91,6 +93,10 @@ OdeListValues OdeEntry::construct_values() {
     values.colour = colour_picker->GetColour().GetRGBA();
 
     return values;
+}
+
+void OdeEntry::on_dropdown_ode(wxCommandEvent& evt) {
+    std::cout << "Dropdown event" << std::endl;
 }
 
 void OdeEntry::purge() {

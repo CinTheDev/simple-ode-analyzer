@@ -49,9 +49,11 @@ OdeListValues* ControlsChoose::construct_list_values(size_t& list_length) {
 void ControlsChoose::on_button_create(wxCommandEvent& evt) {
     add_entry();
     on_list_changed(evt);
+    evt.Skip(false);
 }
 
 void ControlsChoose::on_list_changed(wxEvent& evt) {
+    evt.Skip();
     size_t list_length;
     OdeListValues* list_values = construct_list_values(list_length);
 

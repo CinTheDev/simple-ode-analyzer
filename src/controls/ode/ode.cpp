@@ -36,7 +36,7 @@ double* ODE::get_variable_values() {
     return variable_values;
 }
 
-std::string ODE::get_variable_names() {
+std::string* ODE::get_variable_names() {
     return variable_names;
 }
 
