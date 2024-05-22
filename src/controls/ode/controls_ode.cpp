@@ -4,7 +4,7 @@
 ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation controls") {
     init_elements();
 
-    Bind(wxEVT_BUTTON, &ControlsODE::on_button_calculate, this);
+    //Bind(wxEVT_BUTTON, &ControlsODE::on_button_calculate, this);
 }
 
 void ControlsODE::init_elements() {
