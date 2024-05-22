@@ -59,7 +59,7 @@ void OdeEntry::init_sizers() {
 
     sizer_options->Add(dropdown_ode, 0);
     sizer_options->Add(dropdown_approx, 0);
-    sizer_options->Add(colour_picker, 0);
+    sizer_options->Add(colour_picker, 1);
     sizer_options->Add(button_remove, 0);
 
     sizer_main->Prepend(sizer_options, 0, wxEXPAND | wxALL & ~wxBOTTOM, 10);
@@ -97,7 +97,7 @@ OdeListValues OdeEntry::construct_values() {
 
 void OdeEntry::on_dropdown_ode(wxCommandEvent& evt) {
     // TODO: Get ODE variable names and use create_options()
-    
+
 }
 
 void OdeEntry::purge() {
