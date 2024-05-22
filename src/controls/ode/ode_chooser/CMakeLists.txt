@@ -29,6 +29,7 @@ target_link_libraries(controls_choose PUBLIC
     controls
     ode_entry
     ode
+    custom_events
 )
 
 target_link_libraries(controls_choose PRIVATE

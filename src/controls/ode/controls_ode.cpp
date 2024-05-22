@@ -64,8 +64,10 @@ void ControlsODE::update_values(Settings_Approximation settings_approx) {
 }
 
 void ControlsODE::on_text_input(wxEvent& evt) {
-    // TODO: Send event with settings
-    
+    SettingsOdeEvent ode_evt = SettingsOdeEvent(SETTINGS_ODE_UPDATE, GetId(), construct_common_settings(), construct_approx_settings());
+    ode_evt.ResumePropagation(__INT_MAX__);
+    ode_evt.SetEventObject(this);
+    ProcessEvent(ode_evt);
 }
 
 /*

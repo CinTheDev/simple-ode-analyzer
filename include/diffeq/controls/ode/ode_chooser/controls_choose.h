@@ -5,6 +5,7 @@
 #include "controls.h"
 #include "ode_entry.h"
 #include "settings.h"
+#include "events.h"
 #include "ode.h"
 
 class ControlsChoose : public wxScrolledWindow {
@@ -24,6 +25,7 @@ public:
     void on_list_changed(wxEvent& evt);
     void on_child_remove(wxCommandEvent& evt);
 
+    void on_settings_update(SettingsOdeEvent& evt);
     void on_calculate(wxCommandEvent& evt);
 
     void SendResults();

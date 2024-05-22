@@ -1,7 +1,6 @@
 #include "controls_choose.h"
 #include "ode_harmonic.h"
 #include "ode_v_oscillation.h"
-#include "events.h"
 
 ControlsChoose::ControlsChoose(wxWindow* parent) : wxScrolledWindow(parent) {
     sizer_main = new wxStaticBoxSizer(wxVERTICAL, this, "Select ODEs");
@@ -93,6 +92,10 @@ void ControlsChoose::on_child_remove(wxCommandEvent& evt) {
     FitInside();
     Layout();
     GetParent()->Layout();
+}
+
+void ControlsChoose::on_settings_update(SettingsOdeEvent& evt) {
+    std::cout << "Ode event received" << std::endl;
 }
 
 void ControlsChoose::on_calculate(wxCommandEvent& evt) {
