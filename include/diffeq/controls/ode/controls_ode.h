@@ -29,7 +29,6 @@ public:
     void update_values(Settings_Common settings_common);
     void update_values(Settings_Approximation settings_approx);
 
-    void on_text_input(wxEvent& evt);
     void on_button_calculate(wxCommandEvent& evt);
     void on_ode_list(OdeListUpdateEvent& evt);
 

@@ -101,10 +101,6 @@ void ControlsODE::update_values(Settings_Approximation settings_approx) {
     input_subdivision->ChangeValue(std::to_string(settings_approx.subdivision));
 }
 
-void ControlsODE::on_text_input(wxEvent& evt) {
-    update_ode();
-}
-
 double** ControlsODE::get_all_results(size_t& amount_results, size_t& result_length) {
     amount_results = amount_odes;
 
@@ -154,11 +150,11 @@ void ControlsODE::update_ode_settings() {
 void ControlsODE::regenerate_odes() {
     purge_odes();
 
-    amount_odes = evt.get_amount();
+    amount_odes = amount_new_odes;
     odes = new ODE*[amount_odes];
 
     for (size_t i = 0; i < amount_odes; i++) {
-        OdeListValues values = evt.get_values()[i];
+        OdeListValues values = new_ode_structure[i];
         // TODO: Fill ODEs
     }
 }
