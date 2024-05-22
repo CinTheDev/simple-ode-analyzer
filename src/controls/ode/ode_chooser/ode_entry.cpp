@@ -47,6 +47,8 @@ void OdeEntry::init_elements() {
     colour_picker = new wxColourPickerCtrl(this, wxID_ANY, *wxRED);
     button_remove = new wxButton(this, wxID_ANY, "Remove");
 
+    // TODO: Add Buttons "down" and "up" for swapping an entry with the lower or upper neighbour
+
     // Default selection
     dropdown_ode->SetSelection(0);
     dropdown_approx->SetSelection(0);
@@ -58,7 +60,6 @@ void OdeEntry::init_sizers() {
     sizer_options_vertical = new wxBoxSizer(wxVERTICAL);
     sizer_options_horizontal = new wxBoxSizer(wxHORIZONTAL);
 
-    //sizer_options->Add(dropdown_ode, 0);
     sizer_options_horizontal->Add(dropdown_approx, 1);
     sizer_options_horizontal->Add(colour_picker, 1);
     sizer_options_horizontal->Add(button_remove, 1);
