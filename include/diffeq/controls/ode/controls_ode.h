@@ -33,6 +33,7 @@ public:
     void on_ode_list(OdeListUpdateEvent& evt);
 
 private:
+    // TODO: Move ODES to controls_choose
     ODE** odes;
     uint32_t* ode_colours;
     size_t amount_odes;

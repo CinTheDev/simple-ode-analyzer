@@ -96,7 +96,8 @@ OdeListValues OdeEntry::construct_values() {
 }
 
 void OdeEntry::on_dropdown_ode(wxCommandEvent& evt) {
-    std::cout << "Dropdown event" << std::endl;
+    // TODO: Get ODE variable names and use create_options()
+    
 }
 
 void OdeEntry::purge() {
