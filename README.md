@@ -37,7 +37,7 @@ The top one will be the graph plot, the bottom one for settings.
 
 Test following:
 
-- Constructor - MEMORY LEAK DETECTED
+- Constructor - PASSED
 - Calculation w/o regeneration - PASSED
 - Calculation w/  regeneration - PASSED
 - OdePointer - PASSED
