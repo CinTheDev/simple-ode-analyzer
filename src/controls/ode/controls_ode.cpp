@@ -21,7 +21,7 @@ ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation con
     amount_new_odes = 0;
     new_ode_structure = new OdeListValues[1];
 
-    SendResults();
+    //SendResults();
 
     Bind(wxEVT_BUTTON, &ControlsODE::on_button_calculate, this);
 }
