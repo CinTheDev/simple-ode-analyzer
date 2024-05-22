@@ -81,7 +81,7 @@ void ControlsChoose::on_child_remove(wxCommandEvent& evt) {
     GetParent()->Layout();
 }
 
-void ControlsODE::SendResults() {
+void ControlsChoose::SendResults() {
     // ODE pointer
     size_t amount_results, result_length;
     double** ode_results = get_all_results(amount_results, result_length);
@@ -98,7 +98,7 @@ void ControlsODE::SendResults() {
     ProcessEvent(evt_settings_common);
 }
 
-double** ControlsODE::get_all_results(size_t& amount_results, size_t& result_length) {
+double** ControlsChoose::get_all_results(size_t& amount_results, size_t& result_length) {
     amount_results = amount_odes;
 
     if (amount_results < 1) return nullptr;
@@ -114,7 +114,7 @@ double** ControlsODE::get_all_results(size_t& amount_results, size_t& result_len
     return results;
 }
 
-ODE* ControlsODE::instance_ode(OdeTypes ode_type) {
+ODE* ControlsChoose::instance_ode(OdeTypes ode_type) {
     switch (ode_type) {
         case OdeTypes::HarmonicOscillation:
             return new ODE_Harmonic(Settings_Common(), Settings_Approximation());
@@ -128,7 +128,7 @@ ODE* ControlsODE::instance_ode(OdeTypes ode_type) {
     }
 }
 
-void ControlsODE::update_ode_settings() {
+void ControlsChoose::update_ode_settings() {
     Settings_Common settings_common = construct_common_settings();
     Settings_Approximation settings_ode = construct_approx_settings();
 
@@ -138,7 +138,7 @@ void ControlsODE::update_ode_settings() {
     }
 }
 
-void ControlsODE::regenerate_odes() {
+void ControlsChoose::regenerate_odes() {
     odes_changed = false;
     purge_odes();
 
@@ -155,12 +155,11 @@ void ControlsODE::regenerate_odes() {
     }
 }
 
-void ControlsODE::purge_odes() {
+void ControlsChoose::purge_odes() {
     for (int i = 0; i < amount_odes; i++) {
         delete odes[i];
     }
 
     delete[] odes;
-
     delete[] ode_colours;
 }
