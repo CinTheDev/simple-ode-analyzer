@@ -63,6 +63,10 @@ ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation con
         OdeListUpdateEvent evt(wxEVT_NULL, 0, sample_list, 2);
 
         on_ode_list(evt);
+
+        // Plus recalculation
+        wxCommandEvent dummy_command_evt = wxCommandEvent();
+        on_button_calculate(dummy_command_evt);
     }
 }
 
