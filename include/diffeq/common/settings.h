@@ -41,7 +41,7 @@ struct OdeListValues {
 public:
     OdeTypes ode_type;
     ApproxTypes approx_type;
-    uint32_t color;
+    uint32_t colour;
 };
 
 #endif

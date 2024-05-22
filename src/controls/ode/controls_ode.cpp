@@ -163,7 +163,7 @@ void ControlsODE::regenerate_odes() {
 
         odes[i] = instance_ode(values.ode_type);
 
-        ode_colours[i] = values.color;
+        ode_colours[i] = values.colour;
     }
 }
 

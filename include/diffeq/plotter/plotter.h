@@ -31,7 +31,7 @@ private:
     ShortcutState shortcut_state;
 
     double** functions;
-    uint32_t* function_colors;
+    uint32_t* function_colours;
     size_t function_amount;
     size_t function_length;
 
