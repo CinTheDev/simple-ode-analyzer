@@ -40,7 +40,8 @@ private:
 
     double** get_all_results(size_t& amount_results, size_t& result_length);
     void init_elements();
-    void update_ode();
+    void update_ode_settings();
+    void regenerate_odes();
     void purge_odes();
 };
 

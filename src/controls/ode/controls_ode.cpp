@@ -118,16 +118,6 @@ double** ControlsODE::get_all_results(size_t& amount_results, size_t& result_len
     return results;
 }
 
-void ControlsODE::update_ode() {
-    Settings_Common settings_common = construct_common_settings();
-    Settings_Approximation settings_ode = construct_approx_settings();
-
-    for(int i = 0; i < amount_odes; i++) {
-        odes[i]->apply_settings(settings_common);
-        odes[i]->apply_settings(settings_ode);
-    }
-}
-
 void ControlsODE::on_button_calculate(wxCommandEvent& evt) {
     for (int i = 0; i < amount_odes; i++) {
         odes[i]->calculate();
@@ -137,6 +127,20 @@ void ControlsODE::on_button_calculate(wxCommandEvent& evt) {
 }
 
 void ControlsODE::on_ode_list(OdeListUpdateEvent& evt) {
+    
+}
+
+void ControlsODE::update_ode_settings() {
+    Settings_Common settings_common = construct_common_settings();
+    Settings_Approximation settings_ode = construct_approx_settings();
+
+    for(int i = 0; i < amount_odes; i++) {
+        odes[i]->apply_settings(settings_common);
+        odes[i]->apply_settings(settings_ode);
+    }
+}
+
+void ControlsODE::regenerate_odes() {
     purge_odes();
 
     amount_odes = evt.get_amount();
