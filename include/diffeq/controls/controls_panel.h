@@ -5,7 +5,6 @@
 #include "events.h"
 #include "controls_view.h"
 #include "controls_ode.h"
-#include "controls_specialized.h"
 #include "controls_choose.h"
 
 class ControlsPanel : public wxPanel {

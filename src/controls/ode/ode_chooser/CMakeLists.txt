@@ -1,5 +1,3 @@
-add_subdirectory(ode_special)
-
 # ENTRIES
 
 add_library(ode_entry ode_entry.cpp)
