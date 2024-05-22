@@ -62,8 +62,6 @@ void ControlsChoose::on_list_changed(wxEvent& evt) {
 }
 
 void ControlsChoose::on_child_remove(wxCommandEvent& evt) {
-    on_list_changed(evt);
-
     wxButton* evt_button = reinterpret_cast<wxButton*>(evt.GetEventObject());
     wxWindow* entry = evt_button->GetParent();
 
@@ -73,6 +71,8 @@ void ControlsChoose::on_child_remove(wxCommandEvent& evt) {
             delete entry;
         }
     }
+
+    on_list_changed(evt);
     
     FitInside();
     Layout();
