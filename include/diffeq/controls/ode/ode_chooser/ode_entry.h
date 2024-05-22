@@ -4,14 +4,15 @@
 #include <wx/wx.h>
 #include <wx/clrpicker.h>
 #include "settings.h"
-#include "controls_specialized.h"
+#include "controls.h"
+//#include "controls_specialized.h"
 
-class OdeEntry : public wxPanel {
+class OdeEntry : public Controls {
 public:
     OdeEntry(wxWindow* parent);
     ~OdeEntry();
 
-    wxBoxSizer* sizer_main;
+    //wxBoxSizer* sizer_main;
     wxBoxSizer* sizer_options;
 
     wxChoice* dropdown_ode;
@@ -19,13 +20,17 @@ public:
     wxColourPickerCtrl* colour_picker;
     wxButton* button_remove;
 
-    ControlsSpecialized* controls_special;
+    //ControlsSpecialized* controls_special;
+    wxStaticText** labels;
+    wxTextCtrl** inputs;
 
+    void create_options(size_t number, wxString* labels);
     OdeListValues construct_values();
 
 private:
     void init_elements();
     void init_sizers();
+    void purge();
 };
 
 #endif
