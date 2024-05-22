@@ -5,8 +5,6 @@
 #include "plotter.h"
 #include "controls_panel.h"
 
-// TODO: Fix memory issue that makes the program crash sometimes on startup
-
 class Diffeq_Main : public wxFrame {
 public:
     Diffeq_Main();
