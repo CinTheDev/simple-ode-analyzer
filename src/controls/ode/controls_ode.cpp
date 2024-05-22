@@ -44,6 +44,26 @@ ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation con
         on_button_calculate(dummy_evt);
     }
     */
+
+    // MEMORY TEST: OdeListEvent
+    while (true) {
+        OdeListValues* sample_list = new OdeListValues[2];
+
+        sample_list[0] = OdeListValues();
+        sample_list[1] = OdeListValues();
+
+        sample_list[0].ode_type = OdeTypes::HarmonicOscillation;
+        sample_list[0].approx_type = ApproxTypes::Euler;
+        sample_list[0].colour = 0;
+
+        sample_list[1].ode_type = OdeTypes::GravitationalOscillation;
+        sample_list[1].approx_type = ApproxTypes::Euler;
+        sample_list[1].colour = 0;
+
+        OdeListUpdateEvent evt(wxEVT_NULL, 0, sample_list, 2);
+
+        on_ode_list(evt);
+    }
 }
 
 void ControlsODE::init_elements() {

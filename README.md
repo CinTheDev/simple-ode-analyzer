@@ -41,4 +41,5 @@ Test following:
 - Calculation w/o regeneration - PASSED
 - Calculation w/  regeneration - PASSED
 - OdePointer - PASSED
-- ListUpdate - N/A
+- ListUpdate - PASSED
+- ListUpdate & Calculation - N/A
