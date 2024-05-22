@@ -52,11 +52,7 @@ void ControlsODE::init_elements() {
 }
 
 ControlsODE::~ControlsODE() {
-    for (int i = 0; i < amount_odes; i++) {
-        delete odes[i];
-    }
-
-    delete[] odes;
+    purge_odes();
 }
 
 void ControlsODE::SendResults() {
@@ -145,4 +141,12 @@ void ControlsODE::on_ode_list(OdeListUpdateEvent& evt) {
     std::cout << "Ode list event in ControlsODE" << std::endl;
 
     // TODO: Implement dynamic ODE handling
+}
+
+void ControlsODE::purge_odes() {
+    for (int i = 0; i < amount_odes; i++) {
+        delete odes[i];
+    }
+
+    delete[] odes;
 }
