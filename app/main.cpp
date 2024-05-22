@@ -14,9 +14,10 @@ void Diffeq_Main::instance_layout() {
         plotter = new Plotter(this);
         controls = new ControlsPanel(this);
 
-        delete plotter, controls;
+        delete plotter;
+        delete controls;
     }
-    
+
     plotter = new Plotter(this);
     controls = new ControlsPanel(this);
 
