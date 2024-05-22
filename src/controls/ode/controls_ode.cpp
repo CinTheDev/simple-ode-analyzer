@@ -45,7 +45,7 @@ ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation con
     }
     */
 
-    // MEMORY TEST: OdeListEvent
+    // MEMORY TEST: OdeListEvent + recalculation
     while (true) {
         OdeListValues* sample_list = new OdeListValues[2];
 
