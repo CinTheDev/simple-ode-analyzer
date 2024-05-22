@@ -60,7 +60,7 @@ void OdeEntry::init_sizers() {
     sizer_options->Add(colour_picker, 0);
     sizer_options->Add(button_remove, 0);
 
-    sizer_main->Prepend(sizer_options, 0, wxEXPAND);
+    sizer_main->Prepend(sizer_options, 0, wxEXPAND | wxALL & ~wxBOTTOM, 10);
 
     SetSizer(sizer_main);
 }

@@ -5,7 +5,7 @@ ControlsChoose::ControlsChoose(wxWindow* parent) : wxScrolledWindow(parent) {
     sizer_main = new wxStaticBoxSizer(wxVERTICAL, this, "Select ODEs");
 
     button_create_entry = new wxButton(this, wxID_ANY, "Add ODE");
-    sizer_main->Add(button_create_entry, 0, wxEXPAND);
+    sizer_main->Add(button_create_entry, 0, wxEXPAND | wxALL & ~wxBOTTOM, 10);
 
     button_create_entry->Bind(wxEVT_BUTTON, &ControlsChoose::on_button_create, this);
 
@@ -24,7 +24,7 @@ void ControlsChoose::add_entry() {
     new_entry->colour_picker->Bind(wxEVT_COLOURPICKER_CHANGED, &ControlsChoose::on_list_changed, this);
     new_entry->button_remove->Bind(wxEVT_BUTTON, &ControlsChoose::on_child_remove, this);
 
-    sizer_main->Add(new_entry, 0, wxEXPAND);
+    sizer_main->Add(new_entry, 0, wxEXPAND | wxLEFT | wxRIGHT, 10);
 
     FitInside();
     Layout();
