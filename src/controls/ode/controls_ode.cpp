@@ -152,6 +152,7 @@ void ControlsODE::update_ode_settings() {
 }
 
 void ControlsODE::regenerate_odes() {
+    odes_changed = false;
     purge_odes();
 
     amount_odes = amount_new_odes;
