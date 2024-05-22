@@ -18,9 +18,6 @@ ControlsChoose::ControlsChoose(wxWindow* parent) : wxScrolledWindow(parent) {
     amount_odes = 0;
     odes = new ODE*[1];
     ode_colours = new uint32_t[1];
-
-    amount_new_odes = 0;
-    new_ode_structure = new OdeListValues[1];
 }
 
 ControlsChoose::~ControlsChoose() {
@@ -29,10 +26,6 @@ ControlsChoose::~ControlsChoose() {
 
 void ControlsChoose::add_entry() {
     OdeEntry* new_entry = new OdeEntry(this);
-
-    new_entry->dropdown_ode->Bind(wxEVT_CHOICE, &ControlsChoose::on_list_changed, this);
-    new_entry->dropdown_approx->Bind(wxEVT_CHOICE, &ControlsChoose::on_list_changed, this);
-    new_entry->colour_picker->Bind(wxEVT_COLOURPICKER_CHANGED, &ControlsChoose::on_list_changed, this);
     new_entry->button_remove->Bind(wxEVT_BUTTON, &ControlsChoose::on_child_remove, this);
 
     sizer_main->Add(new_entry, 0, wxEXPAND | wxLEFT | wxRIGHT, 10);
@@ -59,21 +52,6 @@ OdeListValues* ControlsChoose::construct_list_values(size_t& list_length) {
 
 void ControlsChoose::on_button_create(wxCommandEvent& evt) {
     add_entry();
-    on_list_changed(evt);
-    evt.Skip(false);
-}
-
-void ControlsChoose::on_list_changed(wxEvent& evt) {
-    evt.Skip();
-
-    size_t list_length;
-    OdeListValues* list_values = construct_list_values(list_length);
-
-    delete[] new_ode_structure;
-
-    odes_changed = true;
-    amount_new_odes = list_length;
-    new_ode_structure = list_values;
 }
 
 void ControlsChoose::on_child_remove(wxCommandEvent& evt) {
@@ -86,8 +64,6 @@ void ControlsChoose::on_child_remove(wxCommandEvent& evt) {
             delete entry;
         }
     }
-
-    on_list_changed(evt);
     
     FitInside();
     Layout();
@@ -100,7 +76,7 @@ void ControlsChoose::on_settings_update(SettingsOdeEvent& evt) {
 }
 
 void ControlsChoose::on_calculate(wxCommandEvent& evt) {
-    if (odes_changed) regenerate_odes();
+    regenerate_odes();
 
     update_ode_settings();
 
@@ -166,10 +142,9 @@ void ControlsChoose::update_ode_settings() {
 }
 
 void ControlsChoose::regenerate_odes() {
-    odes_changed = false;
     purge_odes();
 
-    amount_odes = amount_new_odes;
+    OdeListValues* new_ode_structure = construct_list_values(amount_odes);
     odes = new ODE*[amount_odes];
     ode_colours = new uint32_t[amount_odes];
 

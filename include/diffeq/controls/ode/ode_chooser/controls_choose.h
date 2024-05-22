@@ -22,7 +22,6 @@ public:
     OdeListValues* construct_list_values(size_t& list_length);
 
     void on_button_create(wxCommandEvent& evt);
-    void on_list_changed(wxEvent& evt);
     void on_child_remove(wxCommandEvent& evt);
 
     void on_settings_update(SettingsOdeEvent& evt);
@@ -34,10 +33,6 @@ private:
     ODE** odes;
     uint32_t* ode_colours;
     size_t amount_odes;
-
-    bool odes_changed = false;
-    size_t amount_new_odes;
-    OdeListValues* new_ode_structure;
 
     Settings_Common settings_common;
     Settings_Approximation settings_approx;
