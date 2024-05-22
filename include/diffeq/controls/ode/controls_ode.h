@@ -2,7 +2,6 @@
 #define CONTROLS_ODE
 
 #include <wx/wx.h>
-#include <vector>
 #include "events.h"
 #include "controls.h"
 #include "settings.h"
@@ -35,7 +34,9 @@ public:
     void on_ode_list(OdeListUpdateEvent& evt);
 
 private:
-    std::vector<ODE*> odes;
+    ODE** odes;
+    uint32_t* ode_colors;
+    size_t amount_odes;
 
     double** get_all_results(size_t& amount_results, size_t& result_length);
     void init_elements();

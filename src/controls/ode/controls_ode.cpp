@@ -5,6 +5,7 @@
 ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation controls") {
     init_elements();
 
+    /*
     odes = std::vector<ODE*>();
 
     odes.push_back(new ODE_Harmonic(Settings_Common(), Settings_Approximation()));
@@ -12,6 +13,10 @@ ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation con
 
     odes.push_back(new ODE_V_Oscillation(Settings_Common(), Settings_Approximation()));
     odes[1]->calculate();
+    */
+
+    amount_odes = 0;
+    odes = new ODE*[1];
 
     SendResults();
 
@@ -47,9 +52,11 @@ void ControlsODE::init_elements() {
 }
 
 ControlsODE::~ControlsODE() {
-    for (int i = 0; i < odes.size(); i++) {
+    for (int i = 0; i < amount_odes; i++) {
         delete odes[i];
     }
+
+    delete[] odes;
 }
 
 void ControlsODE::SendResults() {
@@ -100,7 +107,7 @@ void ControlsODE::on_text_input(wxEvent& evt) {
 }
 
 double** ControlsODE::get_all_results(size_t& amount_results, size_t& result_length) {
-    amount_results = odes.size();
+    amount_results = amount_odes;
 
     if (amount_results < 1) return nullptr;
 
@@ -119,14 +126,14 @@ void ControlsODE::update_ode() {
     Settings_Common settings_common = construct_common_settings();
     Settings_Approximation settings_ode = construct_approx_settings();
 
-    for(int i = 0; i < odes.size(); i++) {
+    for(int i = 0; i < amount_odes; i++) {
         odes[i]->apply_settings(settings_common);
         odes[i]->apply_settings(settings_ode);
     }
 }
 
 void ControlsODE::on_button_calculate(wxCommandEvent& evt) {
-    for (int i = 0; i < odes.size(); i++) {
+    for (int i = 0; i < amount_odes; i++) {
         odes[i]->calculate();
     }
 
