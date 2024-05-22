@@ -15,6 +15,8 @@ Plotter::Plotter(wxWindow* parent) : wxPanel(parent, wxID_ANY) {
     settings = Settings_Plotter();
 
     // Dummy array which gets deleted once real values come via Event
+    function_amount = 0;
+    function_length = 0;
     functions = new double*[1];
 }
 
