@@ -18,6 +18,30 @@ Settings_Common SettingsCommonEvent::get_settings() {
     return settings_common;
 }
 
+// SettingsOdeEvent
+
+wxDEFINE_EVENT(SETTINGS_ODE_UPDATE, SettingsOdeEvent);
+
+SettingsOdeEvent::SettingsOdeEvent(wxEventType event_type, int id, Settings_Common settings_common, Settings_Approximation settings_approx)
+: wxEvent(id, event_type) {
+    this->settings_common = settings_common;
+    this->settings_approx = settings_approx;
+}
+
+SettingsOdeEvent::~SettingsOdeEvent() { }
+
+wxEvent* SettingsOdeEvent::Clone() const {
+    return new SettingsOdeEvent(*this);
+}
+
+Settings_Common SettingsOdeEvent::get_settings_common() {
+    return settings_common;
+}
+
+Settings_Approximation SettingsOdeEvent::get_settings_approx() {
+    return settings_approx;
+}
+
 // SettingsPlotterEvent
 
 wxDEFINE_EVENT(SETTINGS_PLOTTER_UPDATE, SettingsPlotterEvent);

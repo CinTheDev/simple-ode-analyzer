@@ -5,7 +5,7 @@
 #include "settings.h"
 #include <cstddef>
 
-class SettingsCommonEvent: public wxEvent {
+class SettingsCommonEvent : public wxEvent {
 public:
     SettingsCommonEvent(wxEventType event_type, int id, Settings_Common settings_common);
     ~SettingsCommonEvent();
@@ -21,6 +21,25 @@ private:
 wxDECLARE_EVENT(SETTINGS_COMMON_UPDATE, SettingsCommonEvent);
 
 #define SettingsCommonEventHandler(func) (&func)
+
+class SettingsOdeEvent : public wxEvent {
+public:
+    SettingsOdeEvent(wxEventType event_type, int id, Settings_Common settings_common, Settings_Approximation settings_approx);
+    ~SettingsOdeEvent();
+
+    virtual wxEvent* Clone() const;
+
+    Settings_Common get_settings_common();
+    Settings_Approximation get_settings_approx();
+
+private:
+    Settings_Common settings_common;
+    Settings_Approximation settings_approx;
+};
+
+wxDECLARE_EVENT(SETTINGS_ODE_UPDATE, SettingsOdeEvent);
+
+#define SettingsOdeEventHanlder(func) (&func)
 
 class SettingsPlotterEvent : public wxEvent {
 public:
