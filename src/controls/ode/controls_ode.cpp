@@ -38,8 +38,8 @@ ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation con
     while (true) {
         wxCommandEvent dummy_evt = wxCommandEvent();
 
-        odes_changed = false; // w/o regeneration
-        //odes_changed = true; // w/ regeneration
+        //odes_changed = false; // w/o regeneration
+        odes_changed = true; // w/ regeneration
         on_button_calculate(dummy_evt);
     }
 }

@@ -39,6 +39,6 @@ Test following:
 
 - Constructor - MEMORY LEAK DETECTED
 - Calculation w/o regeneration - PASSED
-- Calculation w/  regeneration - N/A
-- OdePointer - N/A
+- Calculation w/  regeneration - PASSED
+- OdePointer - PASSED
 - ListUpdate - N/A
