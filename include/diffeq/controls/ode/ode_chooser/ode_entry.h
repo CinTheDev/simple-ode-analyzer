@@ -11,6 +11,7 @@ public:
     ~OdeEntry();
 
     wxBoxSizer* sizer_main;
+    wxBoxSizer* sizer_options;
 
     wxChoice* dropdown_ode;
     wxChoice* dropdown_approx;
