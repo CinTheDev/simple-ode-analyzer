@@ -8,6 +8,7 @@ ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation con
 
     amount_odes = 0;
     odes = new ODE*[1];
+    ode_colours = new uint32_t[1];
 
     amount_new_odes = 0;
     new_ode_structure = new OdeListValues[1];
