@@ -11,7 +11,6 @@ add_subdirectory(ode_variants)
 
 # ODE CONTROLS
 
-add_subdirectory(specialized_options)
 add_subdirectory(ode_chooser)
 
 add_library(controls_ode controls_ode.cpp)
