@@ -235,8 +235,8 @@ void Plotter::render_function(wxDC& dc) {
             function_points[i] = wxPoint(x_pixel, (0.5 - y * 0.5) * height);
         }
 
-        // TODO: Use custom color
-        dc.SetPen(*wxRED_PEN);
+        wxColour function_colour = wxColour(function_colours[f]);
+        dc.SetPen(function_colour);
         dc.DrawLines(function_length, function_points);
     }
 }
