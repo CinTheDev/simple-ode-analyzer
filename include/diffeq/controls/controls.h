@@ -2,27 +2,23 @@
 #define DIFFEQ_CONTROLS
 
 #include <wx/wx.h>
-#include "events.h"
-#include "controls_view.h"
-#include "controls_ode.h"
 
-class Controls : public wxPanel {
+class Controls : public wxScrolledWindow {
 public:
-    Controls(wxWindow* parent);
+    Controls(wxWindow* parent, wxString label);
     ~Controls();
 
-public:
-    ControlsODE* controls_ode;
-    ControlsView* controls_view;
-
-    wxBoxSizer* sizer_main;
+    wxStaticBoxSizer* sizer_main;
+    wxFlexGridSizer* sizer_grid;
 
 public:
-    void on_plotter_update(SettingsPlotterEvent& evt);
+    virtual void on_text_input(wxEvent& evt);
 
-private:
-    void init_elements();
-    void init_sizers();
+protected:
+    double get_input_double(wxTextCtrl* input_field, wxStaticText* label);
+    int get_input_int(wxTextCtrl* input_field, wxStaticText* label);
+
+    wxString double_to_string(double val);
 };
 
 #endif

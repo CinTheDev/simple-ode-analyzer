@@ -13,6 +13,9 @@ END_EVENT_TABLE()
 
 Plotter::Plotter(wxWindow* parent) : wxPanel(parent, wxID_ANY) {
     settings = Settings_Plotter();
+
+    // Dummy array which gets deleted once real values come via Event
+    functions = new double*[1];
 }
 
 Plotter::~Plotter() {
@@ -30,7 +33,11 @@ void Plotter::on_settings_common_update(SettingsCommonEvent& evt) {
 }
 
 void Plotter::on_function_update(OdePointerEvent& evt) {
-    function_values = evt.get_result_pointer();
+    delete[] functions;
+
+    functions = evt.get_result_pointer();
+    function_colours = evt.get_colours();
+    function_amount = evt.get_amount_results();
     function_length = evt.get_result_length();
     paintNow();
 }
@@ -207,7 +214,7 @@ void Plotter::render_markings(wxDC& dc) {
 }
 
 void Plotter::render_function(wxDC& dc) {
-    if (function_values == nullptr) return;
+    if (functions[0] == nullptr) return;
 
     int axis_offset = settings.axis_offset;
 
@@ -217,18 +224,21 @@ void Plotter::render_function(wxDC& dc) {
     wxPoint left = wxPoint(axis_offset, height / 2);
     wxPoint right = wxPoint(width, height / 2);
 
-    wxPoint function_points[function_length];
+    for (size_t f = 0; f < function_amount; f++) {
+        wxPoint function_points[function_length];
 
-    for (int i = 0; i < function_length; i++) {
-        double x = ((double)i * settings_common.step_x - settings.view_start_x) / settings.view_x;
-        double x_pixel = x * (width - axis_offset) + axis_offset;
-        double y = function_values[i] / settings.view_y;
+        for (size_t i = 0; i < function_length; i++) {
+            double x = ((double)i * settings_common.step_x - settings.view_start_x) / settings.view_x;
+            double x_pixel = x * (width - axis_offset) + axis_offset;
+            double y = functions[f][i] / settings.view_y;
 
-        function_points[i] = wxPoint(x_pixel, (0.5 - y * 0.5) * height);
+            function_points[i] = wxPoint(x_pixel, (0.5 - y * 0.5) * height);
+        }
+
+        wxColour function_colour = wxColour(function_colours[f]);
+        dc.SetPen(function_colour);
+        dc.DrawLines(function_length, function_points);
     }
-
-    dc.SetPen(*wxRED_PEN);
-    dc.DrawLines(function_length, function_points);
 }
 
 double Plotter::round_to_nice_number(double val) {

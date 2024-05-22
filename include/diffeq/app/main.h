@@ -3,7 +3,9 @@
 
 #include <wx/wx.h>
 #include "plotter.h"
-#include "controls.h"
+#include "controls_panel.h"
+
+// TODO: Fix memory issue that makes the program crash sometimes on startup
 
 class Diffeq_Main : public wxFrame {
 public:
@@ -14,7 +16,7 @@ public:
     wxBoxSizer* sizer_main;
 
     Plotter* plotter;
-    Controls* controls;
+    ControlsPanel* controls;
 
 private:
     void instance_layout();

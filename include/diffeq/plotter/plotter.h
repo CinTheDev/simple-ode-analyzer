@@ -30,7 +30,9 @@ private:
     Settings_Common settings_common;
     ShortcutState shortcut_state;
 
-    double* function_values;
+    double** functions;
+    uint32_t* function_colours;
+    size_t function_amount;
     size_t function_length;
 
 public:

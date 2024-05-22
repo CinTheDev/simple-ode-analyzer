@@ -1,9 +1,17 @@
 #ifndef DIFFEQ_SETTINGS
 #define DIFFEQ_SETTINGS
 
+#include <cstdint>
+
 struct Settings_Common {
 public:
     double step_x = 0.01;
+};
+
+struct Settings_Approximation {
+public:
+    int amount = 100;
+    int subdivision = 1;
 };
 
 struct Settings_Plotter {
@@ -17,6 +25,23 @@ public:
     double view_y = 1.0;
 
     double view_start_x = 0.0;
+};
+
+enum class OdeTypes {
+    HarmonicOscillation,
+    GravitationalOscillation,
+};
+
+enum class ApproxTypes {
+    Euler,
+    Test,
+};
+
+struct OdeListValues {
+public:
+    OdeTypes ode_type;
+    ApproxTypes approx_type;
+    uint32_t colour;
 };
 
 #endif

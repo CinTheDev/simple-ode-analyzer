@@ -6,7 +6,7 @@
 
 class ODE {
 public:
-    ODE(size_t length, Settings_Common settings_common);
+    ODE(Settings_Common settings_common, Settings_Approximation settings_approx);
     ~ODE();
 
     size_t get_length();
@@ -15,6 +15,9 @@ public:
     void clear_result();
     double* get_result();
 
+    void apply_settings(Settings_Common settings_common);
+    void apply_settings(Settings_Approximation settings_approx);
+
     virtual void calculate();
 
 protected:
@@ -22,9 +25,7 @@ protected:
     size_t result_length;
 
     Settings_Common settings_common;
-
-private:
-    void create_array(size_t length);
+    Settings_Approximation settings_approx;
 };
 
 #endif

@@ -40,23 +40,46 @@ wxDECLARE_EVENT(PLOTTER_GRAPHICS_UPDATE, SettingsPlotterEvent);
 
 #define SettingsPlotterEventHandler(func) (&func)
 
-class OdePointerEvent: public wxEvent {
+class OdePointerEvent : public wxEvent {
 public:
-    OdePointerEvent(wxEventType event_type, int id, double* result_pointer, size_t result_length);
+    OdePointerEvent(wxEventType event_type, int id, double** result_pointer, uint32_t* colours, size_t amount_results, size_t result_length);
     ~OdePointerEvent();
 
     virtual wxEvent* Clone() const;
 
-    double* get_result_pointer();
+    double** get_result_pointer();
+    uint32_t* get_colours();
+    size_t get_amount_results();
     size_t get_result_length();
 
 private:
-    double* result_pointer;
+    double** result_pointer;
+    uint32_t* colours;
+    size_t amount_results;
     size_t result_length;
 };
 
 wxDECLARE_EVENT(EVT_ODE_POINTER, OdePointerEvent);
 
 #define OdePointerEventHandler(func) (&func)
+
+class OdeListUpdateEvent : public wxEvent {
+public:
+    OdeListUpdateEvent(wxEventType event_type, int id, OdeListValues* ode_list_values, size_t amount);
+    ~OdeListUpdateEvent();
+
+    virtual wxEvent* Clone() const;
+
+    OdeListValues* get_values();
+    size_t get_amount();
+
+private:
+    OdeListValues* ode_list_values;
+    size_t amount;
+};
+
+wxDECLARE_EVENT(EVT_ODE_LIST, OdeListUpdateEvent);
+
+#define OdeListUpdateEventHandler(func) (&func)
 
 #endif

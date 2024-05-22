@@ -1,9 +1,11 @@
 #include "ode.h"
 #include <math.h>
 
-ODE::ODE(size_t length, Settings_Common settings_common) {
-    create_array(length);
-    this->settings_common = settings_common;
+ODE::ODE(Settings_Common settings_common, Settings_Approximation settings_approx) {
+    result = new double[1];
+
+    apply_settings(settings_common);
+    apply_settings(settings_approx);
 }
 
 ODE::~ODE() {
@@ -16,7 +18,8 @@ size_t ODE::get_length() {
 
 void ODE::set_length(size_t length) {
     delete[] result;
-    create_array(length);
+    result = new double[length];
+    result_length = length;
 }
 
 void ODE::clear_result() {
@@ -29,9 +32,14 @@ double* ODE::get_result() {
     return result;
 }
 
-void ODE::create_array(size_t length) {
-    result = new double[length];
-    result_length = length;
+void ODE::apply_settings(Settings_Common settings_common) {
+    this->settings_common = settings_common;
+}
+
+void ODE::apply_settings(Settings_Approximation settings_approx) {
+    this->settings_approx = settings_approx;
+
+    set_length(settings_approx.amount);
 }
 
 void ODE::calculate() { }
