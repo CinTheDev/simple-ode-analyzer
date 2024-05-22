@@ -28,7 +28,7 @@ public:
     void update_values(Settings_Approximation settings_approx);
 
     void on_button_calculate(wxCommandEvent& evt);
-    void on_ode_list(OdeListUpdateEvent& evt);
+    //void on_ode_list(OdeListUpdateEvent& evt);
 
 private:
     // TODO: Move ODES to controls_choose

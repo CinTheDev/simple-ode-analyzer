@@ -62,13 +62,15 @@ void ControlsChoose::on_button_create(wxCommandEvent& evt) {
 
 void ControlsChoose::on_list_changed(wxEvent& evt) {
     evt.Skip();
+
     size_t list_length;
     OdeListValues* list_values = construct_list_values(list_length);
 
-    OdeListUpdateEvent list_update_event(EVT_ODE_LIST, GetId(), list_values, list_length);
-    list_update_event.SetEventObject(this);
-    list_update_event.ResumePropagation(__INT_MAX__);
-    ProcessEvent(list_update_event);
+    delete[] new_ode_structure;
+
+    odes_changed = true;
+    amount_new_odes = list_length;
+    new_ode_structure = list_values;
 }
 
 void ControlsChoose::on_child_remove(wxCommandEvent& evt) {

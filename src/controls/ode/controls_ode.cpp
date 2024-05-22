@@ -79,6 +79,7 @@ void ControlsODE::on_button_calculate(wxCommandEvent& evt) {
     SendResults();
 }
 
+/*
 void ControlsODE::on_ode_list(OdeListUpdateEvent& evt) {
     delete[] new_ode_structure;
 
@@ -86,3 +87,4 @@ void ControlsODE::on_ode_list(OdeListUpdateEvent& evt) {
     amount_new_odes = evt.get_amount();
     new_ode_structure = evt.get_values();
 }
+*/
