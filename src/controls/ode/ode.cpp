@@ -32,6 +32,18 @@ double* ODE::get_result() {
     return result;
 }
 
+double* ODE::get_variable_values() {
+    return variable_values;
+}
+
+std::string ODE::get_variable_names() {
+    return variable_names;
+}
+
+size_t ODE::get_amount_variables() {
+    return amount_variables;
+}
+
 void ODE::apply_settings(Settings_Common settings_common) {
     this->settings_common = settings_common;
 }
