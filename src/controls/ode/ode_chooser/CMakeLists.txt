@@ -11,6 +11,7 @@ target_include_directories(ode_entry PUBLIC
 
 target_link_libraries(ode_entry PUBLIC
     ${wxWidgets_LIBRARIES}
+    controls_specialized
 )
 
 target_link_libraries(ode_entry PRIVATE

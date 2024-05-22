@@ -4,6 +4,7 @@
 #include <wx/wx.h>
 #include <wx/clrpicker.h>
 #include "settings.h"
+#include "controls_specialized.h"
 
 class OdeEntry : public wxPanel {
 public:
@@ -17,6 +18,8 @@ public:
     wxChoice* dropdown_approx;
     wxColourPickerCtrl* colour_picker;
     wxButton* button_remove;
+
+    ControlsSpecialized* controls_special;
 
     OdeListValues construct_values();
 
