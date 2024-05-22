@@ -120,6 +120,7 @@ void ControlsODE::on_button_calculate(wxCommandEvent& evt) {
 }
 
 void ControlsODE::on_ode_list(OdeListUpdateEvent& evt) {
+    std::cout << "List update" << std::endl;
     delete[] new_ode_structure;
 
     odes_changed = true;
