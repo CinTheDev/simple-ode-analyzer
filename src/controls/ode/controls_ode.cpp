@@ -136,11 +136,16 @@ void ControlsODE::on_button_calculate(wxCommandEvent& evt) {
     SendResults();
 }
 
-#include <iostream>
 void ControlsODE::on_ode_list(OdeListUpdateEvent& evt) {
-    std::cout << "Ode list event in ControlsODE" << std::endl;
+    purge_odes();
 
-    // TODO: Implement dynamic ODE handling
+    amount_odes = evt.get_amount();
+    odes = new ODE*[amount_odes];
+
+    for (size_t i = 0; i < amount_odes; i++) {
+        OdeListValues values = evt.get_values()[i];
+        // TODO: Fill ODEs
+    }
 }
 
 void ControlsODE::purge_odes() {
