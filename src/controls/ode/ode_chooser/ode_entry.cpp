@@ -62,8 +62,7 @@ OdeListValues OdeEntry::construct_values() {
 
     values.ode_type = ode_types[ode_type_selection];
     values.approx_type = approx_types[approx_type_selection];
-    // TODO: Implement this
-    values.color = 0xff000000; // Red
+    values.color = colour_picker->GetRGBA(); // Red
 
     return values;
 }
