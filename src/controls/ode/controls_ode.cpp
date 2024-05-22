@@ -15,7 +15,7 @@ ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation con
 
     Bind(wxEVT_BUTTON, &ControlsODE::on_button_calculate, this);
 
-    // MEMORY TEST: Calculation
+    // MEMORY TEST: Calculation & OdePointerEvent
     // Initial generation
     amount_new_odes = 2;
     delete[] new_ode_structure;
