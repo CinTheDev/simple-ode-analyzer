@@ -155,11 +155,14 @@ void ControlsODE::regenerate_odes() {
 
     amount_odes = amount_new_odes;
     odes = new ODE*[amount_odes];
+    ode_colours = new uint32_t[amount_odes];
 
     for (size_t i = 0; i < amount_odes; i++) {
         OdeListValues values = new_ode_structure[i];
 
         odes[i] = instance_ode(values.ode_type);
+
+        ode_colours[i] = values.color;
     }
 }
 
@@ -169,4 +172,6 @@ void ControlsODE::purge_odes() {
     }
 
     delete[] odes;
+
+    delete[] ode_colours;
 }

@@ -34,7 +34,7 @@ public:
 
 private:
     ODE** odes;
-    uint32_t* ode_colors;
+    uint32_t* ode_colours;
     size_t amount_odes;
 
     bool odes_changed = false;
