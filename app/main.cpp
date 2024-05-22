@@ -9,12 +9,15 @@ Diffeq_Main::~Diffeq_Main() {
 }
 
 void Diffeq_Main::instance_layout() {
+    // MEMORY TEST: Constructors
+    /*
     while (true) {
         plotter = new Plotter(this);
         controls = new ControlsPanel(this);
 
         delete plotter, controls;
     }
+    */
     plotter = new Plotter(this);
     controls = new ControlsPanel(this);
 

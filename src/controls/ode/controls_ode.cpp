@@ -42,6 +42,14 @@ void ControlsODE::init_elements() {
     Settings_Approximation default_approx_settings = Settings_Approximation();
     update_values(default_common_settings);
     update_values(default_approx_settings);
+
+    // MEMORY TEST: Calculation
+    while (true) {
+        wxCommandEvent dummy_evt = wxCommandEvent();
+
+        odes_changed = false; // w/o regeneration
+        on_button_calculate(dummy_evt);
+    }
 }
 
 ControlsODE::~ControlsODE() {
