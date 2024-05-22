@@ -37,6 +37,9 @@ private:
     size_t amount_new_odes;
     OdeListValues* new_ode_structure;
 
+    Settings_Common settings_common;
+    Settings_Approximation settings_approx;
+
     double** get_all_results(size_t& amount_results, size_t& result_length);
     ODE* instance_ode(OdeTypes ode_type);
     

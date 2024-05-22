@@ -116,7 +116,7 @@ void ControlsChoose::SendResults() {
     ProcessEvent(evt_ode_pointer);
 
     // Step x
-    SettingsCommonEvent evt_settings_common(SETTINGS_COMMON_UPDATE, GetId(), construct_common_settings());
+    SettingsCommonEvent evt_settings_common(SETTINGS_COMMON_UPDATE, GetId(), settings_common);
     evt_settings_common.SetEventObject(this);
     evt_settings_common.ResumePropagation(__INT_MAX__);
     ProcessEvent(evt_settings_common);
@@ -141,10 +141,10 @@ double** ControlsChoose::get_all_results(size_t& amount_results, size_t& result_
 ODE* ControlsChoose::instance_ode(OdeTypes ode_type) {
     switch (ode_type) {
         case OdeTypes::HarmonicOscillation:
-            return new ODE_Harmonic(Settings_Common(), Settings_Approximation());
+            return new ODE_Harmonic(settings_common, settings_approx);
 
         case OdeTypes::GravitationalOscillation:
-            return new ODE_V_Oscillation(Settings_Common(), Settings_Approximation());
+            return new ODE_V_Oscillation(settings_common, settings_approx);
 
         default:
             std::cout << "WARNING [ControlsODE::instance_ode()]: Unhandled OdeTypes enum" << std::endl;
@@ -153,12 +153,12 @@ ODE* ControlsChoose::instance_ode(OdeTypes ode_type) {
 }
 
 void ControlsChoose::update_ode_settings() {
-    Settings_Common settings_common = construct_common_settings();
-    Settings_Approximation settings_ode = construct_approx_settings();
+    //Settings_Common settings_common = construct_common_settings();
+    //Settings_Approximation settings_ode = construct_approx_settings();
 
     for(int i = 0; i < amount_odes; i++) {
         odes[i]->apply_settings(settings_common);
-        odes[i]->apply_settings(settings_ode);
+        odes[i]->apply_settings(settings_approx);
     }
 }
 
