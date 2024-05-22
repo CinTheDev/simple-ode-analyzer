@@ -3,7 +3,7 @@
 
 #include <wx/wx.h>
 
-class Controls : public wxScrolledWindow {
+class Controls : public wxPanel {
 public:
     Controls(wxWindow* parent, wxString label);
     ~Controls();

@@ -1,6 +1,6 @@
 #include "controls.h"
 
-Controls::Controls(wxWindow* parent, wxString label) : wxScrolledWindow(parent) {
+Controls::Controls(wxWindow* parent, wxString label) : wxPanel(parent) {
     Bind(wxEVT_TEXT, &Controls::on_text_input, this);
 
     sizer_grid = new wxFlexGridSizer(2, 5, 5);
@@ -10,9 +10,6 @@ Controls::Controls(wxWindow* parent, wxString label) : wxScrolledWindow(parent) 
     sizer_main->Add(sizer_grid, 1, wxEXPAND | wxALL, 10);
 
     SetSizer(sizer_main);
-
-    FitInside();
-    SetScrollRate(0, 5);
 }
 
 Controls::~Controls() { }
