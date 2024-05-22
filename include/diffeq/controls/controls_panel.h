@@ -15,7 +15,6 @@ public:
 public:
     ControlsODE* controls_ode;
     ControlsChoose* controls_choose;
-    //ControlsSpecialized* controls_special;
     ControlsView* controls_view;
 
     wxBoxSizer* sizer_main;

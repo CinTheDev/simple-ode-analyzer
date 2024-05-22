@@ -47,15 +47,12 @@ void OdeEntry::init_elements() {
     colour_picker = new wxColourPickerCtrl(this, wxID_ANY, *wxRED);
     button_remove = new wxButton(this, wxID_ANY, "Remove");
 
-    //controls_special = new ControlsSpecialized(this);
-
     // Default selection
     dropdown_ode->SetSelection(0);
     dropdown_approx->SetSelection(0);
 }
 
 void OdeEntry::init_sizers() {
-    //sizer_main = new wxBoxSizer(wxVERTICAL);
     sizer_options = new wxBoxSizer(wxHORIZONTAL);
 
     sizer_options->Add(dropdown_ode, 0);
@@ -64,7 +61,6 @@ void OdeEntry::init_sizers() {
     sizer_options->Add(button_remove, 0);
 
     sizer_main->Prepend(sizer_options, 0, wxEXPAND);
-    //sizer_main->Add(controls_special, 0, wxEXPAND);
 
     SetSizer(sizer_main);
 }
