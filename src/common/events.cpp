@@ -59,7 +59,7 @@ double** OdePointerEvent::get_result_pointer() {
     return result_pointer;
 }
 
-uint32_t OdePointerEvent::get_colours() {
+uint32_t* OdePointerEvent::get_colours() {
     return colours;
 }
 

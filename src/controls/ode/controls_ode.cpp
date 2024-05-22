@@ -53,7 +53,7 @@ void ControlsODE::SendResults() {
     size_t amount_results, result_length;
     double** ode_results = get_all_results(amount_results, result_length);
 
-    OdePointerEvent evt_ode_pointer(EVT_ODE_POINTER, GetId(), ode_results, amount_results, result_length);
+    OdePointerEvent evt_ode_pointer(EVT_ODE_POINTER, GetId(), ode_results, ode_colours, amount_results, result_length);
     evt_ode_pointer.SetEventObject(this);
     evt_ode_pointer.ResumePropagation(__INT_MAX__);
     ProcessEvent(evt_ode_pointer);
