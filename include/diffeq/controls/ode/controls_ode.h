@@ -41,8 +41,10 @@ private:
     size_t amount_new_odes;
     OdeListValues* new_ode_structure;
 
-    double** get_all_results(size_t& amount_results, size_t& result_length);
     void init_elements();
+    double** get_all_results(size_t& amount_results, size_t& result_length);
+
+    ODE* instance_ode(OdeTypes ode_type);
     void update_ode_settings();
     void regenerate_odes();
     void purge_odes();

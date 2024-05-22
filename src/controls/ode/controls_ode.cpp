@@ -1,6 +1,7 @@
 #include "controls_ode.h"
 #include "ode_harmonic.h"
 #include "ode_v_oscillation.h"
+#include <iostream>
 
 ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation controls") {
     init_elements();
@@ -125,6 +126,20 @@ void ControlsODE::on_ode_list(OdeListUpdateEvent& evt) {
     new_ode_structure = evt.get_values();
 }
 
+ODE* ControlsODE::instance_ode(OdeTypes ode_type) {
+    switch (ode_type) {
+        case OdeTypes::HarmonicOscillation:
+            return new ODE_Harmonic(Settings_Common(), Settings_Approximation());
+
+        case OdeTypes::GravitationalOscillation:
+            return new ODE_V_Oscillation(Settings_Common(), Settings_Approximation());
+
+        default:
+            std::cout << "WARNING [ControlsODE::instance_ode()]: Unhandled OdeTypes enum" << std::endl;
+            return nullptr;
+    }
+}
+
 void ControlsODE::update_ode_settings() {
     Settings_Common settings_common = construct_common_settings();
     Settings_Approximation settings_ode = construct_approx_settings();
@@ -144,8 +159,7 @@ void ControlsODE::regenerate_odes() {
     for (size_t i = 0; i < amount_odes; i++) {
         OdeListValues values = new_ode_structure[i];
 
-        // TODO: Fill ODEs properly
-        odes[i] = new ODE_V_Oscillation(Settings_Common(), Settings_Approximation());
+        odes[i] = instance_ode(values.ode_type);
     }
 }
 
