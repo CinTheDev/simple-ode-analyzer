@@ -5,7 +5,6 @@
 #include "events.h"
 #include "controls.h"
 #include "settings.h"
-#include "ode.h"
 
 class ControlsODE : public Controls {
 public:

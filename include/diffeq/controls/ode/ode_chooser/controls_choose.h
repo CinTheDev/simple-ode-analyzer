@@ -5,6 +5,7 @@
 #include "controls.h"
 #include "ode_entry.h"
 #include "settings.h"
+#include "ode.h"
 
 class ControlsChoose : public wxScrolledWindow {
 public:

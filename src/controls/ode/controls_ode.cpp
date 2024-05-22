@@ -1,6 +1,4 @@
 #include "controls_ode.h"
-#include "ode_harmonic.h"
-#include "ode_v_oscillation.h"
 #include <iostream>
 
 ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation controls") {

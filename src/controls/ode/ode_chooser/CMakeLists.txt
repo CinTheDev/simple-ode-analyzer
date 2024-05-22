@@ -28,4 +28,10 @@ target_link_libraries(controls_choose PUBLIC
     ${wxWidgets_LIBRARIES}
     controls
     ode_entry
+    ode
+)
+
+target_link_libraries(controls_choose PRIVATE
+    ode_harmonic
+    ode_v_oscillation
 )

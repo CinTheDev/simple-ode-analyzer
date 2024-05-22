@@ -1,4 +1,6 @@
 #include "controls_choose.h"
+#include "ode_harmonic.h"
+#include "ode_v_oscillation.h"
 #include "events.h"
 
 ControlsChoose::ControlsChoose(wxWindow* parent) : wxScrolledWindow(parent) {
