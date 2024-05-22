@@ -36,6 +36,7 @@ void Plotter::on_function_update(OdePointerEvent& evt) {
     delete[] functions;
 
     functions = evt.get_result_pointer();
+    function_colours = evt.get_colours();
     function_amount = evt.get_amount_results();
     function_length = evt.get_result_length();
     paintNow();
