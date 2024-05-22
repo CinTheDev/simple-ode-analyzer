@@ -95,7 +95,8 @@ void ControlsChoose::on_child_remove(wxCommandEvent& evt) {
 }
 
 void ControlsChoose::on_settings_update(SettingsOdeEvent& evt) {
-    std::cout << "Ode event received" << std::endl;
+    settings_common = evt.get_settings_common();
+    settings_approx = evt.get_settings_approx();
 }
 
 void ControlsChoose::on_calculate(wxCommandEvent& evt) {
