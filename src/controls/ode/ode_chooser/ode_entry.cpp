@@ -21,7 +21,7 @@ const ApproxTypes approx_types[] = {
     ApproxTypes::Test,
 };
 
-OdeEntry::OdeEntry(wxWindow* parent) : Controls(parent, "Some entry") {
+OdeEntry::OdeEntry(wxWindow* parent) : Controls(parent, "") {
     init_elements();
     init_sizers();
 
