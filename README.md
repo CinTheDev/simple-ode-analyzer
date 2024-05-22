@@ -32,14 +32,3 @@ Since we're now moving to wxWidgets, let's define concrete features and a layout
 
 It will be a two-split layout. The split is horizontal, meaning there are two areas on top of each other.
 The top one will be the graph plot, the bottom one for settings.
-
-## Memory Tests
-
-Test following:
-
-- Constructor - PASSED
-- Calculation w/o regeneration - PASSED
-- Calculation w/  regeneration - PASSED
-- OdePointer - PASSED
-- ListUpdate - PASSED
-- ListUpdate & Calculation - PASSED

@@ -14,62 +14,6 @@ ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation con
     new_ode_structure = new OdeListValues[1];
 
     Bind(wxEVT_BUTTON, &ControlsODE::on_button_calculate, this);
-
-    // MEMORY TEST: Calculation & OdePointerEvent
-    /*
-    // Initial generation
-    amount_new_odes = 2;
-    delete[] new_ode_structure;
-    new_ode_structure = new OdeListValues[amount_new_odes];
-
-    new_ode_structure[0] = OdeListValues();
-    new_ode_structure[1] = OdeListValues();
-
-    new_ode_structure[0].ode_type = OdeTypes::HarmonicOscillation;
-    new_ode_structure[0].approx_type = ApproxTypes::Euler;
-    new_ode_structure[0].colour = 0;
-
-    new_ode_structure[1].ode_type = OdeTypes::GravitationalOscillation;
-    new_ode_structure[1].approx_type = ApproxTypes::Euler;
-    new_ode_structure[1].colour = 0;
-
-    regenerate_odes();
-
-    // Main test
-    while (true) {
-        wxCommandEvent dummy_evt = wxCommandEvent();
-
-        //odes_changed = false; // w/o regeneration
-        odes_changed = true; // w/ regeneration
-        on_button_calculate(dummy_evt);
-    }
-    */
-
-    // MEMORY TEST: OdeListEvent + recalculation
-    /*
-    while (true) {
-        OdeListValues* sample_list = new OdeListValues[2];
-
-        sample_list[0] = OdeListValues();
-        sample_list[1] = OdeListValues();
-
-        sample_list[0].ode_type = OdeTypes::HarmonicOscillation;
-        sample_list[0].approx_type = ApproxTypes::Euler;
-        sample_list[0].colour = 0;
-
-        sample_list[1].ode_type = OdeTypes::GravitationalOscillation;
-        sample_list[1].approx_type = ApproxTypes::Euler;
-        sample_list[1].colour = 0;
-
-        OdeListUpdateEvent evt(wxEVT_NULL, 0, sample_list, 2);
-
-        on_ode_list(evt);
-
-        // Plus recalculation
-        wxCommandEvent dummy_command_evt = wxCommandEvent();
-        on_button_calculate(dummy_command_evt);
-    }
-    */
 }
 
 void ControlsODE::init_elements() {
