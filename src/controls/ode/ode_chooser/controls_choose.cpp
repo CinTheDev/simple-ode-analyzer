@@ -159,9 +159,6 @@ ODE* ControlsChoose::instance_ode(OdeTypes ode_type) {
 }
 
 void ControlsChoose::update_ode_settings() {
-    //Settings_Common settings_common = construct_common_settings();
-    //Settings_Approximation settings_ode = construct_approx_settings();
-
     for(int i = 0; i < amount_odes; i++) {
         odes[i]->apply_settings(settings_common);
         odes[i]->apply_settings(settings_approx);

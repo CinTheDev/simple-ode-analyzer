@@ -3,8 +3,6 @@
 
 ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation controls") {
     init_elements();
-
-    //Bind(wxEVT_BUTTON, &ControlsODE::on_button_calculate, this);
 }
 
 void ControlsODE::init_elements() {
@@ -69,27 +67,3 @@ void ControlsODE::on_text_input(wxEvent& evt) {
     ode_evt.SetEventObject(this);
     ProcessEvent(ode_evt);
 }
-
-/*
-void ControlsODE::on_button_calculate(wxCommandEvent& evt) {
-    if (odes_changed) regenerate_odes();
-
-    update_ode_settings();
-
-    for (int i = 0; i < amount_odes; i++) {
-        odes[i]->calculate();
-    }
-
-    SendResults();
-}
-*/
-
-/*
-void ControlsODE::on_ode_list(OdeListUpdateEvent& evt) {
-    delete[] new_ode_structure;
-
-    odes_changed = true;
-    amount_new_odes = evt.get_amount();
-    new_ode_structure = evt.get_values();
-}
-*/

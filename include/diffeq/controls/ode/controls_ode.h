@@ -28,11 +28,7 @@ public:
 
     void on_text_input(wxEvent& evt);
 
-    //void on_button_calculate(wxCommandEvent& evt);
-    //void on_ode_list(OdeListUpdateEvent& evt);
-
 private:
-    // TODO: Move ODES to controls_choose
     void init_elements();
 };
 
