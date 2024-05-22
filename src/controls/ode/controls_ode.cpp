@@ -16,10 +16,30 @@ ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation con
     Bind(wxEVT_BUTTON, &ControlsODE::on_button_calculate, this);
 
     // MEMORY TEST: Calculation
+    // Initial generation
+    amount_new_odes = 2;
+    delete[] new_ode_structure;
+    new_ode_structure = new OdeListValues[amount_new_odes];
+
+    new_ode_structure[0] = OdeListValues();
+    new_ode_structure[1] = OdeListValues();
+
+    new_ode_structure[0].ode_type = OdeTypes::HarmonicOscillation;
+    new_ode_structure[0].approx_type = ApproxTypes::Euler;
+    new_ode_structure[0].colour = 0;
+
+    new_ode_structure[1].ode_type = OdeTypes::GravitationalOscillation;
+    new_ode_structure[1].approx_type = ApproxTypes::Euler;
+    new_ode_structure[1].colour = 0;
+
+    regenerate_odes();
+
+    // Main test
     while (true) {
         wxCommandEvent dummy_evt = wxCommandEvent();
 
         odes_changed = false; // w/o regeneration
+        //odes_changed = true; // w/ regeneration
         on_button_calculate(dummy_evt);
     }
 }
