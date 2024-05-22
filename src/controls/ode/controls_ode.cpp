@@ -63,6 +63,11 @@ void ControlsODE::update_values(Settings_Approximation settings_approx) {
     input_subdivision->ChangeValue(std::to_string(settings_approx.subdivision));
 }
 
+void ControlsODE::on_text_input(wxEvent& evt) {
+    // TODO: Send event with settings
+    
+}
+
 /*
 void ControlsODE::on_button_calculate(wxCommandEvent& evt) {
     if (odes_changed) regenerate_odes();
