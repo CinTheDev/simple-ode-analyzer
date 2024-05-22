@@ -11,6 +11,16 @@ const wxString approx_options[] = {
     "TODO",
 };
 
+const OdeTypes ode_types[] = {
+    OdeTypes::HarmonicOscillation,
+    OdeTypes::GravitationalOscillation,
+};
+
+const ApproxTypes approx_types[] = {
+    ApproxTypes::Euler,
+    ApproxTypes::Test,
+};
+
 OdeEntry::OdeEntry(wxWindow* parent) : wxPanel(parent) {
     init_elements();
     init_sizers();
