@@ -16,6 +16,7 @@ ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation con
     Bind(wxEVT_BUTTON, &ControlsODE::on_button_calculate, this);
 
     // MEMORY TEST: Calculation & OdePointerEvent
+    /*
     // Initial generation
     amount_new_odes = 2;
     delete[] new_ode_structure;
@@ -42,6 +43,7 @@ ControlsODE::ControlsODE(wxWindow* parent) : Controls(parent, "Approximation con
         odes_changed = true; // w/ regeneration
         on_button_calculate(dummy_evt);
     }
+    */
 }
 
 void ControlsODE::init_elements() {
@@ -180,6 +182,7 @@ void ControlsODE::update_ode_settings() {
 }
 
 void ControlsODE::regenerate_odes() {
+    odes_changed = false;
     purge_odes();
 
     amount_odes = amount_new_odes;
