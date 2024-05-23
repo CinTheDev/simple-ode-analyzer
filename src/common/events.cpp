@@ -118,27 +118,3 @@ size_t OdePointerEvent::get_amount_results() {
 size_t OdePointerEvent::get_result_length() {
     return result_length;
 }
-
-// OdeListUpdateEvent
-
-wxDEFINE_EVENT(EVT_ODE_LIST, OdeListUpdateEvent);
-
-OdeListUpdateEvent::OdeListUpdateEvent(wxEventType event_type, int id, OdeListValues* ode_list_values, size_t amount)
- : wxEvent(id, event_type) {
-    this->ode_list_values = ode_list_values;
-    this->amount = amount;
-}
-
-OdeListUpdateEvent::~OdeListUpdateEvent() { }
-
-wxEvent* OdeListUpdateEvent::Clone() const {
-    return new OdeListUpdateEvent(*this);
-}
-
-OdeListValues* OdeListUpdateEvent::get_values() {
-    return ode_list_values;
-}
-
-size_t OdeListUpdateEvent::get_amount() {
-    return amount;
-}

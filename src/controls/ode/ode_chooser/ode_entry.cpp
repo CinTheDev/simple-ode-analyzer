@@ -110,19 +110,6 @@ void OdeEntry::create_options(size_t number, wxString* labels) {
     }
 }
 
-OdeListValues OdeEntry::construct_values() {
-    OdeListValues values = OdeListValues();
-
-    int ode_type_selection = dropdown_ode->GetSelection();
-    int approx_type_selection = dropdown_approx->GetSelection();
-
-    values.ode_type = ode_types[ode_type_selection];
-    values.approx_type = approx_types[approx_type_selection];
-    values.colour = colour_picker->GetColour().GetRGBA();
-
-    return values;
-}
-
 void OdeEntry::on_dropdown_ode(wxCommandEvent& evt) {
     // TODO: Get ODE variable names and use create_options()
     delete ode;

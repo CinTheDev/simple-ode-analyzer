@@ -27,7 +27,6 @@ public:
     uint32_t get_colour();
 
     void create_options(size_t number, wxString* labels);
-    OdeListValues construct_values();
 
     void on_dropdown_ode(wxCommandEvent& evt);
 
