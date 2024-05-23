@@ -68,7 +68,8 @@ void OdeEntry::init_sizers() {
     sizer_options_vertical->Add(dropdown_ode, 0, wxEXPAND);
     sizer_options_vertical->Add(sizer_options_horizontal, 0, wxEXPAND);
 
-    sizer_main->Prepend(sizer_options_vertical, 0, wxEXPAND | wxALL & ~wxBOTTOM, 10);
+    sizer_main->Prepend(sizer_options_vertical, 0, wxEXPAND | wxALL & ~wxTOP, 10);
+    sizer_main->GetItem(1)->SetFlag(wxEXPAND | wxALL & ~wxTOP); // Flags of sizer_grid
 
     SetSizer(sizer_main);
 }
