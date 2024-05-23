@@ -9,7 +9,7 @@ ODE_Oscillation_Gravitational::ODE_Oscillation_Gravitational(Settings_Common set
     std::string names[] = {
         "a [m * s^-2]",
         "s_0 [m]",
-        "d/dt s_0 [m * s^-1]",
+        "v_0 [m * s^-1]",
     };
 
     double values[] = {

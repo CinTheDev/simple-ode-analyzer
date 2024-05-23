@@ -9,7 +9,7 @@ ODE_Oscillation_Harmonic::ODE_Oscillation_Harmonic(Settings_Common settings_comm
         "D [kg * s^-2]",
         "m [kg]",
         "s_0 [m]",
-        "d/dt s_0 [m * s^-1]",
+        "v_0 [m * s^-1]",
     };
 
     double values[] = {
