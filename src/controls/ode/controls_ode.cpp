@@ -67,3 +67,11 @@ void ControlsODE::on_text_input(wxEvent& evt) {
     ode_evt.SetEventObject(this);
     ProcessEvent(ode_evt);
 }
+
+void ControlsODE::on_settings_request(SettingsOdeRequest& evt) {
+    Settings_Common* settings_common = evt.get_settings_common();
+    Settings_Approximation* settings_approx = evt.get_settings_approx();
+
+    *settings_common = construct_common_settings();
+    *settings_approx = construct_approx_settings();
+}

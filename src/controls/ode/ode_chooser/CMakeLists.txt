@@ -10,10 +10,14 @@ target_include_directories(ode_entry PUBLIC
 target_link_libraries(ode_entry PUBLIC
     ${wxWidgets_LIBRARIES}
     controls
+    ode
 )
 
 target_link_libraries(ode_entry PRIVATE
     custom_events
+
+    ode_harmonic
+    ode_v_oscillation
 )
 
 # CHOOSER FOR ENTRIES
@@ -28,11 +32,5 @@ target_link_libraries(controls_choose PUBLIC
     ${wxWidgets_LIBRARIES}
     controls
     ode_entry
-    ode
     custom_events
-)
-
-target_link_libraries(controls_choose PRIVATE
-    ode_harmonic
-    ode_v_oscillation
 )

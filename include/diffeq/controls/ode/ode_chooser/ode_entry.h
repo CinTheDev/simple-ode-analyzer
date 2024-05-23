@@ -5,6 +5,7 @@
 #include <wx/clrpicker.h>
 #include "settings.h"
 #include "controls.h"
+#include "ode.h"
 
 class OdeEntry : public Controls {
 public:
@@ -22,14 +23,22 @@ public:
     wxStaticText** labels;
     wxTextCtrl** inputs;
 
+    double* get_ode_results(size_t& amount_results, Settings_Common settings_common, Settings_Approximation settings_approx);
+    uint32_t get_colour();
+
     void create_options(size_t number, wxString* labels);
-    OdeListValues construct_values();
 
     void on_dropdown_ode(wxCommandEvent& evt);
 
 private:
+    ODE* ode;
+
     void init_elements();
     void init_sizers();
+
+    ODE* instance_ode(OdeTypes ode_type);
+    //void request_settings(Settings_Common* settings_common, Settings_Approximation* settings_approx);
+
     void purge();
 };
 

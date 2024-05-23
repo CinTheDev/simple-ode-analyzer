@@ -1,6 +1,4 @@
 #include "controls_choose.h"
-#include "ode_harmonic.h"
-#include "ode_v_oscillation.h"
 
 ControlsChoose::ControlsChoose(wxWindow* parent) : wxScrolledWindow(parent) {
     sizer_main = new wxStaticBoxSizer(wxVERTICAL, this, "Select ODEs");
@@ -13,16 +11,9 @@ ControlsChoose::ControlsChoose(wxWindow* parent) : wxScrolledWindow(parent) {
     SetSizer(sizer_main);
 
     SetScrollRate(0, 5);
-
-    // ODE stuff
-    amount_odes = 0;
-    odes = new ODE*[1];
-    ode_colours = new uint32_t[1];
 }
 
-ControlsChoose::~ControlsChoose() {
-    purge_odes();
-}
+ControlsChoose::~ControlsChoose() { }
 
 void ControlsChoose::add_entry() {
     OdeEntry* new_entry = new OdeEntry(this);
@@ -33,21 +24,6 @@ void ControlsChoose::add_entry() {
     FitInside();
     Layout();
     GetParent()->Layout();
-}
-
-OdeListValues* ControlsChoose::construct_list_values(size_t& list_length) {
-    list_length = sizer_main->GetItemCount() - 1;
-
-    if (list_length < 1) return nullptr;
-
-    OdeListValues* list_values = new OdeListValues[list_length];
-
-    for (size_t i = 0; i < list_length; i++) {
-        OdeEntry* entry = static_cast<OdeEntry*>(sizer_main->GetItem(i + 1)->GetWindow());
-        list_values[i] = entry->construct_values();
-    }
-
-    return list_values;
 }
 
 void ControlsChoose::on_button_create(wxCommandEvent& evt) {
@@ -70,27 +46,21 @@ void ControlsChoose::on_child_remove(wxCommandEvent& evt) {
     GetParent()->Layout();
 }
 
-void ControlsChoose::on_settings_update(SettingsOdeEvent& evt) {
-    settings_common = evt.get_settings_common();
-    settings_approx = evt.get_settings_approx();
-}
-
 void ControlsChoose::on_calculate(wxCommandEvent& evt) {
-    regenerate_odes();
-
-    update_ode_settings();
-
-    for (int i = 0; i < amount_odes; i++) {
-        odes[i]->calculate();
-    }
-
     SendResults();
 }
 
 void ControlsChoose::SendResults() {
+    // Request settings
+    Settings_Common settings_common;
+    Settings_Approximation settings_approx;
+
+    request_ode_settings(&settings_common, &settings_approx);
+
     // ODE pointer
     size_t amount_results, result_length;
-    double** ode_results = get_all_results(amount_results, result_length);
+    double** ode_results = get_all_results(amount_results, result_length, settings_common, settings_approx);
+    uint32_t* ode_colours = get_all_colours();
 
     OdePointerEvent evt_ode_pointer(EVT_ODE_POINTER, GetId(), ode_results, ode_colours, amount_results, result_length);
     evt_ode_pointer.SetEventObject(this);
@@ -104,64 +74,46 @@ void ControlsChoose::SendResults() {
     ProcessEvent(evt_settings_common);
 }
 
-double** ControlsChoose::get_all_results(size_t& amount_results, size_t& result_length) {
-    amount_results = amount_odes;
+double** ControlsChoose::get_all_results(size_t& amount_results, size_t& result_length, Settings_Common settings_common, Settings_Approximation settings_approx) {
+    amount_results = sizer_main->GetItemCount() - 1;
 
     if (amount_results < 1) return nullptr;
-
-    result_length = odes[0]->get_length();
 
     double** results = new double*[amount_results];
 
     for (size_t i = 0; i < amount_results; i++) {
-        results[i] = odes[i]->get_result();
+        OdeEntry* entry = (OdeEntry*) sizer_main->GetItem(i + 1)->GetWindow();
+        double* entry_results = entry->get_ode_results(result_length, settings_common, settings_approx);
+        double* copy_results = new double[result_length];
+        memcpy(copy_results, entry_results, sizeof(double) * result_length);
+        results[i] = copy_results;
     }
 
     return results;
 }
 
-ODE* ControlsChoose::instance_ode(OdeTypes ode_type) {
-    switch (ode_type) {
-        case OdeTypes::HarmonicOscillation:
-            return new ODE_Harmonic(settings_common, settings_approx);
+uint32_t* ControlsChoose::get_all_colours() {
+    size_t amount_results = sizer_main->GetItemCount() - 1;
 
-        case OdeTypes::GravitationalOscillation:
-            return new ODE_V_Oscillation(settings_common, settings_approx);
+    if (amount_results < 1) return nullptr;
 
-        default:
-            std::cout << "WARNING [ControlsODE::instance_ode()]: Unhandled OdeTypes enum" << std::endl;
-            return nullptr;
+    uint32_t* results = new uint32_t[amount_results];
+
+    for (size_t i = 0; i < amount_results; i++) {
+        OdeEntry* entry = (OdeEntry*) sizer_main->GetItem(i + 1)->GetWindow();
+        results[i] = entry->get_colour();
     }
+
+    return results;
 }
 
-void ControlsChoose::update_ode_settings() {
-    for(int i = 0; i < amount_odes; i++) {
-        odes[i]->apply_settings(settings_common);
-        odes[i]->apply_settings(settings_approx);
+void ControlsChoose::request_ode_settings(Settings_Common* settings_common, Settings_Approximation* settings_approx) {
+    SettingsOdeRequest request = SettingsOdeRequest(SETTINGS_ODE_REQUEST, GetId(), settings_common, settings_approx);
+    request.ResumePropagation(__INT_MAX__);
+    request.SetEventObject(this);
+    ProcessEvent(request);
+
+    if (settings_common == nullptr || settings_approx == nullptr) {
+        std::cout << "WARNING: Requested settings are null" << std::endl;
     }
-}
-
-void ControlsChoose::regenerate_odes() {
-    purge_odes();
-
-    OdeListValues* new_ode_structure = construct_list_values(amount_odes);
-    odes = new ODE*[amount_odes];
-    ode_colours = new uint32_t[amount_odes];
-
-    for (size_t i = 0; i < amount_odes; i++) {
-        OdeListValues values = new_ode_structure[i];
-
-        odes[i] = instance_ode(values.ode_type);
-
-        ode_colours[i] = values.colour;
-    }
-}
-
-void ControlsChoose::purge_odes() {
-    for (int i = 0; i < amount_odes; i++) {
-        delete odes[i];
-    }
-
-    delete[] odes;
-    delete[] ode_colours;
 }

@@ -1,5 +1,7 @@
 #include "ode_entry.h"
 #include "events.h"
+#include "ode_harmonic.h"
+#include "ode_v_oscillation.h"
 
 const wxString ode_options[] = {
     "Harmonic Oscillation",
@@ -29,6 +31,7 @@ OdeEntry::OdeEntry(wxWindow* parent) : Controls(parent, "") {
 
     labels = new wxStaticText*[1];
     inputs = new wxTextCtrl*[1];
+    ode = new ODE(Settings_Common(), Settings_Approximation());
 
     create_options(3, test_labels);
 }
@@ -72,8 +75,23 @@ void OdeEntry::init_sizers() {
     SetSizer(sizer_main);
 }
 
+double* OdeEntry::get_ode_results(size_t& amount_results, Settings_Common settings_common, Settings_Approximation settings_approx) {
+    ode->apply_settings(settings_common);
+    ode->apply_settings(settings_approx);
+    ode->calculate();
+
+    amount_results = ode->get_length();
+    return ode->get_result();
+}
+
+uint32_t OdeEntry::get_colour() {
+    return colour_picker->GetColour().GetRGBA();
+}
+
 void OdeEntry::create_options(size_t number, wxString* labels) {
     purge();
+
+    ode = instance_ode(ode_types[dropdown_ode->GetSelection()]);
 
     this->labels = new wxStaticText*[number];
     this->inputs = new wxTextCtrl*[number];
@@ -87,22 +105,24 @@ void OdeEntry::create_options(size_t number, wxString* labels) {
     }
 }
 
-OdeListValues OdeEntry::construct_values() {
-    OdeListValues values = OdeListValues();
-
-    int ode_type_selection = dropdown_ode->GetSelection();
-    int approx_type_selection = dropdown_approx->GetSelection();
-
-    values.ode_type = ode_types[ode_type_selection];
-    values.approx_type = approx_types[approx_type_selection];
-    values.colour = colour_picker->GetColour().GetRGBA();
-
-    return values;
-}
-
 void OdeEntry::on_dropdown_ode(wxCommandEvent& evt) {
     // TODO: Get ODE variable names and use create_options()
+    delete ode;
+    ode = instance_ode(ode_types[dropdown_ode->GetSelection()]);
+}
 
+ODE* OdeEntry::instance_ode(OdeTypes ode_type) {
+    switch (ode_type) {
+        case OdeTypes::HarmonicOscillation:
+            return new ODE_Harmonic(Settings_Common(), Settings_Approximation());
+
+        case OdeTypes::GravitationalOscillation:
+            return new ODE_V_Oscillation(Settings_Common(), Settings_Approximation());
+
+        default:
+            std::cout << "WARNING [ControlsODE::instance_ode()]: Unhandled OdeTypes enum" << std::endl;
+            return nullptr;
+    }
 }
 
 void OdeEntry::purge() {
@@ -110,4 +130,5 @@ void OdeEntry::purge() {
 
     delete[] labels;
     delete[] inputs;
+    delete ode;
 }
