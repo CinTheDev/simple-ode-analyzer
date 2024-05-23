@@ -16,6 +16,7 @@ void ControlsPanel::init_elements() {
     controls_view = new ControlsView(this);
 
     controls_ode->Bind(wxEVT_BUTTON, &ControlsChoose::on_calculate, controls_choose);
+    Bind(SETTINGS_ODE_REQUEST, &ControlsODE::on_settings_request, controls_ode);
 }
 
 void ControlsPanel::init_sizers() {
