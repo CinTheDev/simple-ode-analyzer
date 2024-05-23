@@ -59,6 +59,25 @@ wxDECLARE_EVENT(PLOTTER_GRAPHICS_UPDATE, SettingsPlotterEvent);
 
 #define SettingsPlotterEventHandler(func) (&func)
 
+class SettingsOdeRequest : public wxEvent {
+public:
+    SettingsOdeRequest(wxEventType event_type, int id, Settings_Common* settings_common, Settings_Approximation* settings_approx);
+    ~SettingsOdeRequest();
+
+    virtual wxEvent* Clone() const;
+
+    Settings_Common* get_settings_common();
+    Settings_Approximation* get_settings_approx();
+
+private:
+    Settings_Common* settings_common;
+    Settings_Approximation* settings_approx;
+};
+
+wxDECLARE_EVENT(SETTINGS_ODE_REQUEST, SettingsOdeRequest);
+
+#define SettingsOdeRequestHandler(func) (&func)
+
 class OdePointerEvent : public wxEvent {
 public:
     OdePointerEvent(wxEventType event_type, int id, double** result_pointer, uint32_t* colours, size_t amount_results, size_t result_length);

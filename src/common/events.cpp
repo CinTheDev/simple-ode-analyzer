@@ -61,6 +61,30 @@ Settings_Plotter SettingsPlotterEvent::get_settings() {
     return settings_plotter;
 }
 
+// SettingsOdeRequest
+
+wxDEFINE_EVENT(SETTINGS_ODE_REQUEST, SettingsOdeRequest)
+
+SettingsOdeRequest::SettingsOdeRequest(wxEventType event_type, int id, Settings_Common* settings_common, Settings_Approximation* settings_approx)
+: wxEvent(id, event_type) {
+    this->settings_common = settings_common;
+    this->settings_approx = settings_approx;
+}
+
+SettingsOdeRequest::~SettingsOdeRequest() { }
+
+wxEvent* SettingsOdeRequest::Clone() const {
+    return new SettingsOdeRequest(*this);
+}
+
+Settings_Common* SettingsOdeRequest::get_settings_common() {
+    return settings_common;
+}
+
+Settings_Approximation* SettingsOdeRequest::get_settings_approx() {
+    return settings_approx;
+}
+
 // OdePointerEvent
 
 wxDEFINE_EVENT(EVT_ODE_POINTER, OdePointerEvent);
