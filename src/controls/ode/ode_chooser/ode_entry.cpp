@@ -31,6 +31,7 @@ OdeEntry::OdeEntry(wxWindow* parent) : Controls(parent, "") {
 
     labels = new wxStaticText*[1];
     inputs = new wxTextCtrl*[1];
+    ode = new ODE(Settings_Common(), Settings_Approximation());
 
     create_options(3, test_labels);
 }
@@ -76,6 +77,8 @@ void OdeEntry::init_sizers() {
 
 void OdeEntry::create_options(size_t number, wxString* labels) {
     purge();
+
+    ode = new ODE_Harmonic(Settings_Common(), Settings_Approximation()); // TODO
 
     this->labels = new wxStaticText*[number];
     this->inputs = new wxTextCtrl*[number];
