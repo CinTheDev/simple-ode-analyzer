@@ -24,10 +24,7 @@ ODE_Oscillation_Harmonic::ODE_Oscillation_Harmonic(Settings_Common settings_comm
     init_variables(count, names, values);
 }
 
-ODE_Oscillation_Harmonic::~ODE_Oscillation_Harmonic() {
-    delete[] variable_values;
-    delete[] variable_names;
-}
+ODE_Oscillation_Harmonic::~ODE_Oscillation_Harmonic() { }
 
 void ODE_Oscillation_Harmonic::calculate() {
     double dt = settings_common.step_x / (double)settings_approx.subdivision;

@@ -8,6 +8,9 @@ ODE::ODE(Settings_Common settings_common, Settings_Approx settings_approx) {
 
     apply_settings(settings_common);
     apply_settings(settings_approx);
+
+    variable_names = new std::string[1];
+    variable_values = new double[1];
 }
 
 ODE::~ODE() {
@@ -17,6 +20,9 @@ ODE::~ODE() {
 }
 
 void ODE::init_variables(size_t n, std::string* names, double* values) {
+    delete[] variable_names;
+    delete[] variable_values;
+
     amount_variables = n;
 
     variable_names = new std::string[amount_variables];
