@@ -15,7 +15,7 @@ Controls::Controls(wxWindow* parent, wxString label) : wxPanel(parent) {
 Controls::~Controls() { }
 
 void Controls::on_text_input(wxEvent& evt) {
-    // TODO: Generic implementation
+    evt.Skip();
 }
 
 double Controls::get_input_double(wxTextCtrl* input_field, wxStaticText* label) {
