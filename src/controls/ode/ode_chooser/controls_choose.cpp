@@ -13,9 +13,9 @@ ControlsChoose::ControlsChoose(wxWindow* parent) : wxScrolledWindow(parent) {
     SetScrollRate(0, 5);
 
     // ODE stuff
-    amount_odes = 0;
-    odes = new ODE*[1];
-    ode_colours = new uint32_t[1];
+    //amount_odes = 0;
+    //odes = new ODE*[1];
+    //ode_colours = new uint32_t[1];
 }
 
 ControlsChoose::~ControlsChoose() {
@@ -76,18 +76,19 @@ void ControlsChoose::on_settings_update(SettingsOdeEvent& evt) {
 }
 
 void ControlsChoose::on_calculate(wxCommandEvent& evt) {
-    regenerate_odes();
+    //regenerate_odes();
 
-    update_ode_settings();
+    //update_ode_settings();
 
-    for (int i = 0; i < amount_odes; i++) {
-        odes[i]->calculate();
-    }
+    //for (int i = 0; i < amount_odes; i++) {
+    //    odes[i]->calculate();
+    //}
 
     SendResults();
 }
 
 void ControlsChoose::SendResults() {
+    /*
     // ODE pointer
     size_t amount_results, result_length;
     double** ode_results = get_all_results(amount_results, result_length);
@@ -96,6 +97,7 @@ void ControlsChoose::SendResults() {
     evt_ode_pointer.SetEventObject(this);
     evt_ode_pointer.ResumePropagation(__INT_MAX__);
     ProcessEvent(evt_ode_pointer);
+    */
 
     // Step x
     SettingsCommonEvent evt_settings_common(SETTINGS_COMMON_UPDATE, GetId(), settings_common);
@@ -105,6 +107,7 @@ void ControlsChoose::SendResults() {
 }
 
 double** ControlsChoose::get_all_results(size_t& amount_results, size_t& result_length) {
+    /*
     amount_results = amount_odes;
 
     if (amount_results < 1) return nullptr;
@@ -118,6 +121,8 @@ double** ControlsChoose::get_all_results(size_t& amount_results, size_t& result_
     }
 
     return results;
+    */
+    return nullptr;
 }
 
 /*
