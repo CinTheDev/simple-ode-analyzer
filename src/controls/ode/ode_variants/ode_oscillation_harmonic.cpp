@@ -8,8 +8,8 @@ ODE_Oscillation_Harmonic::ODE_Oscillation_Harmonic(Settings_Common settings_comm
     variable_values = new double[amount_variables];
     variable_names = new std::string[amount_variables];
 
-    variable_names[0] = "D";
-    variable_names[1] = "m";
+    variable_names[0] = "D [kg * s^-2]";
+    variable_names[1] = "m [kg]";
 
     variable_values[0] = 100.0;
     variable_values[1] = 1.0;

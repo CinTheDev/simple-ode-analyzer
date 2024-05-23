@@ -9,7 +9,7 @@ ODE_Oscillation_Gravitational::ODE_Oscillation_Gravitational(Settings_Common set
     variable_values = new double[amount_variables];
     variable_names = new std::string[amount_variables];
 
-    variable_names[0] = "a";
+    variable_names[0] = "a [m * s^-2]";
 
     variable_values[0] = 80.0;
 }
