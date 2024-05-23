@@ -37,6 +37,7 @@ private:
     Settings_Approximation settings_approx;
 
     double** get_all_results(size_t& amount_results, size_t& result_length);
+    uint32_t* get_all_colours();
     //ODE* instance_ode(OdeTypes ode_type);
     
     //void update_ode_settings();

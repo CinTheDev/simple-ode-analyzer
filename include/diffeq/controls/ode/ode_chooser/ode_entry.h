@@ -24,6 +24,7 @@ public:
     wxTextCtrl** inputs;
 
     double* get_ode_results(size_t& amount_results);
+    uint32_t get_colour();
 
     void create_options(size_t number, wxString* labels);
     OdeListValues construct_values();

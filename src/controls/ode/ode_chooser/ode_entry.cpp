@@ -80,6 +80,10 @@ double* OdeEntry::get_ode_results(size_t& amount_results) {
     return ode->get_result();
 }
 
+uint32_t OdeEntry::get_colour() {
+    return colour_picker->GetColour().GetRGBA();
+}
+
 void OdeEntry::create_options(size_t number, wxString* labels) {
     purge();
 

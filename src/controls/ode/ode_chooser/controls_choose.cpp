@@ -91,6 +91,7 @@ void ControlsChoose::SendResults() {
     // ODE pointer
     size_t amount_results, result_length;
     double** ode_results = get_all_results(amount_results, result_length);
+    uint32_t* ode_colours = get_all_colours();
 
     OdePointerEvent evt_ode_pointer(EVT_ODE_POINTER, GetId(), ode_results, ode_colours, amount_results, result_length);
     evt_ode_pointer.SetEventObject(this);
@@ -120,8 +121,6 @@ double** ControlsChoose::get_all_results(size_t& amount_results, size_t& result_
 
     return results;
     */
-    return nullptr;
-
     amount_results = sizer_main->GetItemCount() - 1;
 
     if (amount_results < 1) return nullptr;
@@ -132,6 +131,21 @@ double** ControlsChoose::get_all_results(size_t& amount_results, size_t& result_
         OdeEntry* entry = (OdeEntry*) sizer_main->GetItem(i + 1)->GetWindow();
         results[i] = entry->get_ode_results(result_length);
         // TODO: Copy results
+    }
+
+    return results;
+}
+
+uint32_t* ControlsChoose::get_all_colours() {
+    size_t amount_results = sizer_main->GetItemCount() - 1;
+
+    if (amount_results < 1) return nullptr;
+
+    uint32_t* results = new uint32_t[amount_results];
+
+    for (size_t i = 0; i < amount_results; i++) {
+        OdeEntry* entry = (OdeEntry*) sizer_main->GetItem(i + 1)->GetWindow();
+        results[i] = entry->get_colour();
     }
 
     return results;
