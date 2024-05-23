@@ -23,7 +23,7 @@ public:
     wxStaticText** labels;
     wxTextCtrl** inputs;
 
-    double* get_ode_results(size_t& amount_results);
+    double* get_ode_results(size_t& amount_results, Settings_Common settings_common, Settings_Approximation settings_approx);
     uint32_t get_colour();
 
     void create_options(size_t number, wxString* labels);
