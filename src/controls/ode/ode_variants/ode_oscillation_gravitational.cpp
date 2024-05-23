@@ -33,10 +33,10 @@ void ODE_Oscillation_Gravitational::calculate() {
     double current_s = variable_values[1];
     double current_ds = variable_values[2];
 
-    for (int i = 0; i < result_length; i++) {
+    for (size_t i = 0; i < result_length; i++) {
         result[i] = current_s;
 
-        for (int j = 0; j < settings_approx.subdivision; j++) {
+        for (size_t j = 0; j < settings_approx.subdivision; j++) {
             double dds = -a * (abs(current_s) / current_s);
             current_ds += dds * dt;
 

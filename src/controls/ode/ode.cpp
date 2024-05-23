@@ -39,7 +39,7 @@ void ODE::set_length(size_t length) {
 }
 
 void ODE::clear_result() {
-    for (int i = 0; i < result_length; i++) {
+    for (size_t i = 0; i < result_length; i++) {
         result[i] = 0.0;
     }
 }

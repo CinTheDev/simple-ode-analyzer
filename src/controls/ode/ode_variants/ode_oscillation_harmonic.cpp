@@ -4,7 +4,7 @@ ODE_Oscillation_Harmonic::ODE_Oscillation_Harmonic() : ODE_Oscillation_Harmonic(
 
 ODE_Oscillation_Harmonic::ODE_Oscillation_Harmonic(Settings_Common settings_common, Settings_Approx settings_approx)
 : ODE(settings_common, settings_approx) {
-    
+
     std::string names[] = {
         "D [kg * s^-2]",
         "m [kg]",
@@ -38,10 +38,10 @@ void ODE_Oscillation_Harmonic::calculate() {
     double current_s = variable_values[2];
     double current_ds = variable_values[3];
 
-    for (int i = 0; i < result_length; i++) {
+    for (size_t i = 0; i < result_length; i++) {
         result[i] = current_s;
 
-        for (int j = 0; j < settings_approx.subdivision; j++) {
+        for (size_t j = 0; j < settings_approx.subdivision; j++) {
             double dds = (-D / m) * current_s;
             current_ds += dds * dt;
 

@@ -99,7 +99,7 @@ void OdeEntry::create_options() {
     this->labels = new wxStaticText*[amount_options];
     this->inputs = new wxTextCtrl*[amount_options];
 
-    for (int i = 0; i < amount_options; i++) {
+    for (size_t i = 0; i < amount_options; i++) {
         this->labels[i] = new wxStaticText(this, wxID_ANY, option_labels[i]);
         this->inputs[i] = new wxTextCtrl(this, wxID_ANY, double_to_string(option_values[i]));
 
