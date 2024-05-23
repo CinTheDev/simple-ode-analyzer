@@ -19,3 +19,9 @@ target_include_directories(ode_oscillation_gravitational PUBLIC
 target_link_libraries(ode_oscillation_gravitational PUBLIC
     ode
 )
+
+set(DIFFEQ_ALL_ODE_VARIANTS
+    ode_oscillation_harmonic
+    ode_oscillation_gravitational
+    PARENT_SCOPE
+)
