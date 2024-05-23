@@ -38,7 +38,6 @@ private:
 
     void update_ode_variables();
     ODE* instance_ode(OdeTypes ode_type);
-    //void request_settings(Settings_Common* settings_common, Settings_Approximation* settings_approx);
 
     void purge();
 };

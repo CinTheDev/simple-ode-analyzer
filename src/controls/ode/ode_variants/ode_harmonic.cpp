@@ -23,8 +23,6 @@ ODE_Harmonic::~ODE_Harmonic() {
 void ODE_Harmonic::calculate() {
     double dt = settings_common.step_x / (double)settings_approx.subdivision;
 
-    //double D = 100.0;
-    //double m = 1.0;
     double D = variable_values[0];
     double m = variable_values[1];
 
