@@ -117,10 +117,13 @@ void OdeEntry::on_dropdown_ode(wxCommandEvent& evt) {
 }
 
 void OdeEntry::update_ode_variables() {
-    // Read and parse values
+    size_t amount_options = ode->get_amount_variables();
+    double* ode_variables = ode->get_variable_values();
 
-    // Write to variables in ODE
-
+    for (size_t i = 0; i < amount_options; i++) {
+        double input_value = get_input_double(inputs[i], labels[i]);
+        ode_variables[i] = input_value;
+    }
 }
 
 ODE* OdeEntry::instance_ode(OdeTypes ode_type) {
