@@ -89,7 +89,7 @@ uint32_t OdeEntry::get_colour() {
 void OdeEntry::create_options(size_t number, wxString* labels) {
     purge();
 
-    ode = new ODE_Harmonic(Settings_Common(), Settings_Approximation()); // TODO
+    ode = instance_ode(ode_types[dropdown_ode->GetSelection()]);
 
     this->labels = new wxStaticText*[number];
     this->inputs = new wxTextCtrl*[number];
@@ -118,7 +118,8 @@ OdeListValues OdeEntry::construct_values() {
 
 void OdeEntry::on_dropdown_ode(wxCommandEvent& evt) {
     // TODO: Get ODE variable names and use create_options()
-
+    delete ode;
+    ode = instance_ode(ode_types[dropdown_ode->GetSelection()]);
 }
 
 ODE* OdeEntry::instance_ode(OdeTypes ode_type) {
