@@ -75,11 +75,11 @@ void OdeEntry::init_sizers() {
     SetSizer(sizer_main);
 }
 
-double* OdeEntry::get_ode_results(size_t& amount_results) {
-    Settings_Common settings_common;
-    Settings_Approximation settings_approx;
+double* OdeEntry::get_ode_results(size_t& amount_results, Settings_Common settings_common, Settings_Approximation settings_approx) {
+    //Settings_Common settings_common;
+    //Settings_Approximation settings_approx;
 
-    request_settings(&settings_common, &settings_approx);
+    //request_settings(&settings_common, &settings_approx);
 
     ode->apply_settings(settings_common);
     ode->apply_settings(settings_approx);
@@ -131,6 +131,7 @@ ODE* OdeEntry::instance_ode(OdeTypes ode_type) {
     }
 }
 
+/*
 void OdeEntry::request_settings(Settings_Common* settings_common, Settings_Approximation* settings_approx) {
     SettingsOdeRequest request = SettingsOdeRequest(SETTINGS_ODE_REQUEST, GetId(), settings_common, settings_approx);
     request.ResumePropagation(__INT_MAX__);
@@ -141,6 +142,7 @@ void OdeEntry::request_settings(Settings_Common* settings_common, Settings_Appro
         std::cout << "WARNING: Requested settings are null" << std::endl;
     }
 }
+*/
 
 void OdeEntry::purge() {
     sizer_grid->Clear(true);
