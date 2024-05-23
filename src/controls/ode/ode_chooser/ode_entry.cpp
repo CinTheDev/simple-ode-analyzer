@@ -27,13 +27,11 @@ OdeEntry::OdeEntry(wxWindow* parent) : Controls(parent, "") {
     init_elements();
     init_sizers();
 
-    wxString test_labels[] = { "First option", "Second option", "Yeah" };
-
     labels = new wxStaticText*[1];
     inputs = new wxTextCtrl*[1];
     ode = new ODE();
 
-    create_options(3, test_labels);
+    create_options();
 }
 
 OdeEntry::~OdeEntry() {
@@ -88,10 +86,14 @@ uint32_t OdeEntry::get_colour() {
     return colour_picker->GetColour().GetRGBA();
 }
 
-void OdeEntry::create_options(size_t number, wxString* labels) {
+void OdeEntry::create_options() {
     purge();
 
     ode = instance_ode(ode_types[dropdown_ode->GetSelection()]);
+
+    // TODO: construct labels based off of ode
+    wxString labels[] = { "First option", "Second option", "Yeah" };
+    size_t number = 3;
 
     this->labels = new wxStaticText*[number];
     this->inputs = new wxTextCtrl*[number];
@@ -106,9 +108,7 @@ void OdeEntry::create_options(size_t number, wxString* labels) {
 }
 
 void OdeEntry::on_dropdown_ode(wxCommandEvent& evt) {
-    // TODO: Get ODE variable names and use create_options()
-    delete ode;
-    ode = instance_ode(ode_types[dropdown_ode->GetSelection()]);
+    create_options();
 }
 
 ODE* OdeEntry::instance_ode(OdeTypes ode_type) {
