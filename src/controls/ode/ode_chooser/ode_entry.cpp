@@ -31,7 +31,7 @@ OdeEntry::OdeEntry(wxWindow* parent) : Controls(parent, "") {
 
     labels = new wxStaticText*[1];
     inputs = new wxTextCtrl*[1];
-    ode = new ODE(Settings_Common(), Settings_Approximation());
+    ode = new ODE();
 
     create_options(3, test_labels);
 }
@@ -114,10 +114,10 @@ void OdeEntry::on_dropdown_ode(wxCommandEvent& evt) {
 ODE* OdeEntry::instance_ode(OdeTypes ode_type) {
     switch (ode_type) {
         case OdeTypes::HarmonicOscillation:
-            return new ODE_Harmonic(Settings_Common(), Settings_Approximation());
+            return new ODE_Harmonic();
 
         case OdeTypes::GravitationalOscillation:
-            return new ODE_V_Oscillation(Settings_Common(), Settings_Approximation());
+            return new ODE_V_Oscillation();
 
         default:
             std::cout << "WARNING [ControlsODE::instance_ode()]: Unhandled OdeTypes enum" << std::endl;
