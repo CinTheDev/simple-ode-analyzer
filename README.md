@@ -32,6 +32,10 @@ implemented in code.
 So in short, the actual equation part of the ODE is represented in the different kinds of
 `calculate` methods implemented for every descendant of `ODE`.
 
+Mutable mathematical constants used in the equation are stored in a special array, which the GUI part of
+the program is able to access. This way, these constants can be changed at runtime. (But they will never
+change while the function is calculated, hence why I call them 'constants').
+
 ## Development
 
 ### CMake
