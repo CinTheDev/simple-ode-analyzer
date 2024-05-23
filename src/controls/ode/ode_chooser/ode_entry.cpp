@@ -91,16 +91,16 @@ void OdeEntry::create_options() {
 
     ode = instance_ode(ode_types[dropdown_ode->GetSelection()]);
 
-    // TODO: construct labels based off of ode
-    wxString labels[] = { "First option", "Second option", "Yeah" };
-    size_t number = 3;
+    size_t amount_options = ode->get_amount_variables();
+    std::string* option_labels = ode->get_variable_names();
+    double* option_values = ode->get_variable_values();
 
-    this->labels = new wxStaticText*[number];
-    this->inputs = new wxTextCtrl*[number];
+    this->labels = new wxStaticText*[amount_options];
+    this->inputs = new wxTextCtrl*[amount_options];
 
-    for (int i = 0; i < number; i++) {
-        this->labels[i] = new wxStaticText(this, wxID_ANY, labels[i]);
-        this->inputs[i] = new wxTextCtrl(this, wxID_ANY, labels[i]);
+    for (int i = 0; i < amount_options; i++) {
+        this->labels[i] = new wxStaticText(this, wxID_ANY, option_labels[i]);
+        this->inputs[i] = new wxTextCtrl(this, wxID_ANY, std::to_string(option_values[i]));
 
         sizer_grid->Add(this->labels[i]);
         sizer_grid->Add(this->inputs[i]);
