@@ -88,7 +88,6 @@ void ControlsChoose::on_calculate(wxCommandEvent& evt) {
 }
 
 void ControlsChoose::SendResults() {
-    /*
     // ODE pointer
     size_t amount_results, result_length;
     double** ode_results = get_all_results(amount_results, result_length);
@@ -97,7 +96,6 @@ void ControlsChoose::SendResults() {
     evt_ode_pointer.SetEventObject(this);
     evt_ode_pointer.ResumePropagation(__INT_MAX__);
     ProcessEvent(evt_ode_pointer);
-    */
 
     // Step x
     SettingsCommonEvent evt_settings_common(SETTINGS_COMMON_UPDATE, GetId(), settings_common);
@@ -133,6 +131,7 @@ double** ControlsChoose::get_all_results(size_t& amount_results, size_t& result_
     for (size_t i = 0; i < amount_results; i++) {
         OdeEntry* entry = (OdeEntry*) sizer_main->GetItem(i + 1)->GetWindow();
         results[i] = entry->get_ode_results(result_length);
+        // TODO: Copy results
     }
 
     return results;
