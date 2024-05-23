@@ -21,7 +21,7 @@ Plotter::Plotter(wxWindow* parent) : wxPanel(parent, wxID_ANY) {
 }
 
 Plotter::~Plotter() {
-
+    clear_function_data();
 }
 
 void Plotter::on_settings_update(SettingsPlotterEvent& evt) {
@@ -35,7 +35,7 @@ void Plotter::on_settings_common_update(SettingsCommonEvent& evt) {
 }
 
 void Plotter::on_function_update(OdePointerEvent& evt) {
-    delete[] functions;
+    clear_function_data();
 
     functions = evt.get_result_pointer();
     function_colours = evt.get_colours();
@@ -315,4 +315,12 @@ wxString Plotter::double_truncate(double val) {
     string_val.erase(string_val.find_last_not_of('.') + 1, std::string::npos);
 
     return wxString(string_val);
+}
+
+void Plotter::clear_function_data() {
+    for (size_t i = 0; i < function_amount; i++) {
+        delete[] functions[i];
+    }
+
+    delete[] functions;
 }
