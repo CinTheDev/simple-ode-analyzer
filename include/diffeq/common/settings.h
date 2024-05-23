@@ -8,7 +8,7 @@ public:
     double step_x = 0.01;
 };
 
-struct Settings_Approximation {
+struct Settings_Approx {
 public:
     int amount = 100;
     int subdivision = 1;
@@ -35,13 +35,6 @@ enum class OdeTypes {
 enum class ApproxTypes {
     Euler,
     Test,
-};
-
-struct OdeListValues {
-public:
-    OdeTypes ode_type;
-    ApproxTypes approx_type;
-    uint32_t colour;
 };
 
 #endif

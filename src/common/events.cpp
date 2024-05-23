@@ -18,6 +18,30 @@ Settings_Common SettingsCommonEvent::get_settings() {
     return settings_common;
 }
 
+// SettingsOdeEvent
+
+wxDEFINE_EVENT(SETTINGS_ODE_UPDATE, SettingsOdeEvent);
+
+SettingsOdeEvent::SettingsOdeEvent(wxEventType event_type, int id, Settings_Common settings_common, Settings_Approx settings_approx)
+: wxEvent(id, event_type) {
+    this->settings_common = settings_common;
+    this->settings_approx = settings_approx;
+}
+
+SettingsOdeEvent::~SettingsOdeEvent() { }
+
+wxEvent* SettingsOdeEvent::Clone() const {
+    return new SettingsOdeEvent(*this);
+}
+
+Settings_Common SettingsOdeEvent::get_settings_common() {
+    return settings_common;
+}
+
+Settings_Approx SettingsOdeEvent::get_settings_approx() {
+    return settings_approx;
+}
+
 // SettingsPlotterEvent
 
 wxDEFINE_EVENT(SETTINGS_PLOTTER_UPDATE, SettingsPlotterEvent);
@@ -35,6 +59,30 @@ wxEvent* SettingsPlotterEvent::Clone() const {
 
 Settings_Plotter SettingsPlotterEvent::get_settings() {
     return settings_plotter;
+}
+
+// SettingsOdeRequest
+
+wxDEFINE_EVENT(SETTINGS_ODE_REQUEST, SettingsOdeRequest);
+
+SettingsOdeRequest::SettingsOdeRequest(wxEventType event_type, int id, Settings_Common* settings_common, Settings_Approx* settings_approx)
+: wxEvent(id, event_type) {
+    this->settings_common = settings_common;
+    this->settings_approx = settings_approx;
+}
+
+SettingsOdeRequest::~SettingsOdeRequest() { }
+
+wxEvent* SettingsOdeRequest::Clone() const {
+    return new SettingsOdeRequest(*this);
+}
+
+Settings_Common* SettingsOdeRequest::get_settings_common() {
+    return settings_common;
+}
+
+Settings_Approx* SettingsOdeRequest::get_settings_approx() {
+    return settings_approx;
 }
 
 // OdePointerEvent
@@ -69,28 +117,4 @@ size_t OdePointerEvent::get_amount_results() {
 
 size_t OdePointerEvent::get_result_length() {
     return result_length;
-}
-
-// OdeListUpdateEvent
-
-wxDEFINE_EVENT(EVT_ODE_LIST, OdeListUpdateEvent);
-
-OdeListUpdateEvent::OdeListUpdateEvent(wxEventType event_type, int id, OdeListValues* ode_list_values, size_t amount)
- : wxEvent(id, event_type) {
-    this->ode_list_values = ode_list_values;
-    this->amount = amount;
-}
-
-OdeListUpdateEvent::~OdeListUpdateEvent() { }
-
-wxEvent* OdeListUpdateEvent::Clone() const {
-    return new OdeListUpdateEvent(*this);
-}
-
-OdeListValues* OdeListUpdateEvent::get_values() {
-    return ode_list_values;
-}
-
-size_t OdeListUpdateEvent::get_amount() {
-    return amount;
 }

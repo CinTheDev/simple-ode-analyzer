@@ -67,6 +67,8 @@ private:
 
     void update_control_settings();
     wxString double_truncate(double val);
+
+    void clear_function_data();
 };
 
 #endif
