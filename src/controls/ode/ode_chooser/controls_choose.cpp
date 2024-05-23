@@ -7,7 +7,7 @@ ControlsChoose::ControlsChoose(wxWindow* parent) : wxScrolledWindow(parent) {
     sizer_main->Add(button_create_entry, 0, wxEXPAND | wxALL & ~wxBOTTOM, 10);
 
     button_create_entry->Bind(wxEVT_BUTTON, &ControlsChoose::on_button_create, this);
-    Bind(SETTINGS_ODE_REQUEST, &ControlsChoose::on_settings_request, this);
+    //Bind(SETTINGS_ODE_REQUEST, &ControlsChoose::on_settings_request, this);
 
     SetSizer(sizer_main);
 
@@ -69,9 +69,15 @@ void ControlsChoose::on_settings_request(SettingsOdeRequest& request) {
 */
 
 void ControlsChoose::SendResults() {
+    // Request settings
+    Settings_Common settings_common;
+    Settings_Approximation settings_approx;
+
+    request_ode_settings(&settings_common, &settings_approx);
+
     // ODE pointer
     size_t amount_results, result_length;
-    double** ode_results = get_all_results(amount_results, result_length);
+    double** ode_results = get_all_results(amount_results, result_length, settings_common, settings_approx);
     uint32_t* ode_colours = get_all_colours();
 
     OdePointerEvent evt_ode_pointer(EVT_ODE_POINTER, GetId(), ode_results, ode_colours, amount_results, result_length);
@@ -86,7 +92,7 @@ void ControlsChoose::SendResults() {
     ProcessEvent(evt_settings_common);
 }
 
-double** ControlsChoose::get_all_results(size_t& amount_results, size_t& result_length) {
+double** ControlsChoose::get_all_results(size_t& amount_results, size_t& result_length, Settings_Common settings_common, Settings_Approximation settings_approx) {
     amount_results = sizer_main->GetItemCount() - 1;
 
     if (amount_results < 1) return nullptr;
@@ -95,7 +101,7 @@ double** ControlsChoose::get_all_results(size_t& amount_results, size_t& result_
 
     for (size_t i = 0; i < amount_results; i++) {
         OdeEntry* entry = (OdeEntry*) sizer_main->GetItem(i + 1)->GetWindow();
-        double* entry_results = entry->get_ode_results(result_length);
+        double* entry_results = entry->get_ode_results(result_length, settings_common, settings_approx);
         double* copy_results = new double[result_length];
         memcpy(copy_results, entry_results, sizeof(double) * result_length);
         results[i] = copy_results;
