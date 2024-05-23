@@ -36,6 +36,9 @@ private:
 
     void init_elements();
     void init_sizers();
+
+    ODE* instance_ode(OdeTypes ode_type);
+
     void purge();
 };
 

@@ -77,7 +77,7 @@ void OdeEntry::init_sizers() {
 
 double* OdeEntry::get_ode_results(size_t& amount_results) {
     ode->calculate();
-    
+
     amount_results = ode->get_length();
     return ode->get_result();
 }
@@ -119,6 +119,21 @@ OdeListValues OdeEntry::construct_values() {
 void OdeEntry::on_dropdown_ode(wxCommandEvent& evt) {
     // TODO: Get ODE variable names and use create_options()
 
+}
+
+ODE* OdeEntry::instance_ode(OdeTypes ode_type) {
+    // TODO: Request settings and instance with those instead of default settings
+    switch (ode_type) {
+        case OdeTypes::HarmonicOscillation:
+            return new ODE_Harmonic(Settings_Common(), Settings_Approximation());
+
+        case OdeTypes::GravitationalOscillation:
+            return new ODE_V_Oscillation(Settings_Common(), Settings_Approximation());
+
+        default:
+            std::cout << "WARNING [ControlsODE::instance_ode()]: Unhandled OdeTypes enum" << std::endl;
+            return nullptr;
+    }
 }
 
 void OdeEntry::purge() {
