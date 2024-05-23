@@ -38,7 +38,7 @@ private:
     void init_sizers();
 
     ODE* instance_ode(OdeTypes ode_type);
-    void request_settings(Settings_Common* settings_common, Settings_Approximation* settings_approximation);
+    void request_settings(Settings_Common* settings_common, Settings_Approximation* settings_approx);
 
     void purge();
 };
