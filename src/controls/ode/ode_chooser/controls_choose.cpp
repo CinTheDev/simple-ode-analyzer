@@ -123,6 +123,19 @@ double** ControlsChoose::get_all_results(size_t& amount_results, size_t& result_
     return results;
     */
     return nullptr;
+
+    amount_results = sizer_main->GetItemCount() - 1;
+
+    if (amount_results < 1) return nullptr;
+
+    double** results = new double*[amount_results];
+
+    for (size_t i = 0; i < amount_results; i++) {
+        OdeEntry* entry = (OdeEntry*) sizer_main->GetItem(i + 1)->GetWindow();
+        results[i] = entry->get_ode_results(result_length);
+    }
+
+    return results;
 }
 
 /*
