@@ -23,6 +23,8 @@ public:
     wxStaticText** labels;
     wxTextCtrl** inputs;
 
+    double* get_ode_results(size_t& amount_results);
+
     void create_options(size_t number, wxString* labels);
     OdeListValues construct_values();
 
