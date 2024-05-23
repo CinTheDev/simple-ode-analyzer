@@ -1,8 +1,8 @@
 #include "ode_oscillation_harmonic.h"
 
-ODE_Harmonic::ODE_Harmonic() : ODE_Harmonic(Settings_Common(), Settings_Approx()) { }
+ODE_Oscillation_Harmonic::ODE_Oscillation_Harmonic() : ODE_Oscillation_Harmonic(Settings_Common(), Settings_Approx()) { }
 
-ODE_Harmonic::ODE_Harmonic(Settings_Common settings_common, Settings_Approx settings_approx)
+ODE_Oscillation_Harmonic::ODE_Oscillation_Harmonic(Settings_Common settings_common, Settings_Approx settings_approx)
 : ODE(settings_common, settings_approx) {
     amount_variables = 2;
     variable_values = new double[amount_variables];
@@ -15,12 +15,12 @@ ODE_Harmonic::ODE_Harmonic(Settings_Common settings_common, Settings_Approx sett
     variable_values[1] = 1.0;
 }
 
-ODE_Harmonic::~ODE_Harmonic() {
+ODE_Oscillation_Harmonic::~ODE_Oscillation_Harmonic() {
     delete[] variable_values;
     delete[] variable_names;
 }
 
-void ODE_Harmonic::calculate() {
+void ODE_Oscillation_Harmonic::calculate() {
     double dt = settings_common.step_x / (double)settings_approx.subdivision;
 
     double D = variable_values[0];

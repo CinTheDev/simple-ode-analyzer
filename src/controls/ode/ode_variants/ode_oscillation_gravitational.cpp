@@ -1,14 +1,14 @@
 #include "ode_oscillation_gravitational.h"
 #include <math.h>
 
-ODE_V_Oscillation::ODE_V_Oscillation() : ODE_V_Oscillation(Settings_Common(), Settings_Approx()) { }
+ODE_Oscillation_Gravitational::ODE_Oscillation_Gravitational() : ODE_Oscillation_Gravitational(Settings_Common(), Settings_Approx()) { }
 
-ODE_V_Oscillation::ODE_V_Oscillation(Settings_Common settings_common, Settings_Approx settings_approx)
+ODE_Oscillation_Gravitational::ODE_Oscillation_Gravitational(Settings_Common settings_common, Settings_Approx settings_approx)
  : ODE(settings_common, settings_approx) { }
 
-ODE_V_Oscillation::~ODE_V_Oscillation() { }
+ODE_Oscillation_Gravitational::~ODE_Oscillation_Gravitational() { }
 
-void ODE_V_Oscillation::calculate() {
+void ODE_Oscillation_Gravitational::calculate() {
     double dt = settings_common.step_x / (double)settings_approx.subdivision;
 
     double g = 80.0;

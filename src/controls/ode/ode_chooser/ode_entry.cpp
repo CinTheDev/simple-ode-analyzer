@@ -129,10 +129,10 @@ void OdeEntry::update_ode_variables() {
 ODE* OdeEntry::instance_ode(OdeTypes ode_type) {
     switch (ode_type) {
         case OdeTypes::HarmonicOscillation:
-            return new ODE_Harmonic();
+            return new ODE_Oscillation_Harmonic();
 
         case OdeTypes::GravitationalOscillation:
-            return new ODE_V_Oscillation();
+            return new ODE_Oscillation_Gravitational();
 
         default:
             std::cout << "WARNING [ControlsODE::instance_ode()]: Unhandled OdeTypes enum" << std::endl;

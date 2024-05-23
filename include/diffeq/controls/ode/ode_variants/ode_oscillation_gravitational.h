@@ -1,13 +1,13 @@
-#ifndef DIFFEQ_ODE_V_OSCILLATION
-#define DIFFEQ_ODE_V_OSCILLATION
+#ifndef DIFFEQ_ODE_OSCILLATION_GRAVITATIONAL
+#define DIFFEQ_ODE_OSCILLATION_GRAVITATIONAL
 
 #include "ode.h"
 
-class ODE_V_Oscillation : public ODE {
+class ODE_Oscillation_Gravitational : public ODE {
 public:
-    ODE_V_Oscillation();
-    ODE_V_Oscillation(Settings_Common settings_common, Settings_Approx settings_approx);
-    ~ODE_V_Oscillation();
+    ODE_Oscillation_Gravitational();
+    ODE_Oscillation_Gravitational(Settings_Common settings_common, Settings_Approx settings_approx);
+    ~ODE_Oscillation_Gravitational();
 
     void calculate();
 };
