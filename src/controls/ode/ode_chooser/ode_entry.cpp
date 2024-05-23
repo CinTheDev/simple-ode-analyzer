@@ -32,6 +32,7 @@ OdeEntry::OdeEntry(wxWindow* parent) : Controls(parent, "") {
     labels = new wxStaticText*[1];
     inputs = new wxTextCtrl*[1];
     ode = new ODE(Settings_Common(), Settings_Approximation());
+    ode->calculate();
 
     create_options(3, test_labels);
 }
