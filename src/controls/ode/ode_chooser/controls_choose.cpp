@@ -7,7 +7,6 @@ ControlsChoose::ControlsChoose(wxWindow* parent) : wxScrolledWindow(parent) {
     sizer_main->Add(button_create_entry, 0, wxEXPAND | wxALL & ~wxBOTTOM, 10);
 
     button_create_entry->Bind(wxEVT_BUTTON, &ControlsChoose::on_button_create, this);
-    //Bind(SETTINGS_ODE_REQUEST, &ControlsChoose::on_settings_request, this);
 
     SetSizer(sizer_main);
 
@@ -47,26 +46,9 @@ void ControlsChoose::on_child_remove(wxCommandEvent& evt) {
     GetParent()->Layout();
 }
 
-/*
-void ControlsChoose::on_settings_update(SettingsOdeEvent& evt) {
-    settings_common = evt.get_settings_common();
-    settings_approx = evt.get_settings_approx();
-}
-*/
-
 void ControlsChoose::on_calculate(wxCommandEvent& evt) {
     SendResults();
 }
-
-/*
-void ControlsChoose::on_settings_request(SettingsOdeRequest& request) {
-    Settings_Common* request_common_settings = request.get_settings_common();
-    Settings_Approximation* request_approx_settings = request.get_settings_approx();
-
-    *request_common_settings = settings_common;
-    *request_approx_settings = settings_approx;
-}
-*/
 
 void ControlsChoose::SendResults() {
     // Request settings

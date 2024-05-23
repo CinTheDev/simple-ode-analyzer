@@ -76,11 +76,6 @@ void OdeEntry::init_sizers() {
 }
 
 double* OdeEntry::get_ode_results(size_t& amount_results, Settings_Common settings_common, Settings_Approximation settings_approx) {
-    //Settings_Common settings_common;
-    //Settings_Approximation settings_approx;
-
-    //request_settings(&settings_common, &settings_approx);
-
     ode->apply_settings(settings_common);
     ode->apply_settings(settings_approx);
     ode->calculate();
@@ -117,7 +112,6 @@ void OdeEntry::on_dropdown_ode(wxCommandEvent& evt) {
 }
 
 ODE* OdeEntry::instance_ode(OdeTypes ode_type) {
-    // TODO: Request settings and instance with those instead of default settings
     switch (ode_type) {
         case OdeTypes::HarmonicOscillation:
             return new ODE_Harmonic(Settings_Common(), Settings_Approximation());
@@ -130,19 +124,6 @@ ODE* OdeEntry::instance_ode(OdeTypes ode_type) {
             return nullptr;
     }
 }
-
-/*
-void OdeEntry::request_settings(Settings_Common* settings_common, Settings_Approximation* settings_approx) {
-    SettingsOdeRequest request = SettingsOdeRequest(SETTINGS_ODE_REQUEST, GetId(), settings_common, settings_approx);
-    request.ResumePropagation(__INT_MAX__);
-    request.SetEventObject(this);
-    ProcessEvent(request);
-
-    if (settings_common == nullptr || settings_approx == nullptr) {
-        std::cout << "WARNING: Requested settings are null" << std::endl;
-    }
-}
-*/
 
 void OdeEntry::purge() {
     sizer_grid->Clear(true);
