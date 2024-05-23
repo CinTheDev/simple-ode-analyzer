@@ -105,6 +105,9 @@ void OdeEntry::create_options() {
         sizer_grid->Add(this->labels[i]);
         sizer_grid->Add(this->inputs[i]);
     }
+
+    GetParent()->GetParent()->Layout();
+    sizer_main->GetStaticBox()->Update();
 }
 
 void OdeEntry::on_dropdown_ode(wxCommandEvent& evt) {
