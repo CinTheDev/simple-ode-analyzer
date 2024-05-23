@@ -74,7 +74,7 @@ void OdeEntry::init_sizers() {
     SetSizer(sizer_main);
 }
 
-double* OdeEntry::get_ode_results(size_t& amount_results, Settings_Common settings_common, Settings_Approximation settings_approx) {
+double* OdeEntry::get_ode_results(size_t& amount_results, Settings_Common settings_common, Settings_Approx settings_approx) {
     update_ode_variables();
     ode->apply_settings(settings_common);
     ode->apply_settings(settings_approx);

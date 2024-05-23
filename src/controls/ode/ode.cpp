@@ -1,9 +1,9 @@
 #include "ode.h"
 #include <math.h>
 
-ODE::ODE() : ODE(Settings_Common(), Settings_Approximation()) { }
+ODE::ODE() : ODE(Settings_Common(), Settings_Approx()) { }
 
-ODE::ODE(Settings_Common settings_common, Settings_Approximation settings_approx) {
+ODE::ODE(Settings_Common settings_common, Settings_Approx settings_approx) {
     result = new double[1];
 
     apply_settings(settings_common);
@@ -50,7 +50,7 @@ void ODE::apply_settings(Settings_Common settings_common) {
     this->settings_common = settings_common;
 }
 
-void ODE::apply_settings(Settings_Approximation settings_approx) {
+void ODE::apply_settings(Settings_Approx settings_approx) {
     this->settings_approx = settings_approx;
 
     set_length(settings_approx.amount);

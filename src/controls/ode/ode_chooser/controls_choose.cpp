@@ -53,7 +53,7 @@ void ControlsChoose::on_calculate(wxCommandEvent& evt) {
 void ControlsChoose::SendResults() {
     // Request settings
     Settings_Common settings_common;
-    Settings_Approximation settings_approx;
+    Settings_Approx settings_approx;
 
     request_ode_settings(&settings_common, &settings_approx);
 
@@ -74,7 +74,7 @@ void ControlsChoose::SendResults() {
     ProcessEvent(evt_settings_common);
 }
 
-double** ControlsChoose::get_all_results(size_t& amount_results, size_t& result_length, Settings_Common settings_common, Settings_Approximation settings_approx) {
+double** ControlsChoose::get_all_results(size_t& amount_results, size_t& result_length, Settings_Common settings_common, Settings_Approx settings_approx) {
     amount_results = sizer_main->GetItemCount() - 1;
 
     if (amount_results < 1) return nullptr;
@@ -107,7 +107,7 @@ uint32_t* ControlsChoose::get_all_colours() {
     return results;
 }
 
-void ControlsChoose::request_ode_settings(Settings_Common* settings_common, Settings_Approximation* settings_approx) {
+void ControlsChoose::request_ode_settings(Settings_Common* settings_common, Settings_Approx* settings_approx) {
     SettingsOdeRequest request = SettingsOdeRequest(SETTINGS_ODE_REQUEST, GetId(), settings_common, settings_approx);
     request.ResumePropagation(__INT_MAX__);
     request.SetEventObject(this);

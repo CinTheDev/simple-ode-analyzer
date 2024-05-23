@@ -8,7 +8,7 @@
 class ODE {
 public:
     ODE();
-    ODE(Settings_Common settings_common, Settings_Approximation settings_approx);
+    ODE(Settings_Common settings_common, Settings_Approx settings_approx);
     ~ODE();
 
     size_t get_length();
@@ -22,7 +22,7 @@ public:
     size_t get_amount_variables();
 
     void apply_settings(Settings_Common settings_common);
-    void apply_settings(Settings_Approximation settings_approx);
+    void apply_settings(Settings_Approx settings_approx);
 
     virtual void calculate();
 
@@ -35,7 +35,7 @@ protected:
     size_t amount_variables = 0;
 
     Settings_Common settings_common;
-    Settings_Approximation settings_approx;
+    Settings_Approx settings_approx;
 };
 
 #endif

@@ -22,9 +22,9 @@ public:
     wxStaticText* label_subdivision;
 
     Settings_Common construct_common_settings();
-    Settings_Approximation construct_approx_settings();
+    Settings_Approx construct_approx_settings();
     void update_values(Settings_Common settings_common);
-    void update_values(Settings_Approximation settings_approx);
+    void update_values(Settings_Approx settings_approx);
 
     void on_text_input(wxEvent& evt);
     void on_settings_request(SettingsOdeRequest& evt);

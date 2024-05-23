@@ -24,17 +24,17 @@ wxDECLARE_EVENT(SETTINGS_COMMON_UPDATE, SettingsCommonEvent);
 
 class SettingsOdeEvent : public wxEvent {
 public:
-    SettingsOdeEvent(wxEventType event_type, int id, Settings_Common settings_common, Settings_Approximation settings_approx);
+    SettingsOdeEvent(wxEventType event_type, int id, Settings_Common settings_common, Settings_Approx settings_approx);
     ~SettingsOdeEvent();
 
     virtual wxEvent* Clone() const;
 
     Settings_Common get_settings_common();
-    Settings_Approximation get_settings_approx();
+    Settings_Approx get_settings_approx();
 
 private:
     Settings_Common settings_common;
-    Settings_Approximation settings_approx;
+    Settings_Approx settings_approx;
 };
 
 wxDECLARE_EVENT(SETTINGS_ODE_UPDATE, SettingsOdeEvent);
@@ -61,17 +61,17 @@ wxDECLARE_EVENT(PLOTTER_GRAPHICS_UPDATE, SettingsPlotterEvent);
 
 class SettingsOdeRequest : public wxEvent {
 public:
-    SettingsOdeRequest(wxEventType event_type, int id, Settings_Common* settings_common, Settings_Approximation* settings_approx);
+    SettingsOdeRequest(wxEventType event_type, int id, Settings_Common* settings_common, Settings_Approx* settings_approx);
     ~SettingsOdeRequest();
 
     virtual wxEvent* Clone() const;
 
     Settings_Common* get_settings_common();
-    Settings_Approximation* get_settings_approx();
+    Settings_Approx* get_settings_approx();
 
 private:
     Settings_Common* settings_common;
-    Settings_Approximation* settings_approx;
+    Settings_Approx* settings_approx;
 };
 
 wxDECLARE_EVENT(SETTINGS_ODE_REQUEST, SettingsOdeRequest);

@@ -8,7 +8,7 @@ public:
     double step_x = 0.01;
 };
 
-struct Settings_Approximation {
+struct Settings_Approx {
 public:
     int amount = 100;
     int subdivision = 1;

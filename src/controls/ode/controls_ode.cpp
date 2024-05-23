@@ -28,7 +28,7 @@ void ControlsODE::init_elements() {
     sizer_grid->Add(input_subdivision);
 
     Settings_Common default_common_settings = Settings_Common();
-    Settings_Approximation default_approx_settings = Settings_Approximation();
+    Settings_Approx default_approx_settings = Settings_Approx();
     update_values(default_common_settings);
     update_values(default_approx_settings);
 }
@@ -43,8 +43,8 @@ Settings_Common ControlsODE::construct_common_settings() {
     return settings_common;
 }
 
-Settings_Approximation ControlsODE::construct_approx_settings() {
-    Settings_Approximation settings_approx;
+Settings_Approx ControlsODE::construct_approx_settings() {
+    Settings_Approx settings_approx;
 
     settings_approx.amount = get_input_int(input_amount, label_amount);
     settings_approx.subdivision = get_input_int(input_subdivision, label_subdivision);
@@ -56,7 +56,7 @@ void ControlsODE::update_values(Settings_Common settings_common) {
     input_step_x->ChangeValue(double_to_string(settings_common.step_x));
 }
 
-void ControlsODE::update_values(Settings_Approximation settings_approx) {
+void ControlsODE::update_values(Settings_Approx settings_approx) {
     input_amount->ChangeValue(std::to_string(settings_approx.amount));
     input_subdivision->ChangeValue(std::to_string(settings_approx.subdivision));
 }
@@ -70,7 +70,7 @@ void ControlsODE::on_text_input(wxEvent& evt) {
 
 void ControlsODE::on_settings_request(SettingsOdeRequest& evt) {
     Settings_Common* settings_common = evt.get_settings_common();
-    Settings_Approximation* settings_approx = evt.get_settings_approx();
+    Settings_Approx* settings_approx = evt.get_settings_approx();
 
     *settings_common = construct_common_settings();
     *settings_approx = construct_approx_settings();

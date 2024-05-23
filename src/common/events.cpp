@@ -22,7 +22,7 @@ Settings_Common SettingsCommonEvent::get_settings() {
 
 wxDEFINE_EVENT(SETTINGS_ODE_UPDATE, SettingsOdeEvent);
 
-SettingsOdeEvent::SettingsOdeEvent(wxEventType event_type, int id, Settings_Common settings_common, Settings_Approximation settings_approx)
+SettingsOdeEvent::SettingsOdeEvent(wxEventType event_type, int id, Settings_Common settings_common, Settings_Approx settings_approx)
 : wxEvent(id, event_type) {
     this->settings_common = settings_common;
     this->settings_approx = settings_approx;
@@ -38,7 +38,7 @@ Settings_Common SettingsOdeEvent::get_settings_common() {
     return settings_common;
 }
 
-Settings_Approximation SettingsOdeEvent::get_settings_approx() {
+Settings_Approx SettingsOdeEvent::get_settings_approx() {
     return settings_approx;
 }
 
@@ -65,7 +65,7 @@ Settings_Plotter SettingsPlotterEvent::get_settings() {
 
 wxDEFINE_EVENT(SETTINGS_ODE_REQUEST, SettingsOdeRequest);
 
-SettingsOdeRequest::SettingsOdeRequest(wxEventType event_type, int id, Settings_Common* settings_common, Settings_Approximation* settings_approx)
+SettingsOdeRequest::SettingsOdeRequest(wxEventType event_type, int id, Settings_Common* settings_common, Settings_Approx* settings_approx)
 : wxEvent(id, event_type) {
     this->settings_common = settings_common;
     this->settings_approx = settings_approx;
@@ -81,7 +81,7 @@ Settings_Common* SettingsOdeRequest::get_settings_common() {
     return settings_common;
 }
 
-Settings_Approximation* SettingsOdeRequest::get_settings_approx() {
+Settings_Approx* SettingsOdeRequest::get_settings_approx() {
     return settings_approx;
 }
 
