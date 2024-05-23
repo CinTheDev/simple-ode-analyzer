@@ -75,6 +75,7 @@ void OdeEntry::init_sizers() {
 }
 
 double* OdeEntry::get_ode_results(size_t& amount_results, Settings_Common settings_common, Settings_Approximation settings_approx) {
+    update_ode_variables();
     ode->apply_settings(settings_common);
     ode->apply_settings(settings_approx);
     ode->calculate();
@@ -113,6 +114,13 @@ void OdeEntry::create_options() {
 
 void OdeEntry::on_dropdown_ode(wxCommandEvent& evt) {
     create_options();
+}
+
+void OdeEntry::update_ode_variables() {
+    // Read and parse values
+
+    // Write to variables in ODE
+
 }
 
 ODE* OdeEntry::instance_ode(OdeTypes ode_type) {
