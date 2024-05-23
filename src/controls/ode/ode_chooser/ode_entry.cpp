@@ -1,7 +1,7 @@
 #include "ode_entry.h"
 #include "events.h"
-#include "ode_harmonic.h"
-#include "ode_v_oscillation.h"
+#include "ode_oscillation_harmonic.h"
+#include "ode_oscillation_gravitational.h"
 
 const wxString ode_options[] = {
     "Harmonic Oscillation",

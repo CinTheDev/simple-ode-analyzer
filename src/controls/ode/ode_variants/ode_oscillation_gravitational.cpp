@@ -1,4 +1,4 @@
-#include "ode_v_oscillation.h"
+#include "ode_oscillation_gravitational.h"
 #include <math.h>
 
 ODE_V_Oscillation::ODE_V_Oscillation() : ODE_V_Oscillation(Settings_Common(), Settings_Approx()) { }

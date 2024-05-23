@@ -16,8 +16,8 @@ target_link_libraries(ode_entry PUBLIC
 target_link_libraries(ode_entry PRIVATE
     custom_events
 
-    ode_harmonic
-    ode_v_oscillation
+    ode_oscillation_harmonic
+    ode_oscillation_gravitational
 )
 
 # CHOOSER FOR ENTRIES

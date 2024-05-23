@@ -1,4 +1,4 @@
-#include "ode_harmonic.h"
+#include "ode_oscillation_harmonic.h"
 
 ODE_Harmonic::ODE_Harmonic() : ODE_Harmonic(Settings_Common(), Settings_Approx()) { }
 
