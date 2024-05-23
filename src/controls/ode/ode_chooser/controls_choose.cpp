@@ -1,6 +1,4 @@
 #include "controls_choose.h"
-#include "ode_harmonic.h"
-#include "ode_v_oscillation.h"
 
 ControlsChoose::ControlsChoose(wxWindow* parent) : wxScrolledWindow(parent) {
     sizer_main = new wxStaticBoxSizer(wxVERTICAL, this, "Select ODEs");
@@ -21,7 +19,7 @@ ControlsChoose::ControlsChoose(wxWindow* parent) : wxScrolledWindow(parent) {
 }
 
 ControlsChoose::~ControlsChoose() {
-    purge_odes();
+    //purge_odes();
 }
 
 void ControlsChoose::add_entry() {
@@ -35,6 +33,7 @@ void ControlsChoose::add_entry() {
     GetParent()->Layout();
 }
 
+/*
 OdeListValues* ControlsChoose::construct_list_values(size_t& list_length) {
     list_length = sizer_main->GetItemCount() - 1;
 
@@ -49,6 +48,7 @@ OdeListValues* ControlsChoose::construct_list_values(size_t& list_length) {
 
     return list_values;
 }
+*/
 
 void ControlsChoose::on_button_create(wxCommandEvent& evt) {
     add_entry();
@@ -120,6 +120,7 @@ double** ControlsChoose::get_all_results(size_t& amount_results, size_t& result_
     return results;
 }
 
+/*
 ODE* ControlsChoose::instance_ode(OdeTypes ode_type) {
     switch (ode_type) {
         case OdeTypes::HarmonicOscillation:
@@ -165,3 +166,4 @@ void ControlsChoose::purge_odes() {
     delete[] odes;
     delete[] ode_colours;
 }
+*/

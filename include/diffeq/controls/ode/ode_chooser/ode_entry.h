@@ -5,6 +5,7 @@
 #include <wx/clrpicker.h>
 #include "settings.h"
 #include "controls.h"
+#include "ode.h"
 
 class OdeEntry : public Controls {
 public:
@@ -28,6 +29,8 @@ public:
     void on_dropdown_ode(wxCommandEvent& evt);
 
 private:
+    ODE* ode;
+
     void init_elements();
     void init_sizers();
     void purge();

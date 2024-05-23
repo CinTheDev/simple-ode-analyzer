@@ -1,5 +1,7 @@
 #include "ode_entry.h"
 #include "events.h"
+#include "ode_harmonic.h"
+#include "ode_v_oscillation.h"
 
 const wxString ode_options[] = {
     "Harmonic Oscillation",
@@ -110,4 +112,5 @@ void OdeEntry::purge() {
 
     delete[] labels;
     delete[] inputs;
+    delete ode;
 }

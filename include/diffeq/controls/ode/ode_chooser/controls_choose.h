@@ -6,7 +6,6 @@
 #include "ode_entry.h"
 #include "settings.h"
 #include "events.h"
-#include "ode.h"
 
 class ControlsChoose : public wxScrolledWindow {
 public:
@@ -19,7 +18,7 @@ public:
 
     void add_entry();
 
-    OdeListValues* construct_list_values(size_t& list_length);
+    //OdeListValues* construct_list_values(size_t& list_length);
 
     void on_button_create(wxCommandEvent& evt);
     void on_child_remove(wxCommandEvent& evt);
@@ -30,19 +29,19 @@ public:
     void SendResults();
 
 private:
-    ODE** odes;
-    uint32_t* ode_colours;
-    size_t amount_odes;
+    //ODE** odes;
+    //uint32_t* ode_colours;
+    //size_t amount_odes;
 
     Settings_Common settings_common;
     Settings_Approximation settings_approx;
 
     double** get_all_results(size_t& amount_results, size_t& result_length);
-    ODE* instance_ode(OdeTypes ode_type);
+    //ODE* instance_ode(OdeTypes ode_type);
     
-    void update_ode_settings();
-    void regenerate_odes();
-    void purge_odes();
+    //void update_ode_settings();
+    //void regenerate_odes();
+    //void purge_odes();
 };
 
 #endif
