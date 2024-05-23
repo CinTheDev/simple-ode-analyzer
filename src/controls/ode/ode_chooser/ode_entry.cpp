@@ -137,6 +137,10 @@ ODE* OdeEntry::instance_ode(OdeTypes ode_type) {
     }
 }
 
+void OdeEntry::request_settings(Settings_Common* settings_common, Settings_Approximation* settings_approximation) {
+    
+}
+
 void OdeEntry::purge() {
     sizer_grid->Clear(true);
 
