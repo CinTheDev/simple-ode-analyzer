@@ -34,6 +34,9 @@ private:
 
     double** get_all_results(size_t& amount_results, size_t& result_length);
     uint32_t* get_all_colours();
+
+    void request_ode_settings(Settings_Common* settings_common, Settings_Approximation* settings_approx);
+    // TODO: Add request_common_settings
 };
 
 #endif
