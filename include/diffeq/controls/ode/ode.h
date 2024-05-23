@@ -27,12 +27,12 @@ public:
     virtual void calculate();
 
 protected:
-    double* result;
-    size_t result_length;
+    double* result = nullptr;
+    size_t result_length = 0;
 
-    double* variable_values;
-    std::string* variable_names;
-    size_t amount_variables;
+    double* variable_values = nullptr;
+    std::string* variable_names = nullptr;
+    size_t amount_variables = 0;
 
     Settings_Common settings_common;
     Settings_Approximation settings_approx;
