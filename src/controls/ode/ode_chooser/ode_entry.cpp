@@ -100,7 +100,7 @@ void OdeEntry::create_options() {
 
     for (int i = 0; i < amount_options; i++) {
         this->labels[i] = new wxStaticText(this, wxID_ANY, option_labels[i]);
-        this->inputs[i] = new wxTextCtrl(this, wxID_ANY, std::to_string(option_values[i]));
+        this->inputs[i] = new wxTextCtrl(this, wxID_ANY, double_to_string(option_values[i]));
 
         sizer_grid->Add(this->labels[i]);
         sizer_grid->Add(this->inputs[i]);
