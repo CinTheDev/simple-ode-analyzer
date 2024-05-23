@@ -26,6 +26,8 @@ public:
     void on_settings_update(SettingsOdeEvent& evt);
     void on_calculate(wxCommandEvent& evt);
 
+    void on_settings_request(SettingsOdeRequest& request);
+
     void SendResults();
 
 private:

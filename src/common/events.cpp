@@ -63,7 +63,7 @@ Settings_Plotter SettingsPlotterEvent::get_settings() {
 
 // SettingsOdeRequest
 
-wxDEFINE_EVENT(SETTINGS_ODE_REQUEST, SettingsOdeRequest)
+wxDEFINE_EVENT(SETTINGS_ODE_REQUEST, SettingsOdeRequest);
 
 SettingsOdeRequest::SettingsOdeRequest(wxEventType event_type, int id, Settings_Common* settings_common, Settings_Approximation* settings_approx)
 : wxEvent(id, event_type) {
