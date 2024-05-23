@@ -1,6 +1,8 @@
 #include "ode_v_oscillation.h"
 #include <math.h>
 
+ODE_V_Oscillation::ODE_V_Oscillation() : ODE_V_Oscillation(Settings_Common(), Settings_Approximation()) { }
+
 ODE_V_Oscillation::ODE_V_Oscillation(Settings_Common settings_common, Settings_Approximation settings_approx)
  : ODE(settings_common, settings_approx) { }
 

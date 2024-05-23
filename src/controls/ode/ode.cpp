@@ -1,6 +1,8 @@
 #include "ode.h"
 #include <math.h>
 
+ODE::ODE() : ODE(Settings_Common(), Settings_Approximation()) { }
+
 ODE::ODE(Settings_Common settings_common, Settings_Approximation settings_approx) {
     result = new double[1];
 

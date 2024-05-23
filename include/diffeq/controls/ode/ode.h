@@ -7,6 +7,7 @@
 
 class ODE {
 public:
+    ODE();
     ODE(Settings_Common settings_common, Settings_Approximation settings_approx);
     ~ODE();
 

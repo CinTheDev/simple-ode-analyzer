@@ -1,5 +1,7 @@
 #include "ode_harmonic.h"
 
+ODE_Harmonic::ODE_Harmonic() : ODE_Harmonic(Settings_Common(), Settings_Approximation()) { }
+
 ODE_Harmonic::ODE_Harmonic(Settings_Common settings_common, Settings_Approximation settings_approx)
 : ODE(settings_common, settings_approx) {
     amount_variables = 2;
