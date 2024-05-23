@@ -48,11 +48,3 @@ Please make sure to have wxWidgets installed, so that inside CMakeLists.txt `fin
 can find wxWidgets.
 
 Right now, wxWidgets version 3.2.2 is being used.
-
-## TODOs
-
-Steps in implementing synchronized ODEs:
-
-- Change ODE array to vector
-- Update Vector based on input
-- Apply all ODE settings immediatly
