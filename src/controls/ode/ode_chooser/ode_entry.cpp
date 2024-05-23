@@ -76,6 +76,13 @@ void OdeEntry::init_sizers() {
 }
 
 double* OdeEntry::get_ode_results(size_t& amount_results) {
+    Settings_Common settings_common;
+    Settings_Approximation settings_approx;
+
+    request_settings(&settings_common, &settings_approx);
+
+    ode->apply_settings(settings_common);
+    ode->apply_settings(settings_approx);
     ode->calculate();
 
     amount_results = ode->get_length();

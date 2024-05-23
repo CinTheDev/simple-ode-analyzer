@@ -89,7 +89,6 @@ void ControlsChoose::on_calculate(wxCommandEvent& evt) {
 }
 
 void ControlsChoose::on_settings_request(SettingsOdeRequest& request) {
-    std::cout << "Request handled" << std::endl;
     Settings_Common* request_common_settings = request.get_settings_common();
     Settings_Approximation* request_approx_settings = request.get_settings_approx();
 
