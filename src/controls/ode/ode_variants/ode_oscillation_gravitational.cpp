@@ -5,13 +5,17 @@ ODE_Oscillation_Gravitational::ODE_Oscillation_Gravitational() : ODE_Oscillation
 
 ODE_Oscillation_Gravitational::ODE_Oscillation_Gravitational(Settings_Common settings_common, Settings_Approx settings_approx)
 : ODE(settings_common, settings_approx) {
-    amount_variables = 1;
-    variable_values = new double[amount_variables];
-    variable_names = new std::string[amount_variables];
+    std::string names[] = {
+        "a [m * s^-2]",
+    };
 
-    variable_names[0] = "a [m * s^-2]";
+    double values[] = {
+        80.0,
+    };
 
-    variable_values[0] = 80.0;
+    size_t count = sizeof(values) / sizeof(double);
+
+    init_variables(count, names, values);
 }
 
 ODE_Oscillation_Gravitational::~ODE_Oscillation_Gravitational() { }

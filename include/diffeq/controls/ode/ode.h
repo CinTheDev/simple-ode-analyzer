@@ -27,6 +27,8 @@ public:
     virtual void calculate();
 
 protected:
+    void init_variables(size_t n, std::string* names, double* values);
+
     double* result = nullptr;
     size_t result_length = 0;
 

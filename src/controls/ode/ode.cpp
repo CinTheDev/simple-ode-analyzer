@@ -12,6 +12,20 @@ ODE::ODE(Settings_Common settings_common, Settings_Approx settings_approx) {
 
 ODE::~ODE() {
     delete[] result;
+    delete[] variable_names;
+    delete[] variable_values;
+}
+
+void ODE::init_variables(size_t n, std::string* names, double* values) {
+    amount_variables = n;
+
+    variable_names = new std::string[amount_variables];
+    variable_values = new double[amount_variables];
+
+    for (size_t i = 0; i < amount_variables; i++) {
+        variable_names[i] = names[i];
+        variable_values[i] = values[i];
+    }
 }
 
 size_t ODE::get_length() {

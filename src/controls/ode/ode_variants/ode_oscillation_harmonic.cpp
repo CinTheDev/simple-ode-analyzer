@@ -4,19 +4,24 @@ ODE_Oscillation_Harmonic::ODE_Oscillation_Harmonic() : ODE_Oscillation_Harmonic(
 
 ODE_Oscillation_Harmonic::ODE_Oscillation_Harmonic(Settings_Common settings_common, Settings_Approx settings_approx)
 : ODE(settings_common, settings_approx) {
-    amount_variables = 4;
-    variable_values = new double[amount_variables];
-    variable_names = new std::string[amount_variables];
+    
+    std::string names[] = {
+        "D [kg * s^-2]",
+        "m [kg]",
+        "s_0 [m]",
+        "d/dt s_0 [m * s^-1]",
+    };
 
-    variable_names[0] = "D [kg * s^-2]";
-    variable_names[1] = "m [kg]";
-    variable_names[2] = "s_0 [m]";
-    variable_names[3] = "d/dt s_0 [m * s^-1]";
+    double values[] = {
+        100.0,
+        1.0,
+        1.0,
+        0.0,
+    };
 
-    variable_values[0] = 100.0;
-    variable_values[1] = 1.0;
-    variable_values[2] = 1.0;
-    variable_values[3] = 0.0;
+    size_t count = sizeof(values) / sizeof(double);
+
+    init_variables(count, names, values);
 }
 
 ODE_Oscillation_Harmonic::~ODE_Oscillation_Harmonic() {
