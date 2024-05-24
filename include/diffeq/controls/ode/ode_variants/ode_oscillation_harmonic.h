@@ -3,7 +3,7 @@
 
 #include "ode.h"
 
-class ODE_Oscillation_Harmonic : public ODE {
+class ODE_Oscillation_Harmonic : virtual public ODE {
 public:
     ODE_Oscillation_Harmonic();
     ODE_Oscillation_Harmonic(Settings_Common settings_common, Settings_Approx settings_approx);

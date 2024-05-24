@@ -3,7 +3,7 @@
 
 #include "ode.h"
 
-class ODE_Oscillation_Gravitational : public ODE {
+class ODE_Oscillation_Gravitational : virtual public ODE {
 public:
     ODE_Oscillation_Gravitational();
     ODE_Oscillation_Gravitational(Settings_Common settings_common, Settings_Approx settings_approx);
