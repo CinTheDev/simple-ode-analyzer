@@ -36,24 +36,26 @@ void ControlsChoose::on_child_up(wxCommandEvent& evt) {
     OdeEntry* entry = get_entry_from_event(evt);
     size_t index = get_entry_index(entry);
 
-    if (index < 1) {
+    if (index - 1 < 1) {
         std::cout << "WARNING: Cannot move entry up" << std::endl;
         return;
     }
 
-    // swap
+    swap_entries(index, index - 1);
+    Refresh();
 }
 
 void ControlsChoose::on_child_down(wxCommandEvent& evt) {
     OdeEntry* entry = get_entry_from_event(evt);
     size_t index = get_entry_index(entry);
 
-    if (index > sizer_main->GetItemCount()) {
+    if (index + 1 >= sizer_main->GetItemCount()) {
         std::cout << "WARNING: Cannot move entry lower" << std::endl;
         return;
     }
 
-    // swap
+    swap_entries(index, index + 1);
+    Refresh();
 }
 
 void ControlsChoose::on_child_remove(wxCommandEvent& evt) {
