@@ -23,6 +23,7 @@ void ControlsChoose::add_entry() {
 
     sizer_main->Add(new_entry, 0, wxEXPAND | wxLEFT | wxRIGHT, 10);
 
+    update_entry_buttons();
     FitInside();
     Layout();
     GetParent()->Layout();
@@ -70,6 +71,7 @@ void ControlsChoose::on_child_remove(wxCommandEvent& evt) {
         }
     }
     
+    update_entry_buttons();
     FitInside();
     Layout();
     GetParent()->Layout();
