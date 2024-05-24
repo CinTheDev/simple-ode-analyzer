@@ -74,7 +74,7 @@ std::string ODE::get_calculate_method_label(size_t index) {
     return "NOT IMPLEMENTED";
 }
 
-size_t ODE::get_methods_amount() {
+const size_t ODE::get_methods_amount() {
     return 0;
 }
 

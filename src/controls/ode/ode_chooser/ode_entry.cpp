@@ -90,7 +90,8 @@ void OdeEntry::create_options() {
     ode = instance_ode(ode_types[dropdown_ode->GetSelection()]);
 
     // Dropdown for numerical method
-    size_t amount_approx_options = sizeof(approx_options) / sizeof(wxString);
+    //size_t amount_approx_options = sizeof(approx_options) / sizeof(wxString);
+    const size_t amount_approx_options = ode->get_methods_amount();
     dropdown_approx = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, amount_approx_options, approx_options);
     dropdown_approx->SetSelection(0);
 
