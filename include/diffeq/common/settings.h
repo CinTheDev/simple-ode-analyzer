@@ -31,7 +31,8 @@ enum class OdeTypes {
     HarmonicOscillationGeneric,
     HarmonicOscillationMechanical,
     HarmonicOscillationElectromagnetic,
-    GravitationalOscillation,
+    OscillationSwing,
+    OscillationGravitational,
 };
 
 #endif
