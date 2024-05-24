@@ -41,11 +41,10 @@ void ControlsChoose::on_child_down(wxCommandEvent& evt) {
 }
 
 void ControlsChoose::on_child_remove(wxCommandEvent& evt) {
-    wxButton* evt_button = reinterpret_cast<wxButton*>(evt.GetEventObject());
-    wxWindow* entry = evt_button->GetParent();
+    OdeEntry* entry = get_entry_from_event(evt);
 
     for (size_t i = 0; i < sizer_main->GetItemCount(); i++) {
-        if ( (wxWindow*) sizer_main->GetItem(i)->GetWindow() == entry) {
+        if ( (wxWindow*) sizer_main->GetItem(i)->GetWindow() == (wxWindow*) entry) {
             sizer_main->Remove(i);
             delete entry;
         }
@@ -126,4 +125,10 @@ void ControlsChoose::request_ode_settings(Settings_Common* settings_common, Sett
     if (settings_common == nullptr || settings_approx == nullptr) {
         std::cout << "WARNING: Requested settings are null" << std::endl;
     }
+}
+
+OdeEntry* ControlsChoose::get_entry_from_event(wxCommandEvent& evt) {
+    wxButton* evt_button = reinterpret_cast<wxButton*>(evt.GetEventObject());
+    OdeEntry* entry = (OdeEntry*) evt_button->GetParent();
+    return entry;
 }
