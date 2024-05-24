@@ -97,7 +97,7 @@ double** ControlsChoose::get_all_results(size_t& amount_results, size_t& result_
         memcpy(copy_results, entry_results, sizeof(double) * result_length);
         results[i] = copy_results;
     }
-
+std::cout << "Entry goes up" << std::endl;
     return results;
 }
 
@@ -131,4 +131,15 @@ OdeEntry* ControlsChoose::get_entry_from_event(wxCommandEvent& evt) {
     wxButton* evt_button = reinterpret_cast<wxButton*>(evt.GetEventObject());
     OdeEntry* entry = (OdeEntry*) evt_button->GetParent();
     return entry;
+}
+
+size_t ControlsChoose::get_entry_index(OdeEntry* entry) {
+    for (size_t i = 0; i < sizer_main->GetItemCount(); i++) {
+        if ( (wxWindow*) sizer_main->GetItem(i)->GetWindow() == (wxWindow*) entry) {
+            return i;
+        }
+    }
+
+    std::cout << "WARNING: Entry not found" << std::endl;
+    return SIZE_MAX;
 }
