@@ -61,33 +61,33 @@ void ODE_Oscillation_Harmonic::calculate() {
     }
 }
 
-void ODE_Oscillation_Harmonic::calculate_solved() {
-    double omega = variable_values[0];
+void ODE_Oscillation_Harmonic::calculate_solved(OscillationHarmonicVariables variables) {
+    //double omega = variable_values[0];
 
-    double s_0 = variable_values[1];
+    //double s_0 = variable_values[1];
+    //double v_0 = variable_values[2];
+
     // TODO: Do not neglect v_0 in calculation
-    double v_0 = variable_values[2];
-
 
     for (size_t i = 0; i < result_length; i++) {
         double t = i * settings_common.step_x;
-        result[i] = s_0 * cos(omega * t);
+        result[i] = variables.s_0 * cos(variables.omega * t);
     }
 }
 
-void ODE_Oscillation_Harmonic::calculate_euler() {
+void ODE_Oscillation_Harmonic::calculate_euler(OscillationHarmonicVariables variables) {
     double dt = settings_common.step_x / (double)settings_approx.subdivision;
 
-    double omega = variable_values[0];
+    //double omega = variable_values[0];
 
-    double current_s = variable_values[1];
-    double current_ds = variable_values[2];
+    double current_s = variables.s_0;
+    double current_ds = variables.v_0;
 
     for (size_t i = 0; i < result_length; i++) {
         result[i] = current_s;
 
         for (size_t j = 0; j < settings_approx.subdivision; j++) {
-            double dds = -omega * omega * current_s;
+            double dds = -variables.omega * variable.omega * current_s;
             current_ds += dds * dt;
 
             current_s += current_ds * dt;

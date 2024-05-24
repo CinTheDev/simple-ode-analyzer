@@ -3,6 +3,12 @@
 
 #include "ode.h"
 
+struct OscillationHarmonicVariables {
+    double omega;
+    double s_0;
+    double v_0;
+};
+
 class ODE_Oscillation_Harmonic : virtual public ODE {
 public:
     ODE_Oscillation_Harmonic();
@@ -15,8 +21,8 @@ public:
     void calculate();
 
 private:
-    void calculate_solved();
-    void calculate_euler();
+    void calculate_solved(OscillationHarmonicVariables variables);
+    void calculate_euler(OscillationHarmonicVariables variables);
 };
 
 #endif
