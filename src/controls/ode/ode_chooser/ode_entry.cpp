@@ -73,6 +73,13 @@ void OdeEntry::init_sizers() {
 void OdeEntry::init_approx_dropdown() {
     //size_t amount_approx_options = sizeof(approx_options) / sizeof(wxString);
     const size_t amount_approx_options = ode->get_methods_amount();
+
+    wxString approx_options[amount_approx_options];
+
+    for (size_t i = 0; i < amount_approx_options; i++) {
+        approx_options[i] = ode->get_calculate_method_label(i);
+    }
+
     dropdown_approx = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, amount_approx_options, approx_options);
     dropdown_approx->SetSelection(0);
 
