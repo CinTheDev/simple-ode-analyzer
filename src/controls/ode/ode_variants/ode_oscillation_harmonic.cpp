@@ -5,6 +5,11 @@ enum CALCULATION_SELECTION {
     TEST,
 };
 
+const std::string calculation_labels[] = {
+    "Euler",
+    "Test",
+};
+
 ODE_Oscillation_Harmonic::ODE_Oscillation_Harmonic() : ODE_Oscillation_Harmonic(Settings_Common(), Settings_Approx()) { }
 
 ODE_Oscillation_Harmonic::ODE_Oscillation_Harmonic(Settings_Common settings_common, Settings_Approx settings_approx)
@@ -30,6 +35,10 @@ ODE_Oscillation_Harmonic::ODE_Oscillation_Harmonic(Settings_Common settings_comm
 }
 
 ODE_Oscillation_Harmonic::~ODE_Oscillation_Harmonic() { }
+
+std::string ODE_Oscillation_Harmonic::get_calculate_method_label(size_t index) {
+    calculation_labels[index];
+}
 
 void ODE_Oscillation_Harmonic::calculate() {
     switch (selected_calculate)
