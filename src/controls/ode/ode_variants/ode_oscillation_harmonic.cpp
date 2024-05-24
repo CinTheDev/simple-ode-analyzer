@@ -1,5 +1,10 @@
 #include "ode_oscillation_harmonic.h"
 
+enum CALCULATION_SELECTION {
+    EULER,
+    TEST,
+};
+
 ODE_Oscillation_Harmonic::ODE_Oscillation_Harmonic() : ODE_Oscillation_Harmonic(Settings_Common(), Settings_Approx()) { }
 
 ODE_Oscillation_Harmonic::ODE_Oscillation_Harmonic(Settings_Common settings_common, Settings_Approx settings_approx)
@@ -27,6 +32,23 @@ ODE_Oscillation_Harmonic::ODE_Oscillation_Harmonic(Settings_Common settings_comm
 ODE_Oscillation_Harmonic::~ODE_Oscillation_Harmonic() { }
 
 void ODE_Oscillation_Harmonic::calculate() {
+    switch (selected_calculate)
+    {
+    case EULER:
+        calculate_euler();
+        break;
+    
+    case TEST:
+        calculate_test();
+        break;
+
+    default:
+        std::cout << "WARNING: Unhandled calculation selection of " << selected_calculate << " in ODE_Oscillation_Harmonic::calculate()" << std::endl;
+        break;
+    }
+}
+
+void ODE_Oscillation_Harmonic::calculate_euler() {
     double dt = settings_common.step_x / (double)settings_approx.subdivision;
 
     double D = variable_values[0];
@@ -44,5 +66,11 @@ void ODE_Oscillation_Harmonic::calculate() {
 
             current_s += current_ds * dt;
         }
+    }
+}
+
+void ODE_Oscillation_Harmonic::calculate_test() {
+    for (size_t i = 0; i < result_length; i++) {
+        result[i] = (double)i / (double)result_length;
     }
 }
