@@ -66,6 +66,18 @@ size_t ODE::get_amount_variables() {
     return amount_variables;
 }
 
+void ODE::set_selected_calculate(size_t index) {
+    selected_calculate = index;
+}
+
+std::string ODE::get_calculate_method_label(size_t index) {
+    return "NOT IMPLEMENTED";
+}
+
+const size_t ODE::get_methods_amount() {
+    return 0;
+}
+
 void ODE::apply_settings(Settings_Common settings_common) {
     this->settings_common = settings_common;
 }

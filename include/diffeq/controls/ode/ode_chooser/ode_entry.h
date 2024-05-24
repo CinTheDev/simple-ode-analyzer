@@ -16,9 +16,10 @@ public:
     wxBoxSizer* sizer_options_horizontal;
 
     wxChoice* dropdown_ode;
-    wxChoice* dropdown_approx;
     wxColourPickerCtrl* colour_picker;
     wxButton* button_remove;
+
+    wxChoice* dropdown_approx;
 
     wxStaticText** labels;
     wxTextCtrl** inputs;
@@ -35,6 +36,7 @@ private:
 
     void init_elements();
     void init_sizers();
+    void init_approx_dropdown();
 
     void update_ode_variables();
     ODE* instance_ode(OdeTypes ode_type);

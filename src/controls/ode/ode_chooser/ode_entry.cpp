@@ -7,19 +7,9 @@ const wxString ode_options[] = {
     "Gravitational Oscillation",
 };
 
-const wxString approx_options[] = {
-    "Euler",
-    "TODO",
-};
-
 const OdeTypes ode_types[] = {
     OdeTypes::HarmonicOscillation,
     OdeTypes::GravitationalOscillation,
-};
-
-const ApproxTypes approx_types[] = {
-    ApproxTypes::Euler,
-    ApproxTypes::Test,
 };
 
 OdeEntry::OdeEntry(wxWindow* parent) : Controls(parent, "") {
@@ -39,10 +29,8 @@ OdeEntry::~OdeEntry() {
 
 void OdeEntry::init_elements() {
     size_t amount_ode_options = sizeof(ode_options) / sizeof(wxString);
-    size_t amount_approx_options = sizeof(approx_options) / sizeof(wxString);
 
     dropdown_ode = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, amount_ode_options, ode_options);
-    dropdown_approx = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, amount_approx_options, approx_options);
 
     colour_picker = new wxColourPickerCtrl(this, wxID_ANY, *wxRED);
     button_remove = new wxButton(this, wxID_ANY, "Remove");
@@ -51,7 +39,6 @@ void OdeEntry::init_elements() {
 
     // Default selection
     dropdown_ode->SetSelection(0);
-    dropdown_approx->SetSelection(0);
 
     dropdown_ode->Bind(wxEVT_CHOICE, &OdeEntry::on_dropdown_ode, this);
 }
@@ -60,7 +47,6 @@ void OdeEntry::init_sizers() {
     sizer_options_vertical = new wxBoxSizer(wxVERTICAL);
     sizer_options_horizontal = new wxBoxSizer(wxHORIZONTAL);
 
-    sizer_options_horizontal->Add(dropdown_approx, 1);
     sizer_options_horizontal->Add(colour_picker, 1);
     sizer_options_horizontal->Add(button_remove, 1);
 
@@ -71,6 +57,22 @@ void OdeEntry::init_sizers() {
     sizer_main->GetItem(1)->SetFlag(wxEXPAND | wxALL & ~wxTOP); // Flags of sizer_grid
 
     SetSizer(sizer_main);
+}
+
+void OdeEntry::init_approx_dropdown() {
+    const size_t amount_approx_options = ode->get_methods_amount();
+
+    wxString approx_options[amount_approx_options];
+
+    for (size_t i = 0; i < amount_approx_options; i++) {
+        approx_options[i] = ode->get_calculate_method_label(i);
+    }
+
+    dropdown_approx = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, amount_approx_options, approx_options);
+    dropdown_approx->SetSelection(0);
+
+    sizer_grid->Add(dropdown_approx, 0, wxEXPAND);
+    sizer_grid->AddSpacer(0);
 }
 
 double* OdeEntry::get_ode_results(size_t& amount_results, Settings_Common settings_common, Settings_Approx settings_approx) {
@@ -91,6 +93,8 @@ void OdeEntry::create_options() {
     purge();
 
     ode = instance_ode(ode_types[dropdown_ode->GetSelection()]);
+
+    init_approx_dropdown();
 
     size_t amount_options = ode->get_amount_variables();
     std::string* option_labels = ode->get_variable_names();
@@ -116,6 +120,9 @@ void OdeEntry::on_dropdown_ode(wxCommandEvent& evt) {
 }
 
 void OdeEntry::update_ode_variables() {
+    size_t selected_approx = dropdown_approx->GetSelection();
+    ode->set_selected_calculate(selected_approx);
+
     size_t amount_options = ode->get_amount_variables();
     double* ode_variables = ode->get_variable_values();
 
