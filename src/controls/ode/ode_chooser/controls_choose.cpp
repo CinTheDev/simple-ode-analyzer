@@ -166,8 +166,8 @@ size_t ControlsChoose::get_entry_index(OdeEntry* entry) {
 
 void ControlsChoose::update_entry_buttons() {
     for (size_t i = 1; i < sizer_main->GetItemCount(); i++) {
-        bool button_up = (i - 1) > 1;
-        bool button_down = (i + 1) <= sizer_main->GetItemCount();
+        bool button_up = (i - 1) >= 1;
+        bool button_down = (i + 1) < sizer_main->GetItemCount();
 
         OdeEntry* entry = (OdeEntry*) sizer_main->GetItem(i)->GetWindow();
         entry->enable_buttons(button_up, button_down);
