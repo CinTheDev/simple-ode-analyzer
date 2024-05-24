@@ -30,6 +30,7 @@ public:
 enum class OdeTypes {
     HarmonicOscillationGeneric,
     HarmonicOscillationMechanical,
+    HarmonicOscillationElectromagnetic,
     GravitationalOscillation,
 };
 

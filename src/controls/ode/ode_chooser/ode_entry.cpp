@@ -5,12 +5,14 @@
 const wxString ode_options[] = {
     "Harmonic Oscillation - Generic",
     "Harmonic Oscillation - Mechanical",
+    "Harmonic Oscillation - Electromagnetic",
     "Gravitational Oscillation",
 };
 
 const OdeTypes ode_types[] = {
     OdeTypes::HarmonicOscillationGeneric,
     OdeTypes::HarmonicOscillationMechanical,
+    OdeTypes::HarmonicOscillationElectromagnetic,
     OdeTypes::GravitationalOscillation,
 };
 
@@ -141,6 +143,9 @@ ODE* OdeEntry::instance_ode(OdeTypes ode_type) {
 
         case OdeTypes::HarmonicOscillationMechanical:
             return new ODE_Oscillation_Harmonic_Mechanical();
+
+        case OdeTypes::HarmonicOscillationElectromagnetic:
+            return new ODE_Oscillation_Harmonic_Electromagnetic();
 
         case OdeTypes::GravitationalOscillation:
             return new ODE_Oscillation_Gravitational();
