@@ -74,11 +74,12 @@ OscillationHarmonicVariables ODE_Oscillation_Harmonic::read_variables() {
 }
 
 void ODE_Oscillation_Harmonic::calculate_solved(OscillationHarmonicVariables variables) {
-    // TODO: Do not neglect v_0 in calculation
+    double phi_not = atan(-variables.ds_0 / (variables.s_0 * variables.omega));
+    double s_max = variables.s_0 / cos(phi_not);
 
     for (size_t i = 0; i < result_length; i++) {
         double t = i * settings_common.step_x;
-        result[i] = variables.s_0 * cos(variables.omega * t);
+        result[i] = s_max * cos(variables.omega * t + phi_not);
     }
 }
 
