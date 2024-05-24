@@ -20,6 +20,9 @@ public:
 
     void calculate();
 
+protected:
+    virtual OscillationHarmonicVariables read_variables();
+
 private:
     void calculate_solved(OscillationHarmonicVariables variables);
     void calculate_euler(OscillationHarmonicVariables variables);

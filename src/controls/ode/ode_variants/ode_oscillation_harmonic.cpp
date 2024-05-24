@@ -45,20 +45,32 @@ const size_t ODE_Oscillation_Harmonic::get_methods_amount() {
 }
 
 void ODE_Oscillation_Harmonic::calculate() {
+    OscillationHarmonicVariables variables = read_variables();
+
     switch (selected_calculate)
     {
     case SOLVED:
-        calculate_solved();
+        calculate_solved(variables);
         break;
 
     case EULER:
-        calculate_euler();
+        calculate_euler(variables);
         break;
 
     default:
         std::cout << "WARNING: Unhandled calculation selection of " << selected_calculate << " in ODE_Oscillation_Harmonic::calculate()" << std::endl;
         break;
     }
+}
+
+OscillationHarmonicVariables ODE_Oscillation_Harmonic::read_variables() {
+    OscillationHarmonicVariables variables = OscillationHarmonicVariables();
+
+    variables.omega = variable_values[0];
+    variables.s_0 = variable_values[1];
+    variables.v_0 = variable_values[2];
+
+    return variable;
 }
 
 void ODE_Oscillation_Harmonic::calculate_solved(OscillationHarmonicVariables variables) {
