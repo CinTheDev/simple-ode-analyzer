@@ -15,8 +15,7 @@ target_link_libraries(ode_entry PUBLIC
 
 target_link_libraries(ode_entry PRIVATE
     custom_events
-
-    ${DIFFEQ_ALL_ODE_VARIANTS}
+    ode_variants
 )
 
 # CHOOSER FOR ENTRIES

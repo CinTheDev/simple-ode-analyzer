@@ -1,63 +1,15 @@
-# GENERIC HARMONIC OSCILLATION
-add_library(ode_oscillation_harmonic ode_oscillation_harmonic.cpp)
+add_library(ode_variants
+    ode_oscillation_harmonic.cpp
+    ode_oscillation_harmonic_mechanical.cpp
+    ode_oscillation_harmonic_electromagnetic.cpp
+    ode_oscillation_swing.cpp
+    ode_oscillation_gravitational.cpp
+)
 
-target_include_directories(ode_oscillation_harmonic PUBLIC
+target_include_directories(ode_variants PUBLIC
     ${CMAKE_SOURCE_DIR}/include/diffeq/controls/ode/ode_variants
 )
 
-target_link_libraries(ode_oscillation_harmonic PUBLIC
+target_link_libraries(ode_variants PUBLIC
     ode
-)
-
-# MECHANICAL HARMONIC OSCILLATION
-add_library(ode_oscillation_harmonic_mechanical ode_oscillation_harmonic_mechanical.cpp)
-
-target_include_directories(ode_oscillation_harmonic_mechanical PUBLIC
-    ${CMAKE_SOURCE_DIR}/include/diffeq/controls/ode/ode_variants
-)
-
-target_link_libraries(ode_oscillation_harmonic_mechanical PUBLIC
-    ode_oscillation_harmonic
-)
-
-# ELECTROMAGNETIC HARMONIC OSCILLATION
-add_library(ode_oscillation_harmonic_electromagnetic ode_oscillation_harmonic_electromagnetic.cpp)
-
-target_include_directories(ode_oscillation_harmonic_electromagnetic PUBLIC
-    ${CMAKE_SOURCE_DIR}/include/diffeq/controls/ode/ode_variants
-)
-
-target_link_libraries(ode_oscillation_harmonic_electromagnetic PUBLIC
-    ode_oscillation_harmonic
-)
-
-# SWING OSCILLATION
-add_library(ode_oscillation_swing ode_oscillation_swing.cpp)
-
-target_include_directories(ode_oscillation_swing PUBLIC
-    ${CMAKE_SOURCE_DIR}/include/diffeq/controls/ode/ode_variants
-)
-
-target_link_libraries(ode_oscillation_swing PUBLIC
-    ode
-)
-
-# V THINGY OSCILLATION
-add_library(ode_oscillation_gravitational ode_oscillation_gravitational.cpp)
-
-target_include_directories(ode_oscillation_gravitational PUBLIC
-    ${CMAKE_SOURCE_DIR}/include/diffeq/controls/ode/ode_variants
-)
-
-target_link_libraries(ode_oscillation_gravitational PUBLIC
-    ode
-)
-
-set(DIFFEQ_ALL_ODE_VARIANTS
-    ode_oscillation_harmonic
-    ode_oscillation_harmonic_mechanical
-    ode_oscillation_harmonic_electromagnetic
-    ode_oscillation_swing
-    ode_oscillation_gravitational
-    PARENT_SCOPE
 )
