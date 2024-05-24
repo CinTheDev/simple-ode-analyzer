@@ -119,7 +119,7 @@ double** ControlsChoose::get_all_results(size_t& amount_results, size_t& result_
         memcpy(copy_results, entry_results, sizeof(double) * result_length);
         results[i] = copy_results;
     }
-std::cout << "Entry goes up" << std::endl;
+    
     return results;
 }
 
