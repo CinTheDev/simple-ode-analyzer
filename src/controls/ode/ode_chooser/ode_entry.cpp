@@ -3,7 +3,7 @@
 #include "ode_variants.h"
 
 const wxString ode_options[] = {
-    "Harmonic Oscillation",
+    "Harmonic Oscillation - Generic",
     "Gravitational Oscillation",
 };
 
