@@ -41,6 +41,12 @@ std::string ODE_Oscillation_Harmonic::get_calculate_method_label(size_t index) {
     return calculation_labels[index];
 }
 
+size_t ODE_Oscillation_Harmonic::get_methods_amount() {
+    std::cout << "Expected size: 2" << std::endl;
+    std::cout << "Real size: " << sizeof(calculation_labels) / sizeof(calculation_labels[0]) << std::endl;
+    return sizeof(calculation_labels) / sizeof(calculation_labels[0]);
+}
+
 void ODE_Oscillation_Harmonic::calculate() {
     switch (selected_calculate)
     {

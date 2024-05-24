@@ -10,6 +10,7 @@ public:
     ~ODE_Oscillation_Harmonic();
 
     std::string get_calculate_method_label(size_t index);
+    size_t get_methods_amount();
 
     void calculate();
 

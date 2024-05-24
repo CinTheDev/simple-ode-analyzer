@@ -74,6 +74,10 @@ std::string ODE::get_calculate_method_label(size_t index) {
     return "NOT IMPLEMENTED";
 }
 
+size_t ODE::get_methods_amount() {
+    return 0;
+}
+
 void ODE::apply_settings(Settings_Common settings_common) {
     this->settings_common = settings_common;
 }
