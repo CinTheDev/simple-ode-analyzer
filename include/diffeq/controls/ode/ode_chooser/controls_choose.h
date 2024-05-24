@@ -19,6 +19,8 @@ public:
     void add_entry();
 
     void on_button_create(wxCommandEvent& evt);
+    void on_child_up(wxCommandEvent& evt);
+    void on_child_down(wxCommandEvent& evt);
     void on_child_remove(wxCommandEvent& evt);
 
     void on_calculate(wxCommandEvent& evt);
@@ -30,6 +32,12 @@ private:
     uint32_t* get_all_colours();
 
     void request_ode_settings(Settings_Common* settings_common, Settings_Approx* settings_approx);
+
+    OdeEntry* get_entry_from_event(wxCommandEvent& evt);
+    size_t get_entry_index(OdeEntry* entry);
+    void update_entry_buttons();
+
+    void swap_entries(size_t index_1, size_t index_2);
 };
 
 #endif

@@ -18,9 +18,12 @@ ControlsChoose::~ControlsChoose() { }
 void ControlsChoose::add_entry() {
     OdeEntry* new_entry = new OdeEntry(this);
     new_entry->button_remove->Bind(wxEVT_BUTTON, &ControlsChoose::on_child_remove, this);
+    new_entry->button_up->Bind(wxEVT_BUTTON, &ControlsChoose::on_child_up, this);
+    new_entry->button_down->Bind(wxEVT_BUTTON, &ControlsChoose::on_child_down, this);
 
     sizer_main->Add(new_entry, 0, wxEXPAND | wxLEFT | wxRIGHT, 10);
 
+    update_entry_buttons();
     FitInside();
     Layout();
     GetParent()->Layout();
@@ -30,17 +33,45 @@ void ControlsChoose::on_button_create(wxCommandEvent& evt) {
     add_entry();
 }
 
+void ControlsChoose::on_child_up(wxCommandEvent& evt) {
+    OdeEntry* entry = get_entry_from_event(evt);
+    size_t index = get_entry_index(entry);
+
+    if (index - 1 < 1) {
+        std::cout << "WARNING: Cannot move entry up" << std::endl;
+        return;
+    }
+
+    swap_entries(index, index - 1);
+    update_entry_buttons();
+    Layout();
+}
+
+void ControlsChoose::on_child_down(wxCommandEvent& evt) {
+    OdeEntry* entry = get_entry_from_event(evt);
+    size_t index = get_entry_index(entry);
+
+    if (index + 1 >= sizer_main->GetItemCount()) {
+        std::cout << "WARNING: Cannot move entry lower" << std::endl;
+        return;
+    }
+
+    swap_entries(index, index + 1);
+    update_entry_buttons();
+    Layout();
+}
+
 void ControlsChoose::on_child_remove(wxCommandEvent& evt) {
-    wxButton* evt_button = reinterpret_cast<wxButton*>(evt.GetEventObject());
-    wxWindow* entry = evt_button->GetParent();
+    OdeEntry* entry = get_entry_from_event(evt);
 
     for (size_t i = 0; i < sizer_main->GetItemCount(); i++) {
-        if ( (wxWindow*) sizer_main->GetItem(i)->GetWindow() == entry) {
+        if ( (wxWindow*) sizer_main->GetItem(i)->GetWindow() == (wxWindow*) entry) {
             sizer_main->Remove(i);
             delete entry;
         }
     }
     
+    update_entry_buttons();
     FitInside();
     Layout();
     GetParent()->Layout();
@@ -88,7 +119,7 @@ double** ControlsChoose::get_all_results(size_t& amount_results, size_t& result_
         memcpy(copy_results, entry_results, sizeof(double) * result_length);
         results[i] = copy_results;
     }
-
+std::cout << "Entry goes up" << std::endl;
     return results;
 }
 
@@ -116,4 +147,42 @@ void ControlsChoose::request_ode_settings(Settings_Common* settings_common, Sett
     if (settings_common == nullptr || settings_approx == nullptr) {
         std::cout << "WARNING: Requested settings are null" << std::endl;
     }
+}
+
+OdeEntry* ControlsChoose::get_entry_from_event(wxCommandEvent& evt) {
+    wxButton* evt_button = reinterpret_cast<wxButton*>(evt.GetEventObject());
+    OdeEntry* entry = (OdeEntry*) evt_button->GetParent();
+    return entry;
+}
+
+size_t ControlsChoose::get_entry_index(OdeEntry* entry) {
+    for (size_t i = 0; i < sizer_main->GetItemCount(); i++) {
+        if ( (wxWindow*) sizer_main->GetItem(i)->GetWindow() == (wxWindow*) entry) {
+            return i;
+        }
+    }
+
+    std::cout << "WARNING: Entry not found" << std::endl;
+    return SIZE_MAX;
+}
+
+void ControlsChoose::update_entry_buttons() {
+    for (size_t i = 1; i < sizer_main->GetItemCount(); i++) {
+        bool button_up = (i - 1) >= 1;
+        bool button_down = (i + 1) < sizer_main->GetItemCount();
+
+        OdeEntry* entry = (OdeEntry*) sizer_main->GetItem(i)->GetWindow();
+        entry->enable_buttons(button_up, button_down);
+    }
+}
+
+void ControlsChoose::swap_entries(size_t index_1, size_t index_2) {
+    wxSizerItem* item_1 = sizer_main->GetItem(index_1);
+    wxSizerItem* item_2 = sizer_main->GetItem(index_2);
+
+    wxWindow* entry_1 = item_1->GetWindow();
+    wxWindow* entry_2 = item_2->GetWindow();
+
+    item_1->AssignWindow(entry_2);
+    item_2->AssignWindow(entry_1);
 }

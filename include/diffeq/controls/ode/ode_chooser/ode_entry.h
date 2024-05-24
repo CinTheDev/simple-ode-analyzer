@@ -17,6 +17,8 @@ public:
 
     wxChoice* dropdown_ode;
     wxColourPickerCtrl* colour_picker;
+    wxButton* button_up;
+    wxButton* button_down;
     wxButton* button_remove;
 
     wxChoice* dropdown_approx;
@@ -28,6 +30,7 @@ public:
     uint32_t get_colour();
 
     void create_options();
+    void enable_buttons(bool button_up, bool button_down);
 
     void on_dropdown_ode(wxCommandEvent& evt);
 
