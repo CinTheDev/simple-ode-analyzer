@@ -3,12 +3,16 @@
 #include "ode_variants.h"
 
 const wxString ode_options[] = {
-    "Harmonic Oscillation",
+    "Harmonic Oscillation - Generic",
+    "Harmonic Oscillation - Mechanical",
+    "Harmonic Oscillation - Electromagnetic",
     "Gravitational Oscillation",
 };
 
 const OdeTypes ode_types[] = {
-    OdeTypes::HarmonicOscillation,
+    OdeTypes::HarmonicOscillationGeneric,
+    OdeTypes::HarmonicOscillationMechanical,
+    OdeTypes::HarmonicOscillationElectromagnetic,
     OdeTypes::GravitationalOscillation,
 };
 
@@ -134,8 +138,14 @@ void OdeEntry::update_ode_variables() {
 
 ODE* OdeEntry::instance_ode(OdeTypes ode_type) {
     switch (ode_type) {
-        case OdeTypes::HarmonicOscillation:
+        case OdeTypes::HarmonicOscillationGeneric:
             return new ODE_Oscillation_Harmonic();
+
+        case OdeTypes::HarmonicOscillationMechanical:
+            return new ODE_Oscillation_Harmonic_Mechanical();
+
+        case OdeTypes::HarmonicOscillationElectromagnetic:
+            return new ODE_Oscillation_Harmonic_Electromagnetic();
 
         case OdeTypes::GravitationalOscillation:
             return new ODE_Oscillation_Gravitational();

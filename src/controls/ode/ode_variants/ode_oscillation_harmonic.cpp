@@ -18,15 +18,13 @@ ODE_Oscillation_Harmonic::ODE_Oscillation_Harmonic(Settings_Common settings_comm
 : ODE(settings_common, settings_approx) {
 
     std::string names[] = {
-        "D [kg * s^-2]",
-        "m [kg]",
+        "w [s^-1]",
         "s_0 [m]",
-        "v_0 [m * s^-1]",
+        "ds_0 [m * s^-1]",
     };
 
     double values[] = {
-        100.0,
-        1.0,
+        10.0,
         1.0,
         0.0,
     };
@@ -47,14 +45,16 @@ const size_t ODE_Oscillation_Harmonic::get_methods_amount() {
 }
 
 void ODE_Oscillation_Harmonic::calculate() {
+    OscillationHarmonicVariables variables = read_variables();
+
     switch (selected_calculate)
     {
     case SOLVED:
-        calculate_solved();
+        calculate_solved(variables);
         break;
 
     case EULER:
-        calculate_euler();
+        calculate_euler(variables);
         break;
 
     default:
@@ -63,36 +63,37 @@ void ODE_Oscillation_Harmonic::calculate() {
     }
 }
 
-void ODE_Oscillation_Harmonic::calculate_solved() {
-    double D = variable_values[0];
-    double m = variable_values[1];
+OscillationHarmonicVariables ODE_Oscillation_Harmonic::read_variables() {
+    OscillationHarmonicVariables variables = OscillationHarmonicVariables();
 
-    double s_0 = variable_values[2];
-    // TODO: Do not neglect v_0 in calculation
-    double v_0 = variable_values[3];
+    variables.omega = variable_values[0];
+    variables.s_0 = variable_values[1];
+    variables.ds_0 = variable_values[2];
 
-    double omega = sqrt(D / m);
+    return variables;
+}
+
+void ODE_Oscillation_Harmonic::calculate_solved(OscillationHarmonicVariables variables) {
+    double phi_not = atan(-variables.ds_0 / (variables.s_0 * variables.omega));
+    double s_max = variables.s_0 / cos(phi_not);
 
     for (size_t i = 0; i < result_length; i++) {
         double t = i * settings_common.step_x;
-        result[i] = s_0 * cos(omega * t);
+        result[i] = s_max * cos(variables.omega * t + phi_not);
     }
 }
 
-void ODE_Oscillation_Harmonic::calculate_euler() {
+void ODE_Oscillation_Harmonic::calculate_euler(OscillationHarmonicVariables variables) {
     double dt = settings_common.step_x / (double)settings_approx.subdivision;
 
-    double D = variable_values[0];
-    double m = variable_values[1];
-
-    double current_s = variable_values[2];
-    double current_ds = variable_values[3];
+    double current_s = variables.s_0;
+    double current_ds = variables.ds_0;
 
     for (size_t i = 0; i < result_length; i++) {
         result[i] = current_s;
 
         for (size_t j = 0; j < settings_approx.subdivision; j++) {
-            double dds = (-D / m) * current_s;
+            double dds = -variables.omega * variables.omega * current_s;
             current_ds += dds * dt;
 
             current_s += current_ds * dt;
