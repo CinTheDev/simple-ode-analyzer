@@ -70,6 +70,10 @@ void ODE::set_selected_calculate(size_t index) {
     selected_calculate = index;
 }
 
+std::string ODE::get_calculate_method_label(size_t index) {
+    return "NOT IMPLEMENTED";
+}
+
 void ODE::apply_settings(Settings_Common settings_common) {
     this->settings_common = settings_common;
 }

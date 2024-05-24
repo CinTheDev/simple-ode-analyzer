@@ -22,6 +22,7 @@ public:
     size_t get_amount_variables();
 
     void set_selected_calculate(size_t index);
+    virtual std::string get_calculate_method_label(size_t index);
 
     void apply_settings(Settings_Common settings_common);
     void apply_settings(Settings_Approx settings_approx);
