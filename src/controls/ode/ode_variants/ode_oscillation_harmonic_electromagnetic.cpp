@@ -12,8 +12,8 @@ ODE_Oscillation_Harmonic_Electromagnetic::ODE_Oscillation_Harmonic_Electromagnet
     };
 
     double values[] = {
-        100.0,
-        1.0,
+        0.1,
+        0.1,
         1.0,
         0.0,
     };
