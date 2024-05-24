@@ -70,7 +70,7 @@ OscillationHarmonicVariables ODE_Oscillation_Harmonic::read_variables() {
     variables.s_0 = variable_values[1];
     variables.v_0 = variable_values[2];
 
-    return variable;
+    return variables;
 }
 
 void ODE_Oscillation_Harmonic::calculate_solved(OscillationHarmonicVariables variables) {
@@ -99,7 +99,7 @@ void ODE_Oscillation_Harmonic::calculate_euler(OscillationHarmonicVariables vari
         result[i] = current_s;
 
         for (size_t j = 0; j < settings_approx.subdivision; j++) {
-            double dds = -variables.omega * variable.omega * current_s;
+            double dds = -variables.omega * variables.omega * current_s;
             current_ds += dds * dt;
 
             current_s += current_ds * dt;
