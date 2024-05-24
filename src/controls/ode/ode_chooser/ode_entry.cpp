@@ -70,6 +70,16 @@ void OdeEntry::init_sizers() {
     SetSizer(sizer_main);
 }
 
+void OdeEntry::init_approx_dropdown() {
+    //size_t amount_approx_options = sizeof(approx_options) / sizeof(wxString);
+    const size_t amount_approx_options = ode->get_methods_amount();
+    dropdown_approx = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, amount_approx_options, approx_options);
+    dropdown_approx->SetSelection(0);
+
+    sizer_grid->Add(dropdown_approx, 0, wxEXPAND);
+    sizer_grid->AddSpacer(0);
+}
+
 double* OdeEntry::get_ode_results(size_t& amount_results, Settings_Common settings_common, Settings_Approx settings_approx) {
     update_ode_variables();
     ode->apply_settings(settings_common);
@@ -89,16 +99,8 @@ void OdeEntry::create_options() {
 
     ode = instance_ode(ode_types[dropdown_ode->GetSelection()]);
 
-    // Dropdown for numerical method
-    //size_t amount_approx_options = sizeof(approx_options) / sizeof(wxString);
-    const size_t amount_approx_options = ode->get_methods_amount();
-    dropdown_approx = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, amount_approx_options, approx_options);
-    dropdown_approx->SetSelection(0);
+    init_approx_dropdown();
 
-    sizer_grid->Add(dropdown_approx, 0, wxEXPAND);
-    sizer_grid->AddSpacer(0);
-
-    // Custom values
     size_t amount_options = ode->get_amount_variables();
     std::string* option_labels = ode->get_variable_names();
     double* option_values = ode->get_variable_values();
