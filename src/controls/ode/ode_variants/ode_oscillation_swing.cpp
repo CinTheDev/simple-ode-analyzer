@@ -1,4 +1,6 @@
 #include "ode_oscillation_swing.h"
+#include <iostream>
+#include <math.h>
 
 enum CALCULATION_SELECTION {
     EULER,
@@ -36,4 +38,37 @@ std::string ODE_Oscillation_Swing::get_calculate_method_label(size_t index) {
 
 const size_t ODE_Oscillation_Swing::get_methods_amount() {
     return sizeof(calculation_labels) / sizeof(calculation_labels[0]);
+}
+
+void ODE_Oscillation_Swing::calculate() {
+    switch (selected_calculate) {
+    case EULER:
+        calculate_euler();
+        break;
+
+    default:
+        std::cout << "WARNING: Unhandled calculation selection of " << selected_calculate << " in ODE_Oscillation_Swing::calculate()" << std::endl;
+        break;
+    }
+}
+
+void ODE_Oscillation_Swing::calculate_euler() {
+    double dt = settings_common.step_x / (double) settings_approx.subdivision;
+
+    double g = variable_values[0];
+    double l = variable_values[1];
+
+    double current_s = variable_values[2];
+    double current_ds = variable_values[3];
+
+    for (size_t i = 0; i < result_length; i++) {
+        result[i] = current_s;
+
+        for (size_t j = 0; j < settings_approx.subdivision; j++) {
+            double dds = -g * sin(current_s / l);
+
+            current_ds += dds * dt;
+            current_s += current_ds * dt;
+        }
+    }
 }
