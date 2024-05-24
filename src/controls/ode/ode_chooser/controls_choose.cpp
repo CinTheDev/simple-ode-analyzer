@@ -159,3 +159,14 @@ size_t ControlsChoose::get_entry_index(OdeEntry* entry) {
     std::cout << "WARNING: Entry not found" << std::endl;
     return SIZE_MAX;
 }
+
+void ControlsChoose::swap_entries(size_t index_1, size_t index_2) {
+    wxSizerItem* item_1 = sizer_main->GetItem(index_1);
+    wxSizerItem* item_2 = sizer_main->GetItem(index_2);
+
+    wxWindow* entry_1 = item_1->GetWindow();
+    wxWindow* entry_2 = item_2->GetWindow();
+
+    item_1->AssignWindow(entry_2);
+    item_2->AssignWindow(entry_1);
+}
