@@ -5,10 +5,10 @@ ODE_Oscillation_Harmonic_Mechanical::ODE_Oscillation_Harmonic_Mechanical()
 : ODE() {
 
     std::string names[] = {
-        "D",
-        "m",
-        "s_0",
-        "v_0",
+        "D [kg * s^-2]",
+        "m [kg]",
+        "s_0 [m]",
+        "v_0 [m * s^-1]",
     };
 
     double values[] = {
