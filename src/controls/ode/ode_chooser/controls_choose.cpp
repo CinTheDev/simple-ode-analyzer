@@ -42,7 +42,7 @@ void ControlsChoose::on_child_up(wxCommandEvent& evt) {
     }
 
     swap_entries(index, index - 1);
-    Refresh();
+    Layout();
 }
 
 void ControlsChoose::on_child_down(wxCommandEvent& evt) {
@@ -55,7 +55,7 @@ void ControlsChoose::on_child_down(wxCommandEvent& evt) {
     }
 
     swap_entries(index, index + 1);
-    Refresh();
+    Layout();
 }
 
 void ControlsChoose::on_child_remove(wxCommandEvent& evt) {
