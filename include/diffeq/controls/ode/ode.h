@@ -21,6 +21,8 @@ public:
     std::string* get_variable_names();
     size_t get_amount_variables();
 
+    void set_selected_calculate(size_t index);
+
     void apply_settings(Settings_Common settings_common);
     void apply_settings(Settings_Approx settings_approx);
 
@@ -35,6 +37,8 @@ protected:
     double* variable_values = nullptr;
     std::string* variable_names = nullptr;
     size_t amount_variables = 0;
+
+    size_t selected_calculate = 0;
 
     Settings_Common settings_common;
     Settings_Approx settings_approx;

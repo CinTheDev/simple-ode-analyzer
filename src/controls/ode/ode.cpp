@@ -66,6 +66,10 @@ size_t ODE::get_amount_variables() {
     return amount_variables;
 }
 
+void ODE::set_selected_calculate(size_t index) {
+    selected_calculate = index;
+}
+
 void ODE::apply_settings(Settings_Common settings_common) {
     this->settings_common = settings_common;
 }
