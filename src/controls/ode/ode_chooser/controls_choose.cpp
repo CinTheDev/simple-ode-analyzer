@@ -18,6 +18,8 @@ ControlsChoose::~ControlsChoose() { }
 void ControlsChoose::add_entry() {
     OdeEntry* new_entry = new OdeEntry(this);
     new_entry->button_remove->Bind(wxEVT_BUTTON, &ControlsChoose::on_child_remove, this);
+    new_entry->button_up->Bind(wxEVT_BUTTON, &ControlsChoose::on_child_up, this);
+    new_entry->button_down->Bind(wxEVT_BUTTON, &ControlsChoose::on_child_down, this);
 
     sizer_main->Add(new_entry, 0, wxEXPAND | wxLEFT | wxRIGHT, 10);
 
@@ -28,6 +30,14 @@ void ControlsChoose::add_entry() {
 
 void ControlsChoose::on_button_create(wxCommandEvent& evt) {
     add_entry();
+}
+
+void ControlsChoose::on_child_up(wxCommandEvent& evt) {
+    std::cout << "Entry goes up" << std::endl;
+}
+
+void ControlsChoose::on_child_down(wxCommandEvent& evt) {
+    std::cout << "Entry goes down" << std::endl;
 }
 
 void ControlsChoose::on_child_remove(wxCommandEvent& evt) {

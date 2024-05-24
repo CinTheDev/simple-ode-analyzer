@@ -19,6 +19,8 @@ public:
     void add_entry();
 
     void on_button_create(wxCommandEvent& evt);
+    void on_child_up(wxCommandEvent& evt);
+    void on_child_down(wxCommandEvent& evt);
     void on_child_remove(wxCommandEvent& evt);
 
     void on_calculate(wxCommandEvent& evt);
