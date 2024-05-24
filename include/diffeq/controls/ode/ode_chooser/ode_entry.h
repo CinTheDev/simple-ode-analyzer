@@ -17,6 +17,8 @@ public:
 
     wxChoice* dropdown_ode;
     wxColourPickerCtrl* colour_picker;
+    wxButton* button_up;
+    wxButton* button_down;
     wxButton* button_remove;
 
     wxChoice* dropdown_approx;
