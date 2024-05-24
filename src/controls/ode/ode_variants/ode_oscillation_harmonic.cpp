@@ -2,13 +2,13 @@
 #include <iostream>
 
 enum CALCULATION_SELECTION {
+    SOLVED,
     EULER,
-    TEST,
 };
 
 const std::string calculation_labels[] = {
+    "Solved",
     "Euler",
-    "Test",
 };
 
 ODE_Oscillation_Harmonic::ODE_Oscillation_Harmonic() : ODE_Oscillation_Harmonic(Settings_Common(), Settings_Approx()) { }
@@ -48,17 +48,23 @@ const size_t ODE_Oscillation_Harmonic::get_methods_amount() {
 void ODE_Oscillation_Harmonic::calculate() {
     switch (selected_calculate)
     {
+    case SOLVED:
+        calculate_solved();
+        break;
+
     case EULER:
         calculate_euler();
-        break;
-    
-    case TEST:
-        calculate_test();
         break;
 
     default:
         std::cout << "WARNING: Unhandled calculation selection of " << selected_calculate << " in ODE_Oscillation_Harmonic::calculate()" << std::endl;
         break;
+    }
+}
+
+void ODE_Oscillation_Harmonic::calculate_solved() {
+    for (size_t i = 0; i < result_length; i++) {
+        result[i] = (double)i / (double)result_length;
     }
 }
 
@@ -80,11 +86,5 @@ void ODE_Oscillation_Harmonic::calculate_euler() {
 
             current_s += current_ds * dt;
         }
-    }
-}
-
-void ODE_Oscillation_Harmonic::calculate_test() {
-    for (size_t i = 0; i < result_length; i++) {
-        result[i] = (double)i / (double)result_length;
     }
 }
