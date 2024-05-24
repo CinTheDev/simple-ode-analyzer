@@ -34,9 +34,4 @@ enum class OdeTypes {
     GravitationalOscillation,
 };
 
-enum class ApproxTypes {
-    Euler,
-    Test,
-};
-
 #endif
