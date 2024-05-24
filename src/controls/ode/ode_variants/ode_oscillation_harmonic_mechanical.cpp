@@ -2,7 +2,7 @@
 #include <math.h>
 
 ODE_Oscillation_Harmonic_Mechanical::ODE_Oscillation_Harmonic_Mechanical()
-: ODE(Settings_Common(), Settings_Approx()) {
+: ODE() {
 
     std::string names[] = {
         "D",
