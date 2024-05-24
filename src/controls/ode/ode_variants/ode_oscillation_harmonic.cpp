@@ -1,4 +1,5 @@
 #include "ode_oscillation_harmonic.h"
+#include <iostream>
 
 enum CALCULATION_SELECTION {
     EULER,
@@ -37,7 +38,7 @@ ODE_Oscillation_Harmonic::ODE_Oscillation_Harmonic(Settings_Common settings_comm
 ODE_Oscillation_Harmonic::~ODE_Oscillation_Harmonic() { }
 
 std::string ODE_Oscillation_Harmonic::get_calculate_method_label(size_t index) {
-    calculation_labels[index];
+    return calculation_labels[index];
 }
 
 void ODE_Oscillation_Harmonic::calculate() {

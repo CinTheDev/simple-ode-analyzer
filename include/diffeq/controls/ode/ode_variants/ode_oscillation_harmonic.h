@@ -9,6 +9,8 @@ public:
     ODE_Oscillation_Harmonic(Settings_Common settings_common, Settings_Approx settings_approx);
     ~ODE_Oscillation_Harmonic();
 
+    std::string get_calculate_method_label(size_t index);
+
     void calculate();
 
 private:
