@@ -7,7 +7,7 @@ const wxString ode_options[] = {
     "Gravitational Oscillation",
 };
 
-const wxString approx_options[] = {
+wxString approx_options[] = {
     "Euler",
     "TODO",
 };
@@ -39,10 +39,8 @@ OdeEntry::~OdeEntry() {
 
 void OdeEntry::init_elements() {
     size_t amount_ode_options = sizeof(ode_options) / sizeof(wxString);
-    size_t amount_approx_options = sizeof(approx_options) / sizeof(wxString);
 
     dropdown_ode = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, amount_ode_options, ode_options);
-    dropdown_approx = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, amount_approx_options, approx_options);
 
     colour_picker = new wxColourPickerCtrl(this, wxID_ANY, *wxRED);
     button_remove = new wxButton(this, wxID_ANY, "Remove");
@@ -51,7 +49,6 @@ void OdeEntry::init_elements() {
 
     // Default selection
     dropdown_ode->SetSelection(0);
-    dropdown_approx->SetSelection(0);
 
     dropdown_ode->Bind(wxEVT_CHOICE, &OdeEntry::on_dropdown_ode, this);
 }
@@ -60,7 +57,7 @@ void OdeEntry::init_sizers() {
     sizer_options_vertical = new wxBoxSizer(wxVERTICAL);
     sizer_options_horizontal = new wxBoxSizer(wxHORIZONTAL);
 
-    sizer_options_horizontal->Add(dropdown_approx, 1);
+    //sizer_options_horizontal->Add(dropdown_approx, 1);
     sizer_options_horizontal->Add(colour_picker, 1);
     sizer_options_horizontal->Add(button_remove, 1);
 
@@ -92,6 +89,15 @@ void OdeEntry::create_options() {
 
     ode = instance_ode(ode_types[dropdown_ode->GetSelection()]);
 
+    // Dropdown for numerical method
+    size_t amount_approx_options = sizeof(approx_options) / sizeof(wxString);
+    dropdown_approx = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, amount_approx_options, approx_options);
+    dropdown_approx->SetSelection(0);
+
+    sizer_grid->Add(dropdown_approx, 0, wxEXPAND);
+    sizer_grid->AddSpacer(0);
+
+    // Custom values
     size_t amount_options = ode->get_amount_variables();
     std::string* option_labels = ode->get_variable_names();
     double* option_values = ode->get_variable_values();
