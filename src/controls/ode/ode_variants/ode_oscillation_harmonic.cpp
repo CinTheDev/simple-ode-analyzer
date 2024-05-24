@@ -1,5 +1,6 @@
 #include "ode_oscillation_harmonic.h"
 #include <iostream>
+#include <math.h>
 
 enum CALCULATION_SELECTION {
     SOLVED,
@@ -63,8 +64,18 @@ void ODE_Oscillation_Harmonic::calculate() {
 }
 
 void ODE_Oscillation_Harmonic::calculate_solved() {
+    double D = variable_values[0];
+    double m = variable_values[1];
+
+    double s_0 = variable_values[2];
+    // TODO: Do not neglect v_0 in calculation
+    double v_0 = variable_values[3];
+
+    double omega = sqrt(D / m);
+
     for (size_t i = 0; i < result_length; i++) {
-        result[i] = (double)i / (double)result_length;
+        double t = i * settings_common.step_x;
+        result[i] = s_0 * cos(omega * t);
     }
 }
 

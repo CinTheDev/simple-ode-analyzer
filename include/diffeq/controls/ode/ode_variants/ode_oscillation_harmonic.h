@@ -15,8 +15,8 @@ public:
     void calculate();
 
 private:
+    void calculate_solved();
     void calculate_euler();
-    void calculate_test();
 };
 
 #endif
