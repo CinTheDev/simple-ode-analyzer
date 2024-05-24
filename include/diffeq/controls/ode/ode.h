@@ -9,7 +9,7 @@ class ODE {
 public:
     ODE();
     ODE(Settings_Common settings_common, Settings_Approx settings_approx);
-    ~ODE();
+    virtual ~ODE();
 
     size_t get_length();
     void set_length(size_t length);
