@@ -42,6 +42,7 @@ void ControlsChoose::on_child_up(wxCommandEvent& evt) {
     }
 
     swap_entries(index, index - 1);
+    update_entry_buttons();
     Layout();
 }
 
@@ -55,6 +56,7 @@ void ControlsChoose::on_child_down(wxCommandEvent& evt) {
     }
 
     swap_entries(index, index + 1);
+    update_entry_buttons();
     Layout();
 }
 
@@ -160,6 +162,16 @@ size_t ControlsChoose::get_entry_index(OdeEntry* entry) {
 
     std::cout << "WARNING: Entry not found" << std::endl;
     return SIZE_MAX;
+}
+
+void ControlsChoose::update_entry_buttons() {
+    for (size_t i = 1; i < sizer_main->GetItemCount(); i++) {
+        bool button_up = (i - 1) > 1;
+        bool button_down = (i + 1) <= sizer_main->GetItemCount();
+
+        OdeEntry* entry = (OdeEntry*) sizer_main->GetItem(i)->GetWindow();
+        entry->enable_buttons(button_up, button_down);
+    }
 }
 
 void ControlsChoose::swap_entries(size_t index_1, size_t index_2) {
