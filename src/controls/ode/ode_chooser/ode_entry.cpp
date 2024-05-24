@@ -124,8 +124,8 @@ void OdeEntry::create_options() {
 }
 
 void OdeEntry::enable_buttons(bool button_up, bool button_down) {
-    button_up->Enable(button_up);
-    button_down->Enable(button_down);
+    this->button_up->Enable(button_up);
+    this->button_down->Enable(button_down);
 }
 
 void OdeEntry::on_dropdown_ode(wxCommandEvent& evt) {
