@@ -120,6 +120,9 @@ void OdeEntry::on_dropdown_ode(wxCommandEvent& evt) {
 }
 
 void OdeEntry::update_ode_variables() {
+    size_t selected_approx = dropdown_approx->GetSelection();
+    ode->set_selected_calculate(selected_approx);
+
     size_t amount_options = ode->get_amount_variables();
     double* ode_variables = ode->get_variable_values();
 
