@@ -6,6 +6,7 @@ const wxString ode_options[] = {
     "Harmonic Oscillation - Generic",
     "Harmonic Oscillation - Mechanical",
     "Harmonic Oscillation - Electromagnetic",
+    "Oscillation of a swing / pendulum",
     "Gravitational Oscillation",
 };
 
@@ -13,7 +14,8 @@ const OdeTypes ode_types[] = {
     OdeTypes::HarmonicOscillationGeneric,
     OdeTypes::HarmonicOscillationMechanical,
     OdeTypes::HarmonicOscillationElectromagnetic,
-    OdeTypes::GravitationalOscillation,
+    OdeTypes::OscillationSwing,
+    OdeTypes::OscillationGravitational,
 };
 
 OdeEntry::OdeEntry(wxWindow* parent) : Controls(parent, "") {
@@ -147,7 +149,10 @@ ODE* OdeEntry::instance_ode(OdeTypes ode_type) {
         case OdeTypes::HarmonicOscillationElectromagnetic:
             return new ODE_Oscillation_Harmonic_Electromagnetic();
 
-        case OdeTypes::GravitationalOscillation:
+        case OdeTypes::OscillationSwing:
+            return new ODE_Oscillation_Swing();
+
+        case OdeTypes::OscillationGravitational:
             return new ODE_Oscillation_Gravitational();
 
         default:
