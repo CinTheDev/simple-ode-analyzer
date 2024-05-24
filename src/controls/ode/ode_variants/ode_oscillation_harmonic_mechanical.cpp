@@ -30,7 +30,7 @@ OscillationHarmonicVariables ODE_Oscillation_Harmonic_Mechanical::read_variables
 
     variables.omega = sqrt(variable_values[0] / variable_values[1]);
     variables.s_0 = variable_values[2];
-    variables.v_0 = variable_values[3];
+    variables.ds_0 = variable_values[3];
 
     return variables;
 }

@@ -20,7 +20,7 @@ ODE_Oscillation_Harmonic::ODE_Oscillation_Harmonic(Settings_Common settings_comm
     std::string names[] = {
         "w [s^-1]",
         "s_0 [m]",
-        "v_0 [m * s^-1]",
+        "ds_0 [m * s^-1]",
     };
 
     double values[] = {
@@ -68,7 +68,7 @@ OscillationHarmonicVariables ODE_Oscillation_Harmonic::read_variables() {
 
     variables.omega = variable_values[0];
     variables.s_0 = variable_values[1];
-    variables.v_0 = variable_values[2];
+    variables.ds_0 = variable_values[2];
 
     return variables;
 }
@@ -93,7 +93,7 @@ void ODE_Oscillation_Harmonic::calculate_euler(OscillationHarmonicVariables vari
     //double omega = variable_values[0];
 
     double current_s = variables.s_0;
-    double current_ds = variables.v_0;
+    double current_ds = variables.ds_0;
 
     for (size_t i = 0; i < result_length; i++) {
         result[i] = current_s;

@@ -6,7 +6,7 @@
 struct OscillationHarmonicVariables {
     double omega;
     double s_0;
-    double v_0;
+    double ds_0;
 };
 
 class ODE_Oscillation_Harmonic : virtual public ODE {

@@ -30,7 +30,7 @@ OscillationHarmonicVariables ODE_Oscillation_Harmonic_Electromagnetic::read_vari
 
     variables.omega = 1.0 / sqrt(variable_values[0] * variable_values[1]);
     variables.s_0 = variable_values[2];
-    variables.v_0 = variable_values[3];
+    variables.ds_0 = variable_values[3];
 
     return variables;
 }
