@@ -10,6 +10,6 @@ public:
 
 protected:
     OscillationHarmonicVariables read_variables();
-}
+};
 
 #endif
