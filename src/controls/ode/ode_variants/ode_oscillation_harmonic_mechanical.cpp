@@ -1,4 +1,5 @@
 #include "ode_oscillation_harmonic_mechanical.h"
+#include <math.h>
 
 ODE_Oscillation_Harmonic_Mechanical::ODE_Oscillation_Harmonic_Mechanical()
 : ODE(Settings_Common(), Settings_Approx()) {
@@ -23,3 +24,13 @@ ODE_Oscillation_Harmonic_Mechanical::ODE_Oscillation_Harmonic_Mechanical()
 }
 
 ODE_Oscillation_Harmonic_Mechanical::~ODE_Oscillation_Harmonic_Mechanical() { }
+
+OscillationHarmonicVariables ODE_Oscillation_Harmonic_Mechanical::read_variables() {
+    OscillationHarmonicVariables variables = OscillationHarmonicVariables();
+
+    variables.omega = sqrt(variable_values[0] / variable_values[1]);
+    variables.s_0 = variable_values[2];
+    variables.v_0 = variable_values[3];
+
+    return variables;
+}

@@ -7,6 +7,9 @@ class ODE_Oscillation_Harmonic_Mechanical : public ODE_Oscillation_Harmonic {
 public:
     ODE_Oscillation_Harmonic_Mechanical();
     ~ODE_Oscillation_Harmonic_Mechanical();
+
+protected:
+    OscillationHarmonicVariables read_variables();
 };
 
 #endif
