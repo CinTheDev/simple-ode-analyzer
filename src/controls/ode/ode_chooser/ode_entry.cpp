@@ -7,19 +7,9 @@ const wxString ode_options[] = {
     "Gravitational Oscillation",
 };
 
-wxString approx_options[] = {
-    "Euler",
-    "TODO",
-};
-
 const OdeTypes ode_types[] = {
     OdeTypes::HarmonicOscillation,
     OdeTypes::GravitationalOscillation,
-};
-
-const ApproxTypes approx_types[] = {
-    ApproxTypes::Euler,
-    ApproxTypes::Test,
 };
 
 OdeEntry::OdeEntry(wxWindow* parent) : Controls(parent, "") {
@@ -57,7 +47,6 @@ void OdeEntry::init_sizers() {
     sizer_options_vertical = new wxBoxSizer(wxVERTICAL);
     sizer_options_horizontal = new wxBoxSizer(wxHORIZONTAL);
 
-    //sizer_options_horizontal->Add(dropdown_approx, 1);
     sizer_options_horizontal->Add(colour_picker, 1);
     sizer_options_horizontal->Add(button_remove, 1);
 
@@ -71,7 +60,6 @@ void OdeEntry::init_sizers() {
 }
 
 void OdeEntry::init_approx_dropdown() {
-    //size_t amount_approx_options = sizeof(approx_options) / sizeof(wxString);
     const size_t amount_approx_options = ode->get_methods_amount();
 
     wxString approx_options[amount_approx_options];
