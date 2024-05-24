@@ -30,6 +30,7 @@ public:
     uint32_t get_colour();
 
     void create_options();
+    void enable_buttons(bool button_up, bool button_down);
 
     void on_dropdown_ode(wxCommandEvent& evt);
 

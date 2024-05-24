@@ -123,6 +123,11 @@ void OdeEntry::create_options() {
     sizer_main->GetStaticBox()->Update();
 }
 
+void OdeEntry::enable_buttons(bool button_up, bool button_down) {
+    button_up->Enable(button_up);
+    button_down->Enable(button_down);
+}
+
 void OdeEntry::on_dropdown_ode(wxCommandEvent& evt) {
     create_options();
 }
