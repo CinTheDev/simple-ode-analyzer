@@ -18,7 +18,7 @@ ODE_Oscillation_Harmonic::ODE_Oscillation_Harmonic(Settings_Common settings_comm
 : ODE(settings_common, settings_approx) {
 
     std::string names[] = {
-        "w [TODO: derive unit]",
+        "w [s^-1]",
         "s_0 [m]",
         "v_0 [m * s^-1]",
     };
