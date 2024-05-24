@@ -74,11 +74,6 @@ OscillationHarmonicVariables ODE_Oscillation_Harmonic::read_variables() {
 }
 
 void ODE_Oscillation_Harmonic::calculate_solved(OscillationHarmonicVariables variables) {
-    //double omega = variable_values[0];
-
-    //double s_0 = variable_values[1];
-    //double v_0 = variable_values[2];
-
     // TODO: Do not neglect v_0 in calculation
 
     for (size_t i = 0; i < result_length; i++) {
@@ -89,8 +84,6 @@ void ODE_Oscillation_Harmonic::calculate_solved(OscillationHarmonicVariables var
 
 void ODE_Oscillation_Harmonic::calculate_euler(OscillationHarmonicVariables variables) {
     double dt = settings_common.step_x / (double)settings_approx.subdivision;
-
-    //double omega = variable_values[0];
 
     double current_s = variables.s_0;
     double current_ds = variables.ds_0;
