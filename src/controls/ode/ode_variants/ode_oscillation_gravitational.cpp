@@ -1,5 +1,14 @@
 #include "ode_oscillation_gravitational.h"
+#include <iostream>
 #include <math.h>
+
+enum CALCULATION_SELECTION {
+    EULER,
+};
+
+std::string calculation_labels[] = {
+    "Euler",
+};
 
 ODE_Oscillation_Gravitational::ODE_Oscillation_Gravitational() : ODE_Oscillation_Gravitational(Settings_Common(), Settings_Approx()) { }
 
@@ -25,7 +34,27 @@ ODE_Oscillation_Gravitational::ODE_Oscillation_Gravitational(Settings_Common set
 
 ODE_Oscillation_Gravitational::~ODE_Oscillation_Gravitational() { }
 
+std::string ODE_Oscillation_Gravitational::get_calculate_method_label(size_t index) {
+    return calculation_labels[index];
+}
+
+const size_t ODE_Oscillation_Gravitational::get_methods_amount() {
+    return sizeof(calculation_labels) / sizeof(calculation_labels[0]);
+}
+
 void ODE_Oscillation_Gravitational::calculate() {
+    switch (selected_calculate) {
+    case EULER:
+        calculate_euler();
+        break;
+
+    default:
+        std::cout << "WARNING: Unhandled calculation selection of " << selected_calculate << " in ODE_Oscillation_Gravitational::calculate()" << std::endl;
+        break;
+    }
+}
+
+void ODE_Oscillation_Gravitational::calculate_euler() {
     double dt = settings_common.step_x / (double)settings_approx.subdivision;
 
     double a = variable_values[0];
