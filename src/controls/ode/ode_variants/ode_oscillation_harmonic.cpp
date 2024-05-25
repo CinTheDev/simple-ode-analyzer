@@ -100,9 +100,10 @@ void ODE_Oscillation_Harmonic::calculate_euler(OscillationHarmonicVariables vari
 
         for (size_t j = 0; j < settings_approx.subdivision; j++) {
             double dds = -variables.omega * variables.omega * current_s;
-
             current_ds += dds * dt;
-            current_s += current_ds * dt;
+
+            double ds = current_ds;
+            current_s += ds * dt;
         }
     }
 }
@@ -118,10 +119,14 @@ void ODE_Oscillation_Harmonic::calculate_midpoint(OscillationHarmonicVariables v
 
         for (size_t j = 0; j < settings_approx.subdivision; j++) {
             double dds_1 = -variables.omega * variables.omega * current_s;
-            double dds_2 = -variables.omega * variables.omega * (current_s + dt * dt / 2.0 * dds_1);
+
+            double ds_1 = current_ds;
+            double ds_2 = (current_ds + dt * 0.5 * dds_1);
+
+            double dds_2 = -variables.omega * variables.omega * (current_s + dt * 0.5 * ds_2);
 
             current_ds += dds_2 * dt;
-            current_s += current_ds * dt;
+            current_s += ds_2 * dt;
         }
     }
 }
