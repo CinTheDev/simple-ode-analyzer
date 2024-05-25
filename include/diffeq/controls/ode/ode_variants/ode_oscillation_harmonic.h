@@ -26,6 +26,7 @@ protected:
 private:
     void calculate_solved(OscillationHarmonicVariables variables);
     void calculate_euler(OscillationHarmonicVariables variables);
+    void calculate_midpoint(OscillationHarmonicVariables variable);
 };
 
 #endif
