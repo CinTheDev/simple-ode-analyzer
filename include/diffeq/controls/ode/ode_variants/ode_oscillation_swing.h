@@ -15,6 +15,7 @@ public:
 
 private:
     void calculate_euler();
+    void calculate_midpoint();
 };
 
 #endif
