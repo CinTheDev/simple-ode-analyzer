@@ -4,10 +4,12 @@
 
 enum CALCULATION_SELECTION {
     EULER,
+    MIDPOINT,
 };
 
 const std::string calculation_labels[] = {
     "Euler",
+    "Midpoint",
 };
 
 ODE_Oscillation_Swing::ODE_Oscillation_Swing() : ODE() {
@@ -46,6 +48,10 @@ void ODE_Oscillation_Swing::calculate() {
         calculate_euler();
         break;
 
+    case MIDPOINT:
+        calculate_midpoint();
+        break;
+
     default:
         std::cout << "WARNING: Unhandled calculation selection of " << selected_calculate << " in ODE_Oscillation_Swing::calculate()" << std::endl;
         break;
@@ -69,6 +75,32 @@ void ODE_Oscillation_Swing::calculate_euler() {
 
             current_ds += dds * dt;
             current_s += current_ds * dt;
+        }
+    }
+}
+
+void ODE_Oscillation_Swing::calculate_midpoint() {
+    double dt = settings_common.step_x / (double) settings_approx.subdivision;
+
+    double g = variable_values[0];
+    double l = variable_values[1];
+
+    double current_s = variable_values[2];
+    double current_ds = variable_values[3];
+
+    for (size_t i = 0; i < result_length; i++) {
+        result[i] = current_s;
+
+        for (size_t j = 0; j < settings_approx.subdivision; j++) {
+            double dds_1 = -g * sin(current_s / l);
+
+            double ds_1 = current_ds;
+            double ds_2 = current_ds + dt * 0.5 * dds_1;
+
+            double dds_2 = -g * sin((current_s + dt * 0.5 * ds_2) / l);
+
+            current_ds += dds_2 * dt;
+            current_s += ds_2 * dt;
         }
     }
 }

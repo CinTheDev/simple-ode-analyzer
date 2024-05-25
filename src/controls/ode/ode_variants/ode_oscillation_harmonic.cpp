@@ -5,11 +5,13 @@
 enum CALCULATION_SELECTION {
     SOLVED,
     EULER,
+    MIDPOINT,
 };
 
 const std::string calculation_labels[] = {
     "Solved",
     "Euler",
+    "Midpoint",
 };
 
 ODE_Oscillation_Harmonic::ODE_Oscillation_Harmonic() : ODE_Oscillation_Harmonic(Settings_Common(), Settings_Approx()) { }
@@ -57,6 +59,10 @@ void ODE_Oscillation_Harmonic::calculate() {
         calculate_euler(variables);
         break;
 
+    case MIDPOINT:
+        calculate_midpoint(variables);
+        break;
+
     default:
         std::cout << "WARNING: Unhandled calculation selection of " << selected_calculate << " in ODE_Oscillation_Harmonic::calculate()" << std::endl;
         break;
@@ -96,7 +102,31 @@ void ODE_Oscillation_Harmonic::calculate_euler(OscillationHarmonicVariables vari
             double dds = -variables.omega * variables.omega * current_s;
             current_ds += dds * dt;
 
-            current_s += current_ds * dt;
+            double ds = current_ds;
+            current_s += ds * dt;
+        }
+    }
+}
+
+void ODE_Oscillation_Harmonic::calculate_midpoint(OscillationHarmonicVariables variables) {
+    double dt = settings_common.step_x / (double)settings_approx.subdivision;
+
+    double current_s = variables.s_0;
+    double current_ds = variables.ds_0;
+
+    for (size_t i = 0; i < result_length; i++) {
+        result[i] = current_s;
+
+        for (size_t j = 0; j < settings_approx.subdivision; j++) {
+            double dds_1 = -variables.omega * variables.omega * current_s;
+
+            double ds_1 = current_ds;
+            double ds_2 = (current_ds + dt * 0.5 * dds_1);
+
+            double dds_2 = -variables.omega * variables.omega * (current_s + dt * 0.5 * ds_2);
+
+            current_ds += dds_2 * dt;
+            current_s += ds_2 * dt;
         }
     }
 }
