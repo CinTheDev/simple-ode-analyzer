@@ -92,13 +92,16 @@ void ODE_Oscillation_Gravitational::calculate_midpoint() {
         result[i] = current_s;
 
         for (size_t j = 0; j < settings_approx.subdivision; j++) {
-            // Equation is dds(t) = -a * | s(t) | / s(t)
             double dds_1 = -a * (abs(current_s) / current_s);
-            double awesome_value = (current_s + dt * dt / 2.0 * dds_1);
-            double dds_2 = -a * (abs(awesome_value) / awesome_value);
+
+            double ds_1 = current_ds;
+            double ds_2 = current_ds + dt * 0.5 * dds_1;
+
+            double s_2 = current_s + dt * 0.5 * ds_2;
+            double dds_2 = -a * (abs(s_2) / s_2);
 
             current_ds += dds_2 * dt;
-            current_s += current_ds * dt;
+            current_s += ds_2 * dt;
         }
     }
 }
