@@ -4,10 +4,12 @@
 
 enum CALCULATION_SELECTION {
     EULER,
+    MIDPOINT,
 };
 
 std::string calculation_labels[] = {
     "Euler",
+    "Midpoint",
 };
 
 ODE_Oscillation_Gravitational::ODE_Oscillation_Gravitational() : ODE_Oscillation_Gravitational(Settings_Common(), Settings_Approx()) { }
@@ -48,6 +50,10 @@ void ODE_Oscillation_Gravitational::calculate() {
         calculate_euler();
         break;
 
+    case MIDPOINT:
+        calculate_midpoint();
+        break;
+
     default:
         std::cout << "WARNING: Unhandled calculation selection of " << selected_calculate << " in ODE_Oscillation_Gravitational::calculate()" << std::endl;
         break;
@@ -69,6 +75,29 @@ void ODE_Oscillation_Gravitational::calculate_euler() {
             double dds = -a * (abs(current_s) / current_s);
             current_ds += dds * dt;
 
+            current_s += current_ds * dt;
+        }
+    }
+}
+
+void ODE_Oscillation_Gravitational::calculate_midpoint() {
+    double dt = settings_common.step_x / (double)settings_approx.subdivision;
+
+    double a = variable_values[0];
+
+    double current_s = variable_values[1];
+    double current_ds = variable_values[2];
+
+    for (size_t i = 0; i < result_length; i++) {
+        result[i] = current_s;
+
+        for (size_t j = 0; j < settings_approx.subdivision; j++) {
+            // Equation is dds(t) = -a * | s(t) | / s(t)
+            double dds_1 = -a * (abs(current_s) / current_s);
+            double awesome_value = (current_s + dt * dt / 2.0 * dds_1);
+            double dds_2 = -a * (abs(awesome_value) / awesome_value);
+
+            current_ds += dds_2 * dt;
             current_s += current_ds * dt;
         }
     }
