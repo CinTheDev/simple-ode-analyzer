@@ -11,11 +11,16 @@ public:
 
     wxBoxSizer* sizer_main;
 
-    wxButton* test_button;
+    wxListBox* list_options;
+    wxButton* button_choose;
 
     OdeEntry* get_entry();
 
-    void on_test_button(wxCommandEvent& evt);
+    void on_button_choose(wxCommandEvent& evt);
+
+private:
+    void init_elements();
+    void init_sizers();
 };
 
 #endif
