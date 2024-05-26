@@ -34,11 +34,16 @@ void OdeEntry::init_sizers() {
     SetSizer(sizer_main);
 }
 
+double* OdeEntry::get_result() {
+    calculate();
+    return result;
+}
+
 size_t OdeEntry::get_result_length() {
     return result_length;
 }
 
-void set_result_length(size_t new_length) {
+void OdeEntry::set_result_length(size_t new_length) {
     delete[] result;
     result = new double[new_length];
 
@@ -53,3 +58,5 @@ void OdeEntry::enable_buttons(bool button_up, bool button_down) {
     this->button_up->Enable(button_up);
     this->button_down->Enable(button_down);
 }
+
+void OdeEntry::calculate() { }

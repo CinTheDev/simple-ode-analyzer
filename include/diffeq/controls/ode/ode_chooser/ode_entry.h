@@ -18,6 +18,7 @@ public:
     wxButton* button_down;
     wxButton* button_remove;
 
+    double* get_result();
     size_t get_result_length();
     uint32_t get_colour();
 
@@ -28,6 +29,7 @@ protected:
     size_t result_length;
 
     void set_result_length(size_t new_length);
+    virtual void calculate();
 
 private:
     void init_elements();
