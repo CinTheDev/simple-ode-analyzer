@@ -27,7 +27,7 @@ void ControlsChoose::add_entry() {
     update_entry_buttons();
     FitInside();
     Layout();
-    GetParent()->Layout();
+    GetParent()->GetParent()->Layout();
 }
 
 void ControlsChoose::on_button_create(wxCommandEvent& evt) {
@@ -75,7 +75,7 @@ void ControlsChoose::on_child_remove(wxCommandEvent& evt) {
     update_entry_buttons();
     FitInside();
     Layout();
-    GetParent()->Layout();
+    GetParent()->GetParent()->Layout();
 }
 
 void ControlsChoose::on_calculate(wxCommandEvent& evt) {
