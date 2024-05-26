@@ -1,7 +1,7 @@
 #include "ode_oscillation_harmonic_electromagnetic.h"
 #include <math.h>
 
-Ode_Oscillation_Harmonic_Electromagnetic::Ode_Oscillation_Harmonic_Electromagnetic(wxWindow* parent) : OdeFunction(parent, "Harmonic Oscillation") {
+Ode_Oscillation_Harmonic_Electromagnetic::Ode_Oscillation_Harmonic_Electromagnetic(wxWindow* parent) : OdeFunction(parent, "Harmonic Oscillation - Electromagnetic") {
     label_L = new wxStaticText(this, wxID_ANY, "L [H]");
     label_C = new wxStaticText(this, wxID_ANY, "C [C]");
 

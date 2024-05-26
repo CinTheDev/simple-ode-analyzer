@@ -1,6 +1,6 @@
 #include "ode_oscillation_harmonic.h"
 
-Ode_Oscillation_Harmonic::Ode_Oscillation_Harmonic(wxWindow* parent) : OdeFunction(parent, "Harmonic Oscillation") {
+Ode_Oscillation_Harmonic::Ode_Oscillation_Harmonic(wxWindow* parent) : OdeFunction(parent, "Harmonic Oscillation - Generic") {
     label_omega = new wxStaticText(this, wxID_ANY, "w [s^-1]");
     input_omega = new wxTextCtrl(this, wxID_ANY, "10.0");
 

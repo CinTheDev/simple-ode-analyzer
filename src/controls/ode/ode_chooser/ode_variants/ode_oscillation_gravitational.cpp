@@ -1,6 +1,6 @@
 #include "ode_oscillation_gravitational.h"
 
-Ode_Oscillation_Gravitational::Ode_Oscillation_Gravitational(wxWindow* parent) : OdeFunction(parent, "Harmonic Oscillation") {
+Ode_Oscillation_Gravitational::Ode_Oscillation_Gravitational(wxWindow* parent) : OdeFunction(parent, "Gravitational Oscillation") {
     label_a = new wxStaticText(this, wxID_ANY, "a [m * s^-2]");
     input_a = new wxTextCtrl(this, wxID_ANY, "80");
 

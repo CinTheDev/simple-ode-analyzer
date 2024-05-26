@@ -1,6 +1,6 @@
 #include "ode_oscillation_harmonic_mechanical.h"
 
-Ode_Oscillation_Harmonic_Mechanical::Ode_Oscillation_Harmonic_Mechanical(wxWindow* parent) : OdeFunction(parent, "Harmonic Oscillation") {
+Ode_Oscillation_Harmonic_Mechanical::Ode_Oscillation_Harmonic_Mechanical(wxWindow* parent) : OdeFunction(parent, "Harmonic Oscillation - Mechanical") {
     label_D = new wxStaticText(this, wxID_ANY, "D [kg * s^-2]");
     label_m = new wxStaticText(this, wxID_ANY, "m [kg]");
 

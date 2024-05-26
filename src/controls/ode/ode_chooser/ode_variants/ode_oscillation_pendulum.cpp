@@ -1,6 +1,6 @@
 #include "ode_oscillation_pendulum.h"
 
-Ode_Oscillation_Pendulum::Ode_Oscillation_Pendulum(wxWindow* parent) : OdeFunction(parent, "Harmonic Oscillation") {
+Ode_Oscillation_Pendulum::Ode_Oscillation_Pendulum(wxWindow* parent) : OdeFunction(parent, "Oscillation of a pendulum / swing") {
     label_g = new wxStaticText(this, wxID_ANY, "g [m * s^-2]");
     label_l = new wxStaticText(this, wxID_ANY, "l [m]");
 
