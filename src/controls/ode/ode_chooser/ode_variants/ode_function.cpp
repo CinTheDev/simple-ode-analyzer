@@ -12,3 +12,11 @@ OdeFunction::OdeFunction(wxWindow* parent, wxString label) : OdeEntry(parent, la
 }
 
 OdeFunction::~OdeFunction() { }
+
+int OdeFunction::get_length() {
+    return get_input_int(input_length, label_length);
+}
+
+double OdeFunction::get_step_x() {
+    return get_input_double(input_step_x, label_step_x);
+}

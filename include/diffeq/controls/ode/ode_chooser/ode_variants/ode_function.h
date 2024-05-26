@@ -15,6 +15,10 @@ public:
 
     wxTextCtrl* input_length;
     wxTextCtrl* input_step_x;
+
+protected:
+    int get_length();
+    double get_step_x();
 };
 
 #endif
