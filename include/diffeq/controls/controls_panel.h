@@ -4,7 +4,6 @@
 #include <wx/wx.h>
 #include "events.h"
 #include "controls_view.h"
-#include "controls_ode.h"
 #include "controls_choose.h"
 
 class ControlsPanel : public wxPanel {
@@ -13,7 +12,7 @@ public:
     ~ControlsPanel();
 
 public:
-    ControlsODE* controls_ode;
+    wxButton* button_calculate;
     ControlsChoose* controls_choose;
     ControlsView* controls_view;
 

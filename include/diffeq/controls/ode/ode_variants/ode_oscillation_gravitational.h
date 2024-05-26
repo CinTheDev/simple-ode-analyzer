@@ -1,22 +1,22 @@
-#ifndef DIFFEQ_ODE_OSCILLATION_GRAVITATIONAL
-#define DIFFEQ_ODE_OSCILLATION_GRAVITATIONAL
+#ifndef ODE_OSCILLATION_GRAVITATIONAL
+#define ODE_OSCILLATION_GRAVITATIONAL
 
-#include "ode.h"
+#include <wx/wx.h>
+#include "ode_function.h"
 
-class ODE_Oscillation_Gravitational : virtual public ODE {
+class Ode_Oscillation_Gravitational : public OdeFunction {
 public:
-    ODE_Oscillation_Gravitational();
-    ODE_Oscillation_Gravitational(Settings_Common settings_common, Settings_Approx settings_approx);
-    ~ODE_Oscillation_Gravitational();
+    Ode_Oscillation_Gravitational(wxWindow* parent);
+    ~Ode_Oscillation_Gravitational();
 
-    std::string get_calculate_method_label(size_t index);
-    const size_t get_methods_amount();
+    wxStaticText* label_a;
 
-    void calculate();
+    wxTextCtrl* input_a;
 
-private:
-    void calculate_euler();
-    void calculate_midpoint();
+protected:
+    double evaluate_function(double fx);
+
+    double get_a();
 };
 
 #endif

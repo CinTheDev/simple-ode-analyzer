@@ -3,17 +3,6 @@
 
 #include <cstdint>
 
-struct Settings_Common {
-public:
-    double step_x = 0.01;
-};
-
-struct Settings_Approx {
-public:
-    int amount = 100;
-    int subdivision = 1;
-};
-
 struct Settings_Plotter {
 public:
     int axis_offset = 50;
@@ -27,12 +16,13 @@ public:
     double view_start_x = 0.0;
 };
 
-enum class OdeTypes {
-    HarmonicOscillationGeneric,
-    HarmonicOscillationMechanical,
-    HarmonicOscillationElectromagnetic,
-    OscillationSwing,
-    OscillationGravitational,
+struct OdeData {
+public:
+    double** results_x;
+    double** results_y;
+    size_t* result_lengths;
+    uint32_t* colours;
+    size_t amount_results;
 };
 
 #endif

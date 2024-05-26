@@ -1,36 +1,33 @@
-#include "ode_oscillation_harmonic_electomagnetic.h"
+#include "ode_oscillation_harmonic_electromagnetic.h"
 #include <math.h>
 
-ODE_Oscillation_Harmonic_Electromagnetic::ODE_Oscillation_Harmonic_Electromagnetic()
-: ODE() {
+Ode_Oscillation_Harmonic_Electromagnetic::Ode_Oscillation_Harmonic_Electromagnetic(wxWindow* parent) : OdeFunction(parent, "Harmonic Oscillation - Electromagnetic") {
+    label_L = new wxStaticText(this, wxID_ANY, "L [H]");
+    label_C = new wxStaticText(this, wxID_ANY, "C [C]");
 
-    std::string names[] = {
-        "L [H]",
-        "C [F]",
-        "Q_0 [C]",
-        "I_0 [A]",
-    };
+    input_L = new wxTextCtrl(this, wxID_ANY, "0.1");
+    input_C = new wxTextCtrl(this, wxID_ANY, "0.1");
 
-    double values[] = {
-        0.1,
-        0.1,
-        1.0,
-        0.0,
-    };
+    add_option(label_L, input_L);
+    add_option(label_C, input_C);
 
-    size_t count = sizeof(values) / sizeof(double);
-
-    init_variables(count, names, values);
+    // Edit options
+    label_initial_s->SetLabel("Q_0 [C]");
+    label_initial_v->SetLabel("I_0 [A]");
 }
 
-ODE_Oscillation_Harmonic_Electromagnetic::~ODE_Oscillation_Harmonic_Electromagnetic() { }
+Ode_Oscillation_Harmonic_Electromagnetic::~Ode_Oscillation_Harmonic_Electromagnetic() { }
 
-OscillationHarmonicVariables ODE_Oscillation_Harmonic_Electromagnetic::read_variables() {
-    OscillationHarmonicVariables variables = OscillationHarmonicVariables();
+double Ode_Oscillation_Harmonic_Electromagnetic::evaluate_function(double fx) {
+    double L = get_L();
+    double C = get_C();
+    return -1.0 / (L * C) * fx;
+}
 
-    variables.omega = 1.0 / sqrt(variable_values[0] * variable_values[1]);
-    variables.s_0 = variable_values[2];
-    variables.ds_0 = variable_values[3];
+double Ode_Oscillation_Harmonic_Electromagnetic::get_L() {
+    return get_input_double(input_L, label_L);
+}
 
-    return variables;
+double Ode_Oscillation_Harmonic_Electromagnetic::get_C() {
+    return get_input_double(input_C, label_C);
 }

@@ -1,36 +1,32 @@
 #include "ode_oscillation_harmonic_mechanical.h"
-#include <math.h>
 
-ODE_Oscillation_Harmonic_Mechanical::ODE_Oscillation_Harmonic_Mechanical()
-: ODE() {
+Ode_Oscillation_Harmonic_Mechanical::Ode_Oscillation_Harmonic_Mechanical(wxWindow* parent) : OdeFunction(parent, "Harmonic Oscillation - Mechanical") {
+    label_D = new wxStaticText(this, wxID_ANY, "D [kg * s^-2]");
+    label_m = new wxStaticText(this, wxID_ANY, "m [kg]");
 
-    std::string names[] = {
-        "D [kg * s^-2]",
-        "m [kg]",
-        "s_0 [m]",
-        "v_0 [m * s^-1]",
-    };
+    input_D = new wxTextCtrl(this, wxID_ANY, "100");
+    input_m = new wxTextCtrl(this, wxID_ANY, "1");
 
-    double values[] = {
-        100.0,
-        1.0,
-        1.0,
-        0.0,
-    };
+    add_option(label_D, input_D);
+    add_option(label_m, input_m);
 
-    size_t count = sizeof(values) / sizeof(double);
-
-    init_variables(count, names, values);
+    // Edit options
+    label_initial_s->SetLabel("s_0 [m]");
+    label_initial_v->SetLabel("v_0 [m * s^-1]");
 }
 
-ODE_Oscillation_Harmonic_Mechanical::~ODE_Oscillation_Harmonic_Mechanical() { }
+Ode_Oscillation_Harmonic_Mechanical::~Ode_Oscillation_Harmonic_Mechanical() { }
 
-OscillationHarmonicVariables ODE_Oscillation_Harmonic_Mechanical::read_variables() {
-    OscillationHarmonicVariables variables = OscillationHarmonicVariables();
+double Ode_Oscillation_Harmonic_Mechanical::evaluate_function(double fx) {
+    double D = get_D();
+    double m = get_m();
+    return -(D / m) * fx;
+}
 
-    variables.omega = sqrt(variable_values[0] / variable_values[1]);
-    variables.s_0 = variable_values[2];
-    variables.ds_0 = variable_values[3];
+double Ode_Oscillation_Harmonic_Mechanical::get_D() {
+    return get_input_double(input_D, label_D);
+}
 
-    return variables;
+double Ode_Oscillation_Harmonic_Mechanical::get_m() {
+    return get_input_double(input_m, label_m);
 }

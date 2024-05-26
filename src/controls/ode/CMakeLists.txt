@@ -1,26 +1,55 @@
-# ODE STUFF
+# ENTRIES
 
-add_library(ode ode.cpp)
+add_library(ode_entry ode_entry.cpp)
 
-target_include_directories(ode PUBLIC
+target_include_directories(ode_entry PUBLIC
     ${CMAKE_SOURCE_DIR}/include/diffeq/controls/ode
     ${CMAKE_SOURCE_DIR}/include/diffeq/common
 )
 
+target_link_libraries(ode_entry PUBLIC
+    ${wxWidgets_LIBRARIES}
+    controls
+)
+
+target_link_libraries(ode_entry PRIVATE
+    custom_events
+)
+
 add_subdirectory(ode_variants)
 
-# ODE CONTROLS
+# ENTRY ADD DIALOG
 
-add_subdirectory(ode_chooser)
+add_library(entry_dialog entry_dialog.cpp)
 
-add_library(controls_ode controls_ode.cpp)
-
-target_include_directories(controls_ode PUBLIC
+target_include_directories(entry_dialog PUBLIC
     ${CMAKE_SOURCE_DIR}/include/diffeq/controls/ode
 )
 
-target_link_libraries(controls_ode PUBLIC
+target_link_libraries(entry_dialog PUBLIC
     ${wxWidgets_LIBRARIES}
-    custom_events
+    ode_entry
+)
+
+target_link_libraries(entry_dialog PRIVATE
+    ode_variants
+)
+
+# CHOOSER FOR ENTRIES
+
+add_library(controls_choose controls_choose.cpp)
+
+target_include_directories(controls_choose PUBLIC
+    ${CMAKE_SOURCE_DIR}/include/diffeq/controls/ode
+)
+
+target_link_libraries(controls_choose PUBLIC
+    ${wxWidgets_LIBRARIES}
     controls
+    ode_entry
+    custom_events
+)
+
+target_link_libraries(controls_choose PRIVATE
+    entry_dialog
 )

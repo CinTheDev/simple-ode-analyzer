@@ -27,17 +27,12 @@ public:
 
 private:
     Settings_Plotter settings;
-    Settings_Common settings_common;
     ShortcutState shortcut_state;
 
-    double** functions;
-    uint32_t* function_colours;
-    size_t function_amount;
-    size_t function_length;
+    OdeData ode_data;
 
 public:
     void on_settings_update(SettingsPlotterEvent& evt);
-    void on_settings_common_update(SettingsCommonEvent& evt);
     void on_function_update(OdePointerEvent& evt);
 
     void on_key_pressed(wxKeyEvent& evt);

@@ -28,14 +28,15 @@ public:
     void SendResults();
 
 private:
-    double** get_all_results(size_t& amount_results, size_t& result_length, Settings_Common settings_common, Settings_Approx settings_approx);
-    uint32_t* get_all_colours();
-
-    void request_ode_settings(Settings_Common* settings_common, Settings_Approx* settings_approx);
+    double** get_all_results_x(size_t amount_results);
+    double** get_all_results_y(size_t amount_results);
+    uint32_t* get_all_colours(size_t amount_results);
+    size_t* get_all_lengths(size_t amount_results);
 
     OdeEntry* get_entry_from_event(wxCommandEvent& evt);
     size_t get_entry_index(OdeEntry* entry);
     void update_entry_buttons();
+    void entries_calculate();
 
     void swap_entries(size_t index_1, size_t index_2);
 };

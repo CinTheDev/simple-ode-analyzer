@@ -1,4 +1,5 @@
 #include "controls_choose.h"
+#include "entry_dialog.h"
 
 ControlsChoose::ControlsChoose(wxWindow* parent) : wxScrolledWindow(parent) {
     sizer_main = new wxStaticBoxSizer(wxVERTICAL, this, "Select ODEs");
@@ -16,7 +17,10 @@ ControlsChoose::ControlsChoose(wxWindow* parent) : wxScrolledWindow(parent) {
 ControlsChoose::~ControlsChoose() { }
 
 void ControlsChoose::add_entry() {
-    OdeEntry* new_entry = new OdeEntry(this);
+    EntryDialog entry_dialog = EntryDialog(this);
+    if (entry_dialog.ShowModal() != wxID_OK ) return;
+
+    OdeEntry* new_entry = entry_dialog.get_entry();
     new_entry->button_remove->Bind(wxEVT_BUTTON, &ControlsChoose::on_child_remove, this);
     new_entry->button_up->Bind(wxEVT_BUTTON, &ControlsChoose::on_child_up, this);
     new_entry->button_down->Bind(wxEVT_BUTTON, &ControlsChoose::on_child_down, this);
@@ -26,7 +30,7 @@ void ControlsChoose::add_entry() {
     update_entry_buttons();
     FitInside();
     Layout();
-    GetParent()->Layout();
+    GetParent()->GetParent()->Layout();
 }
 
 void ControlsChoose::on_button_create(wxCommandEvent& evt) {
@@ -74,60 +78,66 @@ void ControlsChoose::on_child_remove(wxCommandEvent& evt) {
     update_entry_buttons();
     FitInside();
     Layout();
-    GetParent()->Layout();
+    GetParent()->GetParent()->Layout();
 }
 
 void ControlsChoose::on_calculate(wxCommandEvent& evt) {
+    entries_calculate();
     SendResults();
 }
 
 void ControlsChoose::SendResults() {
-    // Request settings
-    Settings_Common settings_common;
-    Settings_Approx settings_approx;
+    OdeData ode_data;
+    ode_data.amount_results = sizer_main->GetItemCount() - 1;
 
-    request_ode_settings(&settings_common, &settings_approx);
+    if (ode_data.amount_results < 1) return;
 
-    // ODE pointer
-    size_t amount_results, result_length;
-    double** ode_results = get_all_results(amount_results, result_length, settings_common, settings_approx);
-    uint32_t* ode_colours = get_all_colours();
+    ode_data.results_x = get_all_results_x(ode_data.amount_results);
+    ode_data.results_y = get_all_results_y(ode_data.amount_results);
+    ode_data.result_lengths = get_all_lengths(ode_data.amount_results);
+    ode_data.colours = get_all_colours(ode_data.amount_results);
 
-    OdePointerEvent evt_ode_pointer(EVT_ODE_POINTER, GetId(), ode_results, ode_colours, amount_results, result_length);
+    OdePointerEvent evt_ode_pointer(EVT_ODE_POINTER, GetId(), ode_data);
     evt_ode_pointer.SetEventObject(this);
     evt_ode_pointer.ResumePropagation(__INT_MAX__);
     ProcessEvent(evt_ode_pointer);
-
-    // Step x
-    SettingsCommonEvent evt_settings_common(SETTINGS_COMMON_UPDATE, GetId(), settings_common);
-    evt_settings_common.SetEventObject(this);
-    evt_settings_common.ResumePropagation(__INT_MAX__);
-    ProcessEvent(evt_settings_common);
 }
 
-double** ControlsChoose::get_all_results(size_t& amount_results, size_t& result_length, Settings_Common settings_common, Settings_Approx settings_approx) {
-    amount_results = sizer_main->GetItemCount() - 1;
-
-    if (amount_results < 1) return nullptr;
-
-    double** results = new double*[amount_results];
+double** ControlsChoose::get_all_results_x(size_t amount_results) {
+    double** results_x = new double*[amount_results];
 
     for (size_t i = 0; i < amount_results; i++) {
         OdeEntry* entry = (OdeEntry*) sizer_main->GetItem(i + 1)->GetWindow();
-        double* entry_results = entry->get_ode_results(result_length, settings_common, settings_approx);
+
+        size_t result_length = entry->get_result_length();
+        double* entry_results = entry->get_result_x();
+
         double* copy_results = new double[result_length];
         memcpy(copy_results, entry_results, sizeof(double) * result_length);
-        results[i] = copy_results;
+        results_x[i] = copy_results;
     }
     
-    return results;
+    return results_x;
 }
 
-uint32_t* ControlsChoose::get_all_colours() {
-    size_t amount_results = sizer_main->GetItemCount() - 1;
+double** ControlsChoose::get_all_results_y(size_t amount_results) {
+    double** results_x = new double*[amount_results];
 
-    if (amount_results < 1) return nullptr;
+    for (size_t i = 0; i < amount_results; i++) {
+        OdeEntry* entry = (OdeEntry*) sizer_main->GetItem(i + 1)->GetWindow();
 
+        size_t result_length = entry->get_result_length();
+        double* entry_results = entry->get_result_y();
+
+        double* copy_results = new double[result_length];
+        memcpy(copy_results, entry_results, sizeof(double) * result_length);
+        results_x[i] = copy_results;
+    }
+    
+    return results_x;
+}
+
+uint32_t* ControlsChoose::get_all_colours(size_t amount_results) {
     uint32_t* results = new uint32_t[amount_results];
 
     for (size_t i = 0; i < amount_results; i++) {
@@ -138,15 +148,15 @@ uint32_t* ControlsChoose::get_all_colours() {
     return results;
 }
 
-void ControlsChoose::request_ode_settings(Settings_Common* settings_common, Settings_Approx* settings_approx) {
-    SettingsOdeRequest request = SettingsOdeRequest(SETTINGS_ODE_REQUEST, GetId(), settings_common, settings_approx);
-    request.ResumePropagation(__INT_MAX__);
-    request.SetEventObject(this);
-    ProcessEvent(request);
+size_t* ControlsChoose::get_all_lengths(size_t amount_results) {
+    size_t* results = new size_t[amount_results];
 
-    if (settings_common == nullptr || settings_approx == nullptr) {
-        std::cout << "WARNING: Requested settings are null" << std::endl;
+    for (size_t i = 0; i < amount_results; i++) {
+        OdeEntry* entry = (OdeEntry*) sizer_main->GetItem(i + 1)->GetWindow();
+        results[i] = entry->get_result_length();
     }
+
+    return results;
 }
 
 OdeEntry* ControlsChoose::get_entry_from_event(wxCommandEvent& evt) {
@@ -173,6 +183,13 @@ void ControlsChoose::update_entry_buttons() {
 
         OdeEntry* entry = (OdeEntry*) sizer_main->GetItem(i)->GetWindow();
         entry->enable_buttons(button_up, button_down);
+    }
+}
+
+void ControlsChoose::entries_calculate() {
+    for (size_t i = 1; i < sizer_main->GetItemCount(); i++) {
+        OdeEntry* entry = (OdeEntry*) sizer_main->GetItem(i)->GetWindow();
+        entry->calculate();
     }
 }
 

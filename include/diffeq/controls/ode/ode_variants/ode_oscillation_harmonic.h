@@ -1,32 +1,21 @@
 #ifndef DIFFEQ_ODE_OSCILLATION_HARMONIC
 #define DIFFEQ_ODE_OSCILLATION_HARMONIC
 
-#include "ode.h"
+#include <wx/wx.h>
+#include "ode_function.h"
 
-struct OscillationHarmonicVariables {
-    double omega;
-    double s_0;
-    double ds_0;
-};
-
-class ODE_Oscillation_Harmonic : virtual public ODE {
+class Ode_Oscillation_Harmonic : public OdeFunction {
 public:
-    ODE_Oscillation_Harmonic();
-    ODE_Oscillation_Harmonic(Settings_Common settings_common, Settings_Approx settings_approx);
-    ~ODE_Oscillation_Harmonic();
+    Ode_Oscillation_Harmonic(wxWindow* parent);
+    ~Ode_Oscillation_Harmonic();
 
-    std::string get_calculate_method_label(size_t index);
-    const size_t get_methods_amount();
-
-    void calculate();
+    wxStaticText* label_omega;
+    wxTextCtrl* input_omega;
 
 protected:
-    virtual OscillationHarmonicVariables read_variables();
+    double evaluate_function(double fx);
 
-private:
-    void calculate_solved(OscillationHarmonicVariables variables);
-    void calculate_euler(OscillationHarmonicVariables variables);
-    void calculate_midpoint(OscillationHarmonicVariables variable);
+    double get_omega();
 };
 
 #endif

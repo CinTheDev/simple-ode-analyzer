@@ -1,15 +1,25 @@
 #ifndef ODE_OSCILLATION_HARMONIC_MECHANICAL
 #define ODE_OSCILLATION_HARMONIC_MECHANICAL
 
-#include "ode_oscillation_harmonic.h"
+#include <wx/wx.h>
+#include "ode_function.h"
 
-class ODE_Oscillation_Harmonic_Mechanical : public ODE_Oscillation_Harmonic {
+class Ode_Oscillation_Harmonic_Mechanical : public OdeFunction {
 public:
-    ODE_Oscillation_Harmonic_Mechanical();
-    ~ODE_Oscillation_Harmonic_Mechanical();
+    Ode_Oscillation_Harmonic_Mechanical(wxWindow* parent);
+    ~Ode_Oscillation_Harmonic_Mechanical();
+
+    wxStaticText* label_D;
+    wxStaticText* label_m;
+
+    wxTextCtrl* input_D;
+    wxTextCtrl* input_m;
 
 protected:
-    OscillationHarmonicVariables read_variables();
+    double evaluate_function(double fx);
+
+    double get_D();
+    double get_m();
 };
 
 #endif

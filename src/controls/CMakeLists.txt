@@ -21,7 +21,6 @@ target_include_directories(controls_panel PUBLIC
 target_link_libraries(controls_panel PUBLIC
     ${wxWidgets_LIBRARIES}
     controls_view
-    controls_ode
     controls_choose
     custom_events
 )
