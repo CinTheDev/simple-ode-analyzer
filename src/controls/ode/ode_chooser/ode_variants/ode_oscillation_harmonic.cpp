@@ -5,6 +5,10 @@ Ode_Oscillation_Harmonic::Ode_Oscillation_Harmonic(wxWindow* parent) : OdeFuncti
     input_omega = new wxTextCtrl(this, wxID_ANY, "10.0");
 
     add_option(label_omega, input_omega);
+
+    // Edit options
+    label_initial_s->SetLabel("s_0 [m]");
+    label_initial_v->SetLabel("v_0 [m * s^-1]");
 }
 
 Ode_Oscillation_Harmonic::~Ode_Oscillation_Harmonic() { }
