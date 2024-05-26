@@ -10,12 +10,10 @@ target_include_directories(ode_entry PUBLIC
 target_link_libraries(ode_entry PUBLIC
     ${wxWidgets_LIBRARIES}
     controls
-    ode
 )
 
 target_link_libraries(ode_entry PRIVATE
     custom_events
-    ode_variants
 )
 
 # CHOOSER FOR ENTRIES
