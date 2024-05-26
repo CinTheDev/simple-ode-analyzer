@@ -14,11 +14,11 @@ END_EVENT_TABLE()
 Plotter::Plotter(wxWindow* parent) : wxPanel(parent, wxID_ANY) {
     settings = Settings_Plotter();
 
-    // Dummy array which gets deleted once real values come via Event
-    function_amount = 0;
-    function_lengths = new size_t[1];
-    functions_x = new double*[1];
-    functions_y = new double*[1];
+    ode_data.amount_results = 0;
+    ode_data.results_length = new size_t[1];
+    ode_data.colours = new uint32_t[1];
+    ode_data.results_x = new double*[1];
+    ode_data.results_y = new double*[1];
 }
 
 Plotter::~Plotter() {
@@ -38,11 +38,7 @@ void Plotter::on_settings_common_update(SettingsCommonEvent& evt) {
 void Plotter::on_function_update(OdePointerEvent& evt) {
     clear_function_data();
 
-    functions_x = evt.get_result_x_pointer();
-    functions_y = evt.get_result_y_pointer();
-    function_colours = evt.get_colours();
-    function_amount = evt.get_amount_results();
-    function_lengths = evt.get_result_length();
+    ode_data = evt.get_ode_data();
     paintNow();
 }
 
@@ -226,24 +222,24 @@ void Plotter::render_function(wxDC& dc) {
     wxPoint left = wxPoint(axis_offset, height / 2);
     wxPoint right = wxPoint(width, height / 2);
 
-    for (size_t f = 0; f < function_amount; f++) {
-        if (function_lengths[f] < 2) continue;
+    for (size_t f = 0; f < ode_data.amount_results; f++) {
+        if (ode_data.result_lengths[f] < 2) continue;
 
-        wxPoint function_points[function_lengths[f]];
+        wxPoint function_points[ode_data.result_lengths[f]];
 
-        for (size_t i = 0; i < function_lengths[f]; i++) {
+        for (size_t i = 0; i < ode_data.result_lengths[f]; i++) {
             //double x = ((double)i * settings_common.step_x - settings.view_start_x) / settings.view_x;
-            double x = functions_x[f][i];
-            double y = functions_y[f][i];
+            double x = ode_data.results_x[f][i];
+            double y = ode_data.results_y[f][i];
 
             double x_pixel = x * (width - axis_offset) + axis_offset / settings.view_x;
             double y_pixel = (0.5 - y * 0.5) * height / settings.view.y;
             function_points[i] = wxPoint(x_pixel, (0.5 - y * 0.5) * height);
         }
 
-        wxColour function_colour = wxColour(function_colours[f]);
+        wxColour function_colour = wxColour(ode_data.colours[f]);
         dc.SetPen(function_colour);
-        dc.DrawLines(function_lengths[f], function_points);
+        dc.DrawLines(ode_data.result_lengths[f], function_points);
     }
 }
 
@@ -324,13 +320,13 @@ wxString Plotter::double_truncate(double val) {
 }
 
 void Plotter::clear_function_data() {
-    for (size_t i = 0; i < function_amount; i++) {
-        delete[] functions_x[i];
-        delete[] functions_y[i];
+    for (size_t i = 0; i < ode_data.result_amount; i++) {
+        delete[] ode_data.results_x[i];
+        delete[] ode_data.results_y[i];
     }
 
-    delete[] functions_x;
-    delete[] functions_y;
-    delete[] function_lengths;
-    delete[] function_colours;
+    delete[] ode_data.results_x;
+    delete[] ode_data.results_y;
+    delete[] ode_data.result_lengths;
+    delete[] ode_data.colours;
 }
