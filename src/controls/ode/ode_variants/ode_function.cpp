@@ -11,7 +11,7 @@ enum {
 };
 
 OdeFunction::OdeFunction(wxWindow* parent, wxString label) : OdeEntry(parent, label) {
-    label_length = new wxStaticText(this, wxID_ANY, "Amount calculated values");
+    label_length = new wxStaticText(this, wxID_ANY, "Calculated values");
     label_step_x = new wxStaticText(this, wxID_ANY, "Step along x");
     label_initial_s = new wxStaticText(this, wxID_ANY, "Initial s");
     label_initial_v = new wxStaticText(this, wxID_ANY, "Initial v");
