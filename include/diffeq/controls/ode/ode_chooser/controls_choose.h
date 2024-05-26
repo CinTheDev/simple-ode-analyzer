@@ -28,8 +28,8 @@ public:
     void SendResults();
 
 private:
-    //double** get_all_results(size_t& amount_results, size_t& result_length, Settings_Common settings_common, Settings_Approx settings_approx);
-    //uint32_t* get_all_colours();
+    double** get_all_results(size_t& amount_results, size_t& result_length, Settings_Common settings_common, Settings_Approx settings_approx);
+    uint32_t* get_all_colours();
 
     void request_ode_settings(Settings_Common* settings_common, Settings_Approx* settings_approx);
 
