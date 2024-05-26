@@ -112,19 +112,38 @@ void ControlsChoose::SendResults() {
     ProcessEvent(evt_settings_common);
 }
 
-double** ControlsChoose::get_all_results(size_t amount_results, Settings_Common settings_common, Settings_Approx settings_approx) {
-    double** results = new double*[amount_results];
+double** ControlsChoose::get_all_results_x(size_t amount_results) {
+    double** results_x = new double*[amount_results];
 
     for (size_t i = 0; i < amount_results; i++) {
         OdeEntry* entry = (OdeEntry*) sizer_main->GetItem(i + 1)->GetWindow();
+
         size_t result_length;
-        double* entry_results = entry->get_result(result_length);
+        double* entry_results = entry->get_result_x(result_length);
+
         double* copy_results = new double[result_length];
         memcpy(copy_results, entry_results, sizeof(double) * result_length);
-        results[i] = copy_results;
+        results_x[i] = copy_results;
     }
     
-    return results;
+    return results_x;
+}
+
+double** ControlsChoose::get_all_results_y(size_t amount_results) {
+    double** results_x = new double*[amount_results];
+
+    for (size_t i = 0; i < amount_results; i++) {
+        OdeEntry* entry = (OdeEntry*) sizer_main->GetItem(i + 1)->GetWindow();
+
+        size_t result_length;
+        double* entry_results = entry->get_result_y(result_length);
+
+        double* copy_results = new double[result_length];
+        memcpy(copy_results, entry_results, sizeof(double) * result_length);
+        results_x[i] = copy_results;
+    }
+    
+    return results_x;
 }
 
 uint32_t* ControlsChoose::get_all_colours(size_t amount_results) {
