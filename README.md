@@ -84,3 +84,11 @@ which makes the required scrolling way less annoying.
 
 Implement this only after integrating approximation settings into ODE settings though, otherwise it's not
 going to be an efficient process.
+
+## TODOs
+
+- Make Plotter parameterized
+- Reimplement all ODE types
+- Add way to choose ODE type at creation
+- Reshape layout
+- Remove remnants (unused events, structs, etc...)
