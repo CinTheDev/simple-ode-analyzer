@@ -4,6 +4,10 @@ const wxString numerical_method_labels[] = {
     "Euler",
 };
 
+enum {
+    EULER,
+};
+
 OdeFunction::OdeFunction(wxWindow* parent, wxString label) : OdeEntry(parent, label) {
     label_length = new wxStaticText(this, wxID_ANY, "Amount calculated values");
     label_step_x = new wxStaticText(this, wxID_ANY, "Step along x");
@@ -33,9 +37,18 @@ double OdeFunction::get_step_x() {
 double OdeFunction::evaluate_function(double fx) { return 0.0; }
 
 void OdeFunction::calculate() {
+    size_t index = dropdown_numerical_method->GetSelection();
+    switch (index) {
+    case EULER:
+        calculate_euler();
+        break;
 
+    default:
+        std::cout << "WARNING: Unhandled selection " << index << " in OdeFunction::calculate()" << std::endl;
+        break;
+    }
 }
 
 void OdeFunction::calculate_euler() {
-
+    
 }
