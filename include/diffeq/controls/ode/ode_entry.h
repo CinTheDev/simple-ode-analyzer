@@ -11,7 +11,9 @@ public:
     OdeEntry(wxWindow* parent, wxString name);
     ~OdeEntry();
 
-    wxBoxSizer* sizer_options;
+    wxBoxSizer* sizer_options_main;
+    wxBoxSizer* sizer_options_ctrl;
+    wxBoxSizer* sizer_options_move;
 
     wxColourPickerCtrl* colour_picker;
     wxButton* button_up;

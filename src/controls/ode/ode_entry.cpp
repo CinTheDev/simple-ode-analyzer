@@ -23,14 +23,20 @@ void OdeEntry::init_elements() {
 }
 
 void OdeEntry::init_sizers() {
-    sizer_options = new wxBoxSizer(wxHORIZONTAL);
+    sizer_options_main = new wxBoxSizer(wxVERTICAL);
+    sizer_options_ctrl = new wxBoxSizer(wxHORIZONTAL);
+    sizer_options_move = new wxBoxSizer(wxHORIZONTAL);
 
-    sizer_options->Add(colour_picker, 1);
-    sizer_options->Add(button_up, 0);
-    sizer_options->Add(button_down, 0);
-    sizer_options->Add(button_remove, 0);
+    sizer_options_ctrl->Add(colour_picker, 1);
+    sizer_options_ctrl->Add(button_remove, 0);
 
-    sizer_main->Prepend(sizer_options, 0, wxEXPAND | wxALL, 10);
+    sizer_options_move->Add(button_up, 1);
+    sizer_options_move->Add(button_down, 1);
+
+    sizer_options_main->Add(sizer_options_ctrl, 0, wxEXPAND);
+    sizer_options_main->Add(sizer_options_move, 0, wxEXPAND);
+
+    sizer_main->Prepend(sizer_options_main, 0, wxEXPAND | wxALL, 10);
     sizer_main->GetItem(1)->SetFlag(wxEXPAND | wxALL & ~wxTOP); // Flags of sizer_grid
 
     SetSizer(sizer_main);
