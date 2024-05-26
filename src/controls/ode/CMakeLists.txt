@@ -36,3 +36,15 @@ target_link_libraries(controls_choose PUBLIC
 target_link_libraries(controls_choose PRIVATE
     ode_variants # Temporary, shoudln't be required later on
 )
+
+# ENTRY ADD DIALOGUE
+
+add_library(entry_dialog entry_dialog.cpp)
+
+target_include_directories(entry_dialog PUBLIC
+    ${CMAKE_SOURCE_DIR}/include/diffeq/controls/ode
+)
+
+target_link_libraries(entry_dialog PUBLIC
+    ${wxWidgets_LIBRARIES}
+)
