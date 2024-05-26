@@ -11,6 +11,9 @@ public:
 
     wxStaticText* some_label;
     wxTextCtrl* some_option;
+
+protected:
+    void calculate();
 };
 
 #endif
