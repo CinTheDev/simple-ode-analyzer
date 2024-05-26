@@ -30,7 +30,7 @@ double OdeFunction::get_step_x() {
     return get_input_double(input_step_x, label_step_x);
 }
 
-double OdeFunction::evaluate_function(double fx) { }
+double OdeFunction::evaluate_function(double fx) { return 0.0; }
 
 void OdeFunction::calculate() {
 
