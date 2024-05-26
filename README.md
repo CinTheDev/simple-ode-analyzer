@@ -58,29 +58,3 @@ Please make sure to have wxWidgets installed, so that inside CMakeLists.txt `fin
 can find wxWidgets.
 
 Right now, wxWidgets version 3.2.2 is being used.
-
-## Potential new / changed features
-
-### Approximation settings in ODE settings
-
-Put approximation settings in ODE options, effectively making every ODE have its own independent settings.
-
-In combination with this, it's also possible to restructure the settings data flow, which is handled via
-Events right now.
-
-### Use two arrays for result
-
-Instead of representing the result in a single `double` array, where x values have to be calculated
-externally using some `step_x` variable, have the x values be stored alongside the y values using
-a second array. This way, we can have custom step_x values for every ODE, step_x no longer has to be
-handled individually for the plotter, and gain the ability to plot parameterized functions as an
-added bonus.
-
-### Put all controls on the left edge instead of bottom
-
-It is quite annoying to have little vertical space for the ODE options, which require a lot of vertical
-space. By putting controls on the left (or right if it's better), the area expands much further vertically
-which makes the required scrolling way less annoying.
-
-Implement this only after integrating approximation settings into ODE settings though, otherwise it's not
-going to be an efficient process.
