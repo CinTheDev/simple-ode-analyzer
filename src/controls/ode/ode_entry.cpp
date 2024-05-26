@@ -33,7 +33,7 @@ void OdeEntry::init_sizers() {
     sizer_options_move->Add(button_up, 1);
     sizer_options_move->Add(button_down, 1);
 
-    sizer_options_main->Add(sizer_options_ctrl, 0, wxEXPAND);
+    sizer_options_main->Add(sizer_options_ctrl, 0, wxEXPAND | wxBOTTOM, 5);
     sizer_options_main->Add(sizer_options_move, 0, wxEXPAND);
 
     sizer_main->Prepend(sizer_options_main, 0, wxEXPAND | wxALL, 10);
