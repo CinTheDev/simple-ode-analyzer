@@ -16,6 +16,8 @@ public:
     wxTextCtrl* input_length;
     wxTextCtrl* input_step_x;
 
+    wxChoice* dropdown_numerical_method;
+
 protected:
     int get_length();
     double get_step_x();
