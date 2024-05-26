@@ -8,4 +8,5 @@ target_include_directories(ode_variants PUBLIC
 
 target_link_libraries(ode_variants PUBLIC
     ${wxWidgets_LIBRARIES}
+    ode_entry
 )
