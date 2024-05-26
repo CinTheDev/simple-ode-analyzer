@@ -19,8 +19,12 @@ public:
     void on_button_choose(wxCommandEvent& evt);
 
 private:
+    OdeEntry* ode_entry;
+
     void init_elements();
     void init_sizers();
+
+    void create_entry();
 };
 
 #endif
