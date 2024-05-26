@@ -84,7 +84,8 @@ void OdeFunction::calculate_euler() {
     double current_df = get_initial_v();
 
     for (size_t i = 0; i < result_length; i++) {
-        result[i] = current_f;
+        result_x[i] = dt * i;
+        result_y[i] = current_f;
 
         double ddf = evaluate_function(current_f);
         current_df += ddf * dt;
@@ -101,7 +102,8 @@ void OdeFunction::calculate_midpoint() {
     double current_df = get_initial_v();
 
     for (size_t i = 0; i < result_length; i++) {
-        result[i] = current_f;
+        result_x[i] = dt * i;
+        result_y[i] = current_f;
 
         double ddf_1 = evaluate_function(current_f);
 
