@@ -4,8 +4,7 @@ Ode_Oscillation_Harmonic::Ode_Oscillation_Harmonic(wxWindow* parent) : OdeEntry(
     some_label = new wxStaticText(this, wxID_ANY, "Some label");
     some_option = new wxTextCtrl(this, wxID_ANY, "Some option");
 
-    sizer_grid->Add(some_label);
-    sizer_grid->Add(some_option);
+    add_option(some_label, some_option);
 
     set_result_length(100);
 }
