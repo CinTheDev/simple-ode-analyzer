@@ -17,7 +17,8 @@ Plotter::Plotter(wxWindow* parent) : wxPanel(parent, wxID_ANY) {
     // Dummy array which gets deleted once real values come via Event
     function_amount = 0;
     function_lengths = new size_t[1];
-    functions = new double*[1];
+    functions_x = new double*[1];
+    functions_y = new double*[1];
 }
 
 Plotter::~Plotter() {
@@ -37,7 +38,8 @@ void Plotter::on_settings_common_update(SettingsCommonEvent& evt) {
 void Plotter::on_function_update(OdePointerEvent& evt) {
     clear_function_data();
 
-    functions = evt.get_result_pointer();
+    functions_x = evt.get_result_x_pointer();
+    functions_y = evt.get_result_y_pointer();
     function_colours = evt.get_colours();
     function_amount = evt.get_amount_results();
     function_lengths = evt.get_result_length();
@@ -230,10 +232,12 @@ void Plotter::render_function(wxDC& dc) {
         wxPoint function_points[function_lengths[f]];
 
         for (size_t i = 0; i < function_lengths[f]; i++) {
-            double x = ((double)i * settings_common.step_x - settings.view_start_x) / settings.view_x;
-            double x_pixel = x * (width - axis_offset) + axis_offset;
-            double y = functions[f][i] / settings.view_y;
+            //double x = ((double)i * settings_common.step_x - settings.view_start_x) / settings.view_x;
+            double x = functions_x[f][i];
+            double y = functions_y[f][i];
 
+            double x_pixel = x * (width - axis_offset) + axis_offset / settings.view_x;
+            double y_pixel = (0.5 - y * 0.5) * height / settings.view.y;
             function_points[i] = wxPoint(x_pixel, (0.5 - y * 0.5) * height);
         }
 
@@ -321,10 +325,12 @@ wxString Plotter::double_truncate(double val) {
 
 void Plotter::clear_function_data() {
     for (size_t i = 0; i < function_amount; i++) {
-        delete[] functions[i];
+        delete[] functions_x[i];
+        delete[] functions_y[i];
     }
 
-    delete[] functions;
+    delete[] functions_x;
+    delete[] functions_y;
     delete[] function_lengths;
     delete[] function_colours;
 }
