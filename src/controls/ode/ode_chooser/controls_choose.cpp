@@ -91,7 +91,7 @@ void ControlsChoose::SendResults() {
 
     // ODE Data event
     OdeData ode_data;
-    size_t ode_data.amount_results = sizer_main->GetItemCount() - 1;
+    ode_data.amount_results = sizer_main->GetItemCount() - 1;
 
     if (ode_data.amount_results < 1) return;
 
