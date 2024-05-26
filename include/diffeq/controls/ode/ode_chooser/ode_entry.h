@@ -31,6 +31,8 @@ protected:
     void set_result_length(size_t new_length);
     virtual void calculate();
 
+    void add_option(wxStaticLabel* label, wxTextCtrl* input);
+
 private:
     void init_elements();
     void init_sizers();

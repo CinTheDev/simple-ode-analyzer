@@ -34,6 +34,11 @@ void OdeEntry::init_sizers() {
     SetSizer(sizer_main);
 }
 
+void OdeEntry::add_option(wxStaticText* label, wxTextCtrl* input) {
+    sizer_grid->Add(label);
+    sizer_grid->Add(input);
+}
+
 double* OdeEntry::get_result() {
     calculate();
     return result;
