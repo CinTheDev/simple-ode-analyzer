@@ -13,7 +13,8 @@ public:
     ~ControlsPanel();
 
 public:
-    ControlsODE* controls_ode;
+    wxButton* button_calculate;
+    //ControlsODE* controls_ode;
     ControlsChoose* controls_choose;
     ControlsView* controls_view;
 
