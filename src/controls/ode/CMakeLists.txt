@@ -1,16 +1,3 @@
-# ODE STUFF
-
-add_library(ode ode.cpp)
-
-target_include_directories(ode PUBLIC
-    ${CMAKE_SOURCE_DIR}/include/diffeq/controls/ode
-    ${CMAKE_SOURCE_DIR}/include/diffeq/common
-)
-
-add_subdirectory(ode_variants)
-
-# ODE CONTROLS
-
 add_subdirectory(ode_chooser)
 
 add_library(controls_ode controls_ode.cpp)
