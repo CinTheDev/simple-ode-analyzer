@@ -15,7 +15,7 @@ Plotter::Plotter(wxWindow* parent) : wxPanel(parent, wxID_ANY) {
     settings = Settings_Plotter();
 
     ode_data.amount_results = 0;
-    ode_data.results_length = new size_t[1];
+    ode_data.result_lengths = new size_t[1];
     ode_data.colours = new uint32_t[1];
     ode_data.results_x = new double*[1];
     ode_data.results_y = new double*[1];
@@ -320,7 +320,7 @@ wxString Plotter::double_truncate(double val) {
 }
 
 void Plotter::clear_function_data() {
-    for (size_t i = 0; i < ode_data.result_amount; i++) {
+    for (size_t i = 0; i < ode_data.amount_results; i++) {
         delete[] ode_data.results_x[i];
         delete[] ode_data.results_y[i];
     }

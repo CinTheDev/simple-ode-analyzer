@@ -39,7 +39,7 @@ struct OdeData {
 public:
     double** results_x;
     double** results_y;
-    size_t* results_length;
+    size_t* result_lengths;
     uint32_t* colours;
     size_t amount_results;
 };
