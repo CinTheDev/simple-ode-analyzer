@@ -13,14 +13,22 @@ public:
     wxStaticText* label_length;
     wxStaticText* label_step_x;
 
+    wxStaticText* label_initial_s;
+    wxStaticText* label_initial_v;
+
     wxTextCtrl* input_length;
     wxTextCtrl* input_step_x;
+
+    wxTextCtrl* input_initial_s;
+    wxTextCtrl* input_initial_v;
 
     wxChoice* dropdown_numerical_method;
 
 protected:
     int get_length();
     double get_step_x();
+    double get_initial_s();
+    double get_initial_v();
 
     // This represents the form ddf(x) = f(x)
     virtual double evaluate_function(double fx);
