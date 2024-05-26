@@ -35,7 +35,7 @@ enum class OdeTypes {
     OscillationGravitational,
 };
 
-struct OdePointer {
+struct OdeData {
 public:
     double** results_x;
     double** results_y;

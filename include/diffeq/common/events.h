@@ -80,21 +80,15 @@ wxDECLARE_EVENT(SETTINGS_ODE_REQUEST, SettingsOdeRequest);
 
 class OdePointerEvent : public wxEvent {
 public:
-    OdePointerEvent(wxEventType event_type, int id, double** result_pointer, uint32_t* colours, size_t amount_results, size_t* result_length);
+    OdePointerEvent(wxEventType event_type, int id, OdeData ode_data);
     ~OdePointerEvent();
 
     virtual wxEvent* Clone() const;
 
-    double** get_result_pointer();
-    uint32_t* get_colours();
-    size_t get_amount_results();
-    size_t* get_result_length();
+    OdeData get_ode_data();
 
 private:
-    double** result_pointer;
-    uint32_t* colours;
-    size_t amount_results;
-    size_t* result_length;
+    OdeData ode_data;
 };
 
 wxDECLARE_EVENT(EVT_ODE_POINTER, OdePointerEvent);
