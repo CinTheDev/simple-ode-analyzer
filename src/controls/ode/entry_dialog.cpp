@@ -30,6 +30,9 @@ void EntryDialog::init_elements() {
     list_options = new wxListBox(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, amount_options, options, wxLB_SINGLE);
     button_choose = new wxButton(this, wxID_ANY, "Select");
 
+    // Default selection
+    list_options->SetSelection(0);
+
     button_choose->Bind(wxEVT_BUTTON, &EntryDialog::on_button_choose, this);
 }
 
