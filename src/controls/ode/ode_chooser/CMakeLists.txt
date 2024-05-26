@@ -32,3 +32,7 @@ target_link_libraries(controls_choose PUBLIC
     ode_entry
     custom_events
 )
+
+target_link_libraries(controls_choose PRIVATE
+    ode_variants # Temporary, shoudln't be required later on
+)
