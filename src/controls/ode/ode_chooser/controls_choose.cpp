@@ -89,16 +89,18 @@ void ControlsChoose::SendResults() {
 
     request_ode_settings(&settings_common, &settings_approx);
 
-    // ODE pointer
-    size_t amount_results = sizer_main->GetItemCount() - 1;
+    // ODE Data event
+    OdeData ode_data;
+    size_t ode_data.amount_results = sizer_main->GetItemCount() - 1;
 
-    if (amount_results < 1) return;
+    if (ode_data.amount_results < 1) return;
 
-    double** ode_results = get_all_results(amount_results, settings_common, settings_approx);
-    uint32_t* ode_colours = get_all_colours(amount_results);
-    size_t* ode_lengths = get_all_lengths(amount_results);
+    ode_data.results_x = get_all_results_x(ode_data.amount_results);
+    ode_data.results_y = get_all_results_x(ode_data.amount_results);
+    ode_data.results_length = get_all_lengths(ode_data.amount_results);
+    ode_data.colours = get_all_colours(ode_data.amount_results);
 
-    OdePointerEvent evt_ode_pointer(EVT_ODE_POINTER, GetId(), ode_results, ode_colours, amount_results, ode_lengths);
+    OdePointerEvent evt_ode_pointer(EVT_ODE_POINTER, GetId(), ode_data);
     evt_ode_pointer.SetEventObject(this);
     evt_ode_pointer.ResumePropagation(__INT_MAX__);
     ProcessEvent(evt_ode_pointer);
