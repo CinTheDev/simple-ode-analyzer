@@ -4,9 +4,14 @@
 OdeEntry::OdeEntry(wxWindow* parent, wxString name) : Controls(parent, name) {
     init_elements();
     init_sizers();
+
+    result_length = 0;
+    result = new double[1];
 }
 
-OdeEntry::~OdeEntry() { }
+OdeEntry::~OdeEntry() {
+    delete[] result;
+}
 
 void OdeEntry::init_elements() {
     colour_picker = new wxColourPickerCtrl(this, wxID_ANY, *wxRED);
@@ -27,6 +32,17 @@ void OdeEntry::init_sizers() {
     sizer_main->GetItem(1)->SetFlag(wxEXPAND | wxALL & ~wxTOP); // Flags of sizer_grid
 
     SetSizer(sizer_main);
+}
+
+size_t OdeEntry::get_result_length() {
+    return result_length;
+}
+
+void set_result_length(size_t new_length) {
+    delete[] result;
+    result = new double[new_length];
+
+    result_length = new_length;
 }
 
 uint32_t OdeEntry::get_colour() {

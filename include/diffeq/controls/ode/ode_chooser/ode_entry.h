@@ -18,9 +18,16 @@ public:
     wxButton* button_down;
     wxButton* button_remove;
 
+    size_t get_result_length();
     uint32_t get_colour();
 
     void enable_buttons(bool button_up, bool button_down);
+
+protected:
+    double* result;
+    size_t result_length;
+
+    void set_result_length(size_t new_length);
 
 private:
     void init_elements();
