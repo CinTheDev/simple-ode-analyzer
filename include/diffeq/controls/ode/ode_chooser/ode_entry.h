@@ -19,13 +19,15 @@ public:
     wxButton* button_remove;
 
     size_t get_result_length();
-    double* get_result(size_t& result_length);
+    double* get_result_x();
+    double* get_result_y();
     uint32_t get_colour();
 
     void enable_buttons(bool button_up, bool button_down);
 
 protected:
-    double* result;
+    double* result_x;
+    double* result_y;
     size_t result_length;
 
     void set_result_length(size_t new_length);

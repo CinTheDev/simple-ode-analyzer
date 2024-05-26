@@ -118,8 +118,8 @@ double** ControlsChoose::get_all_results_x(size_t amount_results) {
     for (size_t i = 0; i < amount_results; i++) {
         OdeEntry* entry = (OdeEntry*) sizer_main->GetItem(i + 1)->GetWindow();
 
-        size_t result_length;
-        double* entry_results = entry->get_result_x(result_length);
+        size_t result_length = entry->get_result_length();
+        double* entry_results = entry->get_result_x();
 
         double* copy_results = new double[result_length];
         memcpy(copy_results, entry_results, sizeof(double) * result_length);
@@ -135,8 +135,8 @@ double** ControlsChoose::get_all_results_y(size_t amount_results) {
     for (size_t i = 0; i < amount_results; i++) {
         OdeEntry* entry = (OdeEntry*) sizer_main->GetItem(i + 1)->GetWindow();
 
-        size_t result_length;
-        double* entry_results = entry->get_result_y(result_length);
+        size_t result_length = entry->get_result_length();
+        double* entry_results = entry->get_result_y();
 
         double* copy_results = new double[result_length];
         memcpy(copy_results, entry_results, sizeof(double) * result_length);

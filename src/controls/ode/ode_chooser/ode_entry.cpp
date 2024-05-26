@@ -6,11 +6,13 @@ OdeEntry::OdeEntry(wxWindow* parent, wxString name) : Controls(parent, name) {
     init_sizers();
 
     result_length = 0;
-    result = new double[1];
+    result_x = new double[1];
+    result_y = new double[1];
 }
 
 OdeEntry::~OdeEntry() {
-    delete[] result;
+    delete[] result_x;
+    delete[] result_y;
 }
 
 void OdeEntry::init_elements() {
@@ -43,15 +45,19 @@ size_t OdeEntry::get_result_length() {
     return result_length;
 }
 
-double* OdeEntry::get_result(size_t& result_length) {
-    calculate();
-    result_length = this->result_length;
-    return result;
+double* OdeEntry::get_result_x() {
+    return result_x;
+}
+
+double* OdeEntry::get_result_y() {
+    return result_y;
 }
 
 void OdeEntry::set_result_length(size_t new_length) {
-    delete[] result;
-    result = new double[new_length];
+    delete[] result_x;
+    delete[] result_y;
+    result_x = new double[new_length];
+    result_y = new double[new_length];
 
     result_length = new_length;
 }
