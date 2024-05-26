@@ -3,7 +3,7 @@
 add_library(ode_entry ode_entry.cpp)
 
 target_include_directories(ode_entry PUBLIC
-    ${CMAKE_SOURCE_DIR}/include/diffeq/controls/ode/ode_chooser
+    ${CMAKE_SOURCE_DIR}/include/diffeq/controls/ode
     ${CMAKE_SOURCE_DIR}/include/diffeq/common
 )
 
@@ -23,7 +23,7 @@ add_subdirectory(ode_variants)
 add_library(controls_choose controls_choose.cpp)
 
 target_include_directories(controls_choose PUBLIC
-    ${CMAKE_SOURCE_DIR}/include/diffeq/controls/ode/ode_chooser
+    ${CMAKE_SOURCE_DIR}/include/diffeq/controls/ode
 )
 
 target_link_libraries(controls_choose PUBLIC

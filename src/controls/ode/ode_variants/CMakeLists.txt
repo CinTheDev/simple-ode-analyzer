@@ -8,7 +8,7 @@ add_library(ode_variants
 )
 
 target_include_directories(ode_variants PUBLIC
-    ${CMAKE_SOURCE_DIR}/include/diffeq/controls/ode/ode_chooser/ode_variants
+    ${CMAKE_SOURCE_DIR}/include/diffeq/controls/ode/ode_variants
 )
 
 target_link_libraries(ode_variants PUBLIC
