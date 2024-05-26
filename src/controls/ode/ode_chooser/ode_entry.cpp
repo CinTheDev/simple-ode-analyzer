@@ -39,13 +39,10 @@ void OdeEntry::add_option(wxStaticText* label, wxTextCtrl* input) {
     sizer_grid->Add(input);
 }
 
-double* OdeEntry::get_result() {
+double* OdeEntry::get_result(size_t& result_length) {
     calculate();
+    result_length = this->result_length;
     return result;
-}
-
-size_t OdeEntry::get_result_length() {
-    return result_length;
 }
 
 void OdeEntry::set_result_length(size_t new_length) {

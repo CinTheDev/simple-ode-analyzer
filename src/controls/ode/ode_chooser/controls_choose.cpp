@@ -115,8 +115,8 @@ double** ControlsChoose::get_all_results(size_t& amount_results, size_t& result_
 
     for (size_t i = 0; i < amount_results; i++) {
         OdeEntry* entry = (OdeEntry*) sizer_main->GetItem(i + 1)->GetWindow();
-        result_length = entry->get_result_length();
-        double* entry_results = entry->get_result();
+        //result_length = entry->get_result_length();
+        double* entry_results = entry->get_result(result_length);
         double* copy_results = new double[result_length];
         memcpy(copy_results, entry_results, sizeof(double) * result_length);
         results[i] = copy_results;
