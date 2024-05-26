@@ -16,6 +16,8 @@ target_link_libraries(ode_entry PRIVATE
     custom_events
 )
 
+add_subdirectory(ode_variants)
+
 # CHOOSER FOR ENTRIES
 
 add_library(controls_choose controls_choose.cpp)
