@@ -3,4 +3,14 @@
 
 #include <wx/wx.h>
 
+class EntryDialog : public wxDialog {
+public:
+    EntryDialog(wxWindow* parent);
+    ~EntryDialog();
+
+    wxBoxSizer* sizer_main;
+
+    wxButton* test_button;
+};
+
 #endif
