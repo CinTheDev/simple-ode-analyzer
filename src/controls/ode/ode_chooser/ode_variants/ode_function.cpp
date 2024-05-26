@@ -74,8 +74,8 @@ void OdeFunction::calculate() {
 void OdeFunction::calculate_euler() {
     double dt = get_step_x();
 
-    double current_f = 1.0;
-    double current_df = 0.0;
+    double current_f = get_initial_s();
+    double current_df = get_initial_v();
 
     for (size_t i = 0; i < result_length; i++) {
         result[i] = current_f;
