@@ -87,7 +87,6 @@ going to be an efficient process.
 
 ## TODOs
 
-- Reimplement all ODE types
 - Add way to choose ODE type at creation
 - Reshape layout
 - Remove remnants (unused events, structs, etc...)
