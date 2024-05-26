@@ -35,4 +35,13 @@ enum class OdeTypes {
     OscillationGravitational,
 };
 
+struct OdePointer {
+public:
+    double** results_x;
+    double** results_y;
+    size_t* results_length;
+    uint32_t* colours;
+    size_t amount_results;
+};
+
 #endif
