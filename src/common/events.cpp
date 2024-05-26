@@ -89,7 +89,7 @@ Settings_Approx* SettingsOdeRequest::get_settings_approx() {
 
 wxDEFINE_EVENT(EVT_ODE_POINTER, OdePointerEvent);
 
-OdePointerEvent::OdePointerEvent(wxEventType event_type, int id, double** result_pointer, uint32_t* colours, size_t amount_results, size_t result_length)
+OdePointerEvent::OdePointerEvent(wxEventType event_type, int id, double** result_pointer, uint32_t* colours, size_t amount_results, size_t* result_length)
  : wxEvent(id, event_type) {
     this->result_pointer = result_pointer;
     this->colours = colours;
@@ -115,6 +115,6 @@ size_t OdePointerEvent::get_amount_results() {
     return amount_results;
 }
 
-size_t OdePointerEvent::get_result_length() {
+size_t* OdePointerEvent::get_result_length() {
     return result_length;
 }

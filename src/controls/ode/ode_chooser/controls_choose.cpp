@@ -90,11 +90,15 @@ void ControlsChoose::SendResults() {
     request_ode_settings(&settings_common, &settings_approx);
 
     // ODE pointer
-    size_t amount_results, result_length;
-    double** ode_results = get_all_results(amount_results, result_length, settings_common, settings_approx);
-    uint32_t* ode_colours = get_all_colours();
+    size_t amount_results = sizer_main->GetItemCount() - 1;
 
-    OdePointerEvent evt_ode_pointer(EVT_ODE_POINTER, GetId(), ode_results, ode_colours, amount_results, result_length);
+    if (amount_results < 1) return;
+
+    double** ode_results = get_all_results(amount_results, settings_common, settings_approx);
+    uint32_t* ode_colours = get_all_colours(amount_results);
+    size_t* ode_lengths = get_all_lengths(amount_results);
+
+    OdePointerEvent evt_ode_pointer(EVT_ODE_POINTER, GetId(), ode_results, ode_colours, amount_results, ode_lengths);
     evt_ode_pointer.SetEventObject(this);
     evt_ode_pointer.ResumePropagation(__INT_MAX__);
     ProcessEvent(evt_ode_pointer);
@@ -106,16 +110,12 @@ void ControlsChoose::SendResults() {
     ProcessEvent(evt_settings_common);
 }
 
-double** ControlsChoose::get_all_results(size_t& amount_results, size_t& result_length, Settings_Common settings_common, Settings_Approx settings_approx) {
-    amount_results = sizer_main->GetItemCount() - 1;
-
-    if (amount_results < 1) return nullptr;
-
+double** ControlsChoose::get_all_results(size_t amount_results, Settings_Common settings_common, Settings_Approx settings_approx) {
     double** results = new double*[amount_results];
 
     for (size_t i = 0; i < amount_results; i++) {
         OdeEntry* entry = (OdeEntry*) sizer_main->GetItem(i + 1)->GetWindow();
-        //result_length = entry->get_result_length();
+        size_t result_length;
         double* entry_results = entry->get_result(result_length);
         double* copy_results = new double[result_length];
         memcpy(copy_results, entry_results, sizeof(double) * result_length);
@@ -125,16 +125,23 @@ double** ControlsChoose::get_all_results(size_t& amount_results, size_t& result_
     return results;
 }
 
-uint32_t* ControlsChoose::get_all_colours() {
-    size_t amount_results = sizer_main->GetItemCount() - 1;
-
-    if (amount_results < 1) return nullptr;
-
+uint32_t* ControlsChoose::get_all_colours(size_t amount_results) {
     uint32_t* results = new uint32_t[amount_results];
 
     for (size_t i = 0; i < amount_results; i++) {
         OdeEntry* entry = (OdeEntry*) sizer_main->GetItem(i + 1)->GetWindow();
         results[i] = entry->get_colour();
+    }
+
+    return results;
+}
+
+size_t* ControlsChoose::get_all_lengths(size_t amount_results) {
+    size_t* results = new size_t[amount_results];
+
+    for (size_t i = 0; i < amount_results; i++) {
+        OdeEntry* entry = (OdeEntry*) sizer_main->GetItem(i + 1)->GetWindow();
+        results[i] = entry->get_result_length();
     }
 
     return results;

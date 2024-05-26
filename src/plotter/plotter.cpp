@@ -16,7 +16,7 @@ Plotter::Plotter(wxWindow* parent) : wxPanel(parent, wxID_ANY) {
 
     // Dummy array which gets deleted once real values come via Event
     function_amount = 0;
-    function_length = 0;
+    function_lengths = new size_t[1];
     functions = new double*[1];
 }
 
@@ -40,7 +40,7 @@ void Plotter::on_function_update(OdePointerEvent& evt) {
     functions = evt.get_result_pointer();
     function_colours = evt.get_colours();
     function_amount = evt.get_amount_results();
-    function_length = evt.get_result_length();
+    function_lengths = evt.get_result_length();
     paintNow();
 }
 
@@ -225,9 +225,11 @@ void Plotter::render_function(wxDC& dc) {
     wxPoint right = wxPoint(width, height / 2);
 
     for (size_t f = 0; f < function_amount; f++) {
-        wxPoint function_points[function_length];
+        if (function_lengths[f] < 2) continue;
 
-        for (size_t i = 0; i < function_length; i++) {
+        wxPoint function_points[function_lengths[f]];
+
+        for (size_t i = 0; i < function_lengths[f]; i++) {
             double x = ((double)i * settings_common.step_x - settings.view_start_x) / settings.view_x;
             double x_pixel = x * (width - axis_offset) + axis_offset;
             double y = functions[f][i] / settings.view_y;
@@ -237,7 +239,7 @@ void Plotter::render_function(wxDC& dc) {
 
         wxColour function_colour = wxColour(function_colours[f]);
         dc.SetPen(function_colour);
-        dc.DrawLines(function_length, function_points);
+        dc.DrawLines(function_lengths[f], function_points);
     }
 }
 
@@ -323,4 +325,6 @@ void Plotter::clear_function_data() {
     }
 
     delete[] functions;
+    delete[] function_lengths;
+    delete[] function_colours;
 }
