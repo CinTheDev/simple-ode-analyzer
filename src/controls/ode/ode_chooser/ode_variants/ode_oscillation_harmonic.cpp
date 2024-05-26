@@ -3,6 +3,9 @@
 Ode_Oscillation_Harmonic::Ode_Oscillation_Harmonic(wxWindow* parent) : OdeEntry(parent, "Harmonic Oscillation") {
     some_label = new wxStaticText(this, wxID_ANY, "Some label");
     some_option = new wxTextCtrl(this, wxID_ANY, "Some option");
+
+    sizer_grid->Add(some_label);
+    sizer_grid->Add(some_option);
 }
 
 Ode_Oscillation_Harmonic::~Ode_Oscillation_Harmonic() { }
