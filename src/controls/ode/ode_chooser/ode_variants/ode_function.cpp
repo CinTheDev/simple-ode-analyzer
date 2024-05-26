@@ -28,7 +28,7 @@ OdeFunction::~OdeFunction() { }
 
 void OdeFunction::update_length() {
     int length_input = get_length();
-    if (length_input < 1) return;
+    if (length_input < 2) return;
     set_result_length(length_input);
 }
 
