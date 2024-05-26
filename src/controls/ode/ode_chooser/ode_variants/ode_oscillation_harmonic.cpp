@@ -6,6 +6,8 @@ Ode_Oscillation_Harmonic::Ode_Oscillation_Harmonic(wxWindow* parent) : OdeEntry(
 
     sizer_grid->Add(some_label);
     sizer_grid->Add(some_option);
+
+    set_result_length(100);
 }
 
 Ode_Oscillation_Harmonic::~Ode_Oscillation_Harmonic() { }
