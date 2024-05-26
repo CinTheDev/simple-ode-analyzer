@@ -1,6 +1,10 @@
 add_library(ode_variants
     ode_function.cpp
     ode_oscillation_harmonic.cpp
+    ode_oscillation_harmonic_mechanical.cpp
+    ode_oscillation_harmonic_electromagnetic.cpp
+    ode_oscillation_gravitational.cpp
+    ode_oscillation_pendulum.cpp
 )
 
 target_include_directories(ode_variants PUBLIC
