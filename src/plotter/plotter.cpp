@@ -228,13 +228,13 @@ void Plotter::render_function(wxDC& dc) {
         wxPoint function_points[ode_data.result_lengths[f]];
 
         for (size_t i = 0; i < ode_data.result_lengths[f]; i++) {
-            //double x = ((double)i * settings_common.step_x - settings.view_start_x) / settings.view_x;
             double x = ode_data.results_x[f][i];
             double y = ode_data.results_y[f][i];
 
-            double x_pixel = x * (width - axis_offset) + axis_offset / settings.view_x;
-            double y_pixel = (0.5 - y * 0.5) * height / settings.view_y;
-            function_points[i] = wxPoint(x_pixel, (0.5 - y * 0.5) * height);
+            double x_pixel = (x / settings.view_x) * (width - axis_offset) + axis_offset;
+            double y_pixel = (0.5 - y / settings.view_y * 0.5) * height;
+
+            function_points[i] = wxPoint(x_pixel, y_pixel);
         }
 
         wxColour function_colour = wxColour(ode_data.colours[f]);

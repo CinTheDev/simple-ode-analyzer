@@ -97,7 +97,7 @@ void ControlsChoose::SendResults() {
     if (ode_data.amount_results < 1) return;
 
     ode_data.results_x = get_all_results_x(ode_data.amount_results);
-    ode_data.results_y = get_all_results_x(ode_data.amount_results);
+    ode_data.results_y = get_all_results_y(ode_data.amount_results);
     ode_data.result_lengths = get_all_lengths(ode_data.amount_results);
     ode_data.colours = get_all_colours(ode_data.amount_results);
 
