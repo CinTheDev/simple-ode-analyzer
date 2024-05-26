@@ -20,11 +20,11 @@ void ControlsPanel::init_elements() {
 }
 
 void ControlsPanel::init_sizers() {
-   sizer_main = new wxBoxSizer(wxHORIZONTAL);
+   sizer_main = new wxBoxSizer(wxVERTICAL);
 
-   sizer_main->Add(controls_choose, 2, wxEXPAND | wxALL, 5);
-   sizer_main->Add(controls_ode, 2, wxEXPAND | wxALL, 5);
-   sizer_main->Add(controls_view, 1, wxEXPAND | wxALL, 5);
+   sizer_main->Add(controls_view, 0, wxEXPAND | wxALL, 5);
+   sizer_main->Add(controls_choose, 1, wxEXPAND | wxALL, 5);
+   //sizer_main->Add(controls_ode, 2, wxEXPAND | wxALL, 5);
 
    SetSizer(sizer_main);
 }

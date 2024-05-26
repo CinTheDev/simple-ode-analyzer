@@ -18,10 +18,10 @@ void Diffeq_Main::instance_layout() {
     Bind(EVT_ODE_POINTER, &Plotter::on_function_update, plotter);
     Bind(PLOTTER_GRAPHICS_UPDATE, &ControlsPanel::on_plotter_update, controls);
 
-    sizer_main = new wxBoxSizer(wxVERTICAL);
+    sizer_main = new wxBoxSizer(wxHORIZONTAL);
 
-    sizer_main->Add(plotter, 3, wxEXPAND);
     sizer_main->Add(controls, 1, wxEXPAND);
+    sizer_main->Add(plotter, 5, wxEXPAND);
 
     SetSizer(sizer_main);
 }
