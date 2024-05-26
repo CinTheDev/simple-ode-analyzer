@@ -89,14 +89,14 @@ void ControlsChoose::SendResults() {
     request_ode_settings(&settings_common, &settings_approx);
 
     // ODE pointer
-    size_t amount_results, result_length;
-    double** ode_results = get_all_results(amount_results, result_length, settings_common, settings_approx);
-    uint32_t* ode_colours = get_all_colours();
+    //size_t amount_results, result_length;
+    //double** ode_results = get_all_results(amount_results, result_length, settings_common, settings_approx);
+    //uint32_t* ode_colours = get_all_colours();
 
-    OdePointerEvent evt_ode_pointer(EVT_ODE_POINTER, GetId(), ode_results, ode_colours, amount_results, result_length);
-    evt_ode_pointer.SetEventObject(this);
-    evt_ode_pointer.ResumePropagation(__INT_MAX__);
-    ProcessEvent(evt_ode_pointer);
+    //OdePointerEvent evt_ode_pointer(EVT_ODE_POINTER, GetId(), ode_results, ode_colours, amount_results, result_length);
+    //evt_ode_pointer.SetEventObject(this);
+    //evt_ode_pointer.ResumePropagation(__INT_MAX__);
+    //ProcessEvent(evt_ode_pointer);
 
     // Step x
     SettingsCommonEvent evt_settings_common(SETTINGS_COMMON_UPDATE, GetId(), settings_common);
@@ -105,6 +105,7 @@ void ControlsChoose::SendResults() {
     ProcessEvent(evt_settings_common);
 }
 
+/*
 double** ControlsChoose::get_all_results(size_t& amount_results, size_t& result_length, Settings_Common settings_common, Settings_Approx settings_approx) {
     amount_results = sizer_main->GetItemCount() - 1;
 
@@ -137,6 +138,7 @@ uint32_t* ControlsChoose::get_all_colours() {
 
     return results;
 }
+*/
 
 void ControlsChoose::request_ode_settings(Settings_Common* settings_common, Settings_Approx* settings_approx) {
     SettingsOdeRequest request = SettingsOdeRequest(SETTINGS_ODE_REQUEST, GetId(), settings_common, settings_approx);
