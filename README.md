@@ -87,7 +87,6 @@ going to be an efficient process.
 
 ## TODOs
 
-- Make Plotter parameterized
 - Reimplement all ODE types
 - Add way to choose ODE type at creation
 - Reshape layout
