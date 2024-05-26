@@ -1,7 +1,7 @@
 #include "ode_entry.h"
 #include "events.h"
 
-OdeEntry::OdeEntry(wxWindow* parent) : Controls(parent, "") {
+OdeEntry::OdeEntry(wxWindow* parent, wxString name) : Controls(parent, name) {
     init_elements();
     init_sizers();
 }
@@ -23,7 +23,7 @@ void OdeEntry::init_sizers() {
     sizer_options->Add(button_down, 0);
     sizer_options->Add(button_remove, 0);
 
-    sizer_main->Prepend(sizer_options, 0, wxEXPAND | wxALL & ~wxTOP, 10);
+    sizer_main->Prepend(sizer_options, 0, wxEXPAND | wxALL, 10);
     sizer_main->GetItem(1)->SetFlag(wxEXPAND | wxALL & ~wxTOP); // Flags of sizer_grid
 
     SetSizer(sizer_main);

@@ -8,7 +8,7 @@
 
 class OdeEntry : public Controls {
 public:
-    OdeEntry(wxWindow* parent);
+    OdeEntry(wxWindow* parent, wxString name);
     ~OdeEntry();
 
     wxBoxSizer* sizer_options;
