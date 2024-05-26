@@ -20,8 +20,8 @@ void Diffeq_Main::instance_layout() {
 
     sizer_main = new wxBoxSizer(wxHORIZONTAL);
 
-    sizer_main->Add(controls, 1, wxEXPAND);
-    sizer_main->Add(plotter, 5, wxEXPAND);
+    sizer_main->Add(controls, 0, wxEXPAND);
+    sizer_main->Add(plotter, 1, wxEXPAND);
 
     SetSizer(sizer_main);
 }
