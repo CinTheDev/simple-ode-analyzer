@@ -1,4 +1,5 @@
 add_library(ode_variants
+    ode_function.cpp
     ode_oscillation_harmonic.cpp
 )
 

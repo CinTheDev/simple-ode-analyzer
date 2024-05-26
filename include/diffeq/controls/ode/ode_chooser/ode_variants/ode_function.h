@@ -2,6 +2,7 @@
 #define DIFFEQ_ODE_FUNCTION
 
 #include <wx/wx.h>
+#include "ode_entry.h"
 
 class OdeFunction : public OdeEntry {
 public:
