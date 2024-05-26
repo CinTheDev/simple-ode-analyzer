@@ -28,6 +28,11 @@ target_include_directories(entry_dialog PUBLIC
 
 target_link_libraries(entry_dialog PUBLIC
     ${wxWidgets_LIBRARIES}
+    ode_entry
+)
+
+target_link_libraries(entry_dialog PRIVATE
+    ode_variants
 )
 
 # CHOOSER FOR ENTRIES
@@ -47,5 +52,4 @@ target_link_libraries(controls_choose PUBLIC
 
 target_link_libraries(controls_choose PRIVATE
     entry_dialog
-    ode_variants # Temporary, shoudln't be required later on
 )

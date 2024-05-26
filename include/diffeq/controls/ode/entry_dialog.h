@@ -2,6 +2,7 @@
 #define DIFFEQ_ENTRY_ADD_DIALOGUE
 
 #include <wx/wx.h>
+#include "ode_entry.h"
 
 class EntryDialog : public wxDialog {
 public:
@@ -11,6 +12,8 @@ public:
     wxBoxSizer* sizer_main;
 
     wxButton* test_button;
+
+    OdeEntry* get_entry();
 };
 
 #endif

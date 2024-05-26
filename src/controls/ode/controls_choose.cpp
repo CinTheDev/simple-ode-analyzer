@@ -1,6 +1,5 @@
 #include "controls_choose.h"
 #include "entry_dialog.h"
-#include "ode_variants.h"
 
 ControlsChoose::ControlsChoose(wxWindow* parent) : wxScrolledWindow(parent) {
     sizer_main = new wxStaticBoxSizer(wxVERTICAL, this, "Select ODEs");
@@ -21,7 +20,7 @@ void ControlsChoose::add_entry() {
     EntryDialog entry_dialog = EntryDialog(this);
     if (entry_dialog.ShowModal() != wxID_OK ) return;
 
-    OdeEntry* new_entry = new Ode_Oscillation_Gravitational(this);
+    OdeEntry* new_entry = entry_dialog.get_entry();
     new_entry->button_remove->Bind(wxEVT_BUTTON, &ControlsChoose::on_child_remove, this);
     new_entry->button_up->Bind(wxEVT_BUTTON, &ControlsChoose::on_child_up, this);
     new_entry->button_down->Bind(wxEVT_BUTTON, &ControlsChoose::on_child_down, this);
