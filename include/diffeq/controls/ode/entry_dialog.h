@@ -14,6 +14,8 @@ public:
     wxButton* test_button;
 
     OdeEntry* get_entry();
+
+    void on_test_button(wxCommandEvent& evt);
 };
 
 #endif
