@@ -38,6 +38,7 @@ private:
     OdeEntry* get_entry_from_event(wxCommandEvent& evt);
     size_t get_entry_index(OdeEntry* entry);
     void update_entry_buttons();
+    void entries_calculate();
 
     void swap_entries(size_t index_1, size_t index_2);
 };

@@ -79,6 +79,7 @@ void ControlsChoose::on_child_remove(wxCommandEvent& evt) {
 }
 
 void ControlsChoose::on_calculate(wxCommandEvent& evt) {
+    entries_calculate();
     SendResults();
 }
 
@@ -203,6 +204,13 @@ void ControlsChoose::update_entry_buttons() {
 
         OdeEntry* entry = (OdeEntry*) sizer_main->GetItem(i)->GetWindow();
         entry->enable_buttons(button_up, button_down);
+    }
+}
+
+void ControlsChoose::entries_calculate() {
+    for (size_t i = 1; i < sizer_main->GetItemCount(); i++) {
+        OdeEntry* entry = (OdeEntry*) sizer_main->GetItem(i)->GetWindow();
+        entry->calculate();
     }
 }
 

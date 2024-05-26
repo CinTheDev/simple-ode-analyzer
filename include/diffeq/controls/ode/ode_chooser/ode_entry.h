@@ -24,6 +24,7 @@ public:
     uint32_t get_colour();
 
     void enable_buttons(bool button_up, bool button_down);
+    virtual void calculate();
 
 protected:
     double* result_x;
@@ -31,7 +32,6 @@ protected:
     size_t result_length;
 
     void set_result_length(size_t new_length);
-    virtual void calculate();
 
     void add_option(wxStaticText* label, wxTextCtrl* input);
 
