@@ -20,3 +20,13 @@ int OdeFunction::get_length() {
 double OdeFunction::get_step_x() {
     return get_input_double(input_step_x, label_step_x);
 }
+
+double OdeFunction::evaluate_function(double fx) { }
+
+void OdeFunction::calculate() {
+
+}
+
+void OdeFunction::calculate_euler() {
+
+}

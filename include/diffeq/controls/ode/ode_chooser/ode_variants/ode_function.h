@@ -19,6 +19,12 @@ public:
 protected:
     int get_length();
     double get_step_x();
+
+    // This represents the form ddf(x) = f(x)
+    virtual double evaluate_function(double fx);
+
+    void calculate();
+    void calculate_euler();
 };
 
 #endif
