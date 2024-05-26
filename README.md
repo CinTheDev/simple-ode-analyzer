@@ -84,7 +84,3 @@ which makes the required scrolling way less annoying.
 
 Implement this only after integrating approximation settings into ODE settings though, otherwise it's not
 going to be an efficient process.
-
-## TODOs
-
-- Add way to choose ODE type at creation
