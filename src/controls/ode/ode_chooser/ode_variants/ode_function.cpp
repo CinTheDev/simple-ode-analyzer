@@ -2,10 +2,12 @@
 
 const wxString numerical_method_labels[] = {
     "Euler",
+    "Midpoint",
 };
 
 enum {
     EULER,
+    MIDPOINT,
 };
 
 OdeFunction::OdeFunction(wxWindow* parent, wxString label) : OdeEntry(parent, label) {
@@ -64,6 +66,10 @@ void OdeFunction::calculate() {
     case EULER:
         calculate_euler();
         break;
+    
+    case MIDPOINT:
+        calculate_midpoint();
+        break;
 
     default:
         std::cout << "WARNING: Unhandled selection " << index << " in OdeFunction::calculate()" << std::endl;
@@ -85,5 +91,26 @@ void OdeFunction::calculate_euler() {
 
         double df = current_df;
         current_f += df * dt;
+    }
+}
+
+void OdeFunction::calculate_midpoint() {
+    double dt = get_step_x();
+
+    double current_f = get_initial_s();
+    double current_df = get_initial_v();
+
+    for (size_t i = 0; i < result_length; i++) {
+        result[i] = current_f;
+
+        double ddf_1 = evaluate_function(current_f);
+
+        double df_1 = current_df;
+        double df_2 = current_df + dt * 0.5 * ddf_1;
+
+        double ddf_2 = evaluate_function(current_f + dt * 0.5 * df_2);
+
+        current_df += ddf_2 * dt;
+        current_f += df_2 * dt;
     }
 }

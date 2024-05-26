@@ -35,6 +35,7 @@ protected:
 
     void calculate();
     void calculate_euler();
+    void calculate_midpoint();
 
 private:
     void update_length();
