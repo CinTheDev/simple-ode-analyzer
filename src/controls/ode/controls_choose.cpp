@@ -84,13 +84,6 @@ void ControlsChoose::on_calculate(wxCommandEvent& evt) {
 }
 
 void ControlsChoose::SendResults() {
-    // Request settings
-    Settings_Common settings_common;
-    Settings_Approx settings_approx;
-
-    request_ode_settings(&settings_common, &settings_approx);
-
-    // ODE Data event
     OdeData ode_data;
     ode_data.amount_results = sizer_main->GetItemCount() - 1;
 
@@ -105,12 +98,6 @@ void ControlsChoose::SendResults() {
     evt_ode_pointer.SetEventObject(this);
     evt_ode_pointer.ResumePropagation(__INT_MAX__);
     ProcessEvent(evt_ode_pointer);
-
-    // Step x
-    SettingsCommonEvent evt_settings_common(SETTINGS_COMMON_UPDATE, GetId(), settings_common);
-    evt_settings_common.SetEventObject(this);
-    evt_settings_common.ResumePropagation(__INT_MAX__);
-    ProcessEvent(evt_settings_common);
 }
 
 double** ControlsChoose::get_all_results_x(size_t amount_results) {
@@ -167,17 +154,6 @@ size_t* ControlsChoose::get_all_lengths(size_t amount_results) {
     }
 
     return results;
-}
-
-void ControlsChoose::request_ode_settings(Settings_Common* settings_common, Settings_Approx* settings_approx) {
-    SettingsOdeRequest request = SettingsOdeRequest(SETTINGS_ODE_REQUEST, GetId(), settings_common, settings_approx);
-    request.ResumePropagation(__INT_MAX__);
-    request.SetEventObject(this);
-    ProcessEvent(request);
-
-    if (settings_common == nullptr || settings_approx == nullptr) {
-        std::cout << "WARNING: Requested settings are null" << std::endl;
-    }
 }
 
 OdeEntry* ControlsChoose::get_entry_from_event(wxCommandEvent& evt) {

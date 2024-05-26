@@ -30,11 +30,6 @@ void Plotter::on_settings_update(SettingsPlotterEvent& evt) {
     paintNow();
 }
 
-void Plotter::on_settings_common_update(SettingsCommonEvent& evt) {
-    settings_common = evt.get_settings();
-    paintNow();
-}
-
 void Plotter::on_function_update(OdePointerEvent& evt) {
     clear_function_data();
 

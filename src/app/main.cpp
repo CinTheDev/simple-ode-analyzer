@@ -14,7 +14,6 @@ void Diffeq_Main::instance_layout() {
 
     // Bind events between both
     Bind(SETTINGS_PLOTTER_UPDATE, &Plotter::on_settings_update, plotter);
-    Bind(SETTINGS_COMMON_UPDATE, &Plotter::on_settings_common_update, plotter);
     Bind(EVT_ODE_POINTER, &Plotter::on_function_update, plotter);
     Bind(PLOTTER_GRAPHICS_UPDATE, &ControlsPanel::on_plotter_update, controls);
 

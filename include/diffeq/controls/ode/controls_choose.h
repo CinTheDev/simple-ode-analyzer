@@ -33,8 +33,6 @@ private:
     uint32_t* get_all_colours(size_t amount_results);
     size_t* get_all_lengths(size_t amount_results);
 
-    void request_ode_settings(Settings_Common* settings_common, Settings_Approx* settings_approx);
-
     OdeEntry* get_entry_from_event(wxCommandEvent& evt);
     size_t get_entry_index(OdeEntry* entry);
     void update_entry_buttons();
