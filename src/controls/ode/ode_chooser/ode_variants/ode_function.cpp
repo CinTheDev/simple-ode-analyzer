@@ -50,5 +50,18 @@ void OdeFunction::calculate() {
 }
 
 void OdeFunction::calculate_euler() {
-    
+    double dt = get_step_x();
+
+    double current_f = 1.0;
+    double current_df = 0.0;
+
+    for (size_t i = 0; i < result_length; i++) {
+        result[i] = current_f;
+
+        double ddf = evaluate_function(current_f);
+        current_df += ddf * dt;
+
+        double df = current_df;
+        current_f += df * dt;
+    }
 }
