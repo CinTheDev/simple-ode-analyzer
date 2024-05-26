@@ -12,8 +12,8 @@ OdeFunction::OdeFunction(wxWindow* parent, wxString label) : OdeEntry(parent, la
     label_length = new wxStaticText(this, wxID_ANY, "Amount calculated values");
     label_step_x = new wxStaticText(this, wxID_ANY, "Step along x");
 
-    input_length = new wxTextCtrl(this, wxID_ANY, "l");
-    input_step_x = new wxTextCtrl(this, wxID_ANY, "x");
+    input_length = new wxTextCtrl(this, wxID_ANY, "100");
+    input_step_x = new wxTextCtrl(this, wxID_ANY, "0.01");
 
     add_option(label_length, input_length);
     add_option(label_step_x, input_step_x);
@@ -26,6 +26,12 @@ OdeFunction::OdeFunction(wxWindow* parent, wxString label) : OdeEntry(parent, la
 
 OdeFunction::~OdeFunction() { }
 
+void OdeFunction::update_length() {
+    int length_input = get_length();
+    if (length_input < 1) return;
+    set_result_length(length_input);
+}
+
 int OdeFunction::get_length() {
     return get_input_int(input_length, label_length);
 }
@@ -37,6 +43,8 @@ double OdeFunction::get_step_x() {
 double OdeFunction::evaluate_function(double fx) { return 0.0; }
 
 void OdeFunction::calculate() {
+    update_length();
+
     size_t index = dropdown_numerical_method->GetSelection();
     switch (index) {
     case EULER:

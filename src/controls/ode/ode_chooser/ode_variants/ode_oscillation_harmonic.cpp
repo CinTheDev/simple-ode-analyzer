@@ -6,7 +6,7 @@ Ode_Oscillation_Harmonic::Ode_Oscillation_Harmonic(wxWindow* parent) : OdeFuncti
 
     add_option(some_label, some_option);
 
-    set_result_length(100);
+    //set_result_length(100);
 }
 
 Ode_Oscillation_Harmonic::~Ode_Oscillation_Harmonic() { }

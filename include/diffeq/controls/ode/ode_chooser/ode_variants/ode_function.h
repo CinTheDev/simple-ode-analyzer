@@ -27,6 +27,9 @@ protected:
 
     void calculate();
     void calculate_euler();
+
+private:
+    void update_length();
 };
 
 #endif
