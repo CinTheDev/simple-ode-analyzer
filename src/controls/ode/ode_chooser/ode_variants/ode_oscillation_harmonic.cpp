@@ -14,6 +14,6 @@ Ode_Oscillation_Harmonic::~Ode_Oscillation_Harmonic() { }
 
 void Ode_Oscillation_Harmonic::calculate() {
     for (size_t i = 0; i < result_length; i++) {
-        result[i] = (double)result_length / (double)i;
+        result[i] = (double)i / (double)result_length;
     }
 }
