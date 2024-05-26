@@ -13,7 +13,7 @@ public:
     wxTextCtrl* some_option;
 
 protected:
-    void calculate();
+    double evaluate_function(double x);
 };
 
 #endif
