@@ -88,4 +88,3 @@ going to be an efficient process.
 ## TODOs
 
 - Add way to choose ODE type at creation
-- Remove remnants (unused events, structs, etc...)
