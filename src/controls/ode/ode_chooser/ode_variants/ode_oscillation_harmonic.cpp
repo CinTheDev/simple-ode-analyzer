@@ -1,16 +1,19 @@
 #include "ode_oscillation_harmonic.h"
 
 Ode_Oscillation_Harmonic::Ode_Oscillation_Harmonic(wxWindow* parent) : OdeFunction(parent, "Harmonic Oscillation") {
-    some_label = new wxStaticText(this, wxID_ANY, "Some label");
-    some_option = new wxTextCtrl(this, wxID_ANY, "Some option");
+    label_omega = new wxStaticText(this, wxID_ANY, "w [s^-1]");
+    input_omega = new wxTextCtrl(this, wxID_ANY, "10.0");
 
-    add_option(some_label, some_option);
-
-    //set_result_length(100);
+    add_option(label_omega, input_omega);
 }
 
 Ode_Oscillation_Harmonic::~Ode_Oscillation_Harmonic() { }
 
-double Ode_Oscillation_Harmonic::evaluate_function(double x) {
-    return -10.0 * 10.0 * x;
+double Ode_Oscillation_Harmonic::evaluate_function(double fx) {
+    double w = get_omega();
+    return -w * w * fx;
+}
+
+double Ode_Oscillation_Harmonic::get_omega() {
+    return get_input_double(input_omega, label_omega);
 }

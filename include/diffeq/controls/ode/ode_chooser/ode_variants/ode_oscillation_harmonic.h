@@ -9,11 +9,13 @@ public:
     Ode_Oscillation_Harmonic(wxWindow* parent);
     ~Ode_Oscillation_Harmonic();
 
-    wxStaticText* some_label;
-    wxTextCtrl* some_option;
+    wxStaticText* label_omega;
+    wxTextCtrl* input_omega;
 
 protected:
-    double evaluate_function(double x);
+    double evaluate_function(double fx);
+
+    double get_omega();
 };
 
 #endif
