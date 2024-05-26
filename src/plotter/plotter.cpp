@@ -233,7 +233,7 @@ void Plotter::render_function(wxDC& dc) {
             double y = ode_data.results_y[f][i];
 
             double x_pixel = x * (width - axis_offset) + axis_offset / settings.view_x;
-            double y_pixel = (0.5 - y * 0.5) * height / settings.view.y;
+            double y_pixel = (0.5 - y * 0.5) * height / settings.view_y;
             function_points[i] = wxPoint(x_pixel, (0.5 - y * 0.5) * height);
         }
 
