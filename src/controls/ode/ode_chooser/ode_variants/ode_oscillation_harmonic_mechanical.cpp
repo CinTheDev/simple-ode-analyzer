@@ -20,7 +20,7 @@ Ode_Oscillation_Harmonic_Mechanical::~Ode_Oscillation_Harmonic_Mechanical() { }
 double Ode_Oscillation_Harmonic_Mechanical::evaluate_function(double fx) {
     double D = get_D();
     double m = get_m();
-    return (D / m) * fx;
+    return -(D / m) * fx;
 }
 
 double Ode_Oscillation_Harmonic_Mechanical::get_D() {
