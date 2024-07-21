@@ -19,7 +19,8 @@ Ode_Oscillation_Harmonic::~Ode_Oscillation_Harmonic() { }
 
 double Ode_Oscillation_Harmonic::evaluate_function(double fx, double dfx) {
     double w = get_omega();
-    return -w * w * fx;
+    double damping = get_damping();
+    return -w * w * fx - damping * dfx;
 }
 
 double Ode_Oscillation_Harmonic::get_omega() {
