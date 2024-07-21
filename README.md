@@ -65,7 +65,6 @@ Right now, wxWidgets version 3.2.2 is being used.
 
 Implement dampening for the ODEs
 
-- ode_oscillation_harmonic
 - ode_oscillation_harmonic_mechanical
 - ode_oscillation_harmonic_electromagnetic
 - ode_oscillation_pendulum
