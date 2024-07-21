@@ -4,7 +4,7 @@ Ode_Oscillation_Harmonic::Ode_Oscillation_Harmonic(wxWindow* parent) : OdeFuncti
     label_omega = new wxStaticText(this, wxID_ANY, "w [s^-1]");
     input_omega = new wxTextCtrl(this, wxID_ANY, "10.0");
 
-    label_damping = new wxStaticText(this, wxID_ANY, "z");
+    label_damping = new wxStaticText(this, wxID_ANY, "z [1]");
     input_damping = new wxTextCtrl(this, wxID_ANY, "1.0");
 
     add_option(label_omega, input_omega);
