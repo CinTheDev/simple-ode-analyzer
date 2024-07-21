@@ -60,3 +60,13 @@ Please make sure to have wxWidgets installed, so that inside CMakeLists.txt `fin
 can find wxWidgets.
 
 Right now, wxWidgets version 3.2.2 is being used.
+
+## TODOs
+
+Implement dampening for the ODEs
+
+- ode_oscillation_harmonic
+- ode_oscillation_harmonic_mechanical
+- ode_oscillation_harmonic_electromagnetic
+- ode_oscillation_pendulum
+- ode_oscillation_gravitational
