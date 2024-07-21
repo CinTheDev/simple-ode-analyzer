@@ -4,7 +4,7 @@ Ode_Oscillation_Harmonic::Ode_Oscillation_Harmonic(wxWindow* parent) : OdeFuncti
     label_omega = new wxStaticText(this, wxID_ANY, "w [s^-1]");
     input_omega = new wxTextCtrl(this, wxID_ANY, "10.0");
 
-    label_damping = new wxStaticText(this, wxID_ANY, "damping yeah [s^-1]");
+    label_damping = new wxStaticText(this, wxID_ANY, "z");
     input_damping = new wxTextCtrl(this, wxID_ANY, "1.0");
 
     add_option(label_omega, input_omega);
@@ -19,8 +19,8 @@ Ode_Oscillation_Harmonic::~Ode_Oscillation_Harmonic() { }
 
 double Ode_Oscillation_Harmonic::evaluate_function(double fx, double dfx) {
     double w = get_omega();
-    double damping = get_damping();
-    return -w * w * fx - damping * dfx;
+    double z = get_damping();
+    return -w * w * fx - 2 * z * w * dfx;
 }
 
 double Ode_Oscillation_Harmonic::get_omega() {
