@@ -3,7 +3,7 @@
 Ode_Oscillation_Harmonic_Mechanical::Ode_Oscillation_Harmonic_Mechanical(wxWindow* parent) : OdeFunction(parent, "Harmonic Oscillation - Mechanical") {
     label_D = new wxStaticText(this, wxID_ANY, "D [kg * s^-2]");
     label_m = new wxStaticText(this, wxID_ANY, "m [kg]");
-    label_c = new wxStaticText(this, wxID_ANY, "c [TODO]");
+    label_c = new wxStaticText(this, wxID_ANY, "c [kg * s^-1]");
 
     input_D = new wxTextCtrl(this, wxID_ANY, "100");
     input_m = new wxTextCtrl(this, wxID_ANY, "1");
