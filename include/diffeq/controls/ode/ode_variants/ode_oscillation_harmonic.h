@@ -13,7 +13,7 @@ public:
     wxTextCtrl* input_omega;
 
 protected:
-    double evaluate_function(double fx);
+    double evaluate_function(double fx, double dfx);
 
     double get_omega();
 };

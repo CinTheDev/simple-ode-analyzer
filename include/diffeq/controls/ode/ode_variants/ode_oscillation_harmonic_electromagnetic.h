@@ -16,7 +16,7 @@ public:
     wxTextCtrl* input_C;
 
 protected:
-    double evaluate_function(double fx);
+    double evaluate_function(double fx, double dfx);
 
     double get_L();
     double get_C();

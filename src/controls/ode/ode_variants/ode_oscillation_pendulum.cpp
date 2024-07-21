@@ -17,7 +17,7 @@ Ode_Oscillation_Pendulum::Ode_Oscillation_Pendulum(wxWindow* parent) : OdeFuncti
 
 Ode_Oscillation_Pendulum::~Ode_Oscillation_Pendulum() { }
 
-double Ode_Oscillation_Pendulum::evaluate_function(double fx) {
+double Ode_Oscillation_Pendulum::evaluate_function(double fx, double dfx) {
     double g = get_g();
     double l = get_l();
 

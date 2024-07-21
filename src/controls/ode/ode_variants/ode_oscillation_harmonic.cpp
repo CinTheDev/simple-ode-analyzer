@@ -13,7 +13,7 @@ Ode_Oscillation_Harmonic::Ode_Oscillation_Harmonic(wxWindow* parent) : OdeFuncti
 
 Ode_Oscillation_Harmonic::~Ode_Oscillation_Harmonic() { }
 
-double Ode_Oscillation_Harmonic::evaluate_function(double fx) {
+double Ode_Oscillation_Harmonic::evaluate_function(double fx, double dfx) {
     double w = get_omega();
     return -w * w * fx;
 }

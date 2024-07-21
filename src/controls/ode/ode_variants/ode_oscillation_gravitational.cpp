@@ -13,7 +13,7 @@ Ode_Oscillation_Gravitational::Ode_Oscillation_Gravitational(wxWindow* parent) :
 
 Ode_Oscillation_Gravitational::~Ode_Oscillation_Gravitational() { }
 
-double Ode_Oscillation_Gravitational::evaluate_function(double fx) {
+double Ode_Oscillation_Gravitational::evaluate_function(double fx, double dfx) {
     double a = get_a();
     return -a * (abs(fx) / fx);
 }
