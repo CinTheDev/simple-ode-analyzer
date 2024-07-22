@@ -209,6 +209,9 @@ void Plotter::render_markings(wxDC& dc) {
 }
 
 void Plotter::render_function(wxDC& dc) {
+    double view_start_x = settings.view_start_x;
+    double view_x = settings.view_x;
+    double view_y = settings.view_y;
     int axis_offset = settings.axis_offset;
 
     wxCoord width, height;
@@ -223,8 +226,8 @@ void Plotter::render_function(wxDC& dc) {
             double x = ode_data.results_x[f][i];
             double y = ode_data.results_y[f][i];
 
-            double x_pixel = ((x - settings.view_start_x) / settings.view_x) * (width - axis_offset) + axis_offset;
-            double y_pixel = (0.5 - y / settings.view_y * 0.5) * height;
+            double x_pixel = ((x - view_start_x) / view_x) * (width - axis_offset) + axis_offset;
+            double y_pixel = (0.5 - y / view_y * 0.5) * height;
 
             function_points[i] = wxPoint(x_pixel, y_pixel);
         }
