@@ -11,15 +11,21 @@ public:
 
     wxStaticText* label_g;
     wxStaticText* label_l;
+    wxStaticText* label_m;
+    wxStaticText* label_c;
 
     wxTextCtrl* input_g;
     wxTextCtrl* input_l;
+    wxTextCtrl* input_m;
+    wxTextCtrl* input_c;
 
 protected:
     double evaluate_function(double fx, double dfx);
 
     double get_g();
     double get_l();
+    double get_m();
+    double get_c();
 };
 
 #endif
