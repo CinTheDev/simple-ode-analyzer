@@ -1,15 +1,15 @@
 #include "ode_oscillation_gravitational.h"
 
 Ode_Oscillation_Gravitational::Ode_Oscillation_Gravitational(wxWindow* parent) : OdeFunction(parent, "Gravitational Oscillation") {
-    label_g = new wxStaticText(this, wxID_ANY, "g [m * s^-2]");
+    label_a = new wxStaticText(this, wxID_ANY, "a [m * s^-2]");
     label_m = new wxStaticText(this, wxID_ANY, "m [kg]");
     label_c = new wxStaticText(this, wxID_ANY, "c [kg * s^-1]");
 
-    input_g = new wxTextCtrl(this, wxID_ANY, "10");
+    input_a = new wxTextCtrl(this, wxID_ANY, "10");
     input_m = new wxTextCtrl(this, wxID_ANY, "1");
     input_c = new wxTextCtrl(this, wxID_ANY, "0");
 
-    add_option(label_g, input_g);
+    add_option(label_a, input_a);
     add_option(label_m, input_m);
     add_option(label_c, input_c);
 
@@ -21,12 +21,15 @@ Ode_Oscillation_Gravitational::Ode_Oscillation_Gravitational(wxWindow* parent) :
 Ode_Oscillation_Gravitational::~Ode_Oscillation_Gravitational() { }
 
 double Ode_Oscillation_Gravitational::evaluate_function(double fx, double dfx) {
-    double a = get_g();
-    return -a * (abs(fx) / fx);
+    double a = get_a();
+    double m = get_m();
+    double c = get_c();
+
+    return -a * (abs(fx) / fx) - (c / m) * dfx;
 }
 
-double Ode_Oscillation_Gravitational::get_g() {
-    return get_input_double(input_g, label_g);
+double Ode_Oscillation_Gravitational::get_a() {
+    return get_input_double(input_a, label_a);
 }
 
 double Ode_Oscillation_Gravitational::get_m() {
