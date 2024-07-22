@@ -31,7 +31,7 @@ protected:
     double get_initial_v();
 
     // This represents the form ddf(x) = f(x)
-    virtual double evaluate_function(double fx);
+    virtual double evaluate_function(double fx, double dfx);
 
     void calculate();
     void calculate_euler();

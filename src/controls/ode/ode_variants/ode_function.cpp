@@ -56,7 +56,7 @@ double OdeFunction::get_initial_v() {
     return get_input_double(input_initial_v, label_initial_v);
 }
 
-double OdeFunction::evaluate_function(double fx) { return 0.0; }
+double OdeFunction::evaluate_function(double fx, double dfx) { return 0.0; }
 
 void OdeFunction::calculate() {
     update_length();
@@ -87,7 +87,7 @@ void OdeFunction::calculate_euler() {
         result_x[i] = dt * i;
         result_y[i] = current_f;
 
-        double ddf = evaluate_function(current_f);
+        double ddf = evaluate_function(current_f, current_df);
         current_df += ddf * dt;
 
         double df = current_df;
@@ -105,12 +105,12 @@ void OdeFunction::calculate_midpoint() {
         result_x[i] = dt * i;
         result_y[i] = current_f;
 
-        double ddf_1 = evaluate_function(current_f);
+        double ddf_1 = evaluate_function(current_f, current_df);
 
         double df_1 = current_df;
         double df_2 = current_df + dt * 0.5 * ddf_1;
 
-        double ddf_2 = evaluate_function(current_f + dt * 0.5 * df_2);
+        double ddf_2 = evaluate_function(current_f + dt * 0.5 * df_2, current_df);
 
         current_df += ddf_2 * dt;
         current_f += df_2 * dt;
