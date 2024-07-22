@@ -214,8 +214,8 @@ void Plotter::render_function(wxDC& dc) {
     wxCoord width, height;
     dc.GetSize(&width, &height);
 
-    wxPoint left = wxPoint(axis_offset, height / 2);
-    wxPoint right = wxPoint(width, height / 2);
+    //wxPoint left = wxPoint(axis_offset, height / 2);
+    //wxPoint right = wxPoint(width, height / 2);
 
     for (size_t f = 0; f < ode_data.amount_results; f++) {
         if (ode_data.result_lengths[f] < 2) continue;
