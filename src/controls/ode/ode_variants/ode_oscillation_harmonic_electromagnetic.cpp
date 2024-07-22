@@ -24,7 +24,8 @@ Ode_Oscillation_Harmonic_Electromagnetic::~Ode_Oscillation_Harmonic_Electromagne
 double Ode_Oscillation_Harmonic_Electromagnetic::evaluate_function(double fx, double dfx) {
     double L = get_L();
     double C = get_C();
-    return -1.0 / (L * C) * fx;
+    double R = get_R();
+    return -1.0 / (L * C) * fx - (R / L) * dfx;
 }
 
 double Ode_Oscillation_Harmonic_Electromagnetic::get_L() {
