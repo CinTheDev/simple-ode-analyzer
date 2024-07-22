@@ -26,8 +26,10 @@ Ode_Oscillation_Pendulum::~Ode_Oscillation_Pendulum() { }
 double Ode_Oscillation_Pendulum::evaluate_function(double fx, double dfx) {
     double g = get_g();
     double l = get_l();
+    double m = get_m();
+    double c = get_c();
 
-    return -g * sin(fx / l);
+    return -g * sin(fx / l) - (c / m) * dfx;
 }
 
 double Ode_Oscillation_Pendulum::get_g() {
