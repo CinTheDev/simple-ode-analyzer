@@ -22,7 +22,7 @@ Currently implemented:
 - Midpoint
 
 Note: As of right now, only ODEs of second order in the form of `f''(x) = A(x)` are supported. A(x)
-is only allowed to contain f(x) and some other values.
+is only allowed to contain f(x), f'(x) and some other values.
 
 Perhaps in the future I will generalize it so other orders (especially first order) can be computed.
 
@@ -35,9 +35,10 @@ implementation and recompilation of the program.
 The good news is that only the function itself and the customizable options have to be implemented by hand.
 There's no need to implement the approximation itself, as the program can handle that by itself.
 
-The new class only needs to implement `evaluate_function(double fx)`, where this function just computes
+The new class only needs to implement `evaluate_function(double fx, double dfx)`, where this function just computes
 the second derivative using the ODE in the form of `f''(x) = ...`. The given parameter `double fx` represents
-`f(x)` which is required if the equation is an ODE.
+`f(x)`, and `double dfx` represents `f'(x)`. At least one parameter must be used to qualify the computation
+being an actual ODE, but not all (or any) parameters have to be used necessarily of course.
 
 As the ODE classes are now integrated in wxWidgets (unlike in past versions), it's really easy to create
 custom options for specifying some values relevant for the ODE.
